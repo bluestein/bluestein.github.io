@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>12:C风格字符串 | Liu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12:C风格字符串">
+<meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-12/index.html">
+<meta property="og:site_name" content="Liu">
+<meta property="og:description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
+<meta property="og:updated_time" content="2015-11-28T09:22:30.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12:C风格字符串">
+<meta name="twitter:description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
+  
+    <link rel="alternative" href="/atom.xml" title="Liu" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <div id="header-title">
+        <h1 id="logo-wrap">
+          <a href="/" id="logo">Liu
+          
+              <span id="subtitle">Writing Something</span>
+          
+          </a>
+        </h1>
+      </div>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bluestein.github.io"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-cpp-primer4-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-12/" class="article-date">
+  <time datetime="2015-11-22T08:49:54.000Z" itemprop="datePublished">2015-11-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      12:C风格字符串
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c1[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>&#125;;		<span class="comment">//c1 维数为3，not c-style</span></span><br><span class="line"><span class="keyword">char</span> c2[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>, <span class="string">'\0'</span>&#125;;	<span class="comment">//c2 维数为4</span></span><br><span class="line"><span class="keyword">char</span> c3[] = <span class="string">"C++"</span>;					<span class="comment">//c3 维数为4，自动添加空字符</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp = <span class="string">"C++"</span>;		<span class="comment">//自动添加空字符</span></span><br><span class="line"><span class="keyword">char</span> *cp1 = c1;		<span class="comment">//指向c1数组的第一个元素，not c-style</span></span><br><span class="line"><span class="keyword">char</span> *cp2 = c2;		<span class="comment">//指向c1数组的第一个元素，以空字符 `null` 结束的字符数组</span></span><br></pre></td></tr></table></figure>
+<p><code>c1</code> 和 <code>cp1</code> 都不是C风格字符串：<code>c1</code> 是不带结束符 <code>null</code> 的字符数组。其他都是C风格字符串。</p>
+<h3 id="1、C风格字符串的使用">1、C风格字符串的使用</h3><hr>
+<p>C++通过 (const) char* 类型的指针来操作C风格的字符串。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp = <span class="string">"C++"</span>;</span><br><span class="line"><span class="keyword">while</span> (*cp) &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *cp &lt;&lt; endl;</span><br><span class="line">	++cp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C</span><br><span class="line">+</span><br><span class="line">+</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果cp指向的字符数组没有 null 结束符，作为循环会失败。这时循环继续进行，知道遇到内存中某处的 null 结束符。</p>
+</blockquote>
+<h3 id="2、C风格字符串的标准库函数">2、C风格字符串的标准库函数</h3><hr>
+<p>下表类除了C语言标准库函数提供的一系列处理C风格字符串的库函数，这些库函数包含在 string.h 中。</p>
+<table>
+<thead>
+<tr>
+<th>库函数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strlen(s)</td>
+<td>返回s的长度，不包括null结束符</td>
+</tr>
+<tr>
+<td>strcmp(s1, s2)</td>
+<td>比较s1和s2是否相同。s1等于s2,返回0;s1大于s2，返回正数；s1小于s2，返回负数</td>
+</tr>
+<tr>
+<td>strcat(s1, s2)</td>
+<td>将字符串s2连接到s1后面，返回s1</td>
+</tr>
+<tr>
+<td>strcpy(s1, s2)</td>
+<td>将s2复制给s2，返回s1</td>
+</tr>
+<tr>
+<td>strncat(s1, s2, n)</td>
+<td>将s2的前n个字符连接到s1后面，并返回s1</td>
+</tr>
+<tr>
+<td>strncpy(s1, s2, n</td>
+<td>将s2的前n个字符赋给s1，并返回s1</td>
+</tr>
+</tbody>
+</table>
+<p>传递给这些函数的指针必须具有非零值，并且指向以null结束的字符数组中的第一个元素。并且要确保目标字符串必须有足够大的空间存放结果串。</p>
+<p><strong>字符串的比较和比较结果都必须使用标准库函数 strcmp 进行</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp1 = <span class="string">"C++"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp2 = <span class="string">"C"</span>;</span><br><span class="line"><span class="keyword">int</span> i = <span class="built_in">strcmp</span>(cp1, cp2);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; i &lt;&lt; endl; </span><br><span class="line">i = <span class="built_in">strcmp</span>(cp2, cp1);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">i = <span class="built_in">strcmp</span>(cp1, cp1);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; i &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line">-<span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><strong>不要忘记字符串结束符null</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c[] = &#123; <span class="string">'c'</span> &#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">strlen</span>(c) &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>输出结果是不可预料的，因为会一直寻找null结束符，然后再输出。比如在我的电脑是输出是 <code>324</code>，这明显是错误的，在不同的电脑会输出不同的值。</p>
+<p><strong>必须确保目标字符串有足够的大小</strong></p>
+<p>库函数 strcat 和 strcpy 的第一个参数必须有足够大的空间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp1 = <span class="string">"C++"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp2 = <span class="string">"C"</span>;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(str, cp1);</span><br><span class="line"><span class="built_in">strcat</span>(str, <span class="string">" "</span>);</span><br><span class="line"><span class="built_in">strcat</span>(str, cp2);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C++ C</span><br></pre></td></tr></table></figure>
+<p>上述程序就目前来看是完全没问题的，但如果 cp1 和 cp2 指向的字符串大小发生了改变，str 所需的大小就不满足要求了。会导致严重的安全漏洞。</p>
+<p><strong>strn函数处理C风格的字符串</strong></p>
+<p>如果必须处理C风格字符串，strncat，strncpy会比strcat，strcpy更安全</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span>];</span><br><span class="line"><span class="built_in">strncpy</span>(str, cp1, <span class="number">4</span>);	<span class="comment">//1. 包含null</span></span><br><span class="line"><span class="built_in">strncat</span>(str, <span class="string">" "</span>, <span class="number">2</span>);	<span class="comment">//2. 包含null，看起来冗余，但是个好习惯</span></span><br><span class="line"><span class="built_in">strncat</span>(str, cp2, <span class="number">2</span>);	<span class="comment">//3. 要包含null</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>分步骤解释：</p>
+<ul>
+<li><ol>
+<li>strncpy cp1 时需要复制 4 个字符：cp1 中所有字符，加上 null 结束符；此时 strlen(str) = 3.</li>
+</ol>
+</li>
+<li><ol>
+<li>strncat “ “ 时需要复制 2 个字符：一个空格字符，加上 null 结束符；此时空格符会把步骤1复制的 null 结束符覆盖。此时 strlen(str) = 4.</li>
+</ol>
+</li>
+<li><ol>
+<li>strncat cp2 时需要复制 2 个字符：cp2 中所有字符，加上 null 结束符；此时 strlen(str) = 6.</li>
+</ol>
+</li>
+</ul>
+<p>最后 str 的内容：cp1 和 cp2 中所有字符，一个空格，和一个null结束符。</p>
+<p><strong>尽可能使用string类型</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str = cp1;</span><br><span class="line">str += <span class="string">" "</span>;</span><br><span class="line">str += cp2;</span><br></pre></td></tr></table></figure>
+<p>可以达到上面一样的效果。</p>
+<h3 id="3、创建动态数组">3、创建动态数组</h3><hr>
+<p>数组类型的限制：长度不变；编译时须知道长度；数组只在定义它的语句内存在。可以使用动态分配解决这一问题，跟C中的malloc和free类似，C++中使用 <strong>new</strong> 和 <strong>delete</strong> 实现。</p>
+<h4 id="3-1、定义">3.1、定义</h4><p>数组变量需要指定类型、数组名和维数定义，而动态分配的数组只需指定类型和长度，不必为数组对象命名。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="3-2、初始化">3.2、初始化</h4><p>动态分配的数组，如果有类型，则使用类型的默认构造函数初始化；如果是内置类型，则无初始化:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>[<span class="number">10</span>];	<span class="comment">//初始化为10个空字符串</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];		<span class="comment">//不初始化</span></span><br><span class="line"><span class="keyword">int</span> *ip2 = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">10</span>]();	<span class="comment">//初始化为10个0</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>圆括号要求编译器对数组进行初始化；<br>动态分配的数组，其元素只能初始化为默认值，而不能像变量一样提供初始化列表进行初始化</p>
+</blockquote>
+<h4 id="3-3、const对象的动态数组">3.3、const对象的动态数组</h4><p>必须为该数组提供初始化值，因为数组内都是const对象，无法赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *caip_bad = <span class="keyword">new</span> <span class="keyword">const</span> <span class="keyword">int</span>[<span class="number">10</span>];	<span class="comment">//error</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *caip_ok = <span class="keyword">new</span> <span class="keyword">const</span> <span class="keyword">int</span>[<span class="number">10</span>]();	<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<p>也可以定义类类型的const数组，但该类型必须提供默认构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> *csp = <span class="keyword">new</span> <span class="keyword">const</span> <span class="built_in">string</span>[<span class="number">10</span>];	<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-4、动态分配空数组">3.4、动态分配空数组</h4><p>有时候，编译时并不知道数组的长度，这时可以动态分配空数组。看如下程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> n = get_size();</span><br><span class="line"><span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> *q = p; q != p + n; ++q)</span><br><span class="line">	<span class="comment">//process the array</span></span><br></pre></td></tr></table></figure>
+<p>即使 <code>get_size()</code> 返回 0 也是可以的。例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> arr[<span class="number">0</span>];	<span class="comment">//error</span></span><br><span class="line"><span class="keyword">char</span> *cp = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">0</span>];	<span class="comment">//ok，但不能被解引用</span></span><br></pre></td></tr></table></figure>
+<p>上述 <code>cp</code> 指针 <strong>允许</strong> 的操作有：比较；本身加（减）0。</p>
+<h4 id="3-5、动态空间释放">3.5、动态空间释放</h4><p>动态分配的空间必须释放，不然内存会被逐渐耗尽</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> [] cp;</span><br></pre></td></tr></table></figure>
+<p>该语句回收了 <code>cp</code> 所指向的数组。把相应的内存返还给自由存储区。</p>
+<blockquote>
+<p>理论上，如果少了 <code>[]</code> 应该会导致少释放空间，从而产生内存泄露，因此，释放动态数组时，不能忘记 <code>[]</code></p>
+</blockquote>
+<h4 id="3-6、动态数组的使用">3.6、动态数组的使用</h4><p>长度不一样的两个字符串，赋给同一个新的字符数组</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *txt1 = <span class="string">"HAHAHA"</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *txt2 = <span class="string">"HEHEHEHEHEHE"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *txt;</span><br><span class="line"><span class="keyword">if</span>(condition)	<span class="comment">//condition表示某个条件</span></span><br><span class="line">	txt = txt1;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	txt = txt2;</span><br><span class="line"><span class="keyword">size_t</span> demension = <span class="built_in">strlen</span>(txt) + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">char</span> *msg = <span class="keyword">new</span> <span class="keyword">char</span>[demension];</span><br><span class="line"><span class="built_in">strncpy</span>(msg, txt, demension);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; msg &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<h3 id="4、新旧代码的兼容">4、新旧代码的兼容</h3><h4 id="4-1、混合使用string库和C风格字符串">4.1、混合使用string库和C风格字符串</h4><p>可用字符串字面值初始化string对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">str</span><span class="params">(<span class="string">"Hello World"</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>通常，C风格字符串与字符串字面值有相同的数据类型，而且都是以空字符null结束，因此可以把C风格字符串用在任何可以使用字符串字面值的地方：</p>
+<ul>
+<li>C风格字符串对string对象进行赋值或初始化；</li>
+<li>C风格字符串可以作为string类型的加法操作两个参数中的一个；</li>
+</ul>
+<p>但反之不成立，但可以通过名为 <code>c_str()</code> 的函数转化为C风格字符串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *str1 = str;	<span class="comment">//error</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str2 = str.c_str();	<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-2、使用数组初始化vector对象">4.2、使用数组初始化vector对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> arr_size = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">int</span> int_arr[arr_size] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec(int_arr, int_arr + arr_size);</span><br><span class="line">	</span><br><span class="line"><span class="comment">//相当于用 int_arr[1], int_arr[2], int_arr[3] 初始化 ivec1</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec1(int_arr + <span class="number">1</span>, int_arr + <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>举例1</strong></p>
+<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> arry_size = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">char</span> *p_str = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//统计输入的字符数</span></span><br><span class="line">	<span class="keyword">char</span> c;<span class="comment">//存放字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter some chars:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span>.get(c))<span class="comment">//每次读取一个字符赋给c</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (count + <span class="number">1</span> &gt;= arry_size)<span class="comment">//超出预设长度</span></span><br><span class="line">		&#123;</span><br><span class="line">			arry_size += <span class="number">10</span>;<span class="comment">//长度增加10</span></span><br><span class="line">			<span class="keyword">char</span> *p_temp = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];<span class="comment">//申请新空间</span></span><br><span class="line">			<span class="built_in">strncpy</span>(p_temp, p_str, count);<span class="comment">//将就空间的内容拷贝到新空间</span></span><br><span class="line">			<span class="keyword">delete</span>[] p_str;<span class="comment">//销毁以前的p_str(p_temp)</span></span><br><span class="line">			p_str = p_temp;<span class="comment">//将新空间p_temp赋给p_str</span></span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		p_str[count] = c;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	p_str[count] = <span class="string">'\0'</span>;<span class="comment">//添加null结束符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"outputs:"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>;i != <span class="built_in">strlen</span>(p_str); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p_str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p_str &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">delete</span>[] p_str;<span class="comment">//最后销毁p_str</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"end"</span> &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enter some chars:</span><br><span class="line">asdfghjklqwertyuiop↙</span><br><span class="line">^Z↙</span><br><span class="line">outputs:</span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><strong>举例2</strong></p>
+<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; str) &#123;</span><br><span class="line">		svec.push_back(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> **cp_arr = <span class="keyword">new</span> <span class="keyword">char</span>*[svec.size()];<span class="comment">//指针数组</span></span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = svec.begin(); iter != svec.end(); ++iter) &#123;</span><br><span class="line">		<span class="built_in">string</span> s = *iter;</span><br><span class="line">		<span class="keyword">char</span> *cp = <span class="keyword">new</span> <span class="keyword">char</span>[s.size()+<span class="number">1</span>];<span class="comment">//+1表示为null结束符预留空间</span></span><br><span class="line">		<span class="built_in">strncpy</span>(cp, s.c_str(), s.size()+<span class="number">1</span>);</span><br><span class="line">		cp_arr[cnt] = cp;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != cnt; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; cp_arr[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span>[] cp_arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] cp_arr;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world↙</span><br><span class="line">^Z↙</span><br><span class="line">hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<h3 id="5、多维数组">5、多维数组</h3><blockquote>
+<p>严格的讲，C++中没有多维数组，只有<strong>数组的数组</strong></p>
+</blockquote>
+<p><strong>初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;</span><br><span class="line">	&#123;<span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">	&#123;<span class="number">2</span>, <span class="number">3</span>&#125;,</span><br><span class="line">	&#123;<span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>且等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>而下面情况只初始化第一个元素，则其余初始化为0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>&#125;, &#123;<span class="number">2</span>&#125;, &#123;<span class="number">3</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">2</span>, <span class="number">0</span>&#125;, &#123;<span class="number">3</span>, <span class="number">0</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>但不会等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;<span class="comment">//等价于int ia[3][2] = &#123;1, 2, 3, 0, 0, 0&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>下标引用</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> rsz = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> csz = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> ia[rsz][csz];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != rsz; ++i) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>;j != csz; ++j) &#123;</span><br><span class="line">		ia[i][j] = i + j;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问特定元素时，必须提供行下标与列下标</p>
+<p><strong>指针与多维数组</strong></p>
+<p>与普通数组一样，多为数组名也是指向第一个元素的指针。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;</span><br><span class="line">		&#123; <span class="number">0</span>, <span class="number">1</span> &#125;,</span><br><span class="line">		&#123; <span class="number">2</span>, <span class="number">3</span> &#125;,</span><br><span class="line">		&#123; <span class="number">4</span>, <span class="number">5</span> &#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">int</span> (*ip)[<span class="number">2</span>];	<span class="comment">//ok: 一个指向包含2个int值的数组的指针</span></span><br><span class="line">	ip = &amp;ia[<span class="number">1</span>];	<span class="comment">//ok: ia[1] 包含2个int值</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (*ip)[<span class="number">0</span>] &lt;&lt; <span class="string">","</span> &lt;&lt; (*ip)[<span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>,<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>int (<em>ip)[2];//指向数组的指针；即ip是指向包含两个int值的数组的指针<br>int </em>ip[2];//指针的数组；即ip是包含两个指针的数组</p>
+</blockquote>
+<p><strong>typedef简化多维数组指针</strong></p>
+<p>指向 <code>ia</code> 的指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> int_arr[<span class="number">2</span>];</span><br><span class="line">int_arr *ip = ia;</span><br></pre></td></tr></table></figure>
+<p>用 <code>int_arr</code> 输出 <code>ia</code> 的元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">3</span>][<span class="number">2</span>] = &#123;</span><br><span class="line">	&#123; <span class="number">0</span>, <span class="number">1</span> &#125;,</span><br><span class="line">	&#123; <span class="number">2</span>, <span class="number">3</span> &#125;,</span><br><span class="line">	&#123; <span class="number">4</span>, <span class="number">5</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> int_arr[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">for</span> (int_arr *p = ia; p != ia + <span class="number">3</span>; ++p) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> *q = *p; q != *p + <span class="number">2</span>; ++q)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *q &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-12/" data-id="cihiw6s0o001v6gfo3y8xyxcp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/cpp-primer4-13/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          13:算术操作符
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/cpp-primer4-11/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">11:指针</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-primer/">C++ primer</a><span class="category-list-count">18</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget recents">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-18/">18:类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-17/">17:new &amp; delete</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-16/">16:赋值操作和自增自减</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-15/">15:赋值操作和自增自减</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-14/">14:位操作符</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-primer/" style="font-size: 10px;">C++ primer</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">18</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+          
+        
+      </div>
+      <div id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a></br>
+      &copy; 2015 Bluestein/Humooo(humooo@outlook.com)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

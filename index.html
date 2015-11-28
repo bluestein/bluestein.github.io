@@ -63,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cpp_primer4-2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cpp-primer4-18" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/28/cpp_primer4-2/" class="article-date">
-  <time datetime="2015-11-28T02:36:09.000Z" itemprop="datePublished">2015-11-28</time>
+    <a href="/2015/11/cpp-primer4-18/" class="article-date">
+  <time datetime="2015-11-28T08:50:29.000Z" itemprop="datePublished">2015-11-28</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +81,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/28/cpp_primer4-2/">读&lt;C++ primer4&gt; 2: 基本类型与字面值常量</a>
+      <a class="article-title" href="/2015/11/cpp-primer4-18/">18:类型转换</a>
     </h1>
   
 
@@ -89,76 +89,244 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
-<p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-18/" data-id="cihiw6s0600176gfoc86vye50" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-17" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-17/" class="article-date">
+  <time datetime="2015-11-27T08:50:24.000Z" itemprop="datePublished">2015-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-17/">17:new &amp; delete</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、动态创建对象的初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-17/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-17/" data-id="cihiw6s08001b6gfosy9m99ns" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-16/" class="article-date">
+  <time datetime="2015-11-26T08:50:15.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-16/">16:赋值操作和自增自减</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
+<h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-16/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-16/" data-id="cihiw6s0b001f6gfoeouh9xs8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-15" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-15/" class="article-date">
+  <time datetime="2015-11-25T08:50:10.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-15/">15:赋值操作和自增自减</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、赋值操作</strong></p>
+<p>赋值的左操作数必须是非const左值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i, j, val;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i;	<span class="comment">//ok</span></span><br><span class="line"><span class="number">1024</span> = val;		<span class="comment">//error: 字面值是右值</span></span><br><span class="line">i + j = val;	<span class="comment">//error: 算术运算结果是右值</span></span><br><span class="line">ci = val;		<span class="comment">//error: 不能赋值</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-15/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-15/" data-id="cihiw6s0f001j6gfooer94h2x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-14" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-14/" class="article-date">
+  <time datetime="2015-11-24T08:50:05.000Z" itemprop="datePublished">2015-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-14/">14:位操作符</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>位操作符：位操作符操作的整数可以是有符号或无符号数。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">类型</th>
-<th>含义</th>
-<th style="text-align:left">最小存储空间（位）</th>
+<th>操作符</th>
+<th>功能</th>
+<th>用法</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">bool</td>
-<td>布尔型</td>
-<td style="text-align:left">-</td>
+<td>~</td>
+<td>求位反</td>
+<td>~expr</td>
 </tr>
 <tr>
-<td style="text-align:left">char</td>
-<td>字符型</td>
-<td style="text-align:left">8</td>
+<td>&lt;&lt;</td>
+<td>左移</td>
+<td>expr1 &lt;&lt; expr2</td>
 </tr>
 <tr>
-<td style="text-align:left">wchar_t</td>
-<td>宽字符型</td>
-<td style="text-align:left">16</td>
+<td>&gt;&gt;</td>
+<td>右移</td>
+<td>expr1 &gt;&gt; expr2</td>
 </tr>
 <tr>
-<td style="text-align:left">short</td>
-<td>短整型</td>
-<td style="text-align:left">16</td>
+<td>&amp;</td>
+<td>位与</td>
+<td>expr1 &amp; expr2</td>
 </tr>
 <tr>
-<td style="text-align:left">int</td>
-<td>整型</td>
-<td style="text-align:left">16</td>
+<td>^</td>
+<td>位异或</td>
+<td>expr1 ^ expr2</td>
 </tr>
 <tr>
-<td style="text-align:left">long</td>
-<td>长整型</td>
-<td style="text-align:left">32</td>
-</tr>
-<tr>
-<td style="text-align:left">float</td>
-<td>单精度浮点型</td>
-<td style="text-align:left">6位有效数字</td>
-</tr>
-<tr>
-<td style="text-align:left">double</td>
-<td>双精度浮点型</td>
-<td style="text-align:left">10位有效数字</td>
-</tr>
-<tr>
-<td style="text-align:left">long double</td>
-<td>拓展精度浮点型</td>
-<td style="text-align:left">10位有效数字</td>
+<td>(一个竖线)</td>
+<td>位或</td>
+<td>expr1 (一个竖线) expr2</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>注：即使是c++标准规定了存储标准，但是并不能阻止编译器使用更大的存储空间。而且，对于int型几乎所有编译器使用的空间都比所要求的大。</p>
-</blockquote>
         
           <p class="article-more-link">
-            <a href="/2015/11/28/cpp_primer4-2/#more">阅读全文</a>
+            <a href="/2015/11/cpp-primer4-14/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bluestein.github.io/2015/11/28/cpp_primer4-2/" data-id="cihilby5k0007osformtu5pwm" class="article-share-link">Share</a>
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-14/" data-id="cihiw6s0i001n6gfokt7o2toc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
@@ -170,10 +338,10 @@
 
 
   
-    <article id="post-cpp_primer4-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cpp-primer4-13" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/28/cpp_primer4-1/" class="article-date">
-  <time datetime="2015-11-28T02:33:12.000Z" itemprop="datePublished">2015-11-28</time>
+    <a href="/2015/11/cpp-primer4-13/" class="article-date">
+  <time datetime="2015-11-23T08:50:00.000Z" itemprop="datePublished">2015-11-23</time>
 </a>
     
   <div class="article-category">
@@ -188,7 +356,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/28/cpp_primer4-1/">读&lt;C++ primer4&gt; 1: 快速入门</a>
+      <a class="article-title" href="/2015/11/cpp-primer4-13/">13:算术操作符</a>
     </h1>
   
 
@@ -196,24 +364,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
-<p><strong>i</strong>, <strong>o</strong>分别表示 <code>istream</code> （输入流） 和 <code>ostream</code>（输出流）；<strong>stream</strong>表示 <code>流</code>：随着时间顺序生成或消耗；合起来就是<strong>iostream</strong>（输入输出流）。</p>
-<h4 id="1-1、4个IO对象">1.1、4个IO对象</h4><ul>
-<li><strong>cin</strong>：标准输入；</li>
-<li><strong>cout</strong>：标准输出；</li>
-<li><strong>cerr</strong>：标准错误，通常用来输出警告和错误信息给程序使用者；</li>
-<li><strong>clog</strong>：常用于输出程序执行时的一般信息；</li>
-</ul>
-<p>（后两个第一次知道，逃</p>
+        <p>这里开始第五章《表达式》的内容。下面是 <strong>算术操作符</strong> 的内容</p>
+<p>C++有丰富的操作符，并定义了当操作数是内置类型时操作符的含义。而且C++还支持操作符重载，标准库正是使用该功能定义。</p>
         
           <p class="article-more-link">
-            <a href="/2015/11/28/cpp_primer4-1/#more">阅读全文</a>
+            <a href="/2015/11/cpp-primer4-13/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bluestein.github.io/2015/11/28/cpp_primer4-1/" data-id="cihilby4z0000osfodrznfuss" class="article-share-link">Share</a>
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-13/" data-id="cihiw6s0l001r6gfo4ehazf4f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
@@ -225,6 +386,199 @@
 
 
   
+    <article id="post-cpp-primer4-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-12/" class="article-date">
+  <time datetime="2015-11-22T08:49:54.000Z" itemprop="datePublished">2015-11-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-12/">12:C风格字符串</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-12/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-12/" data-id="cihiw6s0o001v6gfo3y8xyxcp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-11/" class="article-date">
+  <time datetime="2015-11-21T08:49:49.000Z" itemprop="datePublished">2015-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-11/">11:指针</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>指针跟迭代器类似，也可以对指针进行 <strong>解引用</strong>（<code>*</code>） 和 <strong>自增</strong>（<code>++</code>） 操作，其含义和迭代器类似。</p>
+<p>指针用于指向对象，与迭代器类似，指针提供对其所指对象的间接访问。不同在于：指针指向单个对象，而迭代器只能访问容器内的元素。具体来说，指针保存的是另一个对象的地址：</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-11/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-11/" data-id="cihiw6s0r001z6gfoxmshrfcg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-10/" class="article-date">
+  <time datetime="2015-11-20T08:49:44.000Z" itemprop="datePublished">2015-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-10/">10:数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——<strong>数组和指针</strong>。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-10/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-10/" data-id="cihiw6ryk00006gfoie4hhmga" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cpp-primer4-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-9/" class="article-date">
+  <time datetime="2015-11-19T08:49:39.000Z" itemprop="datePublished">2015-11-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-9/">9:bitset类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-9/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/cpp-primer4-9/" data-id="cihiw6rzg000f6gfohaimhgsg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
         
@@ -235,7 +589,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-primer/">C++ primer</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-primer/">C++ primer</a><span class="category-list-count">18</span></li></ul>
     </div>
   </div>
 
@@ -247,11 +601,23 @@
       <ul>
         
           <li>
-            <a href="/2015/11/28/cpp_primer4-2/">读&lt;C++ primer4&gt; 2: 基本类型与字面值常量</a>
+            <a href="/2015/11/cpp-primer4-18/">18:类型转换</a>
           </li>
         
           <li>
-            <a href="/2015/11/28/cpp_primer4-1/">读&lt;C++ primer4&gt; 1: 快速入门</a>
+            <a href="/2015/11/cpp-primer4-17/">17:new &amp; delete</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-16/">16:赋值操作和自增自减</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-15/">15:赋值操作和自增自减</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/cpp-primer4-14/">14:位操作符</a>
           </li>
         
       </ul>
@@ -272,7 +638,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">18</span></li></ul>
     </div>
   </div>
 
@@ -286,7 +652,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a></br>
-      &copy; 2015 LiuLu(Bluestein/Humooo)<br>
+      &copy; 2015 Bluestein/Humooo(humooo@outlook.com)<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
