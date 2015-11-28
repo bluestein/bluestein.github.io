@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>读&lt;C++ primer4&gt; 2: 基本类型与字面值常量 | Humooo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、基本内置类型
+C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。
+
+
+
+类型
+含义
+最小存储空间（位）
+
+
+
+
+bool
+布尔型
+-
+
+
+char
+字符型
+8
+
+
+wchar_t
+宽字符型
+16
+
+
+short
+短整型
+16
+
+
+int
+整型
+16
+
+
+long
+长整型
+32
+
+
+float">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读<C++ primer4> 2: 基本类型与字面值常量">
+<meta property="og:url" content="http://bluestein.github.io/2015/11/28/读-C-primer4-2-基本类型与字面值常量/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="一、基本内置类型
+C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。
+
+
+
+类型
+含义
+最小存储空间（位）
+
+
+
+
+bool
+布尔型
+-
+
+
+char
+字符型
+8
+
+
+wchar_t
+宽字符型
+16
+
+
+short
+短整型
+16
+
+
+int
+整型
+16
+
+
+long
+长整型
+32
+
+
+float">
+<meta property="og:updated_time" content="2015-11-28T04:01:48.767Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读<C++ primer4> 2: 基本类型与字面值常量">
+<meta name="twitter:description" content="一、基本内置类型
+C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。
+
+
+
+类型
+含义
+最小存储空间（位）
+
+
+
+
+bool
+布尔型
+-
+
+
+char
+字符型
+8
+
+
+wchar_t
+宽字符型
+16
+
+
+short
+短整型
+16
+
+
+int
+整型
+16
+
+
+long
+长整型
+32
+
+
+float">
+  
+    <link rel="alternative" href="/atom.xml" title="Humooo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <div id="header-title">
+        <h1 id="logo-wrap">
+          <a href="/" id="logo">Humooo
+          
+              <span id="subtitle">Writing Something</span>
+          
+          </a>
+        </h1>
+      </div>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bluestein.github.io"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-读-C-primer4-2-基本类型与字面值常量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/读-C-primer4-2-基本类型与字面值常量/" class="article-date">
+  <time datetime="2015-11-28T02:36:09.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读&lt;C++ primer4&gt; 2: 基本类型与字面值常量
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
+<p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th>含义</th>
+<th style="text-align:left">最小存储空间（位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">bool</td>
+<td>布尔型</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">char</td>
+<td>字符型</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">wchar_t</td>
+<td>宽字符型</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td>短整型</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td>整型</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td>长整型</td>
+<td style="text-align:left">32</td>
+</tr>
+<tr>
+<td style="text-align:left">float</td>
+<td>单精度浮点型</td>
+<td style="text-align:left">6位有效数字</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td>双精度浮点型</td>
+<td style="text-align:left">10位有效数字</td>
+</tr>
+<tr>
+<td style="text-align:left">long double</td>
+<td>拓展精度浮点型</td>
+<td style="text-align:left">10位有效数字</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：即使是c++标准规定了存储标准，但是并不能阻止编译器使用更大的存储空间。而且，对于int型几乎所有编译器使用的空间都比所要求的大。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="1、整型">1、整型</h4><p>表示整数、<span style="color:red">字符</span>和布尔值的算术类型合称为<strong>整型(integral type)</strong>。（<em>没错，字符也是整型！）</em> <br> <strong>1 word(字) = 4 byte(字节) = 32 bit(位)</strong></p>
+<ul>
+<li>字符类型有两种：<strong>char</strong>和<strong>wchar_t</strong>。char能够保证存储机器基本字符集中任何字符相应的数值，因此char通常是<strong>单个机器字节</strong>（byte）；<strong>wchar_t</strong>类型用于拓展字符集，如汉字和日语，这些字符集中的一些字符不能用单个char表示；</li>
+<li><strong>short</strong>、<strong>int</strong>和<strong>long</strong>都表示<strong>整型值</strong>。一般short为半个字（word）长，int为一个字长，而long为一个或两个字长（32位机器中int和long通常字长相同）；</li>
+<li><strong>bool</strong>：true, false。可以将整型值赋给bool对象，0值表示false，非0值都代表true；</li>
+</ul>
+<p><strong>1.1、signed和unsigned</strong></p>
+<p>整型除了bool之外都可以<strong>带符号</strong>（signed）也可以<strong>不带符号</strong>（unsigned）。</p>
+<ul>
+<li>signed（带符号）：能表示正数也可以表示负数（包括0）；</li>
+<li>unsigned（不带符号）：只能表示0及以上的数；</li>
+</ul>
+<p>int，short和long默认是带符号型，需要指定unsigned才能获得无符号类型，其中unsigned int可以简写为unsigned。</p>
+<p><strong>1.2、整型值的表示</strong></p>
+<ul>
+<li>unsigned类型的所有位均可表示数值。例如，在机器中定义了一种类型使用8位表示，则该类型的取值范围是 0~255；</li>
+<li>signed类型在c++标准中并未定义如何用位来表示（我读的《C++primer》版本是第4版），由编译器自由决定。8位的signed类型取值范围至少是 -127~127，也有允许 -128~127.</li>
+</ul>
+<p><strong>1.3、整型的赋值</strong></p>
+<p>疑问：当把一个超过其取值范围的值赋给一个指定类型的对象时，会发生什么？</p>
+<ul>
+<li>unsigned：编译器必须调整越界值使其满足要求，编译器会将该值对该类型的<strong>可能取值数</strong>求模。<br>例如8位的unsigned char，取值范围是 0~255，则可能的取值数是 256。当试图把 336存储到unsigned char中，实际存储的是80，因为 336%256 = 80。<br><blockquote>
+<p>注：c++中把负值赋给unsigned对象是完全合法的</p>
+</blockquote>
+</li>
+<li>signed：由编译器决定，可能跟unsigned类似，也可能采取其他方式。</li>
+</ul>
+<h4 id="2、浮点型">2、浮点型</h4><ul>
+<li>float（单精度浮点数）：一个字长（32位）</li>
+<li>double（双精度浮点数）：两个字长（64位）</li>
+<li>long double（拓展精度）：三或四个字长（96位或128位）</li>
+</ul>
+<h3 id="二、字面值常量">二、字面值常量</h3><hr>
+<p>像42这样的值，在程序中被称为<strong>字面值常量</strong>（literal constant）。</p>
+<p>称它为<strong>字面值</strong>是因为只能用它的值来称呼它，称为<strong>常量</strong>是因为它的值不能被修改。</p>
+<p>每个字面值都有相应的类型，例如：0是int型；3.14159是double型。</p>
+<p>只有内置类型存在字面值，没有类类型的字面值。因此，标准库类型没有字面值。</p>
+<h4 id="2-1、整型字面值规则">2.1、整型字面值规则</h4><p>整数常量可以使用下列三种进制的任意一种：<strong>十进制、八进制和十六进制</strong>。</p>
+<p>例如值20的定义：</p>
+<ul>
+<li>decimal:&#9;20</li>
+<li>octal:&#9;024</li>
+<li>hexadecimal:&#9;0x14</li>
+</ul>
+<p>字面值整数常量的默认类型为<strong>int或long</strong>。</p>
+<p>这取决与字面值——值适合int就是int型，大于int就是long（即，假设int为1机器字长(32位)，则 <code>-2^31+1 ~ 2^31-1</code> 为int，大于 <code>2^31-1</code> 的为long）。</p>
+<p>通过加后缀可以把字面值类型转换成long，unsigned或unsigned long。</p>
+<ul>
+<li>long: 20L</li>
+<li>unsigned: 20U(20u)</li>
+<li>unsigned long: 20UL(20LU/20Lu/20uL)</li>
+</ul>
+<blockquote>
+<p>注：定义long类型时，推荐使用大写字母 L ，因为用户读起来时，小写字母 l 很容易和数字 1 混淆！</p>
+</blockquote>
+<h4 id="2-2、浮点字面值规则">2.2、浮点字面值规则</h4><p>可以用<strong>十进制或科学计数法</strong>表示浮点字面值常量。</p>
+<p>科学计数法指的是，<strong>指数</strong>用 E 或 e 表示。</p>
+<p>默认的浮点字面值常量是<strong>double型</strong>。后缀加上 F 或 f 表示单精度，加上 L 或 l 表示拓展精度（<span style="color:red">不推荐使用小写字母 l</span>）</p>
+<p>下面每一列的字面值是表示相同的值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">3.14159F</th>
+<th style="text-align:left">.001f</th>
+<th style="text-align:left">12.345L</th>
+<th style="text-align:left">0.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">3.14159E0f</td>
+<td style="text-align:left">1E-3f</td>
+<td style="text-align:left">1.2345E1L</td>
+<td style="text-align:left">0e0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3、布尔字面值和字符字面值">2.3、布尔字面值和字符字面值</h3><p>bool的字面值： <strong>true和false</strong>。</p>
+<p>可打印的字符型字面常量通常用一对单引号来定义： <strong>‘a’, ‘2’, ‘,’, ‘ ‘(空格)</strong>；<br> 加上 L 可以得到 wchar_t 类型的宽字符字面值： <strong>L’a’</strong>。</p>
+<h4 id="2-4、非打印字符的转义序列">2.4、非打印字符的转义序列</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">\n</th>
+<th style="text-align:left">\r</th>
+<th style="text-align:left">\a</th>
+<th style="text-align:left">\b</th>
+<th style="text-align:left">\t</th>
+<th style="text-align:left">\v</th>
+<th style="text-align:left">\f</th>
+<th style="text-align:left">\?</th>
+<th style="text-align:left">\”</th>
+<th style="text-align:left">\’</th>
+<th style="text-align:left">\</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">换行符</td>
+<td style="text-align:left">回车符</td>
+<td style="text-align:left">报警符</td>
+<td style="text-align:left">退格符</td>
+<td style="text-align:left">水平制表符</td>
+<td style="text-align:left">纵向制表符</td>
+<td style="text-align:left">进纸符</td>
+<td style="text-align:left">疑问号</td>
+<td style="text-align:left">双引号</td>
+<td style="text-align:left">单引号</td>
+<td style="text-align:left">反斜杠</td>
+</tr>
+</tbody>
+</table>
+<p>任何字符都可以通过 <strong>“\XXX”</strong> 的形式表示，“XXX”表示三位八进制数字。下面是用ASCII码表示字面常量：</p>
+<ul>
+<li>\7 : 报警符</li>
+<li>\0 : 空格符</li>
+<li>\12: 换行符</li>
+<li>\40: 空格符</li>
+<li>\115: ‘M’</li>
+<li>\062: ‘2’</li>
+</ul>
+<h4 id="2-5、字符串字面值">2.5、字符串字面值</h4><p>前面的均是基本内置类型，下面的 <strong>字符串字面值</strong> 会更复杂一些，后续会详细说明。</p>
+<p>字符串字面值常量是 <strong>双引号括起来的零个或多个字符</strong>，<strong>不可打印的字符</strong>使用相应的转义字符。</p>
+<ul>
+<li>“Hello World!”</li>
+<li>“”</li>
+<li>“\nHello\tWorld!\n”</li>
+</ul>
+<blockquote>
+<p>注：为了兼容C语言，C++会在所有字符串字面值常量末尾添加一个空字符<code>&lt;br/&gt;</code>如 ‘A’ 表示 单个字符 A，而 “A” 表示字符 A 和一个空字符两个字符的字符串</p>
+</blockquote>
+<h4 id="2-6、字符串字面值的连接">2.6、字符串字面值的连接</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span></span><br><span class="line">	<span class="string">" "</span></span><br><span class="line">	<span class="string">"World"</span> <span class="string">"!"</span></span><br><span class="line">	&lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<p>但是下面试图连接 <strong>字符串字面值和宽字符串字面值</strong> 是非法的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> <span class="string">L" World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<h4 id="2-7、多行字面值">2.7、多行字面值</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::cou\</span><br><span class="line">t&lt;&lt; <span class="string">"Hello"</span> &lt;&lt; st\</span><br><span class="line">d::endl;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<p>反斜杠 <strong>‘\’</strong> 必须是该行的结尾，不允许后面有空格或注释。同样的，下一行的前面也不能有任何空格和制表符。</p>
+<p>对于下一个 <strong>长字符串</strong> 例子，反斜杠后也不能有其他字符；而后一行的前面所有空格或制表符都会成为 <strong>长字符串的一部分</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello \</span><br><span class="line">	World!"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/28/读-C-primer4-2-基本类型与字面值常量/" data-id="cihiie2av00015gfo3ej4mscu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/28/读-C-primer4-1-快速入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">读&lt;C++ primer4&gt; 1: 快速入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-primer/">C++ primer</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget recents">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/28/读-C-primer4-2-基本类型与字面值常量/">读&lt;C++ primer4&gt; 2: 基本类型与字面值常量</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/28/读-C-primer4-1-快速入门/">读&lt;C++ primer4&gt; 1: 快速入门</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-primer/" style="font-size: 10px;">C++ primer</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+          
+        
+      </div>
+      <div id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a></br>
+      &copy; 2015 Humooo(Bluestein)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

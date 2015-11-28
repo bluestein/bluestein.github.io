@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>读&lt;C++ primer4&gt; 1: 快速入门 | Humooo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、iostream（输入输出流）
+i, o分别表示 istream （输入流） 和 ostream（输出流）；stream表示 流：随着时间顺序生成或消耗；合起来就是iostream（输入输出流）。
+1.1、4个IO对象
+cin：标准输入；
+cout：标准输出；
+cerr：标准错误，通常用来输出警告和错误信息给程序使用者；
+clog：常用于输出程序执行时的一般信息；
+
+（后两个第一次知道，逃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读<C++ primer4> 1: 快速入门">
+<meta property="og:url" content="http://bluestein.github.io/2015/11/28/读-C-primer4-1-快速入门/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="一、iostream（输入输出流）
+i, o分别表示 istream （输入流） 和 ostream（输出流）；stream表示 流：随着时间顺序生成或消耗；合起来就是iostream（输入输出流）。
+1.1、4个IO对象
+cin：标准输入；
+cout：标准输出；
+cerr：标准错误，通常用来输出警告和错误信息给程序使用者；
+clog：常用于输出程序执行时的一般信息；
+
+（后两个第一次知道，逃">
+<meta property="og:updated_time" content="2015-11-28T04:02:06.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读<C++ primer4> 1: 快速入门">
+<meta name="twitter:description" content="一、iostream（输入输出流）
+i, o分别表示 istream （输入流） 和 ostream（输出流）；stream表示 流：随着时间顺序生成或消耗；合起来就是iostream（输入输出流）。
+1.1、4个IO对象
+cin：标准输入；
+cout：标准输出；
+cerr：标准错误，通常用来输出警告和错误信息给程序使用者；
+clog：常用于输出程序执行时的一般信息；
+
+（后两个第一次知道，逃">
+  
+    <link rel="alternative" href="/atom.xml" title="Humooo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <div id="header-title">
+        <h1 id="logo-wrap">
+          <a href="/" id="logo">Humooo
+          
+              <span id="subtitle">Writing Something</span>
+          
+          </a>
+        </h1>
+      </div>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bluestein.github.io"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-读-C-primer4-1-快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/28/读-C-primer4-1-快速入门/" class="article-date">
+  <time datetime="2015-11-28T02:33:12.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-primer/">C++ primer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读&lt;C++ primer4&gt; 1: 快速入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
+<p><strong>i</strong>, <strong>o</strong>分别表示 <code>istream</code> （输入流） 和 <code>ostream</code>（输出流）；<strong>stream</strong>表示 <code>流</code>：随着时间顺序生成或消耗；合起来就是<strong>iostream</strong>（输入输出流）。</p>
+<h4 id="1-1、4个IO对象">1.1、4个IO对象</h4><ul>
+<li><strong>cin</strong>：标准输入；</li>
+<li><strong>cout</strong>：标准输出；</li>
+<li><strong>cerr</strong>：标准错误，通常用来输出警告和错误信息给程序使用者；</li>
+<li><strong>clog</strong>：常用于输出程序执行时的一般信息；</li>
+</ul>
+<p>（后两个第一次知道，逃</p>
+<a id="more"></a>
+<h4 id="1-2、例子">1.2、例子</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; val1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; val2</span><br><span class="line">			&lt;&lt; <span class="string">" is "</span> &lt;&lt; val1+val2 &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一行告诉编译器要使用<strong>iostream</strong>库；</li>
+<li>输出流（写入到流）：<ul>
+<li>输出操作符 <code>&lt;&lt;</code> 将值写入到 <code>流</code>，即 <code>输出</code>。该操作符每次接受两个操作数：左操作数必须是ostream对象；右操作数是要输出的值；</li>
+<li>C++中的每个表达式都会产生一个结果，就是说 <code>std::cout&lt;&lt;a;</code> 也会产生返回值，但输出操作符 <code>&lt;&lt;</code> 返回的是输出流本身，所以可以将多个输出连接在一起，形如 <code>std::cout&lt;&lt;a&lt;&lt;b;</code>；</li>
+</ul>
+</li>
+<li>输入流（读入到流）：跟输出流类似；</li>
+<li><code>std</code> 表示使用<em>命名空间</em> <strong>std</strong>中定义的的名字；</li>
+<li><code>endl</code> 称为操纵符(manipulator)，将它写入 <code>流</code> 时，具有换行的效果，并同时会刷新相关联的缓冲区(buffer)。通过刷新缓冲区，用户可以立即看到写入 <code>流</code> 中的输出；</li>
+</ul>
+<h3 id="二、控制结构">二、控制结构</h3><hr>
+<h4 id="2-1、while语句和for语句">2.1、while语句和for语句</h4><p>问题：求1到10（包括10）的和？</p>
+<p><strong>while语句：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>, val = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (val &lt;= <span class="number">10</span>)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">		++val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of 1 to 10 inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>while语句的结构形式：<code>while (condition) while_body_statement;</code>。表示，通过测试 <code>condition</code> 为真时执行 <code>while_body_statement</code>，重复这一过程直到 <code>condition</code> 为假<ul>
+<li><code>condition</code> 是一个可求值得表达式。如果结果非零，那么为<strong>真</strong>；如果结果为为零，则为<strong>假</strong>；</li>
+<li><code>&lt;=</code> 表示<strong>小于等于</strong>操作符；</li>
+<li><code>sum += val;</code> 等价于 <code>sum = sum + val;</code>。类似的，<code>++val;</code> 等价于 <code>val = val + 1;</code>；</li>
+</ul>
+</li>
+</ul>
+<p>还有另一种情形：只对输入的值进行求和</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>, val;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; val)&#123;	<span class="comment">//windows系统下输入 ctrl+z 可以作为文件结束符(end-of-file)</span></span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>for语句：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> val = <span class="number">1</span>; val &lt;= <span class="number">10</span>; ++val)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of 1 to 10 inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for语句可以简化管理循环变量.不像在while语句中，需要 <code>val</code> 这样的值来控制循环。其执行流程为：<ul>
+<li>1，创建 <code>val</code> 并初始化为1</li>
+<li>2，测试 <code>val</code> 是否小于或等于10</li>
+<li>3，如果 <code>val</code> 小于或等于10，执行for循环体：把 <code>val</code> 值加到 <code>sum</code> 变量中；否则，执行for语句体之后的语句</li>
+<li>4，<code>val</code> 加1</li>
+<li>5，重复第2~4步</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2、if语句">2.2、if语句</h4><p>假设这样一种情况：将用户输入的两个数作为上、下界，然后用上面的循环求和。这个时候我们就需要判定那个数值更大而作为上界，另一个作为下界。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="keyword">int</span> lower, upper;</span><br><span class="line">	<span class="keyword">if</span> (val1 &lt;= val2) &#123;</span><br><span class="line">		lower = val1;</span><br><span class="line">		upper = val2;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		lower = val2;</span><br><span class="line">		upper = val1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> val = lower; val &lt;= upper; ++val)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span>&lt;&lt; lower &lt;&lt; <span class="string">" to "</span>&lt;&lt; upper &lt;&lt;<span class="string">" inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码就不用多说了，一眼就能看出来</li>
+</ul>
+<h3 id="三、类的简介">三、类的简介</h3><hr>
+<p>假设有书店问题：某书店以文件形式保存每一笔交易。每笔交易形式如：<br>0-201-70353-x&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;24.99<br>第一个元素是ISBN，第二个为销售册数，第三个为单价。店主定期查看这个文件，统计每本书的销售册数、总销售额以及平均售价。</p>
+<h4 id="3-1、Sales_item类">3.1、Sales_item类</h4><ol>
+<li><p>Sales_item对象上的操作</p>
+<ul>
+<li>加法 <code>+</code> ：将两个对象相加；</li>
+<li>输入 <code>&gt;&gt;</code> ： 读取一个对象；</li>
+<li>输出 <code>&lt;&lt;</code> ：输出一个对象；</li>
+<li>赋值 <code>=</code> ：将一个对象赋给另一个对象；</li>
+<li>对比 <code>?</code> ：对比两个对象是否属于同一本书（函数same_isbn）；</li>
+</ul>
+</li>
+<li><p>初探成员函数</p>
+<p> 成员函数是由类定义的函数，也称为<strong>类方法</strong>。如 <code>item1.same_isbn(item2)</code> 调用类Sales_item的成员函数same_isbn来对比 <code>item1</code> 和 <code>item2</code>。</p>
+</li>
+</ol>
+<blockquote>
+<p>注：标准库的头文件用尖括号 <code>&lt;&gt;</code> 括起来，非标准库用双引号 <code>&quot;&quot;</code>。</p>
+</blockquote>
+<p>END.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bluestein.github.io/2015/11/28/读-C-primer4-1-快速入门/" data-id="cihiie2b100045gfoyomz43mg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-primer/">C++ primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/28/读-C-primer4-2-基本类型与字面值常量/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          读&lt;C++ primer4&gt; 2: 基本类型与字面值常量
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-primer/">C++ primer</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget recents">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/28/读-C-primer4-2-基本类型与字面值常量/">读&lt;C++ primer4&gt; 2: 基本类型与字面值常量</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/28/读-C-primer4-1-快速入门/">读&lt;C++ primer4&gt; 1: 快速入门</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-primer/" style="font-size: 10px;">C++ primer</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+          
+        
+      </div>
+      <div id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a></br>
+      &copy; 2015 Humooo(Bluestein)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
