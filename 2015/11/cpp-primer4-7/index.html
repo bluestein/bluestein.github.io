@@ -8,7 +8,7 @@
   <meta name="description" content="vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 容器，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7:vector类型">
-<meta property="og:url" content="http://localhost:4000/2015/11/cpp-primer4-7/index.html">
+<meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-7/index.html">
 <meta property="og:site_name" content="Humooo's Blog">
 <meta property="og:description" content="vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 容器，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：">
 <meta property="og:updated_time" content="2015-11-30T02:57:17.810Z">
@@ -233,14 +233,14 @@
 
 <section id="comments">
   <div id="duoshuo_thread">
-    <div class="ds-thread" data-thread-key="cihm2hg9g0015zcfob2ypd70s" data-title="7:vector类型" data-url="http://localhost:4000/2015/11/cpp-primer4-7/"></div>
+    <div class="ds-thread" data-thread-key="cihm2q06m001554fopoqk51pm" data-title="7:vector类型" data-url="http://bluestein.github.io/2015/11/cpp-primer4-7/"></div>
   </div>
 </section>
 
 
 
 
-  <div class="ds-share" data-thread-key="cihm2hg9g0015zcfob2ypd70s" data-title="7:vector类型" data-images="" data-content="&lt;p&gt;vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 &lt;strong&gt;容器&lt;/strong&gt;，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：&lt;/p&gt;
+  <div class="ds-share" data-thread-key="cihm2q06m001554fopoqk51pm" data-title="7:vector类型" data-images="" data-content="&lt;p&gt;vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 &lt;strong&gt;容器&lt;/strong&gt;，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;preprocessor&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;vector 是一个类模板（class template），所以 vector 可以包含不同类型的对象，如 int 型，string 型。vector 的声明&lt;/p&gt;
@@ -347,7 +347,7 @@
 &lt;p&gt;但下面的例子是正确的&lt;/p&gt;
 &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; intv;	&lt;span class=&quot;comment&quot;&gt;//这是空vector，没有元素&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt;::size_type i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i != &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;; ++i)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	intv.push_back(i);	&lt;span class=&quot;comment&quot;&gt;//ok:动态增加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;END.&lt;/p&gt;
-" data-url="http://localhost:4000/2015/11/cpp-primer4-7/">
+" data-url="http://bluestein.github.io/2015/11/cpp-primer4-7/">
     <div class="ds-share-aside-right">
       <div class="ds-share-aside-inner">
       </div>

@@ -3,9 +3,9 @@
   <title><![CDATA[Humooo's Blog]]></title>
   <subtitle><![CDATA[Everything will be ok]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://localhost:4000/"/>
+  <link href="http://bluestein.github.io/"/>
   <updated>2015-11-30T13:59:51.162Z</updated>
-  <id>http://localhost:4000/</id>
+  <id>http://bluestein.github.io/</id>
   
   <author>
     <name><![CDATA[Bluestein/Humooo(humooo@outlook.com)]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[hexo3.1.1 + github pages教程：添加多说评论系统]]></title>
-    <link href="http://localhost:4000/2015/11/hexo-github-1/"/>
-    <id>http://localhost:4000/2015/11/hexo-github-1/</id>
+    <link href="http://bluestein.github.io/2015/11/hexo-github-1/"/>
+    <id>http://bluestein.github.io/2015/11/hexo-github-1/</id>
     <published>2015-11-30T07:54:49.000Z</published>
     <updated>2015-11-30T13:59:51.162Z</updated>
     <content type="html"><![CDATA[<h3 id="一、添加多说ID(必须)">一、添加多说ID(必须)</h3><p>在根目录的 <code>_config.yml</code> 中定义 <code>duoshuo_shortname: (你的多说ID)</code> 形如</p>
@@ -51,22 +51,22 @@
     
     </summary>
     
-      <category term="github" scheme="http://localhost:4000/tags/github/"/>
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
     
-      <category term="github pages" scheme="http://localhost:4000/tags/github-pages/"/>
+      <category term="github pages" scheme="http://bluestein.github.io/tags/github-pages/"/>
     
-      <category term="hexo" scheme="http://localhost:4000/tags/hexo/"/>
+      <category term="hexo" scheme="http://bluestein.github.io/tags/hexo/"/>
     
-      <category term="Hexo" scheme="http://localhost:4000/categories/Hexo/"/>
+      <category term="Hexo" scheme="http://bluestein.github.io/categories/Hexo/"/>
     
-      <category term="guide" scheme="http://localhost:4000/categories/Hexo/guide/"/>
+      <category term="guide" scheme="http://bluestein.github.io/categories/Hexo/guide/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[18:类型转换]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-18/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-18/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-18/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-18/</id>
     <published>2015-11-28T08:50:29.000Z</published>
     <updated>2015-11-30T02:58:11.205Z</updated>
     <content type="html"></content>
@@ -74,20 +74,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[17:new & delete]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-17/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-17/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-17/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-17/</id>
     <published>2015-11-27T08:50:24.000Z</published>
     <updated>2015-11-30T02:57:58.047Z</updated>
     <content type="html"><![CDATA[<p><strong>1、动态创建对象的初始化</strong></p>
@@ -119,20 +119,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[16:赋值操作和自增自减]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-16/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-16/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-16/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-16/</id>
     <published>2015-11-26T08:50:15.000Z</published>
     <updated>2015-11-30T02:57:58.044Z</updated>
     <content type="html"><![CDATA[<p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
@@ -615,20 +615,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[15:赋值操作和自增自减]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-15/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-15/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-15/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-15/</id>
     <published>2015-11-25T08:50:10.000Z</published>
     <updated>2015-11-30T02:57:58.041Z</updated>
     <content type="html"><![CDATA[<p><strong>1、赋值操作</strong></p>
@@ -708,20 +708,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[14:位操作符]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-14/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-14/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-14/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-14/</id>
     <published>2015-11-24T08:50:05.000Z</published>
     <updated>2015-11-30T02:57:58.038Z</updated>
     <content type="html"><![CDATA[<p>位操作符：位操作符操作的整数可以是有符号或无符号数。</p>
@@ -867,20 +867,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[13:算术操作符]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-13/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-13/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-13/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-13/</id>
     <published>2015-11-23T08:50:00.000Z</published>
     <updated>2015-11-30T02:57:58.035Z</updated>
     <content type="html"><![CDATA[<p>这里开始第五章《表达式》的内容。下面是 <strong>算术操作符</strong> 的内容</p>
@@ -1040,20 +1040,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[12:C风格字符串]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-12/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-12/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-12/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-12/</id>
     <published>2015-11-22T08:49:54.000Z</published>
     <updated>2015-11-30T02:57:58.033Z</updated>
     <content type="html"><![CDATA[<p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
@@ -1224,20 +1224,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[11:指针]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-11/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-11/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-11/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-11/</id>
     <published>2015-11-21T08:49:49.000Z</published>
     <updated>2015-11-30T02:57:58.030Z</updated>
     <content type="html"><![CDATA[<p>指针跟迭代器类似，也可以对指针进行 <strong>解引用</strong>（<code>*</code>） 和 <strong>自增</strong>（<code>++</code>） 操作，其含义和迭代器类似。</p>
@@ -1401,20 +1401,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[10:数组]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-10/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-10/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-10/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-10/</id>
     <published>2015-11-20T08:49:44.000Z</published>
     <updated>2015-11-30T02:57:17.818Z</updated>
     <content type="html"><![CDATA[<p>现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——<strong>数组和指针</strong>。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。</p>
@@ -1456,20 +1456,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[9:bitset类型]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-9/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-9/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-9/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-9/</id>
     <published>2015-11-19T08:49:39.000Z</published>
     <updated>2015-11-30T02:57:17.815Z</updated>
     <content type="html"><![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>
@@ -1621,20 +1621,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[8:迭代器iterator]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-8/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-8/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-8/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-8/</id>
     <published>2015-11-18T08:49:34.000Z</published>
     <updated>2015-11-30T02:57:17.813Z</updated>
     <content type="html"><![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>
@@ -1697,20 +1697,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[7:vector类型]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-7/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-7/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-7/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-7/</id>
     <published>2015-11-17T08:31:51.000Z</published>
     <updated>2015-11-30T02:57:17.810Z</updated>
     <content type="html"><![CDATA[<p>vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 <strong>容器</strong>，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：</p>
@@ -1826,20 +1826,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[6:using声明和string类型]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-6/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-6/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-6/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-6/</id>
     <published>2015-11-15T08:31:46.000Z</published>
     <updated>2015-11-30T02:57:17.807Z</updated>
     <content type="html"><![CDATA[<p>从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。</p>
@@ -2048,20 +2048,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[5:头文件]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-5/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-5/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-5/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-5/</id>
     <published>2015-11-14T08:31:39.000Z</published>
     <updated>2015-11-30T02:56:30.743Z</updated>
     <content type="html"><![CDATA[<p>到目前为止，我们编写的程序都是把代码都放在同一个文件中来处理。但是很少程序能够都这么简单的由一个文件搞定，由多个文件组成的程序需要一种连接名字的使用和声明，在C++中通过 <strong>头文件</strong> 可以实现。</p>
@@ -2112,20 +2112,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[4:const、引用和typedef]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-4/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-4/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-4/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-4/</id>
     <published>2015-11-12T08:31:33.000Z</published>
     <updated>2015-11-30T02:56:24.479Z</updated>
     <content type="html"><![CDATA[<h3 id="一、const">一、const</h3><hr>
@@ -2256,20 +2256,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[3:变量]]></title>
-    <link href="http://localhost:4000/2015/11/cpp-primer4-3/"/>
-    <id>http://localhost:4000/2015/11/cpp-primer4-3/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-3/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-3/</id>
     <published>2015-11-10T08:31:28.000Z</published>
     <updated>2015-11-30T02:56:11.518Z</updated>
     <content type="html"><![CDATA[<h3 id="首先">首先</h3><hr>
@@ -2511,20 +2511,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[2: 基本类型与字面值常量]]></title>
-    <link href="http://localhost:4000/2015/11/cpp_primer4-2/"/>
-    <id>http://localhost:4000/2015/11/cpp_primer4-2/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp_primer4-2/"/>
+    <id>http://bluestein.github.io/2015/11/cpp_primer4-2/</id>
     <published>2015-11-09T02:36:09.000Z</published>
     <updated>2015-11-30T02:56:42.218Z</updated>
     <content type="html"><![CDATA[<h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
@@ -2739,20 +2739,20 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[1: 快速入门]]></title>
-    <link href="http://localhost:4000/2015/11/cpp_primer4-1/"/>
-    <id>http://localhost:4000/2015/11/cpp_primer4-1/</id>
+    <link href="http://bluestein.github.io/2015/11/cpp_primer4-1/"/>
+    <id>http://bluestein.github.io/2015/11/cpp_primer4-1/</id>
     <published>2015-11-08T02:33:12.000Z</published>
     <updated>2015-11-30T02:56:42.215Z</updated>
     <content type="html"><![CDATA[<h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
@@ -2835,13 +2835,13 @@
     
     </summary>
     
-      <category term="C++" scheme="http://localhost:4000/tags/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
     
-      <category term="C++ primer" scheme="http://localhost:4000/tags/C-primer/"/>
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="Dev" scheme="http://localhost:4000/categories/Dev/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
-      <category term="C++" scheme="http://localhost:4000/categories/Dev/C/"/>
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
