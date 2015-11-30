@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Writing Something]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-11-28T09:22:46.846Z</updated>
+  <updated>2015-11-30T02:58:11.205Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-18/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-18/</id>
     <published>2015-11-28T08:50:29.000Z</published>
-    <updated>2015-11-28T09:22:46.846Z</updated>
+    <updated>2015-11-30T02:58:11.205Z</updated>
     <content type="html"></content>
     <summary type="html">
     
@@ -29,7 +29,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -38,7 +40,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-17/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-17/</id>
     <published>2015-11-27T08:50:24.000Z</published>
-    <updated>2015-11-28T09:22:32.563Z</updated>
+    <updated>2015-11-30T02:57:58.047Z</updated>
     <content type="html"><![CDATA[<p><strong>1、动态创建对象的初始化</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -72,7 +74,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -81,7 +85,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-16/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-16/</id>
     <published>2015-11-26T08:50:15.000Z</published>
-    <updated>2015-11-28T09:22:32.560Z</updated>
+    <updated>2015-11-30T02:57:58.044Z</updated>
     <content type="html"><![CDATA[<p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
 <h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
 <a id="more"></a>
@@ -566,7 +570,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -575,7 +581,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-15/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-15/</id>
     <published>2015-11-25T08:50:10.000Z</published>
-    <updated>2015-11-28T09:22:32.556Z</updated>
+    <updated>2015-11-30T02:57:58.041Z</updated>
     <content type="html"><![CDATA[<p><strong>1、赋值操作</strong></p>
 <p>赋值的左操作数必须是非const左值：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i, j, val;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = i;	<span class="comment">//ok</span></span><br><span class="line"><span class="number">1024</span> = val;		<span class="comment">//error: 字面值是右值</span></span><br><span class="line">i + j = val;	<span class="comment">//error: 算术运算结果是右值</span></span><br><span class="line">ci = val;		<span class="comment">//error: 不能赋值</span></span><br></pre></td></tr></table></figure>
@@ -657,7 +663,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -666,7 +674,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-14/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-14/</id>
     <published>2015-11-24T08:50:05.000Z</published>
-    <updated>2015-11-28T09:22:32.553Z</updated>
+    <updated>2015-11-30T02:57:58.038Z</updated>
     <content type="html"><![CDATA[<p>位操作符：位操作符操作的整数可以是有符号或无符号数。</p>
 <table>
 <thead>
@@ -703,9 +711,9 @@
 <td>expr1 ^ expr2</td>
 </tr>
 <tr>
-<td>(一个竖线)</td>
+<td>&#124;</td>
 <td>位或</td>
-<td>expr1 (一个竖线) expr2</td>
+<td>expr1 &#124; expr2</td>
 </tr>
 </tbody>
 </table>
@@ -801,9 +809,9 @@
 <td>expr1 ^ expr2</td>
 </tr>
 <tr>
-<td>(一个竖线)</td>
+<td>&#124;</td>
 <td>位或</td>
-<td>expr1 (一个竖线) expr2</td>
+<td>expr1 &#124; expr2</td>
 </tr>
 </tbody>
 </table>]]>
@@ -814,7 +822,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -823,7 +833,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-13/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-13/</id>
     <published>2015-11-23T08:50:00.000Z</published>
-    <updated>2015-11-28T09:22:32.550Z</updated>
+    <updated>2015-11-30T02:57:58.035Z</updated>
     <content type="html"><![CDATA[<p>这里开始第五章《表达式》的内容。下面是 <strong>算术操作符</strong> 的内容</p>
 <p>C++有丰富的操作符，并定义了当操作数是内置类型时操作符的含义。而且C++还支持操作符重载，标准库正是使用该功能定义。</p>
 <a id="more"></a>
@@ -985,7 +995,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -994,7 +1006,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-12/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-12/</id>
     <published>2015-11-22T08:49:54.000Z</published>
-    <updated>2015-11-28T09:22:30.962Z</updated>
+    <updated>2015-11-30T02:57:58.033Z</updated>
     <content type="html"><![CDATA[<p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c1[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>&#125;;		<span class="comment">//c1 维数为3，not c-style</span></span><br><span class="line"><span class="keyword">char</span> c2[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>, <span class="string">'\0'</span>&#125;;	<span class="comment">//c2 维数为4</span></span><br><span class="line"><span class="keyword">char</span> c3[] = <span class="string">"C++"</span>;					<span class="comment">//c3 维数为4，自动添加空字符</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp = <span class="string">"C++"</span>;		<span class="comment">//自动添加空字符</span></span><br><span class="line"><span class="keyword">char</span> *cp1 = c1;		<span class="comment">//指向c1数组的第一个元素，not c-style</span></span><br><span class="line"><span class="keyword">char</span> *cp2 = c2;		<span class="comment">//指向c1数组的第一个元素，以空字符 `null` 结束的字符数组</span></span><br></pre></td></tr></table></figure>
@@ -1167,7 +1179,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1176,7 +1190,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-11/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-11/</id>
     <published>2015-11-21T08:49:49.000Z</published>
-    <updated>2015-11-28T09:23:05.461Z</updated>
+    <updated>2015-11-30T02:57:58.030Z</updated>
     <content type="html"><![CDATA[<p>指针跟迭代器类似，也可以对指针进行 <strong>解引用</strong>（<code>*</code>） 和 <strong>自增</strong>（<code>++</code>） 操作，其含义和迭代器类似。</p>
 <p>指针用于指向对象，与迭代器类似，指针提供对其所指对象的间接访问。不同在于：指针指向单个对象，而迭代器只能访问容器内的元素。具体来说，指针保存的是另一个对象的地址：</p>
 <a id="more"></a>
@@ -1342,7 +1356,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1351,7 +1367,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-10/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-10/</id>
     <published>2015-11-20T08:49:44.000Z</published>
-    <updated>2015-11-28T09:21:57.771Z</updated>
+    <updated>2015-11-30T02:57:17.818Z</updated>
     <content type="html"><![CDATA[<p>现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——<strong>数组和指针</strong>。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。</p>
 <a id="more"></a>
 <blockquote>
@@ -1395,7 +1411,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1404,7 +1422,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-9/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-9/</id>
     <published>2015-11-19T08:49:39.000Z</published>
-    <updated>2015-11-28T09:21:57.767Z</updated>
+    <updated>2015-11-30T02:57:17.815Z</updated>
     <content type="html"><![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">bitset</span>;</span><br></pre></td></tr></table></figure>
@@ -1558,7 +1576,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1567,7 +1587,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-8/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-8/</id>
     <published>2015-11-18T08:49:34.000Z</published>
-    <updated>2015-11-28T09:21:57.763Z</updated>
+    <updated>2015-11-30T02:57:17.813Z</updated>
     <content type="html"><![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>
 <a id="more"></a>
 <h3 id="1、容器的iterator类型">1、容器的iterator类型</h3><hr>
@@ -1632,7 +1652,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1641,7 +1663,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-7/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-7/</id>
     <published>2015-11-17T08:31:51.000Z</published>
-    <updated>2015-11-28T09:21:57.760Z</updated>
+    <updated>2015-11-30T02:57:17.810Z</updated>
     <content type="html"><![CDATA[<p>vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 <strong>容器</strong>，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br></pre></td></tr></table></figure>
@@ -1759,7 +1781,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1768,7 +1792,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-6/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-6/</id>
     <published>2015-11-15T08:31:46.000Z</published>
-    <updated>2015-11-28T09:21:33.401Z</updated>
+    <updated>2015-11-30T02:57:17.807Z</updated>
     <content type="html"><![CDATA[<p>从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。</p>
 <h3 id="一、using声明">一、using声明</h3><hr>
 <p>在本章之前所用到的标准库类型都使用了 <code>::</code> 操作符，该操作符是作用域操作符，如 <code>std::cin</code>。但每次使用标准库类型就需要添加 <code>std::</code> 显得非常麻烦，本节介绍一种安全的机制：<strong>using声明</strong>。</p>
@@ -1979,7 +2003,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -1988,7 +2014,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-5/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-5/</id>
     <published>2015-11-14T08:31:39.000Z</published>
-    <updated>2015-11-28T09:21:33.397Z</updated>
+    <updated>2015-11-30T02:56:30.743Z</updated>
     <content type="html"><![CDATA[<p>到目前为止，我们编写的程序都是把代码都放在同一个文件中来处理。但是很少程序能够都这么简单的由一个文件搞定，由多个文件组成的程序需要一种连接名字的使用和声明，在C++中通过 <strong>头文件</strong> 可以实现。</p>
 <a id="more"></a>
 <h3 id="一、设计自己的头文件">一、设计自己的头文件</h3><hr>
@@ -2041,7 +2067,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -2050,7 +2078,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-4/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-4/</id>
     <published>2015-11-12T08:31:33.000Z</published>
-    <updated>2015-11-28T09:21:33.394Z</updated>
+    <updated>2015-11-30T02:56:24.479Z</updated>
     <content type="html"><![CDATA[<h3 id="一、const">一、const</h3><hr>
 <p>考虑问题：下面程序中数字 <code>0</code> 的含义？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2183,7 +2211,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -2192,7 +2222,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-3/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-3/</id>
     <published>2015-11-10T08:31:28.000Z</published>
-    <updated>2015-11-28T09:21:33.390Z</updated>
+    <updated>2015-11-30T02:56:11.518Z</updated>
     <content type="html"><![CDATA[<h3 id="首先">首先</h3><hr>
 <p>考虑问题：<code>求2的3次方？</code></p>
 <p>最直接的想到的可能是：</p>
@@ -2436,7 +2466,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -2445,7 +2477,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp_primer4-2/"/>
     <id>http://bluestein.github.io/2015/11/cpp_primer4-2/</id>
     <published>2015-11-09T02:36:09.000Z</published>
-    <updated>2015-11-28T09:21:14.155Z</updated>
+    <updated>2015-11-30T02:56:42.218Z</updated>
     <content type="html"><![CDATA[<h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
 <p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>
 <a id="more"></a>
@@ -2662,7 +2694,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
@@ -2671,7 +2705,7 @@
     <link href="http://bluestein.github.io/2015/11/cpp_primer4-1/"/>
     <id>http://bluestein.github.io/2015/11/cpp_primer4-1/</id>
     <published>2015-11-08T02:33:12.000Z</published>
-    <updated>2015-11-28T09:21:14.151Z</updated>
+    <updated>2015-11-30T02:56:42.215Z</updated>
     <content type="html"><![CDATA[<h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
 <p><strong>i</strong>, <strong>o</strong>分别表示 <code>istream</code> （输入流） 和 <code>ostream</code>（输出流）；<strong>stream</strong>表示 <code>流</code>：随着时间顺序生成或消耗；合起来就是<strong>iostream</strong>（输入输出流）。</p>
 <a id="more"></a>
@@ -2756,7 +2790,9 @@
     
       <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
     
-      <category term="C++ primer" scheme="http://bluestein.github.io/categories/C-primer/"/>
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
     
   </entry>
   
