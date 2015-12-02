@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Everything will be ok]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-11-30T15:28:16.283Z</updated>
+  <updated>2015-12-02T14:08:41.089Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[c++ demo: 输入可变长字符串]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-demo-1/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-demo-1/</id>
+    <published>2015-12-02T14:01:42.000Z</published>
+    <updated>2015-12-02T14:08:41.089Z</updated>
+    <content type="html"><![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> arry_size = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">char</span> *p_str = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//统计输入的字符数</span></span><br><span class="line">	<span class="keyword">char</span> c;<span class="comment">//存放字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter some chars:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span>.get(c))<span class="comment">//每次读取一个字符赋给c</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (count + <span class="number">1</span> &gt;= arry_size)<span class="comment">//超出预设长度</span></span><br><span class="line">		&#123;</span><br><span class="line">			arry_size += <span class="number">10</span>;<span class="comment">//长度增加10</span></span><br><span class="line">			<span class="keyword">char</span> *p_temp = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];<span class="comment">//申请新空间</span></span><br><span class="line">			<span class="built_in">strncpy</span>(p_temp, p_str, count);<span class="comment">//将就空间的内容拷贝到新空间</span></span><br><span class="line">			<span class="keyword">delete</span>[] p_str;<span class="comment">//销毁以前的p_str(p_temp)</span></span><br><span class="line">			p_str = p_temp;<span class="comment">//将新空间p_temp赋给p_str</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		p_str[count] = c;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	p_str[count] = <span class="string">'\0'</span>;<span class="comment">//添加null结束符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"outputs:"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>;i != <span class="built_in">strlen</span>(p_str); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p_str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p_str &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">delete</span>[] p_str;<span class="comment">//最后销毁p_str</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"end"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enter some chars:</span><br><span class="line">asdfghjklqwertyuiop↙</span><br><span class="line">^Z↙</span><br><span class="line">outputs:</span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</]]>
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++ demo: 输入多个string对象，并存放在vector中]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-demo-2/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-demo-2/</id>
+    <published>2015-12-02T14:01:42.000Z</published>
+    <updated>2015-12-02T14:09:44.192Z</updated>
+    <content type="html"><![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; str) &#123;</span><br><span class="line">		svec.push_back(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> **cp_arr = <span class="keyword">new</span> <span class="keyword">char</span>*[svec.size()];<span class="comment">//指针数组</span></span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = svec.begin(); iter != svec.end(); ++iter) &#123;</span><br><span class="line">		<span class="built_in">string</span> s = *iter;</span><br><span class="line">		<span class="keyword">char</span> *cp = <span class="keyword">new</span> <span class="keyword">char</span>[s.size()+<span class="number">1</span>];<span class="comment">//+1表示为null结束符预留空间</span></span><br><span class="line">		<span class="built_in">strncpy</span>(cp, s.c_str(), s.size()+<span class="number">1</span>);</span><br><span class="line">		cp_arr[cnt] = cp;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != cnt; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; cp_arr[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span>[] cp_arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] cp_arr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world↙</span><br><span class="line">^Z↙</span><br><span class="line">hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>
+<figure ]]>
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++ demo: vector存放指针]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-demo-3/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-demo-3/</id>
+    <published>2015-12-02T14:01:42.000Z</published>
+    <updated>2015-12-02T14:10:51.542Z</updated>
+    <content type="html"><![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt; v;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(s);</span><br><span class="line">		v.push_back(sp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt;::iterator iter = v.begin();</span><br><span class="line">	<span class="keyword">while</span> (iter != v.end()) &#123;</span><br><span class="line">		<span class="built_in">string</span> *tmp = *iter;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; tmp-&gt;size() &lt;&lt; <span class="string">", "</span> &lt;&lt; *tmp &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		iter++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world!↙</span><br><span class="line">^Z↙</span><br><span class="line"><span class="number">5</span>, hello</span><br><span class="line"><span class="number">6</span>, world!</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">]]>
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[hexo3.1.1 + github pages教程：添加多说评论系统]]></title>
@@ -2603,330 +2684,6 @@
     <![CDATA[<h3 id="首先">首先</h3><hr>
 <p>考虑问题：<code>求2的3次方？</code></p>
 <p>最直接的想到的可能是：</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2: 基本类型与字面值常量]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp_primer4-2/"/>
-    <id>http://bluestein.github.io/2015/11/cpp_primer4-2/</id>
-    <published>2015-11-09T02:36:09.000Z</published>
-    <updated>2015-11-30T02:56:42.218Z</updated>
-    <content type="html"><![CDATA[<h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
-<p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">类型</th>
-<th>含义</th>
-<th style="text-align:left">最小存储空间（位）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">bool</td>
-<td>布尔型</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:left">char</td>
-<td>字符型</td>
-<td style="text-align:left">8</td>
-</tr>
-<tr>
-<td style="text-align:left">wchar_t</td>
-<td>宽字符型</td>
-<td style="text-align:left">16</td>
-</tr>
-<tr>
-<td style="text-align:left">short</td>
-<td>短整型</td>
-<td style="text-align:left">16</td>
-</tr>
-<tr>
-<td style="text-align:left">int</td>
-<td>整型</td>
-<td style="text-align:left">16</td>
-</tr>
-<tr>
-<td style="text-align:left">long</td>
-<td>长整型</td>
-<td style="text-align:left">32</td>
-</tr>
-<tr>
-<td style="text-align:left">float</td>
-<td>单精度浮点型</td>
-<td style="text-align:left">6位有效数字</td>
-</tr>
-<tr>
-<td style="text-align:left">double</td>
-<td>双精度浮点型</td>
-<td style="text-align:left">10位有效数字</td>
-</tr>
-<tr>
-<td style="text-align:left">long double</td>
-<td>拓展精度浮点型</td>
-<td style="text-align:left">10位有效数字</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>注：即使是c++标准规定了存储标准，但是并不能阻止编译器使用更大的存储空间。而且，对于int型几乎所有编译器使用的空间都比所要求的大。</p>
-</blockquote>
-<!-- more -->
-<h4 id="1、整型">1、整型</h4><p>表示整数、<span style="color:red">字符</span>和布尔值的算术类型合称为<strong>整型(integral type)</strong>。（<em>没错，字符也是整型！）</em> <br> <strong>1 word(字) = 4 byte(字节) = 32 bit(位)</strong></p>
-<ul>
-<li>字符类型有两种：<strong>char</strong>和<strong>wchar_t</strong>。char能够保证存储机器基本字符集中任何字符相应的数值，因此char通常是<strong>单个机器字节</strong>（byte）；<strong>wchar_t</strong>类型用于拓展字符集，如汉字和日语，这些字符集中的一些字符不能用单个char表示；</li>
-<li><strong>short</strong>、<strong>int</strong>和<strong>long</strong>都表示<strong>整型值</strong>。一般short为半个字（word）长，int为一个字长，而long为一个或两个字长（32位机器中int和long通常字长相同）；</li>
-<li><strong>bool</strong>：true, false。可以将整型值赋给bool对象，0值表示false，非0值都代表true；</li>
-</ul>
-<p><strong>1.1、signed和unsigned</strong></p>
-<p>整型除了bool之外都可以<strong>带符号</strong>（signed）也可以<strong>不带符号</strong>（unsigned）。</p>
-<ul>
-<li>signed（带符号）：能表示正数也可以表示负数（包括0）；</li>
-<li>unsigned（不带符号）：只能表示0及以上的数；</li>
-</ul>
-<p>int，short和long默认是带符号型，需要指定unsigned才能获得无符号类型，其中unsigned int可以简写为unsigned。</p>
-<p><strong>1.2、整型值的表示</strong></p>
-<ul>
-<li>unsigned类型的所有位均可表示数值。例如，在机器中定义了一种类型使用8位表示，则该类型的取值范围是 0~255；</li>
-<li>signed类型在c++标准中并未定义如何用位来表示（我读的《C++primer》版本是第4版），由编译器自由决定。8位的signed类型取值范围至少是 -127~127，也有允许 -128~127.</li>
-</ul>
-<p><strong>1.3、整型的赋值</strong></p>
-<p>疑问：当把一个超过其取值范围的值赋给一个指定类型的对象时，会发生什么？</p>
-<ul>
-<li>unsigned：编译器必须调整越界值使其满足要求，编译器会将该值对该类型的<strong>可能取值数</strong>求模。<br>例如8位的unsigned char，取值范围是 0~255，则可能的取值数是 256。当试图把 336存储到unsigned char中，实际存储的是80，因为 336%256 = 80。<br><blockquote>
-<p>注：c++中把负值赋给unsigned对象是完全合法的</p>
-</blockquote>
-</li>
-<li>signed：由编译器决定，可能跟unsigned类似，也可能采取其他方式。</li>
-</ul>
-<h4 id="2、浮点型">2、浮点型</h4><ul>
-<li>float（单精度浮点数）：一个字长（32位）</li>
-<li>double（双精度浮点数）：两个字长（64位）</li>
-<li>long double（拓展精度）：三或四个字长（96位或128位）</li>
-</ul>
-<h3 id="二、字面值常量">二、字面值常量</h3><hr>
-<p>像42这样的值，在程序中被称为<strong>字面值常量</strong>（literal constant）。</p>
-<p>称它为<strong>字面值</strong>是因为只能用它的值来称呼它，称为<strong>常量</strong>是因为它的值不能被修改。</p>
-<p>每个字面值都有相应的类型，例如：0是int型；3.14159是double型。</p>
-<p>只有内置类型存在字面值，没有类类型的字面值。因此，标准库类型没有字面值。</p>
-<h4 id="2-1、整型字面值规则">2.1、整型字面值规则</h4><p>整数常量可以使用下列三种进制的任意一种：<strong>十进制、八进制和十六进制</strong>。</p>
-<p>例如值20的定义：</p>
-<ul>
-<li>decimal:&#9;20</li>
-<li>octal:&#9;024</li>
-<li>hexadecimal:&#9;0x14</li>
-</ul>
-<p>字面值整数常量的默认类型为<strong>int或long</strong>。</p>
-<p>这取决与字面值——值适合int就是int型，大于int就是long（即，假设int为1机器字长(32位)，则 <code>-2^31+1 ~ 2^31-1</code> 为int，大于 <code>2^31-1</code> 的为long）。</p>
-<p>通过加后缀可以把字面值类型转换成long，unsigned或unsigned long。</p>
-<ul>
-<li>long: 20L</li>
-<li>unsigned: 20U(20u)</li>
-<li>unsigned long: 20UL(20LU/20Lu/20uL)</li>
-</ul>
-<blockquote>
-<p>注：定义long类型时，推荐使用大写字母 L ，因为用户读起来时，小写字母 l 很容易和数字 1 混淆！</p>
-</blockquote>
-<h4 id="2-2、浮点字面值规则">2.2、浮点字面值规则</h4><p>可以用<strong>十进制或科学计数法</strong>表示浮点字面值常量。</p>
-<p>科学计数法指的是，<strong>指数</strong>用 E 或 e 表示。</p>
-<p>默认的浮点字面值常量是<strong>double型</strong>。后缀加上 F 或 f 表示单精度，加上 L 或 l 表示拓展精度（<span style="color:red">不推荐使用小写字母 l</span>）</p>
-<p>下面每一列的字面值是表示相同的值：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">3.14159F</th>
-<th style="text-align:left">.001f</th>
-<th style="text-align:left">12.345L</th>
-<th style="text-align:left">0.</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">3.14159E0f</td>
-<td style="text-align:left">1E-3f</td>
-<td style="text-align:left">1.2345E1L</td>
-<td style="text-align:left">0e0</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-3、布尔字面值和字符字面值">2.3、布尔字面值和字符字面值</h3><p>bool的字面值： <strong>true和false</strong>。</p>
-<p>可打印的字符型字面常量通常用一对单引号来定义： <strong>‘a’, ‘2’, ‘,’, ‘ ‘(空格)</strong>；<br> 加上 L 可以得到 wchar_t 类型的宽字符字面值： <strong>L’a’</strong>。</p>
-<h4 id="2-4、非打印字符的转义序列">2.4、非打印字符的转义序列</h4><table>
-<thead>
-<tr>
-<th style="text-align:left">\n</th>
-<th style="text-align:left">\r</th>
-<th style="text-align:left">\a</th>
-<th style="text-align:left">\b</th>
-<th style="text-align:left">\t</th>
-<th style="text-align:left">\v</th>
-<th style="text-align:left">\f</th>
-<th style="text-align:left">\?</th>
-<th style="text-align:left">\”</th>
-<th style="text-align:left">\’</th>
-<th style="text-align:left">\</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">换行符</td>
-<td style="text-align:left">回车符</td>
-<td style="text-align:left">报警符</td>
-<td style="text-align:left">退格符</td>
-<td style="text-align:left">水平制表符</td>
-<td style="text-align:left">纵向制表符</td>
-<td style="text-align:left">进纸符</td>
-<td style="text-align:left">疑问号</td>
-<td style="text-align:left">双引号</td>
-<td style="text-align:left">单引号</td>
-<td style="text-align:left">反斜杠</td>
-</tr>
-</tbody>
-</table>
-<p>任何字符都可以通过 <strong>“\XXX”</strong> 的形式表示，“XXX”表示三位八进制数字。下面是用ASCII码表示字面常量：</p>
-<ul>
-<li>\7 : 报警符</li>
-<li>\0 : 空格符</li>
-<li>\12: 换行符</li>
-<li>\40: 空格符</li>
-<li>\115: ‘M’</li>
-<li>\062: ‘2’</li>
-</ul>
-<h4 id="2-5、字符串字面值">2.5、字符串字面值</h4><p>前面的均是基本内置类型，下面的 <strong>字符串字面值</strong> 会更复杂一些，后续会详细说明。</p>
-<p>字符串字面值常量是 <strong>双引号括起来的零个或多个字符</strong>，<strong>不可打印的字符</strong>使用相应的转义字符。</p>
-<ul>
-<li>“Hello World!”</li>
-<li>“”</li>
-<li>“\nHello\tWorld!\n”</li>
-</ul>
-<blockquote>
-<p>注：为了兼容C语言，C++会在所有字符串字面值常量末尾添加一个空字符<code>&lt;br/&gt;</code>如 ‘A’ 表示 单个字符 A，而 “A” 表示字符 A 和一个空字符两个字符的字符串</p>
-</blockquote>
-<h4 id="2-6、字符串字面值的连接">2.6、字符串字面值的连接</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span></span><br><span class="line">	<span class="string">" "</span></span><br><span class="line">	<span class="string">"World"</span> <span class="string">"!"</span></span><br><span class="line">	&lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<p>但是下面试图连接 <strong>字符串字面值和宽字符串字面值</strong> 是非法的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> <span class="string">L" World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<h4 id="2-7、多行字面值">2.7、多行字面值</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::cou\</span><br><span class="line">t&lt;&lt; <span class="string">"Hello"</span> &lt;&lt; st\</span><br><span class="line">d::endl;</span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<p>反斜杠 <strong>‘\’</strong> 必须是该行的结尾，不允许后面有空格或注释。同样的，下一行的前面也不能有任何空格和制表符。</p>
-<p>对于下一个 <strong>长字符串</strong> 例子，反斜杠后也不能有其他字符；而后一行的前面所有空格或制表符都会成为 <strong>长字符串的一部分</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello \</span><br><span class="line">	World!"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
-<p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[1: 快速入门]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp_primer4-1/"/>
-    <id>http://bluestein.github.io/2015/11/cpp_primer4-1/</id>
-    <published>2015-11-08T02:33:12.000Z</published>
-    <updated>2015-11-30T02:56:42.215Z</updated>
-    <content type="html"><![CDATA[<h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
-<p><strong>i</strong>, <strong>o</strong>分别表示 <code>istream</code> （输入流） 和 <code>ostream</code>（输出流）；<strong>stream</strong>表示 <code>流</code>：随着时间顺序生成或消耗；合起来就是<strong>iostream</strong>（输入输出流）。</p>
-<a id="more"></a>
-<h4 id="1-1、4个IO对象">1.1、4个IO对象</h4><ul>
-<li><strong>cin</strong>：标准输入；</li>
-<li><strong>cout</strong>：标准输出；</li>
-<li><strong>cerr</strong>：标准错误，通常用来输出警告和错误信息给程序使用者；</li>
-<li><strong>clog</strong>：常用于输出程序执行时的一般信息；</li>
-</ul>
-<p>（后两个第一次知道，逃</p>
-<h4 id="1-2、例子">1.2、例子</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; val1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; val2</span><br><span class="line">			&lt;&lt; <span class="string">" is "</span> &lt;&lt; val1+val2 &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一行告诉编译器要使用<strong>iostream</strong>库；</li>
-<li>输出流（写入到流）：<ul>
-<li>输出操作符 <code>&lt;&lt;</code> 将值写入到 <code>流</code>，即 <code>输出</code>。该操作符每次接受两个操作数：左操作数必须是ostream对象；右操作数是要输出的值；</li>
-<li>C++中的每个表达式都会产生一个结果，就是说 <code>std::cout&lt;&lt;a;</code> 也会产生返回值，但输出操作符 <code>&lt;&lt;</code> 返回的是输出流本身，所以可以将多个输出连接在一起，形如 <code>std::cout&lt;&lt;a&lt;&lt;b;</code>；</li>
-</ul>
-</li>
-<li>输入流（读入到流）：跟输出流类似；</li>
-<li><code>std</code> 表示使用<em>命名空间</em> <strong>std</strong>中定义的的名字；</li>
-<li><code>endl</code> 称为操纵符(manipulator)，将它写入 <code>流</code> 时，具有换行的效果，并同时会刷新相关联的缓冲区(buffer)。通过刷新缓冲区，用户可以立即看到写入 <code>流</code> 中的输出；</li>
-</ul>
-<h3 id="二、控制结构">二、控制结构</h3><hr>
-<h4 id="2-1、while语句和for语句">2.1、while语句和for语句</h4><p>问题：求1到10（包括10）的和？</p>
-<p><strong>while语句：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>, val = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (val &lt;= <span class="number">10</span>)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">		++val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of 1 to 10 inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>while语句的结构形式：<code>while (condition) while_body_statement;</code>。表示，通过测试 <code>condition</code> 为真时执行 <code>while_body_statement</code>，重复这一过程直到 <code>condition</code> 为假<ul>
-<li><code>condition</code> 是一个可求值得表达式。如果结果非零，那么为<strong>真</strong>；如果结果为为零，则为<strong>假</strong>；</li>
-<li><code>&lt;=</code> 表示<strong>小于等于</strong>操作符；</li>
-<li><code>sum += val;</code> 等价于 <code>sum = sum + val;</code>。类似的，<code>++val;</code> 等价于 <code>val = val + 1;</code>；</li>
-</ul>
-</li>
-</ul>
-<p>还有另一种情形：只对输入的值进行求和</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>, val;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; val)&#123;	<span class="comment">//windows系统下输入 ctrl+z 可以作为文件结束符(end-of-file)</span></span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>for语句：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> val = <span class="number">1</span>; val &lt;= <span class="number">10</span>; ++val)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of 1 to 10 inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>for语句可以简化管理循环变量.不像在while语句中，需要 <code>val</code> 这样的值来控制循环。其执行流程为：<ul>
-<li>1，创建 <code>val</code> 并初始化为1</li>
-<li>2，测试 <code>val</code> 是否小于或等于10</li>
-<li>3，如果 <code>val</code> 小于或等于10，执行for循环体：把 <code>val</code> 值加到 <code>sum</code> 变量中；否则，执行for语句体之后的语句</li>
-<li>4，<code>val</code> 加1</li>
-<li>5，重复第2~4步</li>
-</ul>
-</li>
-</ul>
-<h4 id="2-2、if语句">2.2、if语句</h4><p>假设这样一种情况：将用户输入的两个数作为上、下界，然后用上面的循环求和。这个时候我们就需要判定那个数值更大而作为上界，另一个作为下界。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="keyword">int</span> lower, upper;</span><br><span class="line">	<span class="keyword">if</span> (val1 &lt;= val2) &#123;</span><br><span class="line">		lower = val1;</span><br><span class="line">		upper = val2;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		lower = val2;</span><br><span class="line">		upper = val1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> val = lower; val &lt;= upper; ++val)&#123;</span><br><span class="line">		sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span>&lt;&lt; lower &lt;&lt; <span class="string">" to "</span>&lt;&lt; upper &lt;&lt;<span class="string">" inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>代码就不用多说了，一眼就能看出来</li>
-</ul>
-<h3 id="三、类的简介">三、类的简介</h3><hr>
-<p>假设有书店问题：某书店以文件形式保存每一笔交易。每笔交易形式如：<br>0-201-70353-x&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;24.99<br>第一个元素是ISBN，第二个为销售册数，第三个为单价。店主定期查看这个文件，统计每本书的销售册数、总销售额以及平均售价。</p>
-<h4 id="3-1、Sales_item类">3.1、Sales_item类</h4><ol>
-<li><p>Sales_item对象上的操作</p>
-<ul>
-<li>加法 <code>+</code> ：将两个对象相加；</li>
-<li>输入 <code>&gt;&gt;</code> ： 读取一个对象；</li>
-<li>输出 <code>&lt;&lt;</code> ：输出一个对象；</li>
-<li>赋值 <code>=</code> ：将一个对象赋给另一个对象；</li>
-<li>对比 <code>?</code> ：对比两个对象是否属于同一本书（函数same_isbn）；</li>
-</ul>
-</li>
-<li><p>初探成员函数</p>
-<p> 成员函数是由类定义的函数，也称为<strong>类方法</strong>。如 <code>item1.same_isbn(item2)</code> 调用类Sales_item的成员函数same_isbn来对比 <code>item1</code> 和 <code>item2</code>。</p>
-</li>
-</ol>
-<blockquote>
-<p>注：标准库的头文件用尖括号 <code>&lt;&gt;</code> 括起来，非标准库用双引号 <code>&quot;&quot;</code>。</p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="一、iostream（输入输出流）">一、iostream（输入输出流）</h3><hr>
-<p><strong>i</strong>, <strong>o</strong>分别表示 <code>istream</code> （输入流） 和 <code>ostream</code>（输出流）；<strong>stream</strong>表示 <code>流</code>：随着时间顺序生成或消耗；合起来就是<strong>iostream</strong>（输入输出流）。</p>]]>
     
     </summary>
     
