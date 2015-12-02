@@ -68,9 +68,104 @@
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-18/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-18/</id>
     <published>2015-11-28T08:50:29.000Z</published>
-    <updated>2015-11-30T02:58:11.205Z</updated>
-    <content type="html"></content>
+    <updated>2015-12-02T13:56:06.858Z</updated>
+    <content type="html"><![CDATA[<p>如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
+<p>上面称为 <strong>隐式类型转换</strong>。</p>
+<a id="more"></a>
+<p><strong>1、发生隐式转换</strong></p>
+<ul>
+<li><p>混合表达式中，操作数被转化为相同类型</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line">iv += dv;	<span class="comment">//iv会被转换为double</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作为条件表达式转换为bool</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">if</span>(val)	<span class="comment">//int to bool</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span>)	<span class="comment">//cin to bool</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用表达式初始化某变量，该表达式结果被转换为该变量的类型</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv = <span class="number">3.14</span>;	<span class="comment">//3.14 to int</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>2、算术转换</strong></p>
+<p><strong>signed 与 unsigned 类型间的转换</strong></p>
+<ul>
+<li><p>如果包含 short 和 int 类型的表达式，short 转换为int。如果 int 足够表示所有 unsigned short ，则将 unsigned short 转换为 int。</p>
+</li>
+<li><p>long 和 unsigned int 转换也一样，如果 long 足够表示所有 unsigned int ，则将 unsigned int 转换为 long。</p>
+</li>
+</ul>
+<blockquote>
+<p>在32机器中，long和int通常使用一个字长表示，因此包含 unsigned int 和 long 类型的表达式，都应该转换为 unsigned long</p>
+</blockquote>
+<ul>
+<li>signed 和 unsigned int，signed转换成 unsigned int。</li>
+</ul>
+<p><strong>举例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> bv;</span><br><span class="line"><span class="keyword">char</span> cv;</span><br><span class="line"><span class="keyword">short</span> siv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> usiv;</span><br><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> uiv;</span><br><span class="line"><span class="keyword">long</span> lv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ulv;</span><br><span class="line"><span class="keyword">float</span> fv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line"><span class="number">3.14L</span> + <span class="string">'a'</span>;	<span class="comment">//'a' 先转换成 int，再转换成double</span></span><br><span class="line">dv + iv;	<span class="comment">//iv to double</span></span><br><span class="line">dv + fv;	<span class="comment">//fv to double</span></span><br><span class="line">iv = dv;	<span class="comment">//dv to(截断) int</span></span><br><span class="line">bv = dv;	<span class="comment">//if dv=0, bv = false, else bv = true</span></span><br><span class="line">cv + fv;	<span class="comment">//cv to int, then, int to float</span></span><br><span class="line">siv + cv;	<span class="comment">//siv and cv to int</span></span><br><span class="line">cv + lv;	<span class="comment">//cv to long</span></span><br><span class="line">iv + ulv;	<span class="comment">//iv to unsigned long</span></span><br><span class="line">usiv + iv;	<span class="comment">//依赖于 unsigned short 和 int 的大小</span></span><br><span class="line">uiv + lv;	<span class="comment">//依赖于 unsigned int 和 long 的大小</span></span><br></pre></td></tr></table></figure>
+<p><strong>3、其他隐式转换</strong></p>
+<p><strong>指针转换</strong></p>
+<p>使用数组时，大多数情况下数组都会自动转化为指向第一个元素的指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">10</span>];	<span class="comment">//数组</span></span><br><span class="line"><span class="keyword">int</span> *ip = ia;	<span class="comment">//转化成指向第一个元素的指针</span></span><br></pre></td></tr></table></figure>
+<p>还有另外两种指针转换：</p>
+<ul>
+<li>指向任意数据类型的指针都能够转化成 void*类型；</li>
+<li>整型字面常量值 0 可以转换为任意指针类型；</li>
+</ul>
+<p><strong>转换为bool类型</strong></p>
+<p>算术值和指针纸都可以转为bool类型。如果指针或算术值为0，则其bool值为false，其他则为true：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cp)	<span class="comment">/*...*/</span> <span class="comment">//true if not zero</span></span><br><span class="line"><span class="keyword">while</span>(*cp)	<span class="comment">/*...*/</span> <span class="comment">//convert char to bool</span></span><br></pre></td></tr></table></figure>
+<p>while 语句对 <code>cp</code> 解引用，如果结果为 null ，则转化成false，否则转化成true</p>
+<p><strong>算术类型与bool类型的转换</strong></p>
+<p>可将算术类型转换成bool型，也可将bool型转换成int型。算术类型转bool时，0转换成false，其他转换成true；bool转int时，true转成1，false转成0。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">int</span> ival = b;	<span class="comment">//ival == 1</span></span><br><span class="line"><span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = pi;	<span class="comment">//b2 is true</span></span><br><span class="line">pi = <span class="literal">false</span>; <span class="comment">//pi == 0</span></span><br></pre></td></tr></table></figure>
+<p><strong>转化与枚举</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p3 = 3; p4 = 4</span></span><br><span class="line"><span class="keyword">enum</span> points &#123;p1 = <span class="number">2</span>, p3, p3 = <span class="number">3</span>, p4&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>转化为const类型</strong></p>
+<p>使用非const对象初始化const对象的引用时，系统将非const对象转化成const对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;j = i;	<span class="comment">//ok: 将非const对象转化成const对象</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = &amp;ci;	<span class="comment">//ok: 将非const对象的地址转化为指向const类型的指针</span></span><br></pre></td></tr></table></figure>
+<p><strong>由标准库类型定义的转换</strong></p>
+<p>典型的例子就是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s)</span><br></pre></td></tr></table></figure>
+<p>该表达式 <code>cin&gt;&gt;s</code> 的结果 <code>cin</code> 对象，为istream对象，所以此时会将其转化成bool类型。</p>
+<h3 id="4、显式转换">4、显式转换</h3><p>显式转换也称为<strong>强制类型转换（cast）</strong>，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。</p>
+<p><strong>何时需要强制转换</strong></p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line">ival *= dval;</span><br></pre></td></tr></table></figure>
+<p>上述程序首先会将 ival 转换为 double 型，乘法操作后又将double型的结果转成int型。为了避免不必要的转换，可以如下操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ival *= <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(dval);</span><br></pre></td></tr></table></figure>
+<p><strong>命名的强制类型转换</strong></p>
+<p>形式如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt;(expression);</span><br></pre></td></tr></table></figure>
+<p>cast-name的选择有</p>
+<ul>
+<li><p>static_cast: 编译器隐式执行的任何类型转换都可以通过 static_cast 显式完成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">1.5</span>;</span><br><span class="line"><span class="keyword">char</span> ch = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(d);</span><br><span class="line"><span class="keyword">void</span> *p = &amp;d;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>*&gt;(p);	<span class="comment">//可以找回存在void*中的值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dynamic_cast: 支持运行时识别指针或引用所指的对象。</p>
+</li>
+<li><p>const_cast: 去掉表达式的const性质</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *ccp;</span><br><span class="line"><span class="keyword">char</span> *cp = string_copy(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(ccp));</span><br><span class="line"><span class="comment">//使string_copy接受const char*类型的参数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reinterpret_cast: 通常为操作数的位模式提供较低层次的重新解释</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip;</span><br><span class="line"><span class="keyword">char</span> *cp = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(ip);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>cp 所指的真实对象时 int 类型，所以不能用来初始化 string 对象。</p>
+<p>type表示目标类型，expression表示被转换的表达式。</p>
+<blockquote>
+<p>避免使用强制类型转换</p>
+</blockquote>
+<p><strong>旧式的强制转换</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *cp = (<span class="keyword">char</span>*) ip;</span><br></pre></td></tr></table></figure>
+<p>这种方式不容易错误跟踪，可视性差。</p>
+<blockquote>
+<p>C++仍旧支持旧式强制转换，但不推荐这样做。除非在C语言下，或旧式编译器上才使用。</p>
+</blockquote>
+<p>END.</p>
+]]></content>
     <summary type="html">
+    <![CDATA[<p>如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
+<p>上面称为 <strong>隐式类型转换</strong>。</p>]]>
     
     </summary>
     

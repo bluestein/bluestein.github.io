@@ -5,16 +5,22 @@
   
   <title>18:类型转换 | Humooo&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Liu&apos;s Blog">
+  <meta name="description" content="如：
+12int val;val = 3.14 + 3;	//val = 6
+上面称为 隐式类型转换。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18:类型转换">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-18/index.html">
 <meta property="og:site_name" content="Humooo's Blog">
-<meta property="og:description" content="Liu&apos;s Blog">
-<meta property="og:updated_time" content="2015-11-30T02:58:11.205Z">
+<meta property="og:description" content="如：
+12int val;val = 3.14 + 3;	//val = 6
+上面称为 隐式类型转换。">
+<meta property="og:updated_time" content="2015-12-02T13:56:06.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18:类型转换">
-<meta name="twitter:description" content="Liu&apos;s Blog">
+<meta name="twitter:description" content="如：
+12int val;val = 3.14 + 3;	//val = 6
+上面称为 隐式类型转换。">
   
     <link rel="alternative" href="/atom.xml" title="Humooo&#39;s Blog" type="application/atom+xml">
   
@@ -91,7 +97,99 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
+<p>上面称为 <strong>隐式类型转换</strong>。</p>
+<a id="more"></a>
+<p><strong>1、发生隐式转换</strong></p>
+<ul>
+<li><p>混合表达式中，操作数被转化为相同类型</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line">iv += dv;	<span class="comment">//iv会被转换为double</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作为条件表达式转换为bool</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">if</span>(val)	<span class="comment">//int to bool</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span>)	<span class="comment">//cin to bool</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用表达式初始化某变量，该表达式结果被转换为该变量的类型</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv = <span class="number">3.14</span>;	<span class="comment">//3.14 to int</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>2、算术转换</strong></p>
+<p><strong>signed 与 unsigned 类型间的转换</strong></p>
+<ul>
+<li><p>如果包含 short 和 int 类型的表达式，short 转换为int。如果 int 足够表示所有 unsigned short ，则将 unsigned short 转换为 int。</p>
+</li>
+<li><p>long 和 unsigned int 转换也一样，如果 long 足够表示所有 unsigned int ，则将 unsigned int 转换为 long。</p>
+</li>
+</ul>
+<blockquote>
+<p>在32机器中，long和int通常使用一个字长表示，因此包含 unsigned int 和 long 类型的表达式，都应该转换为 unsigned long</p>
+</blockquote>
+<ul>
+<li>signed 和 unsigned int，signed转换成 unsigned int。</li>
+</ul>
+<p><strong>举例</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> bv;</span><br><span class="line"><span class="keyword">char</span> cv;</span><br><span class="line"><span class="keyword">short</span> siv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> usiv;</span><br><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> uiv;</span><br><span class="line"><span class="keyword">long</span> lv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ulv;</span><br><span class="line"><span class="keyword">float</span> fv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line"><span class="number">3.14L</span> + <span class="string">'a'</span>;	<span class="comment">//'a' 先转换成 int，再转换成double</span></span><br><span class="line">dv + iv;	<span class="comment">//iv to double</span></span><br><span class="line">dv + fv;	<span class="comment">//fv to double</span></span><br><span class="line">iv = dv;	<span class="comment">//dv to(截断) int</span></span><br><span class="line">bv = dv;	<span class="comment">//if dv=0, bv = false, else bv = true</span></span><br><span class="line">cv + fv;	<span class="comment">//cv to int, then, int to float</span></span><br><span class="line">siv + cv;	<span class="comment">//siv and cv to int</span></span><br><span class="line">cv + lv;	<span class="comment">//cv to long</span></span><br><span class="line">iv + ulv;	<span class="comment">//iv to unsigned long</span></span><br><span class="line">usiv + iv;	<span class="comment">//依赖于 unsigned short 和 int 的大小</span></span><br><span class="line">uiv + lv;	<span class="comment">//依赖于 unsigned int 和 long 的大小</span></span><br></pre></td></tr></table></figure>
+<p><strong>3、其他隐式转换</strong></p>
+<p><strong>指针转换</strong></p>
+<p>使用数组时，大多数情况下数组都会自动转化为指向第一个元素的指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">10</span>];	<span class="comment">//数组</span></span><br><span class="line"><span class="keyword">int</span> *ip = ia;	<span class="comment">//转化成指向第一个元素的指针</span></span><br></pre></td></tr></table></figure>
+<p>还有另外两种指针转换：</p>
+<ul>
+<li>指向任意数据类型的指针都能够转化成 void*类型；</li>
+<li>整型字面常量值 0 可以转换为任意指针类型；</li>
+</ul>
+<p><strong>转换为bool类型</strong></p>
+<p>算术值和指针纸都可以转为bool类型。如果指针或算术值为0，则其bool值为false，其他则为true：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cp)	<span class="comment">/*...*/</span> <span class="comment">//true if not zero</span></span><br><span class="line"><span class="keyword">while</span>(*cp)	<span class="comment">/*...*/</span> <span class="comment">//convert char to bool</span></span><br></pre></td></tr></table></figure>
+<p>while 语句对 <code>cp</code> 解引用，如果结果为 null ，则转化成false，否则转化成true</p>
+<p><strong>算术类型与bool类型的转换</strong></p>
+<p>可将算术类型转换成bool型，也可将bool型转换成int型。算术类型转bool时，0转换成false，其他转换成true；bool转int时，true转成1，false转成0。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">int</span> ival = b;	<span class="comment">//ival == 1</span></span><br><span class="line"><span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = pi;	<span class="comment">//b2 is true</span></span><br><span class="line">pi = <span class="literal">false</span>; <span class="comment">//pi == 0</span></span><br></pre></td></tr></table></figure>
+<p><strong>转化与枚举</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p3 = 3; p4 = 4</span></span><br><span class="line"><span class="keyword">enum</span> points &#123;p1 = <span class="number">2</span>, p3, p3 = <span class="number">3</span>, p4&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>转化为const类型</strong></p>
+<p>使用非const对象初始化const对象的引用时，系统将非const对象转化成const对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;j = i;	<span class="comment">//ok: 将非const对象转化成const对象</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = &amp;ci;	<span class="comment">//ok: 将非const对象的地址转化为指向const类型的指针</span></span><br></pre></td></tr></table></figure>
+<p><strong>由标准库类型定义的转换</strong></p>
+<p>典型的例子就是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s)</span><br></pre></td></tr></table></figure>
+<p>该表达式 <code>cin&gt;&gt;s</code> 的结果 <code>cin</code> 对象，为istream对象，所以此时会将其转化成bool类型。</p>
+<h3 id="4、显式转换">4、显式转换</h3><p>显式转换也称为<strong>强制类型转换（cast）</strong>，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。</p>
+<p><strong>何时需要强制转换</strong></p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line">ival *= dval;</span><br></pre></td></tr></table></figure>
+<p>上述程序首先会将 ival 转换为 double 型，乘法操作后又将double型的结果转成int型。为了避免不必要的转换，可以如下操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ival *= <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(dval);</span><br></pre></td></tr></table></figure>
+<p><strong>命名的强制类型转换</strong></p>
+<p>形式如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt;(expression);</span><br></pre></td></tr></table></figure>
+<p>cast-name的选择有</p>
+<ul>
+<li><p>static_cast: 编译器隐式执行的任何类型转换都可以通过 static_cast 显式完成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">1.5</span>;</span><br><span class="line"><span class="keyword">char</span> ch = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(d);</span><br><span class="line"><span class="keyword">void</span> *p = &amp;d;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>*&gt;(p);	<span class="comment">//可以找回存在void*中的值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dynamic_cast: 支持运行时识别指针或引用所指的对象。</p>
+</li>
+<li><p>const_cast: 去掉表达式的const性质</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *ccp;</span><br><span class="line"><span class="keyword">char</span> *cp = string_copy(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(ccp));</span><br><span class="line"><span class="comment">//使string_copy接受const char*类型的参数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reinterpret_cast: 通常为操作数的位模式提供较低层次的重新解释</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip;</span><br><span class="line"><span class="keyword">char</span> *cp = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(ip);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>cp 所指的真实对象时 int 类型，所以不能用来初始化 string 对象。</p>
+<p>type表示目标类型，expression表示被转换的表达式。</p>
+<blockquote>
+<p>避免使用强制类型转换</p>
+</blockquote>
+<p><strong>旧式的强制转换</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *cp = (<span class="keyword">char</span>*) ip;</span><br></pre></td></tr></table></figure>
+<p>这种方式不容易错误跟踪，可视性差。</p>
+<blockquote>
+<p>C++仍旧支持旧式强制转换，但不推荐这样做。除非在C语言下，或旧式编译器上才使用。</p>
+</blockquote>
+<p>END.</p>
+
       
     </div>
     <footer class="article-footer">
@@ -138,7 +236,99 @@
 
 
 
-  <div class="ds-share" data-thread-key="cpp-primer4-18" data-title="18:类型转换" data-images="" data-content="" data-url="http://bluestein.github.io/2015/11/cpp-primer4-18/">
+  <div class="ds-share" data-thread-key="cpp-primer4-18" data-title="18:类型转换" data-images="" data-content="&lt;p&gt;如：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;val = &lt;span class=&quot;number&quot;&gt;3.14&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//val = 6&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面称为 &lt;strong&gt;隐式类型转换&lt;/strong&gt;。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;strong&gt;1、发生隐式转换&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;混合表达式中，操作数被转化为相同类型&lt;/p&gt;
+  &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; iv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; dv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;iv += dv;	&lt;span class=&quot;comment&quot;&gt;//iv会被转换为double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;作为条件表达式转换为bool&lt;/p&gt;
+  &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(val)	&lt;span class=&quot;comment&quot;&gt;//int to bool&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(&lt;span class=&quot;built_in&quot;&gt;cin&lt;/span&gt;)	&lt;span class=&quot;comment&quot;&gt;//cin to bool&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用表达式初始化某变量，该表达式结果被转换为该变量的类型&lt;/p&gt;
+  &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; iv = &lt;span class=&quot;number&quot;&gt;3.14&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//3.14 to int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2、算术转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;signed 与 unsigned 类型间的转换&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果包含 short 和 int 类型的表达式，short 转换为int。如果 int 足够表示所有 unsigned short ，则将 unsigned short 转换为 int。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;long 和 unsigned int 转换也一样，如果 long 足够表示所有 unsigned int ，则将 unsigned int 转换为 long。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在32机器中，long和int通常使用一个字长表示，因此包含 unsigned int 和 long 类型的表达式，都应该转换为 unsigned long&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;signed 和 unsigned int，signed转换成 unsigned int。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;举例&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; bv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; cv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;short&lt;/span&gt; siv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;short&lt;/span&gt; usiv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; iv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; uiv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; lv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; ulv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;float&lt;/span&gt; fv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; dv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;3.14L&lt;/span&gt; + &lt;span class=&quot;string&quot;&gt;&#39;a&#39;&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//&#39;a&#39; 先转换成 int，再转换成double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dv + iv;	&lt;span class=&quot;comment&quot;&gt;//iv to double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dv + fv;	&lt;span class=&quot;comment&quot;&gt;//fv to double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;iv = dv;	&lt;span class=&quot;comment&quot;&gt;//dv to(截断) int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;bv = dv;	&lt;span class=&quot;comment&quot;&gt;//if dv=0, bv = false, else bv = true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cv + fv;	&lt;span class=&quot;comment&quot;&gt;//cv to int, then, int to float&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;siv + cv;	&lt;span class=&quot;comment&quot;&gt;//siv and cv to int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cv + lv;	&lt;span class=&quot;comment&quot;&gt;//cv to long&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;iv + ulv;	&lt;span class=&quot;comment&quot;&gt;//iv to unsigned long&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;usiv + iv;	&lt;span class=&quot;comment&quot;&gt;//依赖于 unsigned short 和 int 的大小&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;uiv + lv;	&lt;span class=&quot;comment&quot;&gt;//依赖于 unsigned int 和 long 的大小&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;3、其他隐式转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指针转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用数组时，大多数情况下数组都会自动转化为指向第一个元素的指针&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ia[&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;];	&lt;span class=&quot;comment&quot;&gt;//数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; *ip = ia;	&lt;span class=&quot;comment&quot;&gt;//转化成指向第一个元素的指针&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;还有另外两种指针转换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;指向任意数据类型的指针都能够转化成 void*类型；&lt;/li&gt;
+&lt;li&gt;整型字面常量值 0 可以转换为任意指针类型；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;转换为bool类型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;算术值和指针纸都可以转为bool类型。如果指针或算术值为0，则其bool值为false，其他则为true：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (cp)	&lt;span class=&quot;comment&quot;&gt;/*...*/&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;//true if not zero&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(*cp)	&lt;span class=&quot;comment&quot;&gt;/*...*/&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;//convert char to bool&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;while 语句对 &lt;code&gt;cp&lt;/code&gt; 解引用，如果结果为 null ，则转化成false，否则转化成true&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;算术类型与bool类型的转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可将算术类型转换成bool型，也可将bool型转换成int型。算术类型转bool时，0转换成false，其他转换成true；bool转int时，true转成1，false转成0。&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; b = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ival = b;	&lt;span class=&quot;comment&quot;&gt;//ival == 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; pi = &lt;span class=&quot;number&quot;&gt;3.14&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; b2 = pi;	&lt;span class=&quot;comment&quot;&gt;//b2 is true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pi = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;//pi == 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;转化与枚举&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//p3 = 3; p4 = 4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;enum&lt;/span&gt; points &amp;#123;p1 = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, p3, p3 = &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;, p4&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;转化为const类型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用非const对象初始化const对象的引用时，系统将非const对象转化成const对象。&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ci = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;j = i;	&lt;span class=&quot;comment&quot;&gt;//ok: 将非const对象转化成const对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; *p = &amp;amp;ci;	&lt;span class=&quot;comment&quot;&gt;//ok: 将非const对象的地址转化为指向const类型的指针&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;由标准库类型定义的转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;典型的例子就是&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; s;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(&lt;span class=&quot;built_in&quot;&gt;cin&lt;/span&gt; &amp;gt;&amp;gt; s)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该表达式 &lt;code&gt;cin&amp;gt;&amp;gt;s&lt;/code&gt; 的结果 &lt;code&gt;cin&lt;/code&gt; 对象，为istream对象，所以此时会将其转化成bool类型。&lt;/p&gt;
+&lt;h3 id=&quot;4、显式转换&quot;&gt;4、显式转换&lt;/h3&gt;&lt;p&gt;显式转换也称为&lt;strong&gt;强制类型转换（cast）&lt;/strong&gt;，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;何时需要强制转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; dval;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; ival;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ival *= dval;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上述程序首先会将 ival 转换为 double 型，乘法操作后又将double型的结果转成int型。为了避免不必要的转换，可以如下操作&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ival *= &lt;span class=&quot;keyword&quot;&gt;static_cast&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt;(dval);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;命名的强制类型转换&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;形式如下&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cast-name&amp;lt;type&amp;gt;(expression);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;cast-name的选择有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;static_cast: 编译器隐式执行的任何类型转换都可以通过 static_cast 显式完成&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; d = &lt;span class=&quot;number&quot;&gt;1.5&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; ch = &lt;span class=&quot;keyword&quot;&gt;static_cast&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;&amp;gt;(d);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; *p = &amp;amp;d;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; *dp = &lt;span class=&quot;keyword&quot;&gt;static_cast&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt;*&amp;gt;(p);	&lt;span class=&quot;comment&quot;&gt;//可以找回存在void*中的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;dynamic_cast: 支持运行时识别指针或引用所指的对象。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;const_cast: 去掉表达式的const性质&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; *ccp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; *cp = string_copy(&lt;span class=&quot;keyword&quot;&gt;const_cast&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;*&amp;gt;(ccp));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//使string_copy接受const char*类型的参数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;reinterpret_cast: 通常为操作数的位模式提供较低层次的重新解释&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; *ip;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; *cp = &lt;span class=&quot;keyword&quot;&gt;reinterpret_cast&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;*&amp;gt;(ip);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;cp 所指的真实对象时 int 类型，所以不能用来初始化 string 对象。&lt;/p&gt;
+&lt;p&gt;type表示目标类型，expression表示被转换的表达式。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;避免使用强制类型转换&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;旧式的强制转换&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; *cp = (&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;*) ip;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这种方式不容易错误跟踪，可视性差。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C++仍旧支持旧式强制转换，但不推荐这样做。除非在C语言下，或旧式编译器上才使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;END.&lt;/p&gt;
+" data-url="http://bluestein.github.io/2015/11/cpp-primer4-18/">
     <div class="ds-share-aside-right">
       <div class="ds-share-aside-inner">
       </div>
