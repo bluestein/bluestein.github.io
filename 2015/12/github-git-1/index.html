@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Github: Git的使用 - 安装配置 | Humooo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Github 是什么？
+
+GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）
+
+本着我一直以来推崇的 够用就好 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github: Git的使用 - 安装配置">
+<meta property="og:url" content="http://bluestein.github.io/2015/12/github-git-1/index.html">
+<meta property="og:site_name" content="Humooo's Blog">
+<meta property="og:description" content="Github 是什么？
+
+GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）
+
+本着我一直以来推崇的 够用就好 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的">
+<meta property="og:updated_time" content="2015-12-03T11:53:07.352Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github: Git的使用 - 安装配置">
+<meta name="twitter:description" content="Github 是什么？
+
+GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）
+
+本着我一直以来推崇的 够用就好 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的">
+  
+    <link rel="alternative" href="/atom.xml" title="Humooo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/H.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <div id="header-title">
+        <h1 id="logo-wrap">
+          <a href="/" id="logo">
+          Humooo&#39;s Blog
+          </a>
+          
+              <br/><span id="subtitle">Everything will be ok</span>
+          
+        </h1>
+      </div>
+      <nav id="sub-nav">
+        <a target="_blank" id="nav-github-link" class="nav-icon" href="https://github.com/bluestein" title="humooo's github"></a>
+
+        <a target="_blank" id="nav-weibo-link" class="nav-icon" href="http://weibo.com/u/3239589332" title="humooo's weibo"></a>
+
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+        
+      </nav>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-github-git-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/github-git-1/" class="article-date">
+  <time datetime="2015-12-02T07:54:49.000Z" itemprop="datePublished">2015-12-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Github/">Github</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h3 class="article-title" itemprop="name">
+      Github: Git的使用 - 安装配置
+    </h3>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Github 是什么？</strong></p>
+<blockquote>
+<p>GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.<br>（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）</p>
+</blockquote>
+<p>本着我一直以来推崇的 <strong>够用就好</strong> 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的教程。下面开始正文内容：</p>
+<a id="more"></a>
+<p>说到 <strong>github</strong>，能看出来这个词是 git+hub 的组合，hub 就不用多说了，就是字面意思 “枢纽、中心”之类的，我们首先主要关注的是 <strong>git</strong> 。</p>
+<h2 id="Git">Git</h2><p>官网有这么一句话，说明了git到底是何方神圣：</p>
+<blockquote>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+</blockquote>
+<p>这句话的意思是：Git是一个免费开源的分布式版本控制系统，用于高效地处理从小型到大型项目的所有东西。</p>
+<ul>
+<li>它能够保留文件的或项目的更新版本记录，并且能回滚至某一个历史记录的状态。举个栗子，比如今天你把上次能够正确运行的程序修改后down掉了，这时你就可以使用 <strong>回滚</strong>功能。</li>
+<li>所谓 <strong>分布式版本控制</strong> 就是指每个参与人员都可以拥有一份项目的源代码，每个成员在自己的这份copy上进行修改、增加而不影响其他人，然后在提交至仓库中（个人理解，勿喷 =_=）</li>
+<li>git具有分支（branch）功能。比如你想开发点新奇的功能但又不想影响主项目时，就可以新建一个分支。</li>
+</ul>
+<h3 id="1、安装git">1、安装git</h3><p>git支持不同的操作系统，可以通过软件包或源码安装。</p>
+<p><strong>windows系统</strong></p>
+<p>在<a href="http://www.git-scm.com/download/win" title="git for windows" target="_blank" rel="external">git官网下载可安装程序</a>，然后按提示安装即可。安装完后开始菜单应该会出现如下目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- Git Bash</span><br><span class="line">- Git GUI</span><br></pre></td></tr></table></figure>
+<p><strong>Linux系统</strong></p>
+<p>在 Linux 上用二进制安装程序来安装 Git，可以使用发行版包含的基础软件包管理工具来安装。 如果以 Fedora 上为例，你可以使用 yum：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install git</span><br></pre></td></tr></table></figure>
+<p>如果你在基于 Debian 的发行版上，请尝试用 apt-get：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<p><strong>Mac系统</strong></p>
+<p>跟windows一样，<a href="http://www.git-scm.com/download/mac" title="git for mac" target="_blank" rel="external">官网下载安装</a>即可。</p>
+<blockquote>
+<p>下面所有内容仅适用于windows系统</p>
+</blockquote>
+<h3 id="2、配置Git">2、配置Git</h3><blockquote>
+<p>我的git版本是1.9.5，不过新的版本也大同小异。</p>
+</blockquote>
+<p>当安装完 Git 应该做的第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改，打开 <code>Git Bash</code> 输入下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"your-name"</span></span><br><span class="line">$ git config --global user.email your-name@example.com</span><br></pre></td></tr></table></figure>
+<p><code>--global</code> 命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 <code>--global</code> 选项的命令来配置，即</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"your-name"</span></span><br><span class="line">$ git config user.email your-name@example.com</span><br></pre></td></tr></table></figure>
+<p><strong>检查配置信息</strong></p>
+<p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br><span class="line">user.name=your-name</span><br><span class="line">user.email=your-name@example.com</span><br><span class="line">color.status=auto</span><br><span class="line">color.branch=auto</span><br><span class="line">color.interactive=auto</span><br><span class="line">color.diff=auto</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><strong>获取帮助</strong></p>
+<p>若你使用 Git 时需要获取帮助，有三种方法可以找到 Git 命令的使用手册：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
+<p>例如，要想获得 config 命令的手册，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> config</span><br></pre></td></tr></table></figure>
+<h3 id="3、使用Git">3、使用Git</h3><h3 id="3-1、生成仓库">3.1、生成仓库</h3><p><strong>在现有目录中初始化仓库</strong></p>
+<p>如果你打算使用 Git 来对现有的项目进行管理，你只需要进入该项目目录并输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<p>该命令将创建一个名为 <code>.git</code> 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪。</p>
+<p>如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 <code>git add</code> 命令来实现对指定文件的跟踪，然后执行 <code>git commit</code> 提交到仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add *.c</span><br><span class="line">$ git add LICENSE</span><br><span class="line">$ git commit -m <span class="string">'initial project version'</span></span><br></pre></td></tr></table></figure>
+<p><strong>克隆现有的仓库</strong></p>
+<p>如果你想获得一份已经存在了的 Git 仓库的拷贝，比如说，你想为某个开源项目贡献自己的一份力，这时就要用到 <code>git clone</code> 命令。 如果你对其它的 VCS 系统（比如说Subversion）很熟悉，请留心一下你所使用的命令是”clone”而不是”checkout”。 这是 Git 区别于其它版本控制系统的一个重要特性，Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 git clone 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</p>
+<p>克隆仓库的命令格式是 <code>git clone [url]</code> 。 比如，要克隆 Git 的可链接库 hexo-theme-allgreen，可以用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br></pre></td></tr></table></figure>
+<p>这会 <strong>在当前目录下</strong> 创建一个名为 “hexo-theme-allgreen” 的目录，并在这个目录下初始化一个 .git 文件夹，从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。 如果你进入到这个新建的 hexo-theme-allgreen 文件夹，你会发现所有的项目文件已经在里面了，准备就绪等待后续的开发和使用。 如果你想在克隆远程仓库的时候，自定义本地仓库的名字，你可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git myallgreen</span><br></pre></td></tr></table></figure>
+<p>这将执行与上一个命令相同的操作，不过在本地创建的仓库名字变为 myallgreen。</p>
+<h3 id="3-2、更新到仓库">3.2、更新到仓库</h3><p>现在我们手上有了一个真实项目的 Git 仓库，并从这个仓库中取出了所有文件的工作拷贝。 接下来，对这些文件做些修改，在完成了一个阶段的目标之后，提交本次更新到仓库。</p>
+<p><strong>检查当前文件状态</strong></p>
+<p>要查看哪些文件处于什么状态，可以用 <code>git status</code> 命令。 如果在克隆仓库后立即使用此命令，会看到类似这样的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
+<p>这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。</p>
+<p>现在，让我们在项目下创建一个新的 README 文件。 如果之前并不存在这个文件，使用 <code>git status</code> 命令，你将看到一个新的未跟踪文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'My Project'</span> &gt; README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">    README</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure>
+<p>在状态报告中可以看到新建的 README 文件出现在 <code>Untracked files</code> 下面。 未跟踪的文件意味着 Git 在之前的快照（提交）中没有这些文件；Git 不会自动将之纳入跟踪范围，除非你明明白白地告诉它“我需要跟踪该文件”， 这样的处理让你不必担心将生成的二进制文件或其它不想被跟踪的文件包含进来。 不过现在的例子中，我们确实想要跟踪管理 README 这个文件。</p>
+<p><strong>跟踪新文件</strong></p>
+<p>使用命令 <code>git add</code> 开始跟踪一个文件。 所以，要跟踪 README 文件，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+<p>此时再运行 git status 命令，会看到 README 文件已被跟踪，并处于暂存状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br></pre></td></tr></table></figure>
+<p>只要在 <code>Changes to be committed</code> 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件此时此刻的版本将被留存在历史记录中。 你可能会想起之前我们使用 <code>git init</code> 后就运行了 <code>git add (files)</code> 命令，开始跟踪当前目录下的文件。 <code>git add</code> 命令使用文件或目录的路径作为参数；如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。</p>
+<p><strong>暂存已修改文件</strong></p>
+<p>现在我们来修改一个已被跟踪的文件。 如果你修改了一个名为 CONTRIBUTING.md 的已被跟踪的文件，然后运行 <code>git status</code> 命令，会看到下面内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>文件 CONTRIBUTING.md 出现在 <code>Changes not staged for commit</code> 这行下面，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 <code>git add</code> 命令。 这是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。 将这个命令理解为“添加内容到下一次提交中”而不是“将一个文件添加到项目中”要更加合适。 现在让我们运行 <code>git add</code> 将”CONTRIBUTING.md”放到暂存区，然后再看看 <code>git status</code> 的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git add CONTRIBUTING.md</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>现在两个文件都已暂存，下次提交时就会一并记录到仓库。</p>
+<p><strong>状态简览</strong></p>
+<p><code>git status</code> 命令的输出十分详细，但其用语有些繁琐。 如果你使用 <code>git status -s</code> 命令或 <code>git status --short</code> 命令，你将得到一种更为紧凑的格式输出。 运行 <code>git status -s</code> ，状态报告输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status <span class="operator">-s</span></span><br><span class="line"> M README</span><br><span class="line">MM Rakefile</span><br><span class="line">A  lib/git.rb</span><br><span class="line">M  lib/simplegit.rb</span><br><span class="line">?? LICENSE.txt</span><br></pre></td></tr></table></figure>
+<p>新添加的未跟踪文件前面有 <code>??</code> 标记，新添加到暂存区中的文件前面有 <code>A</code> 标记，修改过的文件前面有 <code>M</code> 标记。 你可能注意到了 <code>M</code> 有两个可以出现的位置，出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。 例如，上面的状态报告显示： <code>README</code> 文件在工作区被修改了但是还没有将修改后的文件放入暂存区,<code>lib/simplegit.rb</code> 文件被修改了并将修改后的文件放入了暂存区。 而 <code>Rakefile</code> 在工作区被修改并提交到暂存区后又在工作区中被修改了，所以在暂存区和工作区都有该文件被修改了的记录。</p>
+<p><strong>忽略文件</strong></p>
+<p>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。 在这种情况下，我们可以创建一个名为 <code>.gitignore</code> 的文件，列出要忽略的文件模式。 来看一个实际的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch .gitignore</span><br></pre></td></tr></table></figure>
+<p>然后再在<code>.gitignore</code> 文件添加以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*.[oa]</span><br><span class="line">*~</span><br></pre></td></tr></table></figure>
+<p>第一行告诉 Git 忽略所有以 <code>.o</code> 或 <code>.a</code> 结尾的文件。一般这类对象文件和存档文件都是编译过程中出现的。 第二行告诉 Git 忽略所有以波浪符（~）结尾的文件，许多文本编辑软件（比如 Emacs）都用这样的文件名保存副本。 此外，你可能还需要忽略 log，tmp 或者 pid 目录，以及自动生成的文档等等。 要养成一开始就设置好 .gitignore 文件的习惯，以免将来误提交这类无用的文件。</p>
+<p>文件 <code>.gitignore</code> 的格式规范如下：</p>
+<ul>
+<li>所有空行或者以 ＃ 开头的行都会被 Git 忽略（可以理解为注释）。</li>
+<li>可以使用标准的 glob 模式匹配。</li>
+<li>匹配模式可以以（/）开头防止递归。</li>
+<li>匹配模式可以以（/）结尾指定目录。</li>
+<li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。</li>
+</ul>
+<p>我们再看一个 <code>.gitignore</code> 文件的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略 .a 文件</span></span><br><span class="line">*.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 即使上面已经忽略 .a 文件, 还是不跟踪 lib.a，任性！ </span></span><br><span class="line">!lib.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只忽略当前文件夹下的TODO文件，不是子文件夹/TODO</span></span><br><span class="line">/TODO</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 build/ 文件夹中的所有文件</span></span><br><span class="line">build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 doc/notes.txt, 但不会忽略 doc/server/arch.txt</span></span><br><span class="line">doc/*.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 doc/ 文件夹下所有 .pdf 文件</span></span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
+<p><strong>查看已暂存和未暂存的修改</strong></p>
+<p>如果 <code>git status</code> 命令的输出对于你来说过于模糊，你想知道具体修改了什么地方，可以用 <code>git diff</code> 命令。 稍后会详细介绍 <code>git diff</code>，你可能通常会用它来回答这两个问题：当前做的哪些更新还没有暂存？ 有哪些更新已经暂存起来准备好了下次提交？ 尽管 <code>git status</code> 已经通过在相应栏下列出文件名的方式回答了这个问题，<code>git diff</code> 将通过文件补丁的格式显示具体哪些行发生了改变。</p>
+<p>假如再次修改 README 文件后暂存，然后编辑 CONTRIBUTING.md 文件后先不暂存， 运行 status 命令将会看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    modified:   README</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>要查看尚未暂存的文件更新了哪些部分，不加参数直接输入 <code>git diff</code>。此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。若要查看已暂存的将要添加到下次提交里的内容，可以用 <code>git diff --staged</code> 命令。</p>
+<p><strong>提交更新</strong></p>
+<p>现在的暂存区域已经准备妥当可以提交了。 在此之前，请一定要确认还有什么修改过的或新建的文件还没有 <code>git add</code> 过，否则提交的时候不会记录这些还没暂存起来的变化。 这些修改过的文件只保留在本地磁盘。 所以，每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"提交说明"</span></span><br></pre></td></tr></table></figure>
+<p>如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"Story 182: Fix benchmarks for speed"</span></span><br><span class="line">[master &lt;root-commit&gt; <span class="number">463</span>dc4f] Story <span class="number">182</span>: Fix benchmarks <span class="keyword">for</span> speed</span><br><span class="line"> <span class="number">2</span> files changed, <span class="number">2</span> insertions(+)</span><br><span class="line"> create mode <span class="number">100644</span> README</span><br></pre></td></tr></table></figure>
+<p><strong>跳过使用暂存区域</strong></p>
+<p>尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做略显繁琐。 Git 提供了一个跳过使用暂存区域的方式， 只要在提交的时候，给 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added new benchmarks'</span></span><br><span class="line">[master <span class="number">83</span>e38c7] added new benchmarks</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">5</span> insertions(+), <span class="number">0</span> deletions(-)</span><br></pre></td></tr></table></figure>
+<p><strong>移动文件</strong></p>
+<p>不像其它的 VCS 系统，Git 并不显式跟踪文件移动操作。 如果在 Git 中重命名了某个文件，仓库中存储的元数据并不会体现出这是一次改名操作。 不过 Git 非常聪明，它会推断出究竟发生了什么，至于具体是如何做到的，我们稍后再谈。</p>
+<p>既然如此，当你看到 Git 的 <code>mv</code> 命令时一定会困惑不已。 要在 Git 中对文件改名，可以这么做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mv file_from file_to</span><br></pre></td></tr></table></figure>
+<p>它会恰如预期般正常工作。 实际上，即便此时查看状态信息，也会明白无误地看到关于重命名操作的说明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br></pre></td></tr></table></figure>
+<p>其实，运行 git mv 就相当于运行了下面三条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/cpp-demo-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          c++ demo: vector存放指针
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/hexo-github-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">hexo3.1.1 + github pages教程：添加多说评论系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="duoshuo_thread">
+    <div class="ds-thread" data-thread-key="github-git-1" data-title="Github: Git的使用 - 安装配置" data-url="http://bluestein.github.io/2015/12/github-git-1/"></div>
+  </div>
+</section>
+
+
+
+
+  <div class="ds-share" data-thread-key="github-git-1" data-title="Github: Git的使用 - 安装配置" data-images="" data-content="&lt;p&gt;&lt;strong&gt;Github 是什么？&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.&lt;br&gt;（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本着我一直以来推崇的 &lt;strong&gt;够用就好&lt;/strong&gt; 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的教程。下面开始正文内容：&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;说到 &lt;strong&gt;github&lt;/strong&gt;，能看出来这个词是 git+hub 的组合，hub 就不用多说了，就是字面意思 “枢纽、中心”之类的，我们首先主要关注的是 &lt;strong&gt;git&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&quot;Git&quot;&gt;Git&lt;/h2&gt;&lt;p&gt;官网有这么一句话，说明了git到底是何方神圣：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这句话的意思是：Git是一个免费开源的分布式版本控制系统，用于高效地处理从小型到大型项目的所有东西。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它能够保留文件的或项目的更新版本记录，并且能回滚至某一个历史记录的状态。举个栗子，比如今天你把上次能够正确运行的程序修改后down掉了，这时你就可以使用 &lt;strong&gt;回滚&lt;/strong&gt;功能。&lt;/li&gt;
+&lt;li&gt;所谓 &lt;strong&gt;分布式版本控制&lt;/strong&gt; 就是指每个参与人员都可以拥有一份项目的源代码，每个成员在自己的这份copy上进行修改、增加而不影响其他人，然后在提交至仓库中（个人理解，勿喷 =_=）&lt;/li&gt;
+&lt;li&gt;git具有分支（branch）功能。比如你想开发点新奇的功能但又不想影响主项目时，就可以新建一个分支。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;1、安装git&quot;&gt;1、安装git&lt;/h3&gt;&lt;p&gt;git支持不同的操作系统，可以通过软件包或源码安装。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;windows系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;http://www.git-scm.com/download/win&quot; title=&quot;git for windows&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git官网下载可安装程序&lt;/a&gt;，然后按提示安装即可。安装完后开始菜单应该会出现如下目录&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- Git Bash&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- Git GUI&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Linux系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Linux 上用二进制安装程序来安装 Git，可以使用发行版包含的基础软件包管理工具来安装。 如果以 Fedora 上为例，你可以使用 yum：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo yum install git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果你在基于 Debian 的发行版上，请尝试用 apt-get：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ sudo apt-get install git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Mac系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;跟windows一样，&lt;a href=&quot;http://www.git-scm.com/download/mac&quot; title=&quot;git for mac&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网下载安装&lt;/a&gt;即可。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下面所有内容仅适用于windows系统&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;2、配置Git&quot;&gt;2、配置Git&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;我的git版本是1.9.5，不过新的版本也大同小异。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当安装完 Git 应该做的第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改，打开 &lt;code&gt;Git Bash&lt;/code&gt; 输入下面命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;your-name&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.email your-name@example.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;--global&lt;/code&gt; 命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 &lt;code&gt;--global&lt;/code&gt; 选项的命令来配置，即&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git config user.name &lt;span class=&quot;string&quot;&gt;&quot;your-name&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git config user.email your-name@example.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;检查配置信息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果想要检查你的配置，可以使用 &lt;code&gt;git config --list&lt;/code&gt; 命令来列出所有 Git 当时能找到的配置。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git config --list&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user.name=your-name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user.email=your-name@example.com&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;color.status=auto&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;color.branch=auto&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;color.interactive=auto&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;color.diff=auto&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;获取帮助&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;若你使用 Git 时需要获取帮助，有三种方法可以找到 Git 命令的使用手册：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt; &amp;lt;verb&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git &amp;lt;verb&amp;gt; --help&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ man git-&amp;lt;verb&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;例如，要想获得 config 命令的手册，执行&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt; config&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;3、使用Git&quot;&gt;3、使用Git&lt;/h3&gt;&lt;h3 id=&quot;3-1、生成仓库&quot;&gt;3.1、生成仓库&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;在现有目录中初始化仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你打算使用 Git 来对现有的项目进行管理，你只需要进入该项目目录并输入：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git init&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该命令将创建一个名为 &lt;code&gt;.git&lt;/code&gt; 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪。&lt;/p&gt;
+&lt;p&gt;如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 &lt;code&gt;git add&lt;/code&gt; 命令来实现对指定文件的跟踪，然后执行 &lt;code&gt;git commit&lt;/code&gt; 提交到仓库：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git add *.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git add LICENSE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git commit -m &lt;span class=&quot;string&quot;&gt;&#39;initial project version&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;克隆现有的仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你想获得一份已经存在了的 Git 仓库的拷贝，比如说，你想为某个开源项目贡献自己的一份力，这时就要用到 &lt;code&gt;git clone&lt;/code&gt; 命令。 如果你对其它的 VCS 系统（比如说Subversion）很熟悉，请留心一下你所使用的命令是”clone”而不是”checkout”。 这是 Git 区别于其它版本控制系统的一个重要特性，Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 git clone 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。&lt;/p&gt;
+&lt;p&gt;克隆仓库的命令格式是 &lt;code&gt;git clone [url]&lt;/code&gt; 。 比如，要克隆 Git 的可链接库 hexo-theme-allgreen，可以用下面的命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/bluestein/hexo-theme-allgreen.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这会 &lt;strong&gt;在当前目录下&lt;/strong&gt; 创建一个名为 “hexo-theme-allgreen” 的目录，并在这个目录下初始化一个 .git 文件夹，从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。 如果你进入到这个新建的 hexo-theme-allgreen 文件夹，你会发现所有的项目文件已经在里面了，准备就绪等待后续的开发和使用。 如果你想在克隆远程仓库的时候，自定义本地仓库的名字，你可以使用如下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/bluestein/hexo-theme-allgreen.git myallgreen&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这将执行与上一个命令相同的操作，不过在本地创建的仓库名字变为 myallgreen。&lt;/p&gt;
+&lt;h3 id=&quot;3-2、更新到仓库&quot;&gt;3.2、更新到仓库&lt;/h3&gt;&lt;p&gt;现在我们手上有了一个真实项目的 Git 仓库，并从这个仓库中取出了所有文件的工作拷贝。 接下来，对这些文件做些修改，在完成了一个阶段的目标之后，提交本次更新到仓库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;检查当前文件状态&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;要查看哪些文件处于什么状态，可以用 &lt;code&gt;git status&lt;/code&gt; 命令。 如果在克隆仓库后立即使用此命令，会看到类似这样的输出：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nothing to commit, working directory clean&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。&lt;/p&gt;
+&lt;p&gt;现在，让我们在项目下创建一个新的 README 文件。 如果之前并不存在这个文件，使用 &lt;code&gt;git status&lt;/code&gt; 命令，你将看到一个新的未跟踪文件：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;My Project&#39;&lt;/span&gt; &amp;gt; README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Untracked files:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git add &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to include &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; what will be committed)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nothing added to commit but untracked files present (use &lt;span class=&quot;string&quot;&gt;&quot;git add&quot;&lt;/span&gt; to track)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在状态报告中可以看到新建的 README 文件出现在 &lt;code&gt;Untracked files&lt;/code&gt; 下面。 未跟踪的文件意味着 Git 在之前的快照（提交）中没有这些文件；Git 不会自动将之纳入跟踪范围，除非你明明白白地告诉它“我需要跟踪该文件”， 这样的处理让你不必担心将生成的二进制文件或其它不想被跟踪的文件包含进来。 不过现在的例子中，我们确实想要跟踪管理 README 这个文件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;跟踪新文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用命令 &lt;code&gt;git add&lt;/code&gt; 开始跟踪一个文件。 所以，要跟踪 README 文件，运行：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git add README&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此时再运行 git status 命令，会看到 README 文件已被跟踪，并处于暂存状态：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes to be committed:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git rm --cached &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to unstage)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    new file:   README&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;只要在 &lt;code&gt;Changes to be committed&lt;/code&gt; 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件此时此刻的版本将被留存在历史记录中。 你可能会想起之前我们使用 &lt;code&gt;git init&lt;/code&gt; 后就运行了 &lt;code&gt;git add (files)&lt;/code&gt; 命令，开始跟踪当前目录下的文件。 &lt;code&gt;git add&lt;/code&gt; 命令使用文件或目录的路径作为参数；如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;暂存已修改文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在我们来修改一个已被跟踪的文件。 如果你修改了一个名为 CONTRIBUTING.md 的已被跟踪的文件，然后运行 &lt;code&gt;git status&lt;/code&gt; 命令，会看到下面内容：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes to be committed:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git rm --cached &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to unstage)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    new file:   README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes not staged &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; commit:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git add &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to update what will be committed)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git checkout -- &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to discard changes &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; working directory)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modified:   CONTRIBUTING.md&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;文件 CONTRIBUTING.md 出现在 &lt;code&gt;Changes not staged for commit&lt;/code&gt; 这行下面，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 &lt;code&gt;git add&lt;/code&gt; 命令。 这是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。 将这个命令理解为“添加内容到下一次提交中”而不是“将一个文件添加到项目中”要更加合适。 现在让我们运行 &lt;code&gt;git add&lt;/code&gt; 将”CONTRIBUTING.md”放到暂存区，然后再看看 &lt;code&gt;git status&lt;/code&gt; 的输出：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git add CONTRIBUTING.md&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes to be committed:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git reset HEAD &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to unstage)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    new file:   README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modified:   CONTRIBUTING.md&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;现在两个文件都已暂存，下次提交时就会一并记录到仓库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;状态简览&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git status&lt;/code&gt; 命令的输出十分详细，但其用语有些繁琐。 如果你使用 &lt;code&gt;git status -s&lt;/code&gt; 命令或 &lt;code&gt;git status --short&lt;/code&gt; 命令，你将得到一种更为紧凑的格式输出。 运行 &lt;code&gt;git status -s&lt;/code&gt; ，状态报告输出如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git status &lt;span class=&quot;operator&quot;&gt;-s&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; M README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MM Rakefile&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;A  lib/git.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;M  lib/simplegit.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?? LICENSE.txt&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;新添加的未跟踪文件前面有 &lt;code&gt;??&lt;/code&gt; 标记，新添加到暂存区中的文件前面有 &lt;code&gt;A&lt;/code&gt; 标记，修改过的文件前面有 &lt;code&gt;M&lt;/code&gt; 标记。 你可能注意到了 &lt;code&gt;M&lt;/code&gt; 有两个可以出现的位置，出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。 例如，上面的状态报告显示： &lt;code&gt;README&lt;/code&gt; 文件在工作区被修改了但是还没有将修改后的文件放入暂存区,&lt;code&gt;lib/simplegit.rb&lt;/code&gt; 文件被修改了并将修改后的文件放入了暂存区。 而 &lt;code&gt;Rakefile&lt;/code&gt; 在工作区被修改并提交到暂存区后又在工作区中被修改了，所以在暂存区和工作区都有该文件被修改了的记录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;忽略文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。 在这种情况下，我们可以创建一个名为 &lt;code&gt;.gitignore&lt;/code&gt; 的文件，列出要忽略的文件模式。 来看一个实际的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ touch .gitignore&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后再在&lt;code&gt;.gitignore&lt;/code&gt; 文件添加以下内容&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;*.[oa]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*~&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;第一行告诉 Git 忽略所有以 &lt;code&gt;.o&lt;/code&gt; 或 &lt;code&gt;.a&lt;/code&gt; 结尾的文件。一般这类对象文件和存档文件都是编译过程中出现的。 第二行告诉 Git 忽略所有以波浪符（~）结尾的文件，许多文本编辑软件（比如 Emacs）都用这样的文件名保存副本。 此外，你可能还需要忽略 log，tmp 或者 pid 目录，以及自动生成的文档等等。 要养成一开始就设置好 .gitignore 文件的习惯，以免将来误提交这类无用的文件。&lt;/p&gt;
+&lt;p&gt;文件 &lt;code&gt;.gitignore&lt;/code&gt; 的格式规范如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有空行或者以 ＃ 开头的行都会被 Git 忽略（可以理解为注释）。&lt;/li&gt;
+&lt;li&gt;可以使用标准的 glob 模式匹配。&lt;/li&gt;
+&lt;li&gt;匹配模式可以以（/）开头防止递归。&lt;/li&gt;
+&lt;li&gt;匹配模式可以以（/）结尾指定目录。&lt;/li&gt;
+&lt;li&gt;要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们再看一个 &lt;code&gt;.gitignore&lt;/code&gt; 文件的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 忽略 .a 文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*.a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 即使上面已经忽略 .a 文件, 还是不跟踪 lib.a，任性！ &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;!lib.a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 只忽略当前文件夹下的TODO文件，不是子文件夹/TODO&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/TODO&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 忽略 build/ 文件夹中的所有文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;build/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 忽略 doc/notes.txt, 但不会忽略 doc/server/arch.txt&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;doc/*.txt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 忽略 doc/ 文件夹下所有 .pdf 文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;doc/**/*.pdf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;查看已暂存和未暂存的修改&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果 &lt;code&gt;git status&lt;/code&gt; 命令的输出对于你来说过于模糊，你想知道具体修改了什么地方，可以用 &lt;code&gt;git diff&lt;/code&gt; 命令。 稍后会详细介绍 &lt;code&gt;git diff&lt;/code&gt;，你可能通常会用它来回答这两个问题：当前做的哪些更新还没有暂存？ 有哪些更新已经暂存起来准备好了下次提交？ 尽管 &lt;code&gt;git status&lt;/code&gt; 已经通过在相应栏下列出文件名的方式回答了这个问题，&lt;code&gt;git diff&lt;/code&gt; 将通过文件补丁的格式显示具体哪些行发生了改变。&lt;/p&gt;
+&lt;p&gt;假如再次修改 README 文件后暂存，然后编辑 CONTRIBUTING.md 文件后先不暂存， 运行 status 命令将会看到：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initial commit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes to be committed:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git rm --cached &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to unstage)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modified:   README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes not staged &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; commit:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git add &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to update what will be committed)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git checkout -- &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to discard changes &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; working directory)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    modified:   CONTRIBUTING.md&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;要查看尚未暂存的文件更新了哪些部分，不加参数直接输入 &lt;code&gt;git diff&lt;/code&gt;。此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。若要查看已暂存的将要添加到下次提交里的内容，可以用 &lt;code&gt;git diff --staged&lt;/code&gt; 命令。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提交更新&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在的暂存区域已经准备妥当可以提交了。 在此之前，请一定要确认还有什么修改过的或新建的文件还没有 &lt;code&gt;git add&lt;/code&gt; 过，否则提交的时候不会记录这些还没暂存起来的变化。 这些修改过的文件只保留在本地磁盘。 所以，每次准备提交前，先用 &lt;code&gt;git status&lt;/code&gt; 看下，是不是都已暂存起来了， 然后再运行提交命令 &lt;code&gt;git commit&lt;/code&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git commit -m &lt;span class=&quot;string&quot;&gt;&quot;提交说明&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如下所示：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git commit -m &lt;span class=&quot;string&quot;&gt;&quot;Story 182: Fix benchmarks for speed&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[master &amp;lt;root-commit&amp;gt; &lt;span class=&quot;number&quot;&gt;463&lt;/span&gt;dc4f] Story &lt;span class=&quot;number&quot;&gt;182&lt;/span&gt;: Fix benchmarks &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; speed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; files changed, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; insertions(+)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; create mode &lt;span class=&quot;number&quot;&gt;100644&lt;/span&gt; README&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;跳过使用暂存区域&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做略显繁琐。 Git 提供了一个跳过使用暂存区域的方式， 只要在提交的时候，给 &lt;code&gt;git commit&lt;/code&gt; 加上 &lt;code&gt;-a&lt;/code&gt; 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 &lt;code&gt;git add&lt;/code&gt; 步骤：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git commit &lt;span class=&quot;operator&quot;&gt;-a&lt;/span&gt; -m &lt;span class=&quot;string&quot;&gt;&#39;added new benchmarks&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[master &lt;span class=&quot;number&quot;&gt;83&lt;/span&gt;e38c7] added new benchmarks&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; file changed, &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt; insertions(+), &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; deletions(-)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;移动文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;不像其它的 VCS 系统，Git 并不显式跟踪文件移动操作。 如果在 Git 中重命名了某个文件，仓库中存储的元数据并不会体现出这是一次改名操作。 不过 Git 非常聪明，它会推断出究竟发生了什么，至于具体是如何做到的，我们稍后再谈。&lt;/p&gt;
+&lt;p&gt;既然如此，当你看到 Git 的 &lt;code&gt;mv&lt;/code&gt; 命令时一定会困惑不已。 要在 Git 中对文件改名，可以这么做：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git mv file_from file_to&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;它会恰如预期般正常工作。 实际上，即便此时查看状态信息，也会明白无误地看到关于重命名操作的说明：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git mv README.md README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;On branch master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Changes to be committed:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  (use &lt;span class=&quot;string&quot;&gt;&quot;git reset HEAD &amp;lt;file&amp;gt;...&quot;&lt;/span&gt; to unstage)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    renamed:    README.md -&amp;gt; README&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其实，运行 git mv 就相当于运行了下面三条命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ mv README.md README&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git rm README.md&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git add README&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;END.&lt;/p&gt;
+" data-url="http://bluestein.github.io/2015/12/github-git-1/">
+    <div class="ds-share-aside-right">
+      <div class="ds-share-aside-inner">
+      </div>
+      <div class="ds-share-aside-toggle">分享</div>
+    </div>
+</div>
+
+</section>
+        
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/C/">C++</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/C-Demo/">C++ Demo</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/guide/">guide</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近发布</h3>
+    <div class="widget recents">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/github-2/">Github: 对项目做出贡献</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/github-1/">Github: 账户的创建和配置</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/github-git-4/">Github: Git的使用 - 分支1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-Demo/" style="font-size: 12px;">C++ Demo</a> <a href="/tags/C-primer/" style="font-size: 18px;">C++ primer</a> <a href="/tags/git/" style="font-size: 14px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+    </div>
+  </div>
+
+  
+    <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=3239589332&verifier=6ee67f7f&dpc=1"></iframe>
+  
+</aside>
+          
+        
+      </div>
+      <div id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons License</a><br/>
+      &copy; 2015 Humooo<br/>
+      The theme is <a target="_blank" href="https://github.com/bluestein/hexo-theme-allgreen">Allgreen</a>,
+      based on <a target="_blank" href="https://github.com/xing5/hexo-theme-codeland">Codeland</a>,
+      modified by <a target="_blank" href="http://bluestein.github.io/about/">Humooo</a><br/>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+
+<script>
+  var duoshuoQuery = {short_name:"humooo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

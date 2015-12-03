@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Everything will be ok]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-02T14:14:39.573Z</updated>
+  <updated>2015-12-03T12:36:50.336Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,58 +15,435 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[c++ demo: 输入可变长字符串]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-1/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-1/</id>
-    <published>2015-12-02T14:01:42.000Z</published>
-    <updated>2015-12-02T14:14:39.573Z</updated>
-    <content type="html"><![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>
+    <title><![CDATA[Github: 对项目做出贡献]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-2/"/>
+    <id>http://bluestein.github.io/2015/12/github-2/</id>
+    <published>2015-12-04T04:54:49.000Z</published>
+    <updated>2015-12-03T12:36:50.336Z</updated>
+    <content type="html"><![CDATA[<p>账户已经建立好了，现在我们来了解一些能帮助你对现有的项目做出贡献的知识。</p>
+<p><strong>派生（Fork）项目</strong></p>
+<p>如果你想要参与某个项目，但是并没有推送权限，这时可以对这个项目进行“派生”。 派生的意思是指，GitHub 将在你的空间中创建一个完全属于你的项目副本，且你对其具有推送权限。</p>
 <a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> arry_size = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">char</span> *p_str = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//统计输入的字符数</span></span><br><span class="line">	<span class="keyword">char</span> c;<span class="comment">//存放字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter some chars:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span>.get(c))<span class="comment">//每次读取一个字符赋给c</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (count + <span class="number">1</span> &gt;= arry_size)<span class="comment">//超出预设长度</span></span><br><span class="line">		&#123;</span><br><span class="line">			arry_size += <span class="number">10</span>;<span class="comment">//长度增加10</span></span><br><span class="line">			<span class="keyword">char</span> *p_temp = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];<span class="comment">//申请新空间</span></span><br><span class="line">			<span class="built_in">strncpy</span>(p_temp, p_str, count);<span class="comment">//将就空间的内容拷贝到新空间</span></span><br><span class="line">			<span class="keyword">delete</span>[] p_str;<span class="comment">//销毁以前的p_str(p_temp)</span></span><br><span class="line">			p_str = p_temp;<span class="comment">//将新空间p_temp赋给p_str</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		p_str[count] = c;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	p_str[count] = <span class="string">'\0'</span>;<span class="comment">//添加null结束符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"outputs:"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>;i != <span class="built_in">strlen</span>(p_str); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p_str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p_str &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">delete</span>[] p_str;<span class="comment">//最后销毁p_str</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"end"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行测试</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enter some chars:</span><br><span class="line">asdfghjklqwertyuiop↙</span><br><span class="line">^Z↙</span><br><span class="line">outputs:</span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p>END.</p>
+<blockquote>
+<p>在 GitHub，“fork”指的是你自己的空间中创建的项目副本，这个副本允许你以一种更开放的方式对其进行修改。</p>
+</blockquote>
+<p>通过这种方式，项目的管理者不再需要忙着把用户添加到贡献者列表并给予他们推送权限。 人们可以派生这个项目，将修改推送到派生出的项目副本中，并通过创建合并请求（Pull Request）来让他们的改动进入源版本库，下文我们会详细说明。 创建了合并请求后，就会开启一个可供审查代码的板块，项目的拥有者和贡献者可以在此讨论相关修改，直到项目拥有者对其感到满意，并且认为这些修改可以被合并到版本库。</p>
+<p><strong>GitHub 流程</strong></p>
+<p>GitHub 设计了一个以合并请求为中心的特殊合作流程。不管你是在一个紧密的团队中使用单独的版本库，或者使用许多的“Fork”来为一个由陌生人组成的国际企业或网络做出贡献，这种合作流程都能应付。</p>
+<p>流程通常如下：</p>
+<ol>
+<li>从 master 分支中创建一个新分支</li>
+<li>提交一些修改来改进项目</li>
+<li>将这个分支推送到 GitHub 上</li>
+<li>创建一个合并请求</li>
+<li>讨论，根据实际情况继续修改</li>
+<li>项目的拥有者合并或关闭你的合并请求</li>
+</ol>
+<p>详细请查看<a href="http://www.git-scm.com/book/zh/v2/GitHub-%E5%AF%B9%E9%A1%B9%E7%9B%AE%E5%81%9A%E5%87%BA%E8%B4%A1%E7%8C%AE" target="_blank" rel="external">GitHub-对项目做出贡献</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>]]>
+    <![CDATA[<p>账户已经建立好了，现在我们来了解一些能帮助你对现有的项目做出贡献的知识。</p>
+<p><strong>派生（Fork）项目</strong></p>
+<p>如果你想要参与某个项目，但是并没有推送权限，这时可以对这个项目进行“派生”。 派生的意思是指，GitHub 将在你的空间中创建一个完全属于你的项目副本，且你对其具有推送权限。</p>]]>
     
     </summary>
     
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
     
-      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[c++ demo: 输入多个string对象，并存放在vector中]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-2/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-2/</id>
-    <published>2015-12-02T14:01:42.000Z</published>
-    <updated>2015-12-02T14:14:39.576Z</updated>
-    <content type="html"><![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>
+    <title><![CDATA[Github: 账户的创建和配置]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-1/"/>
+    <id>http://bluestein.github.io/2015/12/github-1/</id>
+    <published>2015-12-04T04:54:49.000Z</published>
+    <updated>2015-12-03T12:20:05.676Z</updated>
+    <content type="html"><![CDATA[<p>GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git 开源项目的直接部分，但如果想要专业地使用 Git，你将不可避免地与 GitHub 打交道，所以这依然是一个绝好的学习机会。</p>
+<p><strong>账户的创建和配置</strong></p>
+<p>你所需要做的第一件事是创建一个免费账户。 直接访问 <a href="https://github.com" target="_blank" rel="external">Github</a>，选择一个未被占用的用户名，提供一个电子邮件地址和密码，点击写着“Sign up for GitHub”的绿色大按钮即可。</p>
+<blockquote>
+<p>GitHub 为免费账户提供了完整功能，限制是你的项目都将被完全公开（每个人都具有读权限）。 GitHub 的付费计划可以让你拥有一定数目的私有项目。</p>
+</blockquote>
+<p><strong>SSH 访问</strong></p>
+<p>现在，你完全可以使用 https:// 协议，通过你刚刚创建的用户名和密码访问 Git 版本库。 但是，如果仅仅克隆公有项目，你甚至不需要注册——刚刚我们创建的账户是为了以后 fork 其它项目，以及推送我们自己的修改。</p>
+<p>如果你习惯使用 SSH 远程，你需要配置一个公钥 (public key)。</p>
+<p>SSH key 的生成过程请查看 <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">github generating-ssh-keys</a>。</p>
+<p>点击头像下得“Settings”，然后在左侧选择“SSH keys”部分。在这个页面点击“Add an SSH key”按钮，给你的公钥起一个名字，将你的 <code>~/.ssh/id_rsa.pub</code>（或者自定义的其它名字）公钥文件的内容粘贴到文本区，然后点击“Add key”。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git 开源项目的直接部分，但如]]>
+    </summary>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github: Git的使用 - 历史记录]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-2/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-2/</id>
+    <published>2015-12-03T06:54:49.000Z</published>
+    <updated>2015-12-03T11:52:48.329Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>
 <a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; str) &#123;</span><br><span class="line">		svec.push_back(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> **cp_arr = <span class="keyword">new</span> <span class="keyword">char</span>*[svec.size()];<span class="comment">//指针数组</span></span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = svec.begin(); iter != svec.end(); ++iter) &#123;</span><br><span class="line">		<span class="built_in">string</span> s = *iter;</span><br><span class="line">		<span class="keyword">char</span> *cp = <span class="keyword">new</span> <span class="keyword">char</span>[s.size()+<span class="number">1</span>];<span class="comment">//+1表示为null结束符预留空间</span></span><br><span class="line">		<span class="built_in">strncpy</span>(cp, s.c_str(), s.size()+<span class="number">1</span>);</span><br><span class="line">		cp_arr[cnt] = cp;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != cnt; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; cp_arr[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span>[] cp_arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] cp_arr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行测试</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world↙</span><br><span class="line">^Z↙</span><br><span class="line">hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<p>默认不用任何参数的话，<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。 正如你所看到的，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。</p>
+<p><code>git log</code> 有许多选项可以帮助你搜寻你所要找的提交， 接下来我们介绍些最常用的。</p>
+<p>一个常用的选项是 <code>-p</code>，用来显示每次提交的内容差异。 你也可以加上 <code>-2</code> 来仅显示最近两次提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -p -<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>该选项除了显示基本信息之外，还在附带了每次 commit 的变化。 当进行代码审查，或者快速浏览某个搭档提交的 commit 所带来的变化的时候，这个参数就非常有用了。 你也可以为 <code>git log</code> 附带一系列的总结性选项。 比如说，如果你想看到每次提交的简略的统计信息，你可以使用 <code>--stat</code> 选项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --stat</span><br></pre></td></tr></table></figure>
+<p><code>--stat</code> 选项在每次提交的下面列出额所有被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加了。 在每次提交的最后还有一个总结。</p>
+<p>另外一个常用的选项是 <code>--pretty</code>。 这个选项可以指定使用不同于默认格式的方式展示提交历史。 这个选项有一些内建的子选项供你使用。 比如用 <code>oneline</code> 将每个提交放在一行显示，查看的提交数很大时非常有用。 另外还有 short，full 和 fuller 可以用，展示的信息或多或少有些不同，请自己动手实践一下看看效果如何。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure>
+<p>但最有意思的是 format，可以定制要显示的记录格式。 这样的输出对后期提取分析格外有用 — 因为你知道输出的格式不会随着Git的更新而发生改变：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=format:<span class="string">"%h - %an, %ar : %s"</span></span><br></pre></td></tr></table></figure>
+<p><code>git log --pretty=format</code> 常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%H</td>
+<td>提交对象（commit）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>提交对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>树对象（tree）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>树对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%P</td>
+<td>父对象（parent）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>父对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%an</td>
+<td>作者（author）的名字</td>
+</tr>
+<tr>
+<td>%ae</td>
+<td>作者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%ad</td>
+<td>作者修订日期（可以用 –date= 选项定制格式）</td>
+</tr>
+<tr>
+<td>%ar</td>
+<td>作者修订日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td>%cn</td>
+<td>提交者(committer)的名字</td>
+</tr>
+<tr>
+<td>%ce</td>
+<td>提交者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%cd</td>
+<td>提交日期</td>
+</tr>
+<tr>
+<td>%cr</td>
+<td>提交日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>提交说明</td>
+</tr>
+</tbody>
+</table>
+<p><code>git log</code> 的常用选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>按补丁格式显示每个更新之间的差异。</td>
+</tr>
+<tr>
+<td>–stat</td>
+<td>显示每次更新的文件修改统计信息。</td>
+</tr>
+<tr>
+<td>–shortstat</td>
+<td>只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+<tr>
+<td>–name-only</td>
+<td>仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+<tr>
+<td>–name-status</td>
+<td>显示新增、修改、删除的文件清单。</td>
+</tr>
+<tr>
+<td>–abbrev-commit</td>
+<td>仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。</td>
+</tr>
+<tr>
+<td>–relative-date</td>
+<td>使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+<tr>
+<td>–graph</td>
+<td>显示 ASCII 图形表示的分支合并历史。</td>
+</tr>
+<tr>
+<td>–pretty</td>
+<td>使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>限制输出长度</strong></p>
+<p>除了定制输出格式的选项之外，<code>git log</code> 还有许多非常实用的限制输出长度的选项，也就是只输出部分提交信息。 之前你已经看到过 <code>-2</code> 了，它只显示最近的两条提交， 实际上，这是 <code>-&lt;n&gt;</code> 选项的写法，其中的 <code>n</code> 可以是任何整数，表示仅显示最近的若干条提交。 不过实践中我们是不太用这个选项的，Git 在输出所有提交时会自动调用分页程序，所以你一次只会看到一页的内容。</p>
+<p>另外还有按照时间作限制的选项，比如 <code>--since</code> 和 <code>--until</code> 也很有用。 例如，下面的命令列出所有最近两周内的提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --since=<span class="number">2</span>.weeks</span><br></pre></td></tr></table></figure>
+<p>这个命令可以在多种格式下工作，比如说具体的某一天 “2008-01-15”，或者是相对地多久以前 “2 years 1 day 3 minutes ago”。</p>
+<p>还可以给出若干搜索条件，列出符合的提交。 用 <code>--author</code> 选项显示指定作者的提交，用 <code>--grep</code> 选项搜索提交说明中的关键字。 （请注意，如果要得到同时满足这两个选项搜索条件的提交，就必须用 <code>--all-match</code> 选项。否则，满足任意一个条件的提交都会被匹配出来）</p>
+<p>限制 <code>git log</code> 输出的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-(n)</td>
+<td>仅显示最近的 n 条提交</td>
+</tr>
+<tr>
+<td>–since, –after</td>
+<td>仅显示指定时间之后的提交。</td>
+</tr>
+<tr>
+<td>–until, –before</td>
+<td>仅显示指定时间之前的提交。</td>
+</tr>
+<tr>
+<td>–author</td>
+<td>仅显示指定作者相关的提交。</td>
+</tr>
+<tr>
+<td>–committer</td>
+<td>仅显示指定提交者相关的提交。</td>
+</tr>
+<tr>
+<td>–grep</td>
+<td>仅显示含指定关键字的提交</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>仅显示添加或移除了某个关键字的提交</td>
+</tr>
+</tbody>
+</table>
+<p>来看一个实际的例子，如果要查看 Git 仓库中，2008 年 10 月期间，提交过的但未合并的测试文件，可以用下面的查询命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=<span class="string">"%h - %s"</span> --author=gitster --since=<span class="string">"2008-10-01"</span> \</span><br><span class="line">   --before=<span class="string">"2008-11-01"</span> --no-merges -- t/</span><br></pre></td></tr></table></figure>
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>]]>
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>]]>
     
     </summary>
     
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
     
-      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
     
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
     
-      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github: Git的使用 - 分支1]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-4/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-4/</id>
+    <published>2015-12-03T04:54:49.000Z</published>
+    <updated>2015-12-03T12:01:48.977Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
+<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
+<a id="more"></a>
+<p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象，</p>
+<p>为了说得更加形象，我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和使用 SHA-1 哈希算法，然后会把当前版本的文件快照保存到 Git 仓库中（Git 使用 blob 对象来保存它们），最终将校验和加入到暂存区域等待提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m <span class="string">'The initial commit of my project'</span></span><br></pre></td></tr></table></figure>
+<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和，然后在 Git 仓库中这些校验和保存为树对象。 随后，Git 便会创建一个提交对象，它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
+<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 它会在每次的提交操作中自动向前移动。</p>
+<blockquote>
+<p>Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
+</blockquote>
+<p><strong>分支创建</strong></p>
+<p>Git 是怎么创建新分支的呢？ 很简单，它只是为你创建了一个可以移动的新的指针。 比如，创建一个 testing 分支， 你需要使用 git branch 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch testing</span><br></pre></td></tr></table></figure>
+<p>这会在当前所在的提交对象上创建一个指针。</p>
+<p>那么，Git 又是怎么知道当前在哪一个分支上呢？ 也很简单，它有一个名为 <code>HEAD</code> 的特殊指针。 请注意它和许多其它版本控制系统（如 Subversion 或 CVS）里的 <code>HEAD</code> 概念完全不同。 在 Git 中，它是一个指针，指向当前所在的本地分支（译注：将 <code>HEAD</code> 想象为当前分支的别名）。 在本例中，你仍然在 <code>master</code> 分支上。 因为 <code>git branch</code> 命令仅仅 创建 一个新分支，并不会自动切换到新分支中去。</p>
+<p>你可以简单地使用 <code>git log</code> 命令查看各个分支当前所指的对象。 提供这一功能的参数是 <code>--decorate</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --decorate</span><br></pre></td></tr></table></figure>
+<p><strong>分支切换</strong></p>
+<p>要切换到一个已存在的分支，你需要使用 <code>git checkout</code> 命令。 我们现在切换到新创建的 <code>testing</code> 分支去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout testing</span><br></pre></td></tr></table></figure>
+<p>这样 HEAD 就指向 <code>testing</code> 分支了。</p>
+<h3 id="4、分支的新建与合并">4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
+<p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
+<ol>
+<li>开发某个网站。</li>
+<li>为实现某个新的需求，创建一个分支。</li>
+<li>在这个分支上开展工作。</li>
+</ol>
+<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
+<ol>
+<li>切换到你的线上分支（production branch）。</li>
+<li>为这个紧急任务新建一个分支，并在其中修复它。</li>
+<li>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</li>
+<li>切换回你最初工作的分支上，继续工作。</li>
+</ol>
+<p><strong>新建分支</strong></p>
+<p>首先，我们假设你正在你的项目上工作，并且已经有一些提交。</p>
+<p>现在，你已经决定要解决你的公司使用的问题追踪系统中的 <code>#53</code> 问题。 想要新建一个分支并同时切换到那个分支上，你可以运行一个带有 <code>-b</code> 参数的 <code>git checkout</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53</span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br></pre></td></tr></table></figure>
+<p>它是下面两条命令的简写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch iss53</span><br><span class="line">$ git checkout iss53</span><br></pre></td></tr></table></figure>
+<p>你继续在 <code>#53</code> 问题上工作，并且做了一些提交。 在此过程中，<code>iss53</code> 分支在不断的向前推进，因为你已经检出到该分支（也就是说，你的 <code>HEAD</code> 指针指向了 <code>iss53</code> 分支）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added a new footer [issue 53]'</span></span><br></pre></td></tr></table></figure>
+<p>现在你接到那个电话，有个紧急问题等待你来解决。 有了 Git 的帮助，你不必把这个紧急问题和 <code>iss53</code> 的修改混在一起，你也不需要花大力气来还原关于 <code>53#</code> 问题的修改，然后再添加关于这个紧急问题的修改，最后将这个修改提交到线上分支。 你所要做的仅仅是切换回 <code>master</code> 分支。</p>
+<p>但是，在你这么做之前，要留意你的工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止 Git 切换到该分支。 最好的方法是，在你切换分支之前，保持好一个干净的状态。 有一些方法可以绕过这个问题（即，保存进度（stashing） 和 修补提交（commit amending）），我们会在 储藏与清理 中看到关于这两个命令的介绍。 现在，我们假设你已经把你的修改全部提交了，这时你可以切换回 <code>master</code> 分支了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
+<p>这个时候，你的工作目录和你在开始 <code>#53</code> 问题之前一模一样，现在你可以专心修复紧急问题了。 请牢记：当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。</p>
+<p>接下来，你要修复这个紧急问题。 让我们建立一个针对该紧急问题的分支（hotfix branch），在该分支上工作直到问题解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b hotfix</span><br><span class="line">Switched to a new branch <span class="string">'hotfix'</span></span><br><span class="line">$ vim index.html</span><br><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'fixed the broken email address'</span></span><br><span class="line">[hotfix <span class="number">1</span>fb7853] fixed the broken email address</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">2</span> insertions(+)</span><br></pre></td></tr></table></figure>
+<p>你在 hotfix 分支上所做的工作并没有包含到 <code>iss53</code> 分支中。 如果你需要拉取 <code>hotfix</code> 所做的修改，你可以使用 <code>git merge master</code> 命令将 <code>master</code> 分支合并入 <code>iss53</code> 分支，或者你也可以等到 <code>iss53</code> 分支完成其使命，再将其合并回 <code>master</code> 分支。</p>
+<p><strong>分支的合并</strong></p>
+<p>假设你已经修正了 <code>#53</code> 问题，并且打算将你的工作合并入 <code>master</code> 分支。 为此，你需要合并 <code>iss53</code> 分支到 <code>master</code> 分支，这和之前你合并 <code>hotfix</code> 分支所做的工作差不多。 你只需要检出到你想合并入的分支，然后运行 <code>git merge</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">$ git merge iss53</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line">index.html |    <span class="number">1</span> +</span><br><span class="line"><span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</span><br></pre></td></tr></table></figure>
+<p><strong>遇到冲突时的分支合并</strong></p>
+<p>有时候合并操作不会如此顺利。 如果你在两个不同的分支中，对同一个文件的同一个部分进行了不同的修改，Git 就没法干净的合并它们。 如果你对 #53 问题的修改和有关 hotfix 的修改都涉及到同一个文件的同一处，在合并它们的时候就会产生合并冲突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge iss53</span><br><span class="line">Auto-merging index.html</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> index.html</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
+<p>此时 Git 做了合并，但是没有自动地创建一个新的合并提交。 Git 会暂停下来，等待你去解决合并产生的冲突。</p>
+<p>如果你想使用图形化工具来解决冲突，你可以运行 <code>git mergetool</code>，该命令会为你启动一个合适的可视化合并工具，并带领你一步一步解决这些冲突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mergetool</span><br></pre></td></tr></table></figure>
+<p><strong>分支管理</strong></p>
+<p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86" target="_blank" rel="external">官网教程</a>。</p>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">官网教程</a>。</p>
+<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github: Git的使用 - 撤销操作]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-3/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-3/</id>
+    <published>2015-12-03T04:54:49.000Z</published>
+    <updated>2015-12-03T11:52:48.332Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
+<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>
+<a id="more"></a>
+<p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 –amend 选项的提交命令尝试重新提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<p>这个命令会将暂存区中的文件提交。 如果自上次提交以来你还未做任何修改（例如，在上次提交后马上执行了此命令），那么快照会保持不变，而你所修改的只是提交信息。</p>
+<p>例如，你提交后发现忘记了暂存某些需要的修改，可以像下面这样操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">'initial commit'</span></span><br><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<p>最终你只会有一个提交 - 第二次提交将代替第一次提交的结果。</p>
+<p><strong>取消暂存的文件</strong></p>
+<p>接下来的两个小节演示如何操作暂存区域与工作目录中已修改的文件。 这些命令在修改文件状态的同时，也会提示如何撤消操作。 例如，你已经修改了两个文件并且想要将它们作为两次独立的修改提交，但是却意外地输入了 <code>git add *</code> 暂存了它们两个。 如何只取消暂存两个中的一个呢？ <code>git status</code> 命令提示了你：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git add *</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>在 “Changes to be committed” 文字正下方，提示使用 <code>git reset HEAD &lt;file&gt;...</code> 来取消暂存。</p>
+<p><strong>撤消对文件的修改</strong></p>
+<p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？ 你该如何方便地撤消修改 - 将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？ 幸运的是，<code>git status</code> 也告诉了你应该如何做。 在最后一个例子中，未暂存区域是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>它非常清楚地告诉了你如何撤消之前所做的修改: 使用 <code>git checkout -- &lt;file&gt;...</code>。</p>
+<blockquote>
+<p>你需要知道 <code>git checkout -- [file]</code> 是一个危险的命令，这很重要。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。</p>
+</blockquote>
+<h3 id="3-5、远程仓库的使用">3.5、远程仓库的使用</h3><p>为了能在任意 Git 项目上协作，你需要知道如何管理自己的远程仓库。 远程仓库是指托管在因特网或其他网络中的你的项目的版本库。 你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。 与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。 管理远程仓库包括了解如何添加远程仓库、移除无效的远程仓库、管理不同的远程分支并定义它们是否被跟踪等等。 在本节中，我们将介绍一部分远程管理的技能。</p>
+<p><strong>查看远程仓库</strong></p>
+<p>如果想查看你已经配置的远程仓库服务器，可以运行 <code>git remote</code> 命令。 它会列出你指定的每一个远程服务器的简写。 如果你已经克隆了自己的仓库，那么至少应该能看到 origin - 这是 Git 给你克隆的仓库服务器的默认名字：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br><span class="line">...</span><br><span class="line">$ <span class="built_in">cd</span> hexo-theme-allgreen</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
+<p>你也可以指定选项 <code>-v</code>，会显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (fetch)</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (push)</span><br></pre></td></tr></table></figure>
+<p>如果你的远程仓库不止一个，该命令会将它们全部列出。 例如，与几个协作者合作的，拥有多个远程仓库的仓库看起来像下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> grit</span><br><span class="line">$ git remote -v</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (fetch)</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (push)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (fetch)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (push)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (fetch)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (push)</span><br><span class="line">koke      git://github.com/koke/grit.git (fetch)</span><br><span class="line">koke      git://github.com/koke/grit.git (push)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (fetch)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (push)</span><br></pre></td></tr></table></figure>
+<p>这样我们可以轻松拉取其中任何一个用户的贡献。 此外，我们大概还会有某些远程仓库的推送权限。</p>
+<p><strong>添加远程仓库</strong></p>
+<p>我在之前的章节中已经提到并展示了如何添加远程仓库的示例，不过这里将告诉你如何明确地做到这一点。 运行 <code>git remote add &lt;shortname&gt; &lt;url&gt;</code> 添加一个新的远程 Git 仓库，同时指定一个你可以轻松引用的简写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">$ git remote add pb https://github.com/paulboone/ticgit.git</span><br><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (fetch)</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (push)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (fetch)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (push)</span><br></pre></td></tr></table></figure>
+<p>现在你可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL。 例如，如果你想拉取 Paul 的仓库中有但你没有的信息，可以运行 <code>git fetch pb</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch pb</span><br></pre></td></tr></table></figure>
+<p><strong>从远程仓库中抓取与拉取</strong></p>
+<p>就如刚才所见，从远程仓库中获得数据，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch [remote-name]</span><br></pre></td></tr></table></figure>
+<p>这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</p>
+<p>如果你使用 <code>clone</code> 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，<code>git fetch origin</code> 会抓取克隆（或上一次抓取）后新推送的所有工作。 必须注意 <code>git fetch</code> 命令会将数据拉取到你的本地仓库 - 它并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。</p>
+<p>如果你有一个分支设置为跟踪一个远程分支（阅读下一节与 <a href="http://bluestein.github.io/2015/11/github-git-4/">Git 分支</a> 了解更多信息），可以使用 <code>git pull</code> 命令来自动的抓取然后合并远程分支到当前分支。 这对你来说可能是一个更简单或更舒服的工作流程；默认情况下，<code>git clone</code> 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或不管是什么名字的默认分支）。 运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
+<p><strong>推送到远程仓库</strong></p>
+<p>当你想分享你的项目时，必须将其推送到上游。 这个命令很简单：<code>git push [remote-name] [branch-name]</code>。 当你想要将 master 分支推送到 <code>origin</code> 服务器时（再次说明，克隆时通常会自动帮你设置好那两个名字），那么运行这个命令就可以将你所做的备份到服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<p>只有当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。 当你和其他人在同一时间克隆，他们先推送到上游然后你再推送到上游，你的推送就会毫无疑问地被拒绝。 你必须先将他们的工作拉取下来并将其合并进你的工作后才能推送。</p>
+<p><strong>查看远程仓库</strong></p>
+<p>如果想要查看某一个远程仓库的更多信息，可以使用 <code>git remote show [remote-name]</code> 命令。 如果想以一个特定的缩写名运行这个命令，例如 origin，会得到像下面类似的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show origin</span><br></pre></td></tr></table></figure>
+<p>这个命令列出了当你在特定的分支上执行 <code>git push</code> 会自动地推送到哪一个远程分支。 它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了，还有当你执行 <code>git pull</code> 时哪些分支会自动合并。</p>
+<p><strong>远程仓库的移除与重命名</strong></p>
+<p>如果想要重命名引用的名字可以运行 git remote rename 去修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rename pb paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">paul</span><br></pre></td></tr></table></figure>
+<p>值得注意的是这同样也会修改你的远程分支名字。 那些过去引用 <code>pb/master</code> 的现在会引用 <code>paul/master</code>。</p>
+<p>如果因为一些原因想要移除一个远程仓库 - 你已经从服务器上搬走了或不再想使用某一个特定的镜像了，又或者某一个贡献者不再贡献了 - 可以使用 <code>git remote rm</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
+<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
     
   </entry>
   
@@ -95,6 +472,151 @@
       <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
       <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github: Git的使用 - 安装配置]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-1/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-1/</id>
+    <published>2015-12-02T07:54:49.000Z</published>
+    <updated>2015-12-03T11:53:07.352Z</updated>
+    <content type="html"><![CDATA[<p><strong>Github 是什么？</strong></p>
+<blockquote>
+<p>GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.<br>（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）</p>
+</blockquote>
+<p>本着我一直以来推崇的 <strong>够用就好</strong> 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的教程。下面开始正文内容：</p>
+<a id="more"></a>
+<p>说到 <strong>github</strong>，能看出来这个词是 git+hub 的组合，hub 就不用多说了，就是字面意思 “枢纽、中心”之类的，我们首先主要关注的是 <strong>git</strong> 。</p>
+<h2 id="Git">Git</h2><p>官网有这么一句话，说明了git到底是何方神圣：</p>
+<blockquote>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+</blockquote>
+<p>这句话的意思是：Git是一个免费开源的分布式版本控制系统，用于高效地处理从小型到大型项目的所有东西。</p>
+<ul>
+<li>它能够保留文件的或项目的更新版本记录，并且能回滚至某一个历史记录的状态。举个栗子，比如今天你把上次能够正确运行的程序修改后down掉了，这时你就可以使用 <strong>回滚</strong>功能。</li>
+<li>所谓 <strong>分布式版本控制</strong> 就是指每个参与人员都可以拥有一份项目的源代码，每个成员在自己的这份copy上进行修改、增加而不影响其他人，然后在提交至仓库中（个人理解，勿喷 =_=）</li>
+<li>git具有分支（branch）功能。比如你想开发点新奇的功能但又不想影响主项目时，就可以新建一个分支。</li>
+</ul>
+<h3 id="1、安装git">1、安装git</h3><p>git支持不同的操作系统，可以通过软件包或源码安装。</p>
+<p><strong>windows系统</strong></p>
+<p>在<a href="http://www.git-scm.com/download/win" title="git for windows" target="_blank" rel="external">git官网下载可安装程序</a>，然后按提示安装即可。安装完后开始菜单应该会出现如下目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- Git Bash</span><br><span class="line">- Git GUI</span><br></pre></td></tr></table></figure>
+<p><strong>Linux系统</strong></p>
+<p>在 Linux 上用二进制安装程序来安装 Git，可以使用发行版包含的基础软件包管理工具来安装。 如果以 Fedora 上为例，你可以使用 yum：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install git</span><br></pre></td></tr></table></figure>
+<p>如果你在基于 Debian 的发行版上，请尝试用 apt-get：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<p><strong>Mac系统</strong></p>
+<p>跟windows一样，<a href="http://www.git-scm.com/download/mac" title="git for mac" target="_blank" rel="external">官网下载安装</a>即可。</p>
+<blockquote>
+<p>下面所有内容仅适用于windows系统</p>
+</blockquote>
+<h3 id="2、配置Git">2、配置Git</h3><blockquote>
+<p>我的git版本是1.9.5，不过新的版本也大同小异。</p>
+</blockquote>
+<p>当安装完 Git 应该做的第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改，打开 <code>Git Bash</code> 输入下面命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"your-name"</span></span><br><span class="line">$ git config --global user.email your-name@example.com</span><br></pre></td></tr></table></figure>
+<p><code>--global</code> 命令只需要运行一次，因为之后无论你在该系统上做任何事情， Git 都会使用那些信息。 当你想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 <code>--global</code> 选项的命令来配置，即</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"your-name"</span></span><br><span class="line">$ git config user.email your-name@example.com</span><br></pre></td></tr></table></figure>
+<p><strong>检查配置信息</strong></p>
+<p>如果想要检查你的配置，可以使用 <code>git config --list</code> 命令来列出所有 Git 当时能找到的配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br><span class="line">user.name=your-name</span><br><span class="line">user.email=your-name@example.com</span><br><span class="line">color.status=auto</span><br><span class="line">color.branch=auto</span><br><span class="line">color.interactive=auto</span><br><span class="line">color.diff=auto</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><strong>获取帮助</strong></p>
+<p>若你使用 Git 时需要获取帮助，有三种方法可以找到 Git 命令的使用手册：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
+<p>例如，要想获得 config 命令的手册，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> config</span><br></pre></td></tr></table></figure>
+<h3 id="3、使用Git">3、使用Git</h3><h3 id="3-1、生成仓库">3.1、生成仓库</h3><p><strong>在现有目录中初始化仓库</strong></p>
+<p>如果你打算使用 Git 来对现有的项目进行管理，你只需要进入该项目目录并输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<p>该命令将创建一个名为 <code>.git</code> 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪。</p>
+<p>如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 <code>git add</code> 命令来实现对指定文件的跟踪，然后执行 <code>git commit</code> 提交到仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add *.c</span><br><span class="line">$ git add LICENSE</span><br><span class="line">$ git commit -m <span class="string">'initial project version'</span></span><br></pre></td></tr></table></figure>
+<p><strong>克隆现有的仓库</strong></p>
+<p>如果你想获得一份已经存在了的 Git 仓库的拷贝，比如说，你想为某个开源项目贡献自己的一份力，这时就要用到 <code>git clone</code> 命令。 如果你对其它的 VCS 系统（比如说Subversion）很熟悉，请留心一下你所使用的命令是”clone”而不是”checkout”。 这是 Git 区别于其它版本控制系统的一个重要特性，Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 git clone 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</p>
+<p>克隆仓库的命令格式是 <code>git clone [url]</code> 。 比如，要克隆 Git 的可链接库 hexo-theme-allgreen，可以用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br></pre></td></tr></table></figure>
+<p>这会 <strong>在当前目录下</strong> 创建一个名为 “hexo-theme-allgreen” 的目录，并在这个目录下初始化一个 .git 文件夹，从远程仓库拉取下所有数据放入 .git 文件夹，然后从中读取最新版本的文件的拷贝。 如果你进入到这个新建的 hexo-theme-allgreen 文件夹，你会发现所有的项目文件已经在里面了，准备就绪等待后续的开发和使用。 如果你想在克隆远程仓库的时候，自定义本地仓库的名字，你可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git myallgreen</span><br></pre></td></tr></table></figure>
+<p>这将执行与上一个命令相同的操作，不过在本地创建的仓库名字变为 myallgreen。</p>
+<h3 id="3-2、更新到仓库">3.2、更新到仓库</h3><p>现在我们手上有了一个真实项目的 Git 仓库，并从这个仓库中取出了所有文件的工作拷贝。 接下来，对这些文件做些修改，在完成了一个阶段的目标之后，提交本次更新到仓库。</p>
+<p><strong>检查当前文件状态</strong></p>
+<p>要查看哪些文件处于什么状态，可以用 <code>git status</code> 命令。 如果在克隆仓库后立即使用此命令，会看到类似这样的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
+<p>这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。</p>
+<p>现在，让我们在项目下创建一个新的 README 文件。 如果之前并不存在这个文件，使用 <code>git status</code> 命令，你将看到一个新的未跟踪文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'My Project'</span> &gt; README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">    README</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure>
+<p>在状态报告中可以看到新建的 README 文件出现在 <code>Untracked files</code> 下面。 未跟踪的文件意味着 Git 在之前的快照（提交）中没有这些文件；Git 不会自动将之纳入跟踪范围，除非你明明白白地告诉它“我需要跟踪该文件”， 这样的处理让你不必担心将生成的二进制文件或其它不想被跟踪的文件包含进来。 不过现在的例子中，我们确实想要跟踪管理 README 这个文件。</p>
+<p><strong>跟踪新文件</strong></p>
+<p>使用命令 <code>git add</code> 开始跟踪一个文件。 所以，要跟踪 README 文件，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+<p>此时再运行 git status 命令，会看到 README 文件已被跟踪，并处于暂存状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br></pre></td></tr></table></figure>
+<p>只要在 <code>Changes to be committed</code> 这行下面的，就说明是已暂存状态。 如果此时提交，那么该文件此时此刻的版本将被留存在历史记录中。 你可能会想起之前我们使用 <code>git init</code> 后就运行了 <code>git add (files)</code> 命令，开始跟踪当前目录下的文件。 <code>git add</code> 命令使用文件或目录的路径作为参数；如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件。</p>
+<p><strong>暂存已修改文件</strong></p>
+<p>现在我们来修改一个已被跟踪的文件。 如果你修改了一个名为 CONTRIBUTING.md 的已被跟踪的文件，然后运行 <code>git status</code> 命令，会看到下面内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>文件 CONTRIBUTING.md 出现在 <code>Changes not staged for commit</code> 这行下面，说明已跟踪文件的内容发生了变化，但还没有放到暂存区。 要暂存这次更新，需要运行 <code>git add</code> 命令。 这是个多功能命令：可以用它开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等。 将这个命令理解为“添加内容到下一次提交中”而不是“将一个文件添加到项目中”要更加合适。 现在让我们运行 <code>git add</code> 将”CONTRIBUTING.md”放到暂存区，然后再看看 <code>git status</code> 的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git add CONTRIBUTING.md</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>现在两个文件都已暂存，下次提交时就会一并记录到仓库。</p>
+<p><strong>状态简览</strong></p>
+<p><code>git status</code> 命令的输出十分详细，但其用语有些繁琐。 如果你使用 <code>git status -s</code> 命令或 <code>git status --short</code> 命令，你将得到一种更为紧凑的格式输出。 运行 <code>git status -s</code> ，状态报告输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status <span class="operator">-s</span></span><br><span class="line"> M README</span><br><span class="line">MM Rakefile</span><br><span class="line">A  lib/git.rb</span><br><span class="line">M  lib/simplegit.rb</span><br><span class="line">?? LICENSE.txt</span><br></pre></td></tr></table></figure>
+<p>新添加的未跟踪文件前面有 <code>??</code> 标记，新添加到暂存区中的文件前面有 <code>A</code> 标记，修改过的文件前面有 <code>M</code> 标记。 你可能注意到了 <code>M</code> 有两个可以出现的位置，出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。 例如，上面的状态报告显示： <code>README</code> 文件在工作区被修改了但是还没有将修改后的文件放入暂存区,<code>lib/simplegit.rb</code> 文件被修改了并将修改后的文件放入了暂存区。 而 <code>Rakefile</code> 在工作区被修改并提交到暂存区后又在工作区中被修改了，所以在暂存区和工作区都有该文件被修改了的记录。</p>
+<p><strong>忽略文件</strong></p>
+<p>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。 在这种情况下，我们可以创建一个名为 <code>.gitignore</code> 的文件，列出要忽略的文件模式。 来看一个实际的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch .gitignore</span><br></pre></td></tr></table></figure>
+<p>然后再在<code>.gitignore</code> 文件添加以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*.[oa]</span><br><span class="line">*~</span><br></pre></td></tr></table></figure>
+<p>第一行告诉 Git 忽略所有以 <code>.o</code> 或 <code>.a</code> 结尾的文件。一般这类对象文件和存档文件都是编译过程中出现的。 第二行告诉 Git 忽略所有以波浪符（~）结尾的文件，许多文本编辑软件（比如 Emacs）都用这样的文件名保存副本。 此外，你可能还需要忽略 log，tmp 或者 pid 目录，以及自动生成的文档等等。 要养成一开始就设置好 .gitignore 文件的习惯，以免将来误提交这类无用的文件。</p>
+<p>文件 <code>.gitignore</code> 的格式规范如下：</p>
+<ul>
+<li>所有空行或者以 ＃ 开头的行都会被 Git 忽略（可以理解为注释）。</li>
+<li>可以使用标准的 glob 模式匹配。</li>
+<li>匹配模式可以以（/）开头防止递归。</li>
+<li>匹配模式可以以（/）结尾指定目录。</li>
+<li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。</li>
+</ul>
+<p>我们再看一个 <code>.gitignore</code> 文件的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略 .a 文件</span></span><br><span class="line">*.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 即使上面已经忽略 .a 文件, 还是不跟踪 lib.a，任性！ </span></span><br><span class="line">!lib.a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只忽略当前文件夹下的TODO文件，不是子文件夹/TODO</span></span><br><span class="line">/TODO</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 build/ 文件夹中的所有文件</span></span><br><span class="line">build/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 doc/notes.txt, 但不会忽略 doc/server/arch.txt</span></span><br><span class="line">doc/*.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略 doc/ 文件夹下所有 .pdf 文件</span></span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
+<p><strong>查看已暂存和未暂存的修改</strong></p>
+<p>如果 <code>git status</code> 命令的输出对于你来说过于模糊，你想知道具体修改了什么地方，可以用 <code>git diff</code> 命令。 稍后会详细介绍 <code>git diff</code>，你可能通常会用它来回答这两个问题：当前做的哪些更新还没有暂存？ 有哪些更新已经暂存起来准备好了下次提交？ 尽管 <code>git status</code> 已经通过在相应栏下列出文件名的方式回答了这个问题，<code>git diff</code> 将通过文件补丁的格式显示具体哪些行发生了改变。</p>
+<p>假如再次修改 README 文件后暂存，然后编辑 CONTRIBUTING.md 文件后先不暂存， 运行 status 命令将会看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    modified:   README</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>要查看尚未暂存的文件更新了哪些部分，不加参数直接输入 <code>git diff</code>。此命令比较的是工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容。若要查看已暂存的将要添加到下次提交里的内容，可以用 <code>git diff --staged</code> 命令。</p>
+<p><strong>提交更新</strong></p>
+<p>现在的暂存区域已经准备妥当可以提交了。 在此之前，请一定要确认还有什么修改过的或新建的文件还没有 <code>git add</code> 过，否则提交的时候不会记录这些还没暂存起来的变化。 这些修改过的文件只保留在本地磁盘。 所以，每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"提交说明"</span></span><br></pre></td></tr></table></figure>
+<p>如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"Story 182: Fix benchmarks for speed"</span></span><br><span class="line">[master &lt;root-commit&gt; <span class="number">463</span>dc4f] Story <span class="number">182</span>: Fix benchmarks <span class="keyword">for</span> speed</span><br><span class="line"> <span class="number">2</span> files changed, <span class="number">2</span> insertions(+)</span><br><span class="line"> create mode <span class="number">100644</span> README</span><br></pre></td></tr></table></figure>
+<p><strong>跳过使用暂存区域</strong></p>
+<p>尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做略显繁琐。 Git 提供了一个跳过使用暂存区域的方式， 只要在提交的时候，给 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added new benchmarks'</span></span><br><span class="line">[master <span class="number">83</span>e38c7] added new benchmarks</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">5</span> insertions(+), <span class="number">0</span> deletions(-)</span><br></pre></td></tr></table></figure>
+<p><strong>移动文件</strong></p>
+<p>不像其它的 VCS 系统，Git 并不显式跟踪文件移动操作。 如果在 Git 中重命名了某个文件，仓库中存储的元数据并不会体现出这是一次改名操作。 不过 Git 非常聪明，它会推断出究竟发生了什么，至于具体是如何做到的，我们稍后再谈。</p>
+<p>既然如此，当你看到 Git 的 <code>mv</code> 命令时一定会困惑不已。 要在 Git 中对文件改名，可以这么做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mv file_from file_to</span><br></pre></td></tr></table></figure>
+<p>它会恰如预期般正常工作。 实际上，即便此时查看状态信息，也会明白无误地看到关于重命名操作的说明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br></pre></td></tr></table></figure>
+<p>其实，运行 git mv 就相当于运行了下面三条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>Github 是什么？</strong></p>
+<blockquote>
+<p>GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.<br>（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）</p>
+</blockquote>
+<p>本着我一直以来推崇的 <strong>够用就好</strong> 原则，本篇文章不会过多去说专业术语，而是要成为让新手也能直接上手使用的教程。下面开始正文内容：</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
     
   </entry>
   
@@ -805,6 +1327,34 @@
   </entry>
   
   <entry>
+    <title><![CDATA[c++ demo: 输入多个string对象，并存放在vector中]]></title>
+    <link href="http://bluestein.github.io/2015/11/cpp-demo-2/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-demo-2/</id>
+    <published>2015-11-25T14:01:42.000Z</published>
+    <updated>2015-12-03T07:06:20.728Z</updated>
+    <content type="html"><![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; str) &#123;</span><br><span class="line">		svec.push_back(str);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> **cp_arr = <span class="keyword">new</span> <span class="keyword">char</span>*[svec.size()];<span class="comment">//指针数组</span></span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = svec.begin(); iter != svec.end(); ++iter) &#123;</span><br><span class="line">		<span class="built_in">string</span> s = *iter;</span><br><span class="line">		<span class="keyword">char</span> *cp = <span class="keyword">new</span> <span class="keyword">char</span>[s.size()+<span class="number">1</span>];<span class="comment">//+1表示为null结束符预留空间</span></span><br><span class="line">		<span class="built_in">strncpy</span>(cp, s.c_str(), s.size()+<span class="number">1</span>);</span><br><span class="line">		cp_arr[cnt] = cp;</span><br><span class="line">		++cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != cnt; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; cp_arr[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span>[] cp_arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] cp_arr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world↙</span><br><span class="line">^Z↙</span><br><span class="line">hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序：读入一组string类型数据，将它们存储在vector中，然后将vector中的对象复制给一个字符指针数组。即为vector中的每个元素创建一个新的字符数组，然后把vector元素的数据复制到相应的字符数组中，最后将指针插入到指针数组中。</p>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[15:赋值操作和自增自减]]></title>
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-15/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-15/</id>
@@ -1414,6 +1964,34 @@
   </entry>
   
   <entry>
+    <title><![CDATA[c++ demo: 输入可变长字符串]]></title>
+    <link href="http://bluestein.github.io/2015/11/cpp-demo-1/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-demo-1/</id>
+    <published>2015-11-21T14:01:42.000Z</published>
+    <updated>2015-12-03T07:06:02.557Z</updated>
+    <content type="html"><![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> arry_size = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">char</span> *p_str = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//统计输入的字符数</span></span><br><span class="line">	<span class="keyword">char</span> c;<span class="comment">//存放字符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter some chars:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span>.get(c))<span class="comment">//每次读取一个字符赋给c</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (count + <span class="number">1</span> &gt;= arry_size)<span class="comment">//超出预设长度</span></span><br><span class="line">		&#123;</span><br><span class="line">			arry_size += <span class="number">10</span>;<span class="comment">//长度增加10</span></span><br><span class="line">			<span class="keyword">char</span> *p_temp = <span class="keyword">new</span> <span class="keyword">char</span>[arry_size];<span class="comment">//申请新空间</span></span><br><span class="line">			<span class="built_in">strncpy</span>(p_temp, p_str, count);<span class="comment">//将就空间的内容拷贝到新空间</span></span><br><span class="line">			<span class="keyword">delete</span>[] p_str;<span class="comment">//销毁以前的p_str(p_temp)</span></span><br><span class="line">			p_str = p_temp;<span class="comment">//将新空间p_temp赋给p_str</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		p_str[count] = c;</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	p_str[count] = <span class="string">'\0'</span>;<span class="comment">//添加null结束符</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"outputs:"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>;i != <span class="built_in">strlen</span>(p_str); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; p_str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; p_str &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">delete</span>[] p_str;<span class="comment">//最后销毁p_str</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"end"</span> &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enter some chars:</span><br><span class="line">asdfghjklqwertyuiop↙</span><br><span class="line">^Z↙</span><br><span class="line">outputs:</span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">asdfghjklqwertyuiop(输出换行符)</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序: 从标准输入设备读入字符串，并把字符串存放在字符数组中（输入的字符串长度不定）。</p>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[11:指针]]></title>
     <link href="http://bluestein.github.io/2015/11/cpp-primer4-11/"/>
     <id>http://bluestein.github.io/2015/11/cpp-primer4-11/</id>
@@ -1797,896 +2375,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[8:迭代器iterator]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-8/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-8/</id>
-    <published>2015-11-18T08:49:34.000Z</published>
-    <updated>2015-11-30T02:57:17.813Z</updated>
-    <content type="html"><![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>
-<a id="more"></a>
-<h3 id="1、容器的iterator类型">1、容器的iterator类型</h3><hr>
-<p>每种容器都定义了自己的迭代器类型，如vector：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>同一术语 <code>iterator</code> 往往表示两个不同的事物，一般来说是指 <strong>迭代器</strong> 的概念；而具体而言时是指由容器定义的iterator类型，如vector<int>。</int></p>
-</blockquote>
-<h3 id="2、begin和end操作">2、begin和end操作</h3><hr>
-<p>每种容器都定义了一对名为 begin 和 end 的函数，用于返回迭代器。容器不为空时，begin 返回的是容器的第一个元素：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin();</span><br></pre></td></tr></table></figure>
-<p><code>iter</code> 指向的是 <code>intv[0]</code>。</p>
-<p>end 返回的迭代器指向的是vector的 <strong>末端的下一个</strong>，通常称为 <strong>超出末端迭代器（off-the-end iterator）</strong>，它指向一个不存在的元素，如果vector为空，则begin和end返回的迭代器相同。</p>
-<blockquote>
-<p>end只是起一个<strong>哨兵（sentinel）</strong>的作用，表示已处理完所有元素。</p>
-</blockquote>
-<h3 id="3、vector迭代器的自增和解引用运算等">3、vector迭代器的自增和解引用运算等</h3><hr>
-<ul>
-<li><p><strong>自增操作</strong> <code>++</code>：表示向前移动迭代器，指向下一个元素。可以结合 int 的自增理解：对于 int 类型来说，表示 “加1”，而对容器来说，是“下移一个位置”。如果当前迭代器指向第一个元素，则 <code>++iter</code> 表示指向第二个元素。</p>
-</li>
-<li><p><strong>解引用操作</strong> <code>*</code>：可以用来访问迭代器所指向的元素</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*iter = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<p>  如果迭代器当前指向第一个元素，则上述程序表示：<code>intv[0] = 0</code>。</p>
-</li>
-<li><p><code>==, !=</code> 可以用来比较两个迭代器</p>
-</li>
-</ul>
-<h3 id="3、示例">3、示例</h3><hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) &#123;</span><br><span class="line">		intv.push_back(i);	<span class="comment">//ok:动态增加</span></span><br><span class="line">	&#125;	<span class="comment">//添加元素 0-9</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;</span><br><span class="line">		*iter = <span class="number">1</span>;	<span class="comment">//改变vector的值</span></span><br><span class="line">	&#125;	<span class="comment">//跟下面的可以达到相同的效果</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != intv.size(); ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; intv[i] &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,</span><br><span class="line"><span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br></pre></td></tr></table></figure>
-<h3 id="4、const_iterator">4、const_iterator</h3><hr>
-<p>前面的 <code>vector::iterator</code> 可以用来改变元素的值，每个容器还定义了一种只能读取元素但不能改变值得iterator类型：<strong>const_iterator</strong>。</p>
-<p>跟普通的iterator类型的区别在于：普通iterator类型解引用时得到的是非const引用，而const_iterator解引用时，得到的是const引用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;	<span class="comment">//ok</span></span><br><span class="line">	*iter = <span class="number">0</span>;				<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不能把 const_iteraor 与const iterator 混淆。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator citer = nums.begin();</span><br><span class="line">*citer = <span class="number">1</span>;	<span class="comment">//ok</span></span><br><span class="line">++citer;	<span class="comment">//error：不能改变迭代器的值</span></span><br></pre></td></tr></table></figure>
-<p>const_iterator 可以用于 const vector 和非 const vector。但由于不能改变值，const iterator 基本没什么用:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nines(<span class="number">10</span>, <span class="number">9</span>);		<span class="comment">//这样定义的nines的元素不能被改变</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator citer = nines.begin();	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter = nines.begin();</span><br><span class="line">*iter = <span class="number">1</span>;	<span class="comment">//error：*iter是const</span></span><br><span class="line">++iter;		<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vector<int>::const_iterator //不能改变容器的值<br>const vector<int>::iterator //不能改变迭代器的值</int></int></p>
-</blockquote>
-<h3 id="5、迭代器的算术运算">5、迭代器的算术运算</h3><hr>
-<p>除了一次移动一个元素之外，迭代器还支持其他算术操作</p>
-<ul>
-<li><code>iter +(-) n</code>：产生一个新的迭代器，其位置在iter之前（加）或之后（减）的位置。但是加减后的位置还必须是指向vector中的某个元素，或末端的下一个；</li>
-<li><code>iter1 - iter2</code>：计算两个迭代器间的距离，该距离是 <strong>difference_type</strong> 的 signed 类型的值，类似于 size_type 也是由vector定义。iter1 和 iter2 必须都指向同一个vector容器，或末端的下一个；</li>
-</ul>
-<p>下面语句可直接定位vector中间元素</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator mid = intv.begin() + intv.size()/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>任何改变vector长度的操作都会使已存在的迭代器失效。例如调用 push_back 之后，迭代器所指向的元素将会改变。</p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[7:vector类型]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-7/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-7/</id>
-    <published>2015-11-17T08:31:51.000Z</published>
-    <updated>2015-11-30T02:57:17.810Z</updated>
-    <content type="html"><![CDATA[<p>vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 <strong>容器</strong>，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br></pre></td></tr></table></figure>
-<p>vector 是一个类模板（class template），所以 vector 可以包含不同类型的对象，如 int 型，string 型。vector 的声明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;</span><br><span class="line"><span class="built_in">vector</span>&lt;Sales_item&gt; salesv;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vector 不是一种数据类型，只是一个模板，可用来定义任意多种数据类型。但 vector<int> 或 vector<string> 可以看成是一种类型。</string></int></p>
-</blockquote>
-<h3 id="1、vector_对象的定义和初始化">1、vector 对象的定义和初始化</h3><hr>
-<table>
-<thead>
-<tr>
-<th>初始化方式</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>vector<t> v1;</t></td>
-<td>默认构造，v1 为空</td>
-</tr>
-<tr>
-<td>vector<t> v2(v1);</t></td>
-<td>v2 是 v1 的副本</td>
-</tr>
-<tr>
-<td>vector<t> v3(n, i);</t></td>
-<td>v3 包含 n 个 i 的元素</td>
-</tr>
-<tr>
-<td>vector<t> v4(n);</t></td>
-<td>v4 初始化为含有 n 个 T 类型默认值的对象</td>
-</tr>
-</tbody>
-</table>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv1;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv2(intv1);	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; strv(intv1);	<span class="comment">//error：strv 保存的是 string 类型，不是 int 类型</span></span><br></pre></td></tr></table></figure>
-<p>也可以用元素个数和元素之进行初始化</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv(<span class="number">10</span>, -<span class="number">1</span>);	<span class="comment">//10 个int元素，每个初始化为 -1</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; strv(<span class="number">10</span>, <span class="string">"hi"</span>);	<span class="comment">//10 个string元素，每个初始化为 hi</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>vector重要的属性在于可以在运行时高效的添加元素，在元素已知的情况下，最好是动态的添加元素。</p>
-</blockquote>
-<p>下面说明这种初始化情况</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv(<span class="number">10</span>);</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; strv(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-<p>此时</p>
-<ul>
-<li><code>intv</code> 会被初始化成包含 10 个 <strong>0</strong> 的 vector 对象；</li>
-<li><code>strv</code> 会被初始化成包含 10 个 <strong>空字符串</strong> 的 vector 对象；</li>
-</ul>
-<p>这种初始化方式叫做 <strong>值初始化</strong>。</p>
-<h3 id="2、vector对象的操作">2、vector对象的操作</h3><hr>
-<table>
-<thead>
-<tr>
-<th>vector操作</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>v.empty()</td>
-<td>v 为空，返回true</td>
-</tr>
-<tr>
-<td>v.size()</td>
-<td>返回 v 中的个数</td>
-</tr>
-<tr>
-<td>v.push_back(t)</td>
-<td>在 v 的末尾添加一个 t 元素</td>
-</tr>
-<tr>
-<td>v[n]</td>
-<td>返回 v 中位置为 n 的元素</td>
-</tr>
-<tr>
-<td>v1 = v2</td>
-<td>v1 的值替换成 v2</td>
-</tr>
-<tr>
-<td>v1 == v2</td>
-<td>若 v1 和 v2 相等，返回true</td>
-</tr>
-<tr>
-<td>!=, &lt;, &lt;=, &gt;, &gt;=</td>
-<td>保持惯有操作</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-1、empty和size">2.1、empty和size</h4><p>empty和size的操作类似于string，成员函数返回的vector类型定义的size_type的值。</p>
-<blockquote>
-<p>使用size_type时，必须指出该类型是在哪里定义的，如<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">vector</span>::size_type		<span class="comment">//error</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="2-2、向vector添加元素">2.2、向vector添加元素</h4><p>push_back()接受一个元素值，并将它作为一个新的元素添加到vector对象的末尾</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; text;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; word)&#123;</span><br><span class="line">	text.push_back(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面程序的意思是从标准输入读取一系列string对象，并逐一添加到vector对象的末尾。</p>
-<h4 id="2-3、vector的下标操作">2.3、vector的下标操作</h4><p>vector对象的元素是没有命名的，但可以按vector对象中的位置来访问它们，跟string类似，位置从0开始计数，下例是将vector中的每个元素置为0：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv(<span class="number">10</span>);	<span class="comment">//含有10各元素的vector</span></span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != intv.size(); ++i)&#123;</span><br><span class="line">	intv[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>习惯于Java和C的程序员可能会觉得难以理解<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、for循环用 <span class="escape">`!</span>=<span class="escape">` </span>来作为判断条件；</span><br><span class="line"><span class="number">2</span>、不用变量保存 <span class="escape">`i</span>ntv.size()<span class="escape">`；</span></span><br></pre></td></tr></table></figure></p>
-<p>到学习过泛型编程后就会明白 <code>1</code> 的合理性，至于 <code>2</code>，上述循环不需要增加元素，但循环很容易增加元素，所以如果增加了元素的话，那保存就不合理了。</p>
-</blockquote>
-<h4 id="2-4、下标操作不能添加元素">2.4、下标操作不能添加元素</h4><p>下标操作不能添加元素，但能对已有的元素进行操作，如上例中的将所有元素重置为0。所以下面的例子是错误的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	intv[i] = i;	<span class="comment">//error：intv是空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但下面的例子是正确的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	intv.push_back(i);	<span class="comment">//ok:动态增加</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 <strong>容器</strong>，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[6:using声明和string类型]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-6/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-6/</id>
-    <published>2015-11-15T08:31:46.000Z</published>
-    <updated>2015-11-30T02:57:17.807Z</updated>
-    <content type="html"><![CDATA[<p>从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。</p>
-<h3 id="一、using声明">一、using声明</h3><hr>
-<p>在本章之前所用到的标准库类型都使用了 <code>::</code> 操作符，该操作符是作用域操作符，如 <code>std::cin</code>。但每次使用标准库类型就需要添加 <code>std::</code> 显得非常麻烦，本节介绍一种安全的机制：<strong>using声明</strong>。</p>
-<a id="more"></a>
-<p>使用using声明可以不再需要添加 <code>namespace_name::</code>，如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span>::name</span><br></pre></td></tr></table></figure>
-<p>一旦使用了 using 声明，后面就不要再次引用命名空间了：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; val1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; val2</span><br><span class="line">			&lt;&lt; <span class="string">" is "</span> &lt;&lt; val1+val2 &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以对比之前我们写的程序，发现明显可以简洁很多。在接下来的例子中，我们均假设已经提供了using声明。</p>
-<h3 id="二、标准库string类型">二、标准库string类型</h3><hr>
-<p>string 类型支持可变长度的字符串，我们不需要知道它的具体实现，只需要知道它提供的操作。跟其他标准库类型一样，要使用也需要添加头文件：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="2-1、string对象的定义和初始化">2.1、string对象的定义和初始化</h4><p>string 标准库支持几个构造函数，构造函数是一个特殊成员函数，定义如何初始化该类型的对象。下表列出了几个构造函数</p>
-<table>
-<thead>
-<tr>
-<th>string构造函数</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string s1;</td>
-<td>默认构造函数，s1为空字符串</td>
-</tr>
-<tr>
-<td>string s2(s1);</td>
-<td>将s2初始化为s1的副本</td>
-</tr>
-<tr>
-<td>string s3(“value”)</td>
-<td>将s3初始化为 “value” 的副本</td>
-</tr>
-<tr>
-<td>string s4(n,’c’)</td>
-<td>将s4初始化为含n个 ‘c’ 的字符串</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>字符串的字面值与标准库string类型不是同一种类型，需要注意！</p>
-</blockquote>
-<h4 id="2-2、string对象的读写">2.2、string对象的读写</h4><p>跟前面的 iostream 标准库的内置类型 int，double相似：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设using声明已经提供</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>string的输入操作：</p>
-<ul>
-<li>读取时忽略开头所有的空白符（如空格，换行符，制表符）；</li>
-<li>读取字符直至再次遇到空白符；</li>
-</ul>
-<p>因此如果输入的是 “  hello world “（开头和结尾都有空格），上述程序输出是 “hello”，下面程序输出为 “helloworld”。</p>
-<p>而且与前面类似，可以把多个操作放在一起</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1,s2;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2 &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-<p>另一个例子：读取未知数目的string对象</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; word)&#123;	<span class="comment">//输入“ctrl+z”可以结束</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>跟上述程序相似的还有 string IO 操作：getline()。该函数接受两个参数：</p>
-<ul>
-<li>输入流对象；</li>
-<li>string对象；</li>
-</ul>
-<p>该函数是读入输入流的下一行，并保存在string对象中。但行中不包含 <strong>换行符</strong>，getline只要遇到换行符，即便是输入的第一个字符，getline也会停止读入并返回。如果第一个字符是换行符，则string对象为空。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="keyword">while</span>(getline(<span class="built_in">cin</span>,word))&#123;	<span class="comment">//输入“ctrl+z”可以结束</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-3、string对象的操作">2.3、string对象的操作</h4><table>
-<thead>
-<tr>
-<th>string的操作</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>s.empty()</td>
-<td>s为空返回true，否则返回false</td>
-</tr>
-<tr>
-<td>s.size()</td>
-<td>返回s中的字符个数</td>
-</tr>
-<tr>
-<td>s[n]</td>
-<td>范围s中位置为n的字符，位置从0开始计数</td>
-</tr>
-<tr>
-<td>s1 + s2</td>
-<td>连接s1，s2成一个新的字符串</td>
-</tr>
-<tr>
-<td>s1 = s2</td>
-<td>把s1的内容替换成s2的内容</td>
-</tr>
-<tr>
-<td>s1 == s2</td>
-<td>比较s1，s2的内容，相等返回true，否则false</td>
-</tr>
-<tr>
-<td>!=, &lt;, &lt;=, &gt;, &gt;=</td>
-<td>就是这些符号表达的意思</td>
-</tr>
-</tbody>
-</table>
-<p><strong>1、size()和empty()</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"ni hao\n"</span>)</span></span>;</span><br><span class="line"><span class="keyword">if</span>(!s.empty())&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of"</span> &lt;&lt; s &lt;&lt; <span class="string">"is"</span> &lt;&lt; s.size() &lt;&lt; endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"empty!"</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以像上述程序一样使用size(),empty()。</p>
-<p><strong>2、string::size_type类型</strong></p>
-<p>从前面来看，size()返回的值似乎是int型，但实际上返回的是 <code>string::size_type</code> 类型。因为int类型所能表示的范围实在有限，所以string类型定义了新的配套类型。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world"</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">string</span>::size_type i=<span class="number">0</span>; i!=s.size(); ++i)&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s[i] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一般来说使用 int 类型也能够达到要求，但最安全的方法是使用 string::size_type 类型。</p>
-<p><strong>3、string关系操作符</strong></p>
-<ul>
-<li><code>==, !=</code>：相等、不等</li>
-<li><code>&lt;, &lt;=, &gt;, &gt;=</code>：小于、小于或等于、大于、大于或等于</li>
-</ul>
-<p>比较两个字符串时采用了和字典排序相同的策略（大小写敏感）：</p>
-<ul>
-<li>如果string对象长度不同，且短的string对象与长的对象前面部分相同，则短的小于长的；</li>
-<li>如果两个string对象字符不同，则比较第一个不匹配的字符；<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"hello world"</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(<span class="string">"hey"</span>)</span></span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; (s1 &lt; s2) &lt;&lt; <span class="string">", "</span> &lt;&lt; (s1 &lt; s3) &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>输出结果</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>表示 s1 小于 s2，s1 小于 s3。</p>
-<p><strong>4、相加</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="string">"hey"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3 = s1 + s2;	<span class="comment">//生成新字符串</span></span><br><span class="line">s1 += s2;				<span class="comment">//追加至s1末尾</span></span><br></pre></td></tr></table></figure>
-<p><strong>5、与字符串字面值的连接</strong></p>
-<p><code>+</code> 操作符的左右操作数必须有一个是 string 类型“</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1 = <span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">"world"</span>;</span><br><span class="line"><span class="built_in">string</span> s3 = s1 + s2;			<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">string</span> s4 = s1 + <span class="string">"world"</span> + <span class="string">"!"</span>;	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">string</span> s5 = <span class="string">"hello"</span> + s2 + <span class="string">"!"</span>;	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">string</span> s6 = <span class="string">"hello"</span> + <span class="string">"world"</span>;	<span class="comment">//error:两个字面值不能相加</span></span><br><span class="line"><span class="built_in">string</span> s7 = <span class="string">"hello"</span> + <span class="string">","</span> + s2;	<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-<p><strong>6、下标操作</strong></p>
-<p>通过 <code>[]</code> 来取得string对象中的字符。且下标操作可以做左值：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">string</span>::size_type i=<span class="number">0</span>; i!=s.size(); ++i)&#123;</span><br><span class="line">	s[i] = <span class="string">'*'</span>;	<span class="comment">//注意是 '*'，不是 "*"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>任意可以产生整数值的表达式都可以作为下标：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; s[<span class="number">2</span>*<span class="number">2</span>] &lt;&lt; endl；</span><br></pre></td></tr></table></figure>
-<h4 id="2-4、string对象中的字符处理">2.4、string对象中的字符处理</h4><p>经常需要对string对象中的单个字符处理，这些处理的函数在头文件 cctype 中定义</p>
-<table>
-<thead>
-<tr>
-<th>cctype定义的函数</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>isalnum(c)</td>
-<td>c 是字母或数字，返回true</td>
-</tr>
-<tr>
-<td>isalpha(c)</td>
-<td>c 是字母，返回true</td>
-</tr>
-<tr>
-<td>iscntrl(c)</td>
-<td>c 是控制字符，返回true</td>
-</tr>
-<tr>
-<td>isdigit(c)</td>
-<td>c 是数字，返回true</td>
-</tr>
-<tr>
-<td>isgraph(c)</td>
-<td>c 不是空格，但可打印，返回true</td>
-</tr>
-<tr>
-<td>isprint(c)</td>
-<td>c 是可打印字符，返回true</td>
-</tr>
-<tr>
-<td>ispunct(c)</td>
-<td>c 是标点符号，返回true</td>
-</tr>
-<tr>
-<td>isspace(c)</td>
-<td>c 是空白字符，返回true</td>
-</tr>
-<tr>
-<td>isxdigit(c)</td>
-<td>c 是十六进制数，返回true</td>
-</tr>
-<tr>
-<td>islower(c)</td>
-<td>c 是小写字母，返回true</td>
-</tr>
-<tr>
-<td>isupper(c)</td>
-<td>c 是大写字母，返回true</td>
-</tr>
-<tr>
-<td>tolower(c)</td>
-<td>若 c 是大写字母，返回 c 的小写形式；否则直接返回 c</td>
-</tr>
-<tr>
-<td>toupper(c)</td>
-<td>若 c 是小写字母，返回 c 的大写形式；否则直接返回 c</td>
-</tr>
-</tbody>
-</table>
-<p>举例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello world"</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">string</span>::size_type i = <span class="number">0</span>; i != s.size(); ++i)&#123;</span><br><span class="line">	s[i] = <span class="built_in">toupper</span>(s[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HELLO WORLD</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。</p>
-<h3 id="一、using声明">一、using声明</h3><hr>
-<p>在本章之前所用到的标准库类型都使用了 <code>::</code> 操作符，该操作符是作用域操作符，如 <code>std::cin</code>。但每次使用标准库类型就需要添加 <code>std::</code> 显得非常麻烦，本节介绍一种安全的机制：<strong>using声明</strong>。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[5:头文件]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-5/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-5/</id>
-    <published>2015-11-14T08:31:39.000Z</published>
-    <updated>2015-11-30T02:56:30.743Z</updated>
-    <content type="html"><![CDATA[<p>到目前为止，我们编写的程序都是把代码都放在同一个文件中来处理。但是很少程序能够都这么简单的由一个文件搞定，由多个文件组成的程序需要一种连接名字的使用和声明，在C++中通过 <strong>头文件</strong> 可以实现。</p>
-<a id="more"></a>
-<h3 id="一、设计自己的头文件">一、设计自己的头文件</h3><hr>
-<p>头文件为相关声明提供了一个集中存放的位置。头文件一般包含：</p>
-<ul>
-<li>类的定义；</li>
-<li>extern变量的声明；</li>
-<li>函数的声明；</li>
-</ul>
-<p>正确使用头文件能带来两个好处：</p>
-<ul>
-<li>保证所有文件使用给定实体的同一声明；</li>
-<li>当声明需要修改时，只需要更新头文件即可；</li>
-</ul>
-<p>不过也需要注意以下事项：</p>
-<ul>
-<li>头文件中所做的声明在逻辑上应该是放在一起的；</li>
-<li>编译头文件需要一定时间；</li>
-</ul>
-<blockquote>
-<p>为了减少头文件编译时间，有些C++的实现支持与编译头文件。</p>
-</blockquote>
-<h4 id="1-1、头文件用于声明而不是定义">1.1、头文件用于声明而不是定义</h4><p>设计头文件时，记住定义和声明的区别很重要。定义只可以出现一次，而声明可以多次。下面是一些定义，不该出现在头文件中：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> val1 = <span class="number">10</span>;	<span class="comment">//有初始化，是 定义 不是 声明</span></span><br><span class="line"><span class="keyword">double</span> val2;			<span class="comment">//没有 extern 关键字，是定义</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>因为头文件包含在多个源文件中，所以不应该包含有变量或函数的定义。</p>
-</blockquote>
-<p>当然也有另外，头文件中可以定义类、值在编译时就已知的 const 对象和 inline函数（后续介绍）。</p>
-<h4 id="1-2、const对象定义在头文件中">1.2、const对象定义在头文件中</h4><p>前一篇博客提到 const 变量默认是文件的局部变量，正如现在看到的，这样的默认设置原因在于允许 const 变量定义在头文件中。</p>
-<p>如果 const 变量不是用常量表达式初始化，那么它就不应该在头文件中定义。相反，和其他变量一样，该 const 变量应该在源文件中定义并初始化。在头文件中用 extern 关键字来声明，以使其能够被多个文件共享。</p>
-<h3 id="二、预处理器的简单实现">二、预处理器的简单实现</h3><hr>
-<h4 id="2-1、头文件经常需要其他头文件">2.1、头文件经常需要其他头文件</h4><p>头文件经常需要使用 <code>#include</code> 其他头文件，比如Sales_item类就需要包含string库。包含其他头文件相当正常，甚至有时一个头文件被多次包含进同意源文件也不稀奇。因此设计头文件时，必须保证多次包含同一头文件不会产生歧义。使用 <strong>头文件保护符（header guard）</strong>，用于避免对已经看见头文件却重新处理。</p>
-<h4 id="2-2、避免多重包含">2.2、避免多重包含</h4><p>在编译头文件之前，我们需要引入一些额外的预处理器设施。预处理器允许我们自定义变量。为避免名字冲突，预处理器变量经常用全大写字母表示。</p>
-<p>预处理器变量有两种状态：已定义和未定义。 <code>#define</code> 表示接受一个名字并定义其为预处理器变量，<code>#ifndef</code> 表示检测预处理其变量是否被定义，如果未定义，那么紧跟 <code>#ifndef</code> 后面的代码都被处理，直到出现 <code>#endif</code>。可以使用下面方式避免多次包含同一头文件</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> SALESITEM_H</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SALESITEM_H</span></span><br><span class="line"><span class="comment">//Sales_item 类及其数据和操作在此定义</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h4 id="2-3、自定义头文件">2.3、自定义头文件</h4><p><code>#include</code> 接受以下两种形式：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;standard_header&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"my_header.h"</span></span></span><br></pre></td></tr></table></figure>
-<p>使用 <code>&lt;&gt;</code> 包含的头文件表示该头文件是标准库文件，编译器会在系统预定义的地方查找该头文件。而使用 <code>&quot;&quot;</code>包含的头文件认为它是非系统头文件，通常会在源文件所在路径开始寻找。</p>
-<blockquote>
-<p>至此，第二章 “变量和基本类型” 的内容到此结束，后续开始第三章 “标准库类型” 的内容。</p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>到目前为止，我们编写的程序都是把代码都放在同一个文件中来处理。但是很少程序能够都这么简单的由一个文件搞定，由多个文件组成的程序需要一种连接名字的使用和声明，在C++中通过 <strong>头文件</strong> 可以实现。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[4:const、引用和typedef]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-4/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-4/</id>
-    <published>2015-11-12T08:31:33.000Z</published>
-    <updated>2015-11-30T02:56:24.479Z</updated>
-    <content type="html"><![CDATA[<h3 id="一、const">一、const</h3><hr>
-<p>考虑问题：下面程序中数字 <code>0</code> 的含义？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<ul>
-<li><p>显然从程序来看，我们并不知道 <code>10</code> 是怎样一个存在，因此它也被称为 <strong>魔数（magic number）</strong>，意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。</p>
-</li>
-<li><p>或者如果这个程序多次使用数字 <code>10</code> 的话，当需要要把 <code>10</code> 改为 <code>20</code> 的话就麻烦了。</p>
-</li>
-</ul>
-<p>一种简单的解决办法是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != max; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样不仅可读性好很多，而且修改起来也相当方便。</p>
-<blockquote>
-<p><code>max</code> 是可以被修改的</p>
-</blockquote>
-<h4 id="1-1、定义const对象">1.1、定义const对象</h4><p>上面到，<code>max</code> 可能会被有意或无意的修改，在某些情况下这很严重。<strong>const</strong> 提供一种解决办法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> max = <span class="number">10</span>；</span><br></pre></td></tr></table></figure>
-<p>此时定义 <code>max</code> 为 <strong>常量</strong> 并初始化为 10，但此时的 <code>max</code> 不可被修改。</p>
-<blockquote>
-<p>C++中的 const 跟 <strong>Java 中的 final</strong> 或 <strong>PHP 中的 define</strong> 类似。<br>const 定义的常量不可修改，所以定义时必须初始化如下</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">std</span>:<span class="built_in">string</span> hi = <span class="string">"Hello"</span>;<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> i;	<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
-<h4 id="1-2、const对象默认为文件的局部变量">1.2、const对象默认为文件的局部变量</h4><p>跟普通的变量不一样，const定义的变量需要特别的说明才可以在其他文件中访问。例如</p>
-<ul>
-<li><p>普通变量</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file1.cpp</span></span><br><span class="line"><span class="keyword">int</span> max = <span class="number">10</span>;		<span class="comment">//定义变量</span></span><br><span class="line"><span class="comment">//file2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> max;	<span class="comment">//声明外部变量</span></span><br><span class="line"><span class="comment">//下面可以使用变量 max</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>const变量</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file1.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> max = <span class="number">10</span>;	<span class="comment">//定义变量</span></span><br><span class="line"><span class="comment">//file2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> max;		<span class="comment">//声明外部变量</span></span><br><span class="line"><span class="comment">//下面可以使用const变量 max</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>定义非 <code>const</code> 变量时默认问 <code>extern</code>。而 <code>cost</code> 变量必须显式的指定它为 <code>extern</code> 才可以被其他文件访问。</p>
-</blockquote>
-<h3 id="二、引用">二、引用</h3><hr>
-<p>引用（reference）就是对象的另一个名字。在实际程序中，引用主要作为函数的形参，形参的内容将在后续介绍。</p>
-<p>引用是一种 <strong>复合类型（compound type）</strong>，在变量名前加 <code>&amp;</code> 符号来定义。复合类型是指用其他类型定义的类型。每个引用都关联到其他某一类型，<strong>不能定义引用的引用，但可以定义任意类型的引用，并且可以有多个引用</strong>。下面用例子说明</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;reVal1 = val;	<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">int</span> &amp;reVal2 = val;	<span class="comment">//正确：val的第二个别名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> &amp;reVal3;		<span class="comment">//错误：引用必须初始化</span></span><br><span class="line"><span class="keyword">int</span> &amp;reVal4 = <span class="number">1</span>;	<span class="comment">//错误：引用必须使用对象初始化</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-1、引用是别名">2.1、引用是别名</h4><p>引用只是它所绑定对象的另一个名字，在引用上做的所有操作实际上都作用在原对象上：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reVal1 = <span class="number">5</span>；			<span class="comment">//相当于：val = 5；</span></span><br><span class="line">reVal1 += <span class="number">1</span>;		<span class="comment">//相当于：val += 1;</span></span><br><span class="line"><span class="keyword">int</span> val2 = reVal1;	<span class="comment">//相当于：int val2 = val;</span></span><br></pre></td></tr></table></figure>
-<p>下面程序的结果更能直观的说明这个问题</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> &amp;reVal1 = val;</span><br><span class="line">	<span class="keyword">int</span> &amp;reVal2 = val;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"val = "</span> &lt;&lt; val &lt;&lt; <span class="string">", reVal1 = "</span>&lt;&lt; reVal1 &lt;&lt; <span class="string">", reVal2 = "</span> &lt;&lt; reVal2 &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	reVal1 = <span class="number">1</span>;	<span class="comment">//对 reVal1 操作</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"val = "</span> &lt;&lt; val &lt;&lt; <span class="string">", reVal1 = "</span>&lt;&lt; reVal1 &lt;&lt; <span class="string">", reVal2 = "</span> &lt;&lt; reVal2 &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	reVal2 = <span class="number">2</span>;	<span class="comment">//对 reVal2 操作</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"val = "</span> &lt;&lt; val &lt;&lt; <span class="string">", reVal1 = "</span>&lt;&lt; reVal1 &lt;&lt; <span class="string">", reVal2 = "</span> &lt;&lt; reVal2 &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果是： </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val = <span class="number">0</span>, reVal1 = <span class="number">0</span>, reVal2 = <span class="number">0</span></span><br><span class="line">val = <span class="number">1</span>, reVal1 = <span class="number">1</span>, reVal2 = <span class="number">1</span></span><br><span class="line">val = <span class="number">2</span>, reVal1 = <span class="number">2</span>, reVal2 = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-2、const引用">2.2、const引用</h4><p>非 const 不能引用 const，只有 const 能够引用 const，且 const 引用不能修改：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> val = <span class="number">0</span>;			<span class="comment">//正确：0是右值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;reVal1 = val;	<span class="comment">//正确：val是左值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;reVal2 = i;		<span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line">reVal1 = <span class="number">1</span>;					<span class="comment">//错误：const 引用是只读的</span></span><br><span class="line"><span class="keyword">int</span> &amp;reVal3 = val;			<span class="comment">//错误：非 const 不能引用 const</span></span><br></pre></td></tr></table></figure>
-<p>跟非 const 不同之处还有：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;re1 = <span class="number">1</span>;			<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;re2 = re1 + i;	<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
-<p>对于下面这种绑定到同一类型的情况：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i =  <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;re1 = i;	<span class="comment">//此时 re1 = 0；</span></span><br><span class="line">i = <span class="number">1</span>;				<span class="comment">//此时 re1 = 1；</span></span><br></pre></td></tr></table></figure>
-<p>当改变 <code>i</code> 时，<code>re1</code> 也会被改变。</p>
-<p>还有另一种情况：绑定到不同类型的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> i =  <span class="number">1.1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;re1 = i;	<span class="comment">//此时 re1 = 1；</span></span><br><span class="line">i = <span class="number">2.1</span>;			<span class="comment">//此时 re1 = 1；</span></span><br></pre></td></tr></table></figure>
-<p>因为对于这种情况，编译器会解释为：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> temp =  i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;re1 = temp;</span><br></pre></td></tr></table></figure>
-<p>所以，改变 <code>i</code> 实际上改变的是 <code>temp</code>， <code>re1</code> 不受影响。</p>
-<blockquote>
-<p>const 引用可以绑定左值或右值，非 const 引用只能绑定左值。</p>
-</blockquote>
-<h3 id="三、typedef">三、typedef</h3><hr>
-<p>typedef 跟引用有点类似，不过 typedef 是定义类型的别名：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wages;	<span class="comment">//wages 是 double 的别名</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> score;		<span class="comment">//score 是 int 的别名</span></span><br><span class="line"><span class="keyword">typedef</span> wages salary;	<span class="comment">//salary 是 double 的别名</span></span><br></pre></td></tr></table></figure>
-<p>其作用是：</p>
-<ul>
-<li>为了隐藏特定的类型，强调使用类型的目的；</li>
-<li>简化复杂的类型定义，易于理解；</li>
-<li>允许一个类型用于多个目的，并且每次使用时目的明确；</li>
-</ul>
-<h3 id="四、枚举">四、枚举</h3><hr>
-<p>如果要为某属定义一组可选择的值，每个只对应一种状态，比如文件的打开状态：输出，输入和追加分别对应 0,1,2。则有可能会这样定义：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> input = <span class="number">0</span>；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> output = <span class="number">1</span>；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> append = <span class="number">2</span>；</span><br></pre></td></tr></table></figure>
-<p>属性选择很多时这样定义就不方便，<strong>枚举（enumeration）</strong> 是一种替代方法。</p>
-<h4 id="4-1、定义和初始化枚举">4.1、定义和初始化枚举</h4><p>枚举的关键字是 <code>enum</code>，定义如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> open_modes &#123;input, output, append&#125;;</span><br></pre></td></tr></table></figure>
-<p>默认地，第一个枚举成员赋值为 0，后面的依次加 1。</p>
-<h4 id="4-2、枚举成员是常量">4.2、枚举成员是常量</h4><p>可以为一个或多个成员提供初值，初始化枚举成员的值必须是一个 <strong>常量表达式（constant expression）</strong>，整型字面值也是常量表达式。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sphere = 2, polygon = 2</span></span><br><span class="line"><span class="keyword">enum</span> forms &#123;shape = <span class="number">1</span>, sphere, cylinder = <span class="number">1</span>, polygon&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-3、每个enum都定义了一种唯一的类型">4.3、每个enum都定义了一种唯一的类型</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">forms f1 = shape;	<span class="comment">//正确：shape 是 forms 类型的枚举成员</span></span><br><span class="line">forms f2 = square;	<span class="comment">//错误：square 不是 forms 类型；</span></span><br><span class="line">forms f3 = <span class="number">1</span>；		<span class="comment">//错误：1 是 int类型，不是forms类型</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>即使 1 与 shape 相关联，但是 1 赋值给 f3 还是非法的</p>
-</blockquote>
-<h3 id="五、类类型">五、类类型</h3><hr>
-<p>在C++中可以通过定义 <strong>类（class）</strong> 来自定义数据类型。类定义了该类型的对象包含的数据和该类型对象可以执行的操作。标准库类型 <strong>string、istream、ostream</strong>都定义成类，关于类后续详细介绍。</p>
-<p>本节继续使用在 <a href="http://www.jianshu.com/p/67a45978af28" target="_blank" rel="external">读《C++primer》day1：快速入门</a> 的第三部分提到的 <strong>Sales_item</strong> 类举例。</p>
-<h4 id="5-1、从操作开始设计类">5.1、从操作开始设计类</h4><p>每个类都定义了一个 <strong>接口（interface）</strong> 和一个 <strong>实现（implementation）</strong>。接口由使用该类的代码需要执行组成，实现一般包括该类所需的数据及操作。</p>
-<p>定义类时，通常先定义接口，即该类所提供的操作。以 Sales_item 举例：</p>
-<ul>
-<li>加法 <code>+</code> ：将两个对象相加；</li>
-<li>输入 <code>&gt;&gt;</code> ： 读取一个对象；</li>
-<li>输出 <code>&lt;&lt;</code> ：输出一个对象；</li>
-<li>赋值 <code>=</code> ：将一个对象赋给另一个对象；</li>
-<li>对比 <code>?</code> ：对比两个对象是否属于同一本书（函数same_isbn）；</li>
-</ul>
-<p>虽然现在我们并不能实现这些操作（需要更多的知识），但可以考虑实现这些操作需要什么样的数据：</p>
-<ul>
-<li>记录各书本的销售册数；</li>
-<li>该书的总销售收入；</li>
-<li>计算该书的平均售价；</li>
-</ul>
-<p>大概就可以知道需要一个 <code>unsigned</code> 类型对象来记录数的销售册数，一个 <code>double</code> 类型对象计入总收入，<code>string</code> 类型对象记录书本的ISBN。</p>
-<h4 id="5-2、定义Sales_item类">5.2、定义Sales_item类</h4><p>按上一节提到的操作和数据，可以这样定义：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//各种操作在此定义</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>:<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>类定义以关键字 <strong>class</strong> 开始，后面是该类的类名，类体位于花括号内部，花括号后面必须要跟一个分号。</p>
-<blockquote>
-<p>新手经常会忘记类定义后面的分号！</p>
-</blockquote>
-<p>类体可以为空，类体定义了该类型的数据和操作。这些数据和操作也称为 <strong>成员（member）</strong>，数据称为 <strong>数据成员（data member）</strong>，操作称为 <strong>成员函数</strong>。</p>
-<p>类定义可以包含多个 private 和 public <strong>访问标号（access label）</strong>，给定的访问标号作用域到下一个访问标号出现时为止。类中 <strong>public</strong> 部分定义的成员在程序的任何部分都可以访问，不是类的组成部分的代码不能方便问 <strong>private</strong> 成员，这样可以保证Sales_item对象不能直接操纵数据成员。</p>
-<h4 id="5-3、使用struct关键字">5.3、使用struct关键字</h4><p>struct 关键字也可以定义类类型，它是从 C 语言继承而来。区别</p>
-<ul>
-<li>用关键字 <code>class</code> 定义类：定义在第一个标号之前的所有成员都默认为private；</li>
-<li>用关键字 <code>struct</code> 定义类：定义在第一个标号之前的所有成员都默认为public；</li>
-</ul>
-<p>用 <code>struct</code> 重新定义前面的Sales_item类：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="comment">//不需要 public 访问标号</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>:<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>用 class 和 struct 关键字定义类的唯一区别就在于 <strong>默认访问级别</strong>。默认情况下，struct 的成员为 public，而 class 的成员的是 private。 </p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="一、const">一、const</h3><hr>
-<p>考虑问题：下面程序中数字 <code>0</code> 的含义？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[3:变量]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-3/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-3/</id>
-    <published>2015-11-10T08:31:28.000Z</published>
-    <updated>2015-11-30T02:56:11.518Z</updated>
-    <content type="html"><![CDATA[<h3 id="首先">首先</h3><hr>
-<p>考虑问题：<code>求2的3次方？</code></p>
-<p>最直接的想到的可能是：</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 raised to the power of 3 is "</span> &lt;&lt; <span class="number">2</span>*<span class="number">2</span>*<span class="number">2</span>  &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>固然，此方法可以求出2的3次方；但是如果要求2的20次方的话不太可能去连续乘20次，此时的替代方法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val = <span class="number">2</span>;<span class="comment">//2为底</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">pow</span> = <span class="number">20</span>;<span class="comment">//20次方</span></span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="built_in">pow</span>; ++i)&#123;</span><br><span class="line">    	result *= val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 raised to the power of "</span> &lt;&lt; <span class="built_in">pow</span> &lt;&lt; <span class="string">" is "</span> &lt;&lt; result  &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的 <code>val, pow, result 和 i</code> 都是变量。可以对数值进行存储、修改和查询。</p>
-<h3 id="1、什么是变量">1、什么是变量</h3><hr>
-<p>变量就是 <strong>提供了程序可以操作的有名字的存储区</strong>。</p>
-<p>C++中每个变量都有特定的类型，类型确定了变量的 <strong>内存大小</strong>、<strong>该内存能储存的值的取值范围</strong> 及 <strong>可应用于该变量的操作</strong>。</p>
-<ul>
-<li><strong>左值（lvalue）</strong>：左值可以出现在赋值语句的左或右边。如<ul>
-<li><code>i = i + 1;</code></li>
-</ul>
-</li>
-<li><strong>右值（rvalue）</strong>：右值只能出现在赋值语句的右边。如<ul>
-<li>正确：<code>i = 1;</code></li>
-<li>错误：<code>0 = 1;</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="2、变量名">2、变量名</h3><hr>
-<p>变量名，即 <strong>标识符(identifier)</strong>。可以由 <strong>字母、数字和下划线</strong> 组成。</p>
-<p>必须以 <strong>字母或划线开头</strong>，并且 <strong>区分大小写</strong>。</p>
-<blockquote>
-<p>C++语言本身没有限制变量名的长度，但考虑阅读和维护，变量名不应太长。</p>
-</blockquote>
-<h4 id="2-1、C++关键字">2.1、C++关键字</h4><p>C++的关键字不能作为变量名，下面是C++的所有关键字</p>
-<table>
-<thead>
-<tr>
-<th>C++关键字</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>asm</td>
-<td>do</td>
-<td>if</td>
-<td>returen</td>
-<td>try</td>
-</tr>
-<tr>
-<td>auto</td>
-<td>double</td>
-<td>inline</td>
-<td>short</td>
-<td>typedef</td>
-</tr>
-<tr>
-<td>bool</td>
-<td>dynamic_cast</td>
-<td>int</td>
-<td>signed</td>
-<td>typeid</td>
-</tr>
-<tr>
-<td>break</td>
-<td>else</td>
-<td>long</td>
-<td>sizeof</td>
-<td>typename</td>
-</tr>
-<tr>
-<td>case</td>
-<td>enum</td>
-<td>mutable</td>
-<td>static</td>
-<td>union</td>
-</tr>
-<tr>
-<td>catch</td>
-<td>explicit</td>
-<td>namespace</td>
-<td>static_cast</td>
-<td>unsigned</td>
-</tr>
-<tr>
-<td>char</td>
-<td>export</td>
-<td>new</td>
-<td>struct</td>
-<td>using</td>
-</tr>
-<tr>
-<td>class</td>
-<td>extern</td>
-<td>operator</td>
-<td>switch</td>
-<td>virtual</td>
-</tr>
-<tr>
-<td>const</td>
-<td>false</td>
-<td>private</td>
-<td>template</td>
-<td>void</td>
-</tr>
-<tr>
-<td>continue</td>
-<td>for</td>
-<td>public</td>
-<td>throw</td>
-<td>wchar_t</td>
-</tr>
-<tr>
-<td>default</td>
-<td>friend</td>
-<td>register</td>
-<td>true</td>
-<td>while</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>goto</td>
-<td>reinterpret_cast</td>
-<td>-</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>为了发个表格也真是拼了，再次呼吁简书 @简叔 支持嵌入 html code（渴望脸</p>
-</blockquote>
-<p>除了上面的关键字，C++还保留了一些操作符的替代名</p>
-<table>
-<thead>
-<tr>
-<th>C++操作符的替代名</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>and</td>
-<td>and_eq</td>
-<td>bitand</td>
-<td>bitor</td>
-<td>compl</td>
-<td>not</td>
-<td>not_eq</td>
-<td>or</td>
-<td>or_eq</td>
-<td>xor</td>
-<td>xor_eq</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>除了关键字，C++标准也保留了一组标识符用于标准库。<br>标识符 <strong>不能包含两个连续的下划线</strong>、<strong>下划线开头后面紧跟一个大写字母</strong>。</p>
-</blockquote>
-<h4 id="2-2、变量的命名习惯">2.2、变量的命名习惯</h4><ul>
-<li>变量名一般用小写字母；如 <code>salary</code>，而不是 <code>Salary</code> 或 <code>SALARY</code>；</li>
-<li>变量名一般用帮助记忆的名字。如 <code>salary</code> 而不是 <code>s</code>；</li>
-<li>包含多个单词时，单词间添加一下划线，或内嵌单词的第一个字母大写。如 <code>my_salary</code> 或 <code>mySalary</code>；</li>
-</ul>
-<blockquote>
-<p>不管你使用哪种命名习惯,但请保持一致!</p>
-</blockquote>
-<h3 id="3、定义对象">3、定义对象</h3><hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> books_sold;<span class="comment">//内置类型</span></span><br><span class="line"><span class="keyword">double</span> sales_price, avg_price;<span class="comment">//内置类型</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> title;<span class="comment">//标准库定义的类型</span></span><br><span class="line">Sales_item book;<span class="comment">//类对象</span></span><br></pre></td></tr></table></figure>
-<p>int，double，std::string和Sales_item都是类型名。</p>
-<h4 id="3-1、初始化">3.1、初始化</h4><p>两种初始化变量的形式：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">val</span><span class="params">(<span class="number">1024</span>)</span></span>;<span class="comment">//直接初始化</span></span><br><span class="line"><span class="keyword">int</span> val = <span class="number">1024</span>;<span class="comment">//复制初始化</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>复制初始化和直接初始化有微妙的差别，后续详细讲解。现在只要知道，<strong>直接初始化</strong> 语法更灵活且效率更高</p>
-</blockquote>
-<p>使用 <code>=</code> 初始化变量会很迷惑，因为会把 <strong>初始化</strong> 当成是 <strong>赋值</strong>。</p>
-<blockquote>
-<p>“初始化不是赋值”。<br>初始化是指创建变量并给它赋初始值，而赋值则是擦除对象当前的值并用新的值替代。</p>
-</blockquote>
-<h4 id="3-2、使用多种方法初始化">3.2、使用多种方法初始化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> title1 = <span class="string">"C++ Primer"</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">title2</span><span class="params">(<span class="string">"C++ Primer"</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>则title就有两种初始化的方式。但下面用计数器和一个字符初始化一个变量 <code>nines</code> 就只能使用 <strong>直接初始化</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">nines</span><span class="params">(<span class="number">5</span>, <span class="string">'9'</span>)</span></span>; <span class="comment">//nines = "99999"</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-3、初始化多个变量">3.3、初始化多个变量</h4><ul>
-<li>定义两个变量以上时，每个变量都可能有各自的初始化式。</li>
-<li>可以用前面已定义的变量来初始化后面的变量。</li>
-<li>已初始化变量与未初始化变量可以同时同意</li>
-</ul>
-<p>如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> salary = <span class="number">9999.99</span>, my_salary = salary*<span class="number">2</span> ;</span><br><span class="line"><span class="keyword">int</span> day, month(<span class="number">11</span>), year = <span class="number">2015</span>;</span><br><span class="line">day = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="3-4、初始化变量的规则">3.4、初始化变量的规则</h4><p>当定义变量而未初始化时，系统有时会帮我们</p>
-<p><strong>内置类型变量的初始化</strong></p>
-<p>内置类型变量是否自动初始化取决于 <strong>变量定义的位置</strong>。在函数体外定义的变量都初始化成0，函数体内的内置类型不自动进行初始化。</p>
-<blockquote>
-<p>使用未初始化的变量是常见的程序错误，通常也难以发现。如果够幸运的话，程序不能正确运行；但有时程序在一部机器上能够正确的运行，而另一部却不行。所以要尽量避免变量未初始化。</p>
-</blockquote>
-<p><strong>类类型的变量初始化</strong></p>
-<p>每个类都定义了该类型的对象应该如何初始化。如前面提到的 <code>std::string</code> 就至少提供了两个构造函数（可以理解为初始化的方法）。</p>
-<p>如果某个类未定义初始化函数，那它可以通过一个特殊的构造函数即 <strong>默认构造函数</strong> 来实现。如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> empty_str; <span class="comment">//empty_str = "";</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-5、声明和定义">3.5、声明和定义</h4><ul>
-<li>定义（definition）：用于变量分配存储空间，还可以为变量指定初始值。在一个程序中，变量仅有一个定义。</li>
-<li><p>声明（declaration）：用于向程序表明变量的类型和名字。 <strong>定义也是声明</strong>：因为定义时也声明了它的类型和名字。也可以通过 <code>extern</code> 关键字声明变量而不定义。不定义变量的声明包括对象名、对象类型和对象前的关键字 <code>extern</code>:</p>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i;        <span class="comment">//声明 i 而不是定义 i</span></span><br><span class="line">   <span class="keyword">int</span> i;                <span class="comment">//声明和定义 i</span></span><br><span class="line">   <span class="keyword">extern</span> <span class="keyword">int</span> j = <span class="number">1</span>;    <span class="comment">//定义 j</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><code>extern</code> 声明不是定义，不分配存储空间，但如果有初始化操作则会认为是定义，所以下面会出错。变量在程序中可以 <strong>声明多次，但只能定义一次</strong>。</p>
-<pre><code><span class="keyword">extern</span> <span class="keyword">int</span> i = <span class="number">1</span>;    <span class="comment">//definition</span>
-<span class="keyword">int</span> i;                <span class="comment">//error: redefinition</span>
-</code></pre><p>另一种情况：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i = <span class="number">1</span>;        <span class="comment">//definition</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i;            <span class="comment">//ok:声明不是定义</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i = <span class="number">2</span>;        <span class="comment">//error: redefinition</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>变量仅能定义一次，而且在使用变量之前必须定义或声明变量。</p>
-</blockquote>
-<h4 id="3-6、名字的作用域">3.6、名字的作用域</h4><p>C++程序中，每个名字都与唯一一个实体（如 <strong>变量、函数或类型的等</strong>）相关联。但在程序中还是可以多次使用同一个名字，只要上下文能够区分不同的意义，<strong>上下文</strong> 就称为 <strong>作用域（scope）</strong>，一个名字在不同的作用域中可以跟不同实体关联。</p>
-<p>大多数作用域使用 <strong>花括号</strong> 来界定，如下程序说明了各种 <strong>作用域</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> global_int = <span class="number">0</span>;    <span class="comment">//global_int: 全局作用域（global scope）。全局能访问</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> global_int = <span class="number">1</span>;    <span class="comment">//global_int: 局部作用域（local scope）。隐藏全局作用域，使用局部作用域</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;        <span class="comment">//sum：局部作用域（local scope）。main函数不能访问</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> val = <span class="number">1</span>; val &lt;= <span class="number">10</span>; ++val)&#123;    <span class="comment">//val：语句作用域（statement scope）。for语句外不能访问</span></span><br><span class="line">	    sum += val;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The global_int is "</span> &lt;&lt; global_int &lt;&lt; <span class="built_in">std</span>::endl;        <span class="comment">//输出：The global_int is 1</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of 1 to 10 inclusive is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::endl;<span class="comment">//输出：The sum of 1 to 10 inclusive is 55</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在函数内定义的局部变量名最好不同于要使用到的全局变量</p>
-</blockquote>
-<p>C++还有另外两种不同级别的作用域：<strong>类作用域（class scope）</strong> 和 <strong>命名空间作用域（namespace scope）</strong>，后续详细介绍。</p>
-<h4 id="3-7、在变量使用处定义变量">3.7、在变量使用处定义变量</h4><p>一般来说，变量的定义或声明可以放在程序中变量未使用之前的任何位置。</p>
-<blockquote>
-<p>通常把变量定义放在首次使用的地方是一个好的方法</p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="首先">首先</h3><hr>
-<p>考虑问题：<code>求2的3次方？</code></p>
-<p>最直接的想到的可能是：</p>]]>
     
     </summary>
     
