@@ -89,8 +89,8 @@
     <link href="http://bluestein.github.io/2015/12/github-git-2/"/>
     <id>http://bluestein.github.io/2015/12/github-git-2/</id>
     <published>2015-12-03T06:54:49.000Z</published>
-    <updated>2015-12-03T11:52:48.329Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
+    <updated>2015-12-03T12:48:44.840Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>
 <a id="more"></a>
 <p>默认不用任何参数的话，<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。 正如你所看到的，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。</p>
@@ -272,7 +272,7 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>]]>
     
     </summary>
@@ -290,8 +290,8 @@
     <link href="http://bluestein.github.io/2015/12/github-git-4/"/>
     <id>http://bluestein.github.io/2015/12/github-git-4/</id>
     <published>2015-12-03T04:54:49.000Z</published>
-    <updated>2015-12-03T12:40:40.108Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+    <updated>2015-12-03T12:49:08.032Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
 <h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
 <p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
 <a id="more"></a>
@@ -357,7 +357,7 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
 <h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">官网教程</a>。</p>
 <p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>]]>
     
@@ -376,8 +376,8 @@
     <link href="http://bluestein.github.io/2015/12/github-git-3/"/>
     <id>http://bluestein.github.io/2015/12/github-git-3/</id>
     <published>2015-12-03T04:54:49.000Z</published>
-    <updated>2015-12-03T11:52:48.332Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+    <updated>2015-12-03T12:48:59.337Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
 <p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>
 <a id="more"></a>
@@ -417,7 +417,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch [remote-name]</span><br></pre></td></tr></table></figure>
 <p>这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</p>
 <p>如果你使用 <code>clone</code> 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，<code>git fetch origin</code> 会抓取克隆（或上一次抓取）后新推送的所有工作。 必须注意 <code>git fetch</code> 命令会将数据拉取到你的本地仓库 - 它并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。</p>
-<p>如果你有一个分支设置为跟踪一个远程分支（阅读下一节与 <a href="http://bluestein.github.io/2015/11/github-git-4/">Git 分支</a> 了解更多信息），可以使用 <code>git pull</code> 命令来自动的抓取然后合并远程分支到当前分支。 这对你来说可能是一个更简单或更舒服的工作流程；默认情况下，<code>git clone</code> 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或不管是什么名字的默认分支）。 运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
+<p>如果你有一个分支设置为跟踪一个远程分支（阅读下一节与 <a href="http://bluestein.github.io/2015/12/github-git-4/">Git 分支</a> 了解更多信息），可以使用 <code>git pull</code> 命令来自动的抓取然后合并远程分支到当前分支。 这对你来说可能是一个更简单或更舒服的工作流程；默认情况下，<code>git clone</code> 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或不管是什么名字的默认分支）。 运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
 <p><strong>推送到远程仓库</strong></p>
 <p>当你想分享你的项目时，必须将其推送到上游。 这个命令很简单：<code>git push [remote-name] [branch-name]</code>。 当你想要将 master 分支推送到 <code>origin</code> 服务器时（再次说明，克隆时通常会自动帮你设置好那两个名字），那么运行这个命令就可以将你所做的备份到服务器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
@@ -435,7 +435,7 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/11/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
 <p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>]]>
     
