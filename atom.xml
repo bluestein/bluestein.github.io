@@ -85,11 +85,175 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Github: Git的使用 - 分支]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-4/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-4/</id>
+    <published>2015-12-03T07:54:49.000Z</published>
+    <updated>2015-12-03T12:56:13.101Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
+<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
+<a id="more"></a>
+<p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象，</p>
+<p>为了说得更加形象，我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和使用 SHA-1 哈希算法，然后会把当前版本的文件快照保存到 Git 仓库中（Git 使用 blob 对象来保存它们），最终将校验和加入到暂存区域等待提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m <span class="string">'The initial commit of my project'</span></span><br></pre></td></tr></table></figure>
+<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和，然后在 Git 仓库中这些校验和保存为树对象。 随后，Git 便会创建一个提交对象，它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
+<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 它会在每次的提交操作中自动向前移动。</p>
+<blockquote>
+<p>Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
+</blockquote>
+<p><strong>分支创建</strong></p>
+<p>Git 是怎么创建新分支的呢？ 很简单，它只是为你创建了一个可以移动的新的指针。 比如，创建一个 testing 分支， 你需要使用 git branch 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch testing</span><br></pre></td></tr></table></figure>
+<p>这会在当前所在的提交对象上创建一个指针。</p>
+<p>那么，Git 又是怎么知道当前在哪一个分支上呢？ 也很简单，它有一个名为 <code>HEAD</code> 的特殊指针。 请注意它和许多其它版本控制系统（如 Subversion 或 CVS）里的 <code>HEAD</code> 概念完全不同。 在 Git 中，它是一个指针，指向当前所在的本地分支（译注：将 <code>HEAD</code> 想象为当前分支的别名）。 在本例中，你仍然在 <code>master</code> 分支上。 因为 <code>git branch</code> 命令仅仅 创建 一个新分支，并不会自动切换到新分支中去。</p>
+<p>你可以简单地使用 <code>git log</code> 命令查看各个分支当前所指的对象。 提供这一功能的参数是 <code>--decorate</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --decorate</span><br></pre></td></tr></table></figure>
+<p><strong>分支切换</strong></p>
+<p>要切换到一个已存在的分支，你需要使用 <code>git checkout</code> 命令。 我们现在切换到新创建的 <code>testing</code> 分支去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout testing</span><br></pre></td></tr></table></figure>
+<p>这样 HEAD 就指向 <code>testing</code> 分支了。</p>
+<h3 id="4、分支的新建与合并">4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
+<p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
+<ol>
+<li>开发某个网站。</li>
+<li>为实现某个新的需求，创建一个分支。</li>
+<li>在这个分支上开展工作。</li>
+</ol>
+<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
+<ol>
+<li>切换到你的线上分支（production branch）。</li>
+<li>为这个紧急任务新建一个分支，并在其中修复它。</li>
+<li>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</li>
+<li>切换回你最初工作的分支上，继续工作。</li>
+</ol>
+<p><strong>新建分支</strong></p>
+<p>首先，我们假设你正在你的项目上工作，并且已经有一些提交。</p>
+<p>现在，你已经决定要解决你的公司使用的问题追踪系统中的 <code>#53</code> 问题。 想要新建一个分支并同时切换到那个分支上，你可以运行一个带有 <code>-b</code> 参数的 <code>git checkout</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53</span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br></pre></td></tr></table></figure>
+<p>它是下面两条命令的简写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch iss53</span><br><span class="line">$ git checkout iss53</span><br></pre></td></tr></table></figure>
+<p>你继续在 <code>#53</code> 问题上工作，并且做了一些提交。 在此过程中，<code>iss53</code> 分支在不断的向前推进，因为你已经检出到该分支（也就是说，你的 <code>HEAD</code> 指针指向了 <code>iss53</code> 分支）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added a new footer [issue 53]'</span></span><br></pre></td></tr></table></figure>
+<p>现在你接到那个电话，有个紧急问题等待你来解决。 有了 Git 的帮助，你不必把这个紧急问题和 <code>iss53</code> 的修改混在一起，你也不需要花大力气来还原关于 <code>53#</code> 问题的修改，然后再添加关于这个紧急问题的修改，最后将这个修改提交到线上分支。 你所要做的仅仅是切换回 <code>master</code> 分支。</p>
+<p>但是，在你这么做之前，要留意你的工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止 Git 切换到该分支。 最好的方法是，在你切换分支之前，保持好一个干净的状态。 有一些方法可以绕过这个问题（即，保存进度（stashing） 和 修补提交（commit amending）），我们会在 储藏与清理 中看到关于这两个命令的介绍。 现在，我们假设你已经把你的修改全部提交了，这时你可以切换回 <code>master</code> 分支了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
+<p>这个时候，你的工作目录和你在开始 <code>#53</code> 问题之前一模一样，现在你可以专心修复紧急问题了。 请牢记：当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。</p>
+<p>接下来，你要修复这个紧急问题。 让我们建立一个针对该紧急问题的分支（hotfix branch），在该分支上工作直到问题解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b hotfix</span><br><span class="line">Switched to a new branch <span class="string">'hotfix'</span></span><br><span class="line">$ vim index.html</span><br><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'fixed the broken email address'</span></span><br><span class="line">[hotfix <span class="number">1</span>fb7853] fixed the broken email address</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">2</span> insertions(+)</span><br></pre></td></tr></table></figure>
+<p>你在 hotfix 分支上所做的工作并没有包含到 <code>iss53</code> 分支中。 如果你需要拉取 <code>hotfix</code> 所做的修改，你可以使用 <code>git merge master</code> 命令将 <code>master</code> 分支合并入 <code>iss53</code> 分支，或者你也可以等到 <code>iss53</code> 分支完成其使命，再将其合并回 <code>master</code> 分支。</p>
+<p><strong>分支的合并</strong></p>
+<p>假设你已经修正了 <code>#53</code> 问题，并且打算将你的工作合并入 <code>master</code> 分支。 为此，你需要合并 <code>iss53</code> 分支到 <code>master</code> 分支，这和之前你合并 <code>hotfix</code> 分支所做的工作差不多。 你只需要检出到你想合并入的分支，然后运行 <code>git merge</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">$ git merge iss53</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line">index.html |    <span class="number">1</span> +</span><br><span class="line"><span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</span><br></pre></td></tr></table></figure>
+<p><strong>遇到冲突时的分支合并</strong></p>
+<p>有时候合并操作不会如此顺利。 如果你在两个不同的分支中，对同一个文件的同一个部分进行了不同的修改，Git 就没法干净的合并它们。 如果你对 #53 问题的修改和有关 hotfix 的修改都涉及到同一个文件的同一处，在合并它们的时候就会产生合并冲突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge iss53</span><br><span class="line">Auto-merging index.html</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> index.html</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
+<p>此时 Git 做了合并，但是没有自动地创建一个新的合并提交。 Git 会暂停下来，等待你去解决合并产生的冲突。</p>
+<p>如果你想使用图形化工具来解决冲突，你可以运行 <code>git mergetool</code>，该命令会为你启动一个合适的可视化合并工具，并带领你一步一步解决这些冲突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mergetool</span><br></pre></td></tr></table></figure>
+<p><strong>分支管理</strong></p>
+<p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86" target="_blank" rel="external">官网教程</a>。</p>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
+<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">官网教程</a>。</p>
+<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github: Git的使用 - 撤销操作]]></title>
+    <link href="http://bluestein.github.io/2015/12/github-git-3/"/>
+    <id>http://bluestein.github.io/2015/12/github-git-3/</id>
+    <published>2015-12-03T06:54:49.000Z</published>
+    <updated>2015-12-03T12:56:14.471Z</updated>
+    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
+<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>
+<a id="more"></a>
+<p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 –amend 选项的提交命令尝试重新提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<p>这个命令会将暂存区中的文件提交。 如果自上次提交以来你还未做任何修改（例如，在上次提交后马上执行了此命令），那么快照会保持不变，而你所修改的只是提交信息。</p>
+<p>例如，你提交后发现忘记了暂存某些需要的修改，可以像下面这样操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">'initial commit'</span></span><br><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<p>最终你只会有一个提交 - 第二次提交将代替第一次提交的结果。</p>
+<p><strong>取消暂存的文件</strong></p>
+<p>接下来的两个小节演示如何操作暂存区域与工作目录中已修改的文件。 这些命令在修改文件状态的同时，也会提示如何撤消操作。 例如，你已经修改了两个文件并且想要将它们作为两次独立的修改提交，但是却意外地输入了 <code>git add *</code> 暂存了它们两个。 如何只取消暂存两个中的一个呢？ <code>git status</code> 命令提示了你：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git add *</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>在 “Changes to be committed” 文字正下方，提示使用 <code>git reset HEAD &lt;file&gt;...</code> 来取消暂存。</p>
+<p><strong>撤消对文件的修改</strong></p>
+<p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？ 你该如何方便地撤消修改 - 将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？ 幸运的是，<code>git status</code> 也告诉了你应该如何做。 在最后一个例子中，未暂存区域是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
+<p>它非常清楚地告诉了你如何撤消之前所做的修改: 使用 <code>git checkout -- &lt;file&gt;...</code>。</p>
+<blockquote>
+<p>你需要知道 <code>git checkout -- [file]</code> 是一个危险的命令，这很重要。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。</p>
+</blockquote>
+<h3 id="3-5、远程仓库的使用">3.5、远程仓库的使用</h3><p>为了能在任意 Git 项目上协作，你需要知道如何管理自己的远程仓库。 远程仓库是指托管在因特网或其他网络中的你的项目的版本库。 你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。 与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。 管理远程仓库包括了解如何添加远程仓库、移除无效的远程仓库、管理不同的远程分支并定义它们是否被跟踪等等。 在本节中，我们将介绍一部分远程管理的技能。</p>
+<p><strong>查看远程仓库</strong></p>
+<p>如果想查看你已经配置的远程仓库服务器，可以运行 <code>git remote</code> 命令。 它会列出你指定的每一个远程服务器的简写。 如果你已经克隆了自己的仓库，那么至少应该能看到 origin - 这是 Git 给你克隆的仓库服务器的默认名字：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br><span class="line">...</span><br><span class="line">$ <span class="built_in">cd</span> hexo-theme-allgreen</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
+<p>你也可以指定选项 <code>-v</code>，会显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (fetch)</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (push)</span><br></pre></td></tr></table></figure>
+<p>如果你的远程仓库不止一个，该命令会将它们全部列出。 例如，与几个协作者合作的，拥有多个远程仓库的仓库看起来像下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> grit</span><br><span class="line">$ git remote -v</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (fetch)</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (push)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (fetch)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (push)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (fetch)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (push)</span><br><span class="line">koke      git://github.com/koke/grit.git (fetch)</span><br><span class="line">koke      git://github.com/koke/grit.git (push)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (fetch)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (push)</span><br></pre></td></tr></table></figure>
+<p>这样我们可以轻松拉取其中任何一个用户的贡献。 此外，我们大概还会有某些远程仓库的推送权限。</p>
+<p><strong>添加远程仓库</strong></p>
+<p>我在之前的章节中已经提到并展示了如何添加远程仓库的示例，不过这里将告诉你如何明确地做到这一点。 运行 <code>git remote add &lt;shortname&gt; &lt;url&gt;</code> 添加一个新的远程 Git 仓库，同时指定一个你可以轻松引用的简写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">$ git remote add pb https://github.com/paulboone/ticgit.git</span><br><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (fetch)</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (push)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (fetch)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (push)</span><br></pre></td></tr></table></figure>
+<p>现在你可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL。 例如，如果你想拉取 Paul 的仓库中有但你没有的信息，可以运行 <code>git fetch pb</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch pb</span><br></pre></td></tr></table></figure>
+<p><strong>从远程仓库中抓取与拉取</strong></p>
+<p>就如刚才所见，从远程仓库中获得数据，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch [remote-name]</span><br></pre></td></tr></table></figure>
+<p>这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</p>
+<p>如果你使用 <code>clone</code> 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，<code>git fetch origin</code> 会抓取克隆（或上一次抓取）后新推送的所有工作。 必须注意 <code>git fetch</code> 命令会将数据拉取到你的本地仓库 - 它并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。</p>
+<p>如果你有一个分支设置为跟踪一个远程分支（阅读下一节与 <a href="http://bluestein.github.io/2015/12/github-git-4/">Git 分支</a> 了解更多信息），可以使用 <code>git pull</code> 命令来自动的抓取然后合并远程分支到当前分支。 这对你来说可能是一个更简单或更舒服的工作流程；默认情况下，<code>git clone</code> 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或不管是什么名字的默认分支）。 运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
+<p><strong>推送到远程仓库</strong></p>
+<p>当你想分享你的项目时，必须将其推送到上游。 这个命令很简单：<code>git push [remote-name] [branch-name]</code>。 当你想要将 master 分支推送到 <code>origin</code> 服务器时（再次说明，克隆时通常会自动帮你设置好那两个名字），那么运行这个命令就可以将你所做的备份到服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<p>只有当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。 当你和其他人在同一时间克隆，他们先推送到上游然后你再推送到上游，你的推送就会毫无疑问地被拒绝。 你必须先将他们的工作拉取下来并将其合并进你的工作后才能推送。</p>
+<p><strong>查看远程仓库</strong></p>
+<p>如果想要查看某一个远程仓库的更多信息，可以使用 <code>git remote show [remote-name]</code> 命令。 如果想以一个特定的缩写名运行这个命令，例如 origin，会得到像下面类似的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show origin</span><br></pre></td></tr></table></figure>
+<p>这个命令列出了当你在特定的分支上执行 <code>git push</code> 会自动地推送到哪一个远程分支。 它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了，还有当你执行 <code>git pull</code> 时哪些分支会自动合并。</p>
+<p><strong>远程仓库的移除与重命名</strong></p>
+<p>如果想要重命名引用的名字可以运行 git remote rename 去修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rename pb paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">paul</span><br></pre></td></tr></table></figure>
+<p>值得注意的是这同样也会修改你的远程分支名字。 那些过去引用 <code>pb/master</code> 的现在会引用 <code>paul/master</code>。</p>
+<p>如果因为一些原因想要移除一个远程仓库 - 你已经从服务器上搬走了或不再想使用某一个特定的镜像了，又或者某一个贡献者不再贡献了 - 可以使用 <code>git remote rm</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
+<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
+<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
+    
+      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
+    
+      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Github: Git的使用 - 历史记录]]></title>
     <link href="http://bluestein.github.io/2015/12/github-git-2/"/>
     <id>http://bluestein.github.io/2015/12/github-git-2/</id>
-    <published>2015-12-03T06:54:49.000Z</published>
-    <updated>2015-12-03T12:48:44.840Z</updated>
+    <published>2015-12-03T05:54:49.000Z</published>
+    <updated>2015-12-03T12:56:14.468Z</updated>
     <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>
 <a id="more"></a>
@@ -274,170 +438,6 @@
     <summary type="html">
     <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-1/">Github: Git的使用 - 安装配置</a>的第二小节，下面继续介绍git的更多用法。</p>
 <h3 id="3-3、查看提交历史">3.3、查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史. 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>]]>
-    
-    </summary>
-    
-      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
-    
-      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
-    
-      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github: Git的使用 - 分支]]></title>
-    <link href="http://bluestein.github.io/2015/12/github-git-4/"/>
-    <id>http://bluestein.github.io/2015/12/github-git-4/</id>
-    <published>2015-12-03T05:54:49.000Z</published>
-    <updated>2015-12-03T12:51:26.062Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
-<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
-<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
-<a id="more"></a>
-<p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象，</p>
-<p>为了说得更加形象，我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和使用 SHA-1 哈希算法，然后会把当前版本的文件快照保存到 Git 仓库中（Git 使用 blob 对象来保存它们），最终将校验和加入到暂存区域等待提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m <span class="string">'The initial commit of my project'</span></span><br></pre></td></tr></table></figure>
-<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和，然后在 Git 仓库中这些校验和保存为树对象。 随后，Git 便会创建一个提交对象，它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
-<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 它会在每次的提交操作中自动向前移动。</p>
-<blockquote>
-<p>Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
-</blockquote>
-<p><strong>分支创建</strong></p>
-<p>Git 是怎么创建新分支的呢？ 很简单，它只是为你创建了一个可以移动的新的指针。 比如，创建一个 testing 分支， 你需要使用 git branch 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch testing</span><br></pre></td></tr></table></figure>
-<p>这会在当前所在的提交对象上创建一个指针。</p>
-<p>那么，Git 又是怎么知道当前在哪一个分支上呢？ 也很简单，它有一个名为 <code>HEAD</code> 的特殊指针。 请注意它和许多其它版本控制系统（如 Subversion 或 CVS）里的 <code>HEAD</code> 概念完全不同。 在 Git 中，它是一个指针，指向当前所在的本地分支（译注：将 <code>HEAD</code> 想象为当前分支的别名）。 在本例中，你仍然在 <code>master</code> 分支上。 因为 <code>git branch</code> 命令仅仅 创建 一个新分支，并不会自动切换到新分支中去。</p>
-<p>你可以简单地使用 <code>git log</code> 命令查看各个分支当前所指的对象。 提供这一功能的参数是 <code>--decorate</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --decorate</span><br></pre></td></tr></table></figure>
-<p><strong>分支切换</strong></p>
-<p>要切换到一个已存在的分支，你需要使用 <code>git checkout</code> 命令。 我们现在切换到新创建的 <code>testing</code> 分支去：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout testing</span><br></pre></td></tr></table></figure>
-<p>这样 HEAD 就指向 <code>testing</code> 分支了。</p>
-<h3 id="4、分支的新建与合并">4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
-<p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
-<ol>
-<li>开发某个网站。</li>
-<li>为实现某个新的需求，创建一个分支。</li>
-<li>在这个分支上开展工作。</li>
-</ol>
-<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
-<ol>
-<li>切换到你的线上分支（production branch）。</li>
-<li>为这个紧急任务新建一个分支，并在其中修复它。</li>
-<li>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</li>
-<li>切换回你最初工作的分支上，继续工作。</li>
-</ol>
-<p><strong>新建分支</strong></p>
-<p>首先，我们假设你正在你的项目上工作，并且已经有一些提交。</p>
-<p>现在，你已经决定要解决你的公司使用的问题追踪系统中的 <code>#53</code> 问题。 想要新建一个分支并同时切换到那个分支上，你可以运行一个带有 <code>-b</code> 参数的 <code>git checkout</code> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53</span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br></pre></td></tr></table></figure>
-<p>它是下面两条命令的简写：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch iss53</span><br><span class="line">$ git checkout iss53</span><br></pre></td></tr></table></figure>
-<p>你继续在 <code>#53</code> 问题上工作，并且做了一些提交。 在此过程中，<code>iss53</code> 分支在不断的向前推进，因为你已经检出到该分支（也就是说，你的 <code>HEAD</code> 指针指向了 <code>iss53</code> 分支）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added a new footer [issue 53]'</span></span><br></pre></td></tr></table></figure>
-<p>现在你接到那个电话，有个紧急问题等待你来解决。 有了 Git 的帮助，你不必把这个紧急问题和 <code>iss53</code> 的修改混在一起，你也不需要花大力气来还原关于 <code>53#</code> 问题的修改，然后再添加关于这个紧急问题的修改，最后将这个修改提交到线上分支。 你所要做的仅仅是切换回 <code>master</code> 分支。</p>
-<p>但是，在你这么做之前，要留意你的工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止 Git 切换到该分支。 最好的方法是，在你切换分支之前，保持好一个干净的状态。 有一些方法可以绕过这个问题（即，保存进度（stashing） 和 修补提交（commit amending）），我们会在 储藏与清理 中看到关于这两个命令的介绍。 现在，我们假设你已经把你的修改全部提交了，这时你可以切换回 <code>master</code> 分支了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
-<p>这个时候，你的工作目录和你在开始 <code>#53</code> 问题之前一模一样，现在你可以专心修复紧急问题了。 请牢记：当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。</p>
-<p>接下来，你要修复这个紧急问题。 让我们建立一个针对该紧急问题的分支（hotfix branch），在该分支上工作直到问题解决：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b hotfix</span><br><span class="line">Switched to a new branch <span class="string">'hotfix'</span></span><br><span class="line">$ vim index.html</span><br><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'fixed the broken email address'</span></span><br><span class="line">[hotfix <span class="number">1</span>fb7853] fixed the broken email address</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">2</span> insertions(+)</span><br></pre></td></tr></table></figure>
-<p>你在 hotfix 分支上所做的工作并没有包含到 <code>iss53</code> 分支中。 如果你需要拉取 <code>hotfix</code> 所做的修改，你可以使用 <code>git merge master</code> 命令将 <code>master</code> 分支合并入 <code>iss53</code> 分支，或者你也可以等到 <code>iss53</code> 分支完成其使命，再将其合并回 <code>master</code> 分支。</p>
-<p><strong>分支的合并</strong></p>
-<p>假设你已经修正了 <code>#53</code> 问题，并且打算将你的工作合并入 <code>master</code> 分支。 为此，你需要合并 <code>iss53</code> 分支到 <code>master</code> 分支，这和之前你合并 <code>hotfix</code> 分支所做的工作差不多。 你只需要检出到你想合并入的分支，然后运行 <code>git merge</code> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">$ git merge iss53</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line">index.html |    <span class="number">1</span> +</span><br><span class="line"><span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</span><br></pre></td></tr></table></figure>
-<p><strong>遇到冲突时的分支合并</strong></p>
-<p>有时候合并操作不会如此顺利。 如果你在两个不同的分支中，对同一个文件的同一个部分进行了不同的修改，Git 就没法干净的合并它们。 如果你对 #53 问题的修改和有关 hotfix 的修改都涉及到同一个文件的同一处，在合并它们的时候就会产生合并冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge iss53</span><br><span class="line">Auto-merging index.html</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> index.html</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
-<p>此时 Git 做了合并，但是没有自动地创建一个新的合并提交。 Git 会暂停下来，等待你去解决合并产生的冲突。</p>
-<p>如果你想使用图形化工具来解决冲突，你可以运行 <code>git mergetool</code>，该命令会为你启动一个合适的可视化合并工具，并带领你一步一步解决这些冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mergetool</span><br></pre></td></tr></table></figure>
-<p><strong>分支管理</strong></p>
-<p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86" target="_blank" rel="external">官网教程</a>。</p>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
-<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">官网教程</a>。</p>
-<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>]]>
-    
-    </summary>
-    
-      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
-    
-      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
-    
-      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github: Git的使用 - 撤销操作]]></title>
-    <link href="http://bluestein.github.io/2015/12/github-git-3/"/>
-    <id>http://bluestein.github.io/2015/12/github-git-3/</id>
-    <published>2015-12-03T04:54:49.000Z</published>
-    <updated>2015-12-03T12:48:59.337Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
-<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
-<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>
-<a id="more"></a>
-<p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 –amend 选项的提交命令尝试重新提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
-<p>这个命令会将暂存区中的文件提交。 如果自上次提交以来你还未做任何修改（例如，在上次提交后马上执行了此命令），那么快照会保持不变，而你所修改的只是提交信息。</p>
-<p>例如，你提交后发现忘记了暂存某些需要的修改，可以像下面这样操作：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">'initial commit'</span></span><br><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
-<p>最终你只会有一个提交 - 第二次提交将代替第一次提交的结果。</p>
-<p><strong>取消暂存的文件</strong></p>
-<p>接下来的两个小节演示如何操作暂存区域与工作目录中已修改的文件。 这些命令在修改文件状态的同时，也会提示如何撤消操作。 例如，你已经修改了两个文件并且想要将它们作为两次独立的修改提交，但是却意外地输入了 <code>git add *</code> 暂存了它们两个。 如何只取消暂存两个中的一个呢？ <code>git status</code> 命令提示了你：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git add *</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
-<p>在 “Changes to be committed” 文字正下方，提示使用 <code>git reset HEAD &lt;file&gt;...</code> 来取消暂存。</p>
-<p><strong>撤消对文件的修改</strong></p>
-<p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？ 你该如何方便地撤消修改 - 将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？ 幸运的是，<code>git status</code> 也告诉了你应该如何做。 在最后一个例子中，未暂存区域是这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br></pre></td></tr></table></figure>
-<p>它非常清楚地告诉了你如何撤消之前所做的修改: 使用 <code>git checkout -- &lt;file&gt;...</code>。</p>
-<blockquote>
-<p>你需要知道 <code>git checkout -- [file]</code> 是一个危险的命令，这很重要。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。</p>
-</blockquote>
-<h3 id="3-5、远程仓库的使用">3.5、远程仓库的使用</h3><p>为了能在任意 Git 项目上协作，你需要知道如何管理自己的远程仓库。 远程仓库是指托管在因特网或其他网络中的你的项目的版本库。 你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。 与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。 管理远程仓库包括了解如何添加远程仓库、移除无效的远程仓库、管理不同的远程分支并定义它们是否被跟踪等等。 在本节中，我们将介绍一部分远程管理的技能。</p>
-<p><strong>查看远程仓库</strong></p>
-<p>如果想查看你已经配置的远程仓库服务器，可以运行 <code>git remote</code> 命令。 它会列出你指定的每一个远程服务器的简写。 如果你已经克隆了自己的仓库，那么至少应该能看到 origin - 这是 Git 给你克隆的仓库服务器的默认名字：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br><span class="line">...</span><br><span class="line">$ <span class="built_in">cd</span> hexo-theme-allgreen</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
-<p>你也可以指定选项 <code>-v</code>，会显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (fetch)</span><br><span class="line">origin	https://github.com/bluestein/hexo-theme-allgreen.git (push)</span><br></pre></td></tr></table></figure>
-<p>如果你的远程仓库不止一个，该命令会将它们全部列出。 例如，与几个协作者合作的，拥有多个远程仓库的仓库看起来像下面这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> grit</span><br><span class="line">$ git remote -v</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (fetch)</span><br><span class="line">bakkdoor  https://github.com/bakkdoor/grit.git (push)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (fetch)</span><br><span class="line">cho45     https://github.com/cho45/grit.git (push)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (fetch)</span><br><span class="line">defunkt   https://github.com/defunkt/grit.git (push)</span><br><span class="line">koke      git://github.com/koke/grit.git (fetch)</span><br><span class="line">koke      git://github.com/koke/grit.git (push)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (fetch)</span><br><span class="line">origin    git@github.com:mojombo/grit.git (push)</span><br></pre></td></tr></table></figure>
-<p>这样我们可以轻松拉取其中任何一个用户的贡献。 此外，我们大概还会有某些远程仓库的推送权限。</p>
-<p><strong>添加远程仓库</strong></p>
-<p>我在之前的章节中已经提到并展示了如何添加远程仓库的示例，不过这里将告诉你如何明确地做到这一点。 运行 <code>git remote add &lt;shortname&gt; &lt;url&gt;</code> 添加一个新的远程 Git 仓库，同时指定一个你可以轻松引用的简写：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">$ git remote add pb https://github.com/paulboone/ticgit.git</span><br><span class="line">$ git remote -v</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (fetch)</span><br><span class="line">origin	https://github.com/schacon/ticgit.git (push)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (fetch)</span><br><span class="line">pb	https://github.com/paulboone/ticgit.git (push)</span><br></pre></td></tr></table></figure>
-<p>现在你可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL。 例如，如果你想拉取 Paul 的仓库中有但你没有的信息，可以运行 <code>git fetch pb</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch pb</span><br></pre></td></tr></table></figure>
-<p><strong>从远程仓库中抓取与拉取</strong></p>
-<p>就如刚才所见，从远程仓库中获得数据，可以执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch [remote-name]</span><br></pre></td></tr></table></figure>
-<p>这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。</p>
-<p>如果你使用 <code>clone</code> 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写。 所以，<code>git fetch origin</code> 会抓取克隆（或上一次抓取）后新推送的所有工作。 必须注意 <code>git fetch</code> 命令会将数据拉取到你的本地仓库 - 它并不会自动合并或修改你当前的工作。 当准备好时你必须手动将其合并入你的工作。</p>
-<p>如果你有一个分支设置为跟踪一个远程分支（阅读下一节与 <a href="http://bluestein.github.io/2015/12/github-git-4/">Git 分支</a> 了解更多信息），可以使用 <code>git pull</code> 命令来自动的抓取然后合并远程分支到当前分支。 这对你来说可能是一个更简单或更舒服的工作流程；默认情况下，<code>git clone</code> 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或不管是什么名字的默认分支）。 运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
-<p><strong>推送到远程仓库</strong></p>
-<p>当你想分享你的项目时，必须将其推送到上游。 这个命令很简单：<code>git push [remote-name] [branch-name]</code>。 当你想要将 master 分支推送到 <code>origin</code> 服务器时（再次说明，克隆时通常会自动帮你设置好那两个名字），那么运行这个命令就可以将你所做的备份到服务器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
-<p>只有当你有所克隆服务器的写入权限，并且之前没有人推送过时，这条命令才能生效。 当你和其他人在同一时间克隆，他们先推送到上游然后你再推送到上游，你的推送就会毫无疑问地被拒绝。 你必须先将他们的工作拉取下来并将其合并进你的工作后才能推送。</p>
-<p><strong>查看远程仓库</strong></p>
-<p>如果想要查看某一个远程仓库的更多信息，可以使用 <code>git remote show [remote-name]</code> 命令。 如果想以一个特定的缩写名运行这个命令，例如 origin，会得到像下面类似的信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show origin</span><br></pre></td></tr></table></figure>
-<p>这个命令列出了当你在特定的分支上执行 <code>git push</code> 会自动地推送到哪一个远程分支。 它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了，还有当你执行 <code>git pull</code> 时哪些分支会自动合并。</p>
-<p><strong>远程仓库的移除与重命名</strong></p>
-<p>如果想要重命名引用的名字可以运行 git remote rename 去修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rename pb paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">paul</span><br></pre></td></tr></table></figure>
-<p>值得注意的是这同样也会修改你的远程分支名字。 那些过去引用 <code>pb/master</code> 的现在会引用 <code>paul/master</code>。</p>
-<p>如果因为一些原因想要移除一个远程仓库 - 你已经从服务器上搬走了或不再想使用某一个特定的镜像了，又或者某一个贡献者不再贡献了 - 可以使用 <code>git remote rm</code> ：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm paul</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
-<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
-<p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>]]>
     
     </summary>
     
