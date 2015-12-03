@@ -450,39 +450,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[c++ demo: vector存放指针]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-3/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-3/</id>
-    <published>2015-12-02T14:01:42.000Z</published>
-    <updated>2015-12-02T14:14:39.579Z</updated>
-    <content type="html"><![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt; v;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(s);</span><br><span class="line">		v.push_back(sp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt;::iterator iter = v.begin();</span><br><span class="line">	<span class="keyword">while</span> (iter != v.end()) &#123;</span><br><span class="line">		<span class="built_in">string</span> *tmp = *iter;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; tmp-&gt;size() &lt;&lt; <span class="string">", "</span> &lt;&lt; *tmp &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		iter++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world!↙</span><br><span class="line">^Z↙</span><br><span class="line"><span class="number">5</span>, hello</span><br><span class="line"><span class="number">6</span>, world!</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Github: Git的使用 - 安装配置]]></title>
     <link href="http://bluestein.github.io/2015/12/github-git-1/"/>
     <id>http://bluestein.github.io/2015/12/github-git-1/</id>
-    <published>2015-12-02T07:54:49.000Z</published>
-    <updated>2015-12-03T11:53:07.352Z</updated>
+    <published>2015-12-03T01:54:49.000Z</published>
+    <updated>2015-12-03T12:53:16.351Z</updated>
     <content type="html"><![CDATA[<p><strong>Github 是什么？</strong></p>
 <blockquote>
 <p>GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers.<br>（GitHub是和朋友、同学、同事或完全陌生的人分享代码最好的地方）</p>
@@ -619,6 +591,34 @@
       <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
     
       <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++ demo: vector存放指针]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-demo-3/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-demo-3/</id>
+    <published>2015-12-02T14:01:42.000Z</published>
+    <updated>2015-12-02T14:14:39.579Z</updated>
+    <content type="html"><![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt; v;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(s);</span><br><span class="line">		v.push_back(sp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt;::iterator iter = v.begin();</span><br><span class="line">	<span class="keyword">while</span> (iter != v.end()) &#123;</span><br><span class="line">		<span class="built_in">string</span> *tmp = *iter;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; tmp-&gt;size() &lt;&lt; <span class="string">", "</span> &lt;&lt; *tmp &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		iter++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hello↙</span><br><span class="line">world!↙</span><br><span class="line">^Z↙</span><br><span class="line"><span class="number">5</span>, hello</span><br><span class="line"><span class="number">6</span>, world!</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/tags/C-Demo/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++ Demo" scheme="http://bluestein.github.io/categories/Dev/C-Demo/"/>
     
   </entry>
   
