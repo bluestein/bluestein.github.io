@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Everything will be ok]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-03T12:36:50.336Z</updated>
+  <updated>2015-12-03T12:40:09.285Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,46 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Github: 对项目做出贡献]]></title>
-    <link href="http://bluestein.github.io/2015/12/github-2/"/>
-    <id>http://bluestein.github.io/2015/12/github-2/</id>
-    <published>2015-12-04T04:54:49.000Z</published>
-    <updated>2015-12-03T12:36:50.336Z</updated>
-    <content type="html"><![CDATA[<p>账户已经建立好了，现在我们来了解一些能帮助你对现有的项目做出贡献的知识。</p>
-<p><strong>派生（Fork）项目</strong></p>
-<p>如果你想要参与某个项目，但是并没有推送权限，这时可以对这个项目进行“派生”。 派生的意思是指，GitHub 将在你的空间中创建一个完全属于你的项目副本，且你对其具有推送权限。</p>
-<a id="more"></a>
-<blockquote>
-<p>在 GitHub，“fork”指的是你自己的空间中创建的项目副本，这个副本允许你以一种更开放的方式对其进行修改。</p>
-</blockquote>
-<p>通过这种方式，项目的管理者不再需要忙着把用户添加到贡献者列表并给予他们推送权限。 人们可以派生这个项目，将修改推送到派生出的项目副本中，并通过创建合并请求（Pull Request）来让他们的改动进入源版本库，下文我们会详细说明。 创建了合并请求后，就会开启一个可供审查代码的板块，项目的拥有者和贡献者可以在此讨论相关修改，直到项目拥有者对其感到满意，并且认为这些修改可以被合并到版本库。</p>
-<p><strong>GitHub 流程</strong></p>
-<p>GitHub 设计了一个以合并请求为中心的特殊合作流程。不管你是在一个紧密的团队中使用单独的版本库，或者使用许多的“Fork”来为一个由陌生人组成的国际企业或网络做出贡献，这种合作流程都能应付。</p>
-<p>流程通常如下：</p>
-<ol>
-<li>从 master 分支中创建一个新分支</li>
-<li>提交一些修改来改进项目</li>
-<li>将这个分支推送到 GitHub 上</li>
-<li>创建一个合并请求</li>
-<li>讨论，根据实际情况继续修改</li>
-<li>项目的拥有者合并或关闭你的合并请求</li>
-</ol>
-<p>详细请查看<a href="http://www.git-scm.com/book/zh/v2/GitHub-%E5%AF%B9%E9%A1%B9%E7%9B%AE%E5%81%9A%E5%87%BA%E8%B4%A1%E7%8C%AE" target="_blank" rel="external">GitHub-对项目做出贡献</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>账户已经建立好了，现在我们来了解一些能帮助你对现有的项目做出贡献的知识。</p>
-<p><strong>派生（Fork）项目</strong></p>
-<p>如果你想要参与某个项目，但是并没有推送权限，这时可以对这个项目进行“派生”。 派生的意思是指，GitHub 将在你的空间中创建一个完全属于你的项目副本，且你对其具有推送权限。</p>]]>
-    
-    </summary>
-    
-      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
-    
-      <category term="Github" scheme="http://bluestein.github.io/categories/Github/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[Github: 账户的创建和配置]]></title>
@@ -2377,6 +2337,82 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[8:迭代器iterator]]></title>
+    <link href="http://bluestein.github.io/2015/11/cpp-primer4-8/"/>
+    <id>http://bluestein.github.io/2015/11/cpp-primer4-8/</id>
+    <published>2015-11-18T08:49:34.000Z</published>
+    <updated>2015-11-30T02:57:17.813Z</updated>
+    <content type="html"><![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>
+<a id="more"></a>
+<h3 id="1、容器的iterator类型">1、容器的iterator类型</h3><hr>
+<p>每种容器都定义了自己的迭代器类型，如vector：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同一术语 <code>iterator</code> 往往表示两个不同的事物，一般来说是指 <strong>迭代器</strong> 的概念；而具体而言时是指由容器定义的iterator类型，如vector<int>。</int></p>
+</blockquote>
+<h3 id="2、begin和end操作">2、begin和end操作</h3><hr>
+<p>每种容器都定义了一对名为 begin 和 end 的函数，用于返回迭代器。容器不为空时，begin 返回的是容器的第一个元素：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin();</span><br></pre></td></tr></table></figure>
+<p><code>iter</code> 指向的是 <code>intv[0]</code>。</p>
+<p>end 返回的迭代器指向的是vector的 <strong>末端的下一个</strong>，通常称为 <strong>超出末端迭代器（off-the-end iterator）</strong>，它指向一个不存在的元素，如果vector为空，则begin和end返回的迭代器相同。</p>
+<blockquote>
+<p>end只是起一个<strong>哨兵（sentinel）</strong>的作用，表示已处理完所有元素。</p>
+</blockquote>
+<h3 id="3、vector迭代器的自增和解引用运算等">3、vector迭代器的自增和解引用运算等</h3><hr>
+<ul>
+<li><p><strong>自增操作</strong> <code>++</code>：表示向前移动迭代器，指向下一个元素。可以结合 int 的自增理解：对于 int 类型来说，表示 “加1”，而对容器来说，是“下移一个位置”。如果当前迭代器指向第一个元素，则 <code>++iter</code> 表示指向第二个元素。</p>
+</li>
+<li><p><strong>解引用操作</strong> <code>*</code>：可以用来访问迭代器所指向的元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*iter = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>  如果迭代器当前指向第一个元素，则上述程序表示：<code>intv[0] = 0</code>。</p>
+</li>
+<li><p><code>==, !=</code> 可以用来比较两个迭代器</p>
+</li>
+</ul>
+<h3 id="3、示例">3、示例</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) &#123;</span><br><span class="line">		intv.push_back(i);	<span class="comment">//ok:动态增加</span></span><br><span class="line">	&#125;	<span class="comment">//添加元素 0-9</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;</span><br><span class="line">		*iter = <span class="number">1</span>;	<span class="comment">//改变vector的值</span></span><br><span class="line">	&#125;	<span class="comment">//跟下面的可以达到相同的效果</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != intv.size(); ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; intv[i] &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,</span><br><span class="line"><span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="4、const_iterator">4、const_iterator</h3><hr>
+<p>前面的 <code>vector::iterator</code> 可以用来改变元素的值，每个容器还定义了一种只能读取元素但不能改变值得iterator类型：<strong>const_iterator</strong>。</p>
+<p>跟普通的iterator类型的区别在于：普通iterator类型解引用时得到的是非const引用，而const_iterator解引用时，得到的是const引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;	<span class="comment">//ok</span></span><br><span class="line">	*iter = <span class="number">0</span>;				<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不能把 const_iteraor 与const iterator 混淆。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator citer = nums.begin();</span><br><span class="line">*citer = <span class="number">1</span>;	<span class="comment">//ok</span></span><br><span class="line">++citer;	<span class="comment">//error：不能改变迭代器的值</span></span><br></pre></td></tr></table></figure>
+<p>const_iterator 可以用于 const vector 和非 const vector。但由于不能改变值，const iterator 基本没什么用:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nines(<span class="number">10</span>, <span class="number">9</span>);		<span class="comment">//这样定义的nines的元素不能被改变</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator citer = nines.begin();	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter = nines.begin();</span><br><span class="line">*iter = <span class="number">1</span>;	<span class="comment">//error：*iter是const</span></span><br><span class="line">++iter;		<span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>vector<int>::const_iterator //不能改变容器的值<br>const vector<int>::iterator //不能改变迭代器的值</int></int></p>
+</blockquote>
+<h3 id="5、迭代器的算术运算">5、迭代器的算术运算</h3><hr>
+<p>除了一次移动一个元素之外，迭代器还支持其他算术操作</p>
+<ul>
+<li><code>iter +(-) n</code>：产生一个新的迭代器，其位置在iter之前（加）或之后（减）的位置。但是加减后的位置还必须是指向vector中的某个元素，或末端的下一个；</li>
+<li><code>iter1 - iter2</code>：计算两个迭代器间的距离，该距离是 <strong>difference_type</strong> 的 signed 类型的值，类似于 size_type 也是由vector定义。iter1 和 iter2 必须都指向同一个vector容器，或末端的下一个；</li>
+</ul>
+<p>下面语句可直接定位vector中间元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator mid = intv.begin() + intv.size()/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>任何改变vector长度的操作都会使已存在的迭代器失效。例如调用 push_back 之后，迭代器所指向的元素将会改变。</p>
+</blockquote>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>]]>
     
     </summary>
     
