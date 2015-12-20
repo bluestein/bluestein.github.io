@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Everything will be ok]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-17T07:41:17.606Z</updated>
+  <updated>2015-12-20T14:01:33.141Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,137 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[swift: functions]]></title>
+    <link href="http://bluestein.github.io/2015/12/swift-functions/"/>
+    <id>http://bluestein.github.io/2015/12/swift-functions/</id>
+    <published>2015-12-20T11:53:33.000Z</published>
+    <updated>2015-12-20T14:01:33.141Z</updated>
+    <content type="html"><![CDATA[<p><strong>defining and calling</strong></p>
+<p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<ul>
+<li>输入类型: <code>String</code></li>
+<li>返回值类型： <code>String</code><blockquote>
+<p>说明： 函数的定义，以 <code>func</code> 作为关键字，后面跟该函数的名字，使用 <code>:</code> 指定参数的类型， <code>-&gt;</code> 指定返回值的类型。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(sayHello(<span class="string">"Anna"</span>))</span><br><span class="line"><span class="comment">// prints "Hello, Anna!"</span></span><br><span class="line"><span class="built_in">print</span>(sayHello(<span class="string">"Brian"</span>))</span><br><span class="line"><span class="comment">// prints "Hello, Brian!"</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>使用 <code>print(_:separator:terminator:)</code> 来打印输出。</p>
+<p><strong>parameters and return values</strong><br>swift中的函数的参数和返回值可以是任何类型，甚至可以是函数类型（在swift中，函数也是一种类型，后面会讲到）。</p>
+<p><strong>without parameters</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHelloWorld</span><span class="params">()</span></span> -&gt; string &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"Hello World"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>multiple parameters</strong><br>多个参数时，用逗号隔开即可：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String, alreadyGreeted: Bool)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> already_greeted &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Hello again, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> sayHello(personName)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(sayHello(<span class="string">"Tim"</span>, alreadyGreeted: <span class="literal">false</span>))</span><br></pre></td></tr></table></figure></p>
+<p>调用的形式是 <code>sayHello(_:alreadyGreeted:)</code>，通常第一个参数名后面的所有参数名需要标明。</p>
+<p><strong>without return value</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func sayBye(personName: String) &#123;</span><br><span class="line">	print("Goodbye, \(personName)!)</span><br><span class="line">&#125;</span><br><span class="line">sayBye("Dave")</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>严格地说，<code>sayBye(_:)</code> 还是有返回值的，为 <code>Void</code> 类型， 记作 <code>()</code>。</p>
+</blockquote>
+<p><strong>multiple return values</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">minMax</span><span class="params">(array: [Int])</span></span> -&gt; (<span class="built_in">min</span>: <span class="type">Int</span>, <span class="built_in">max</span>: <span class="type">Int</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> currentMin = array[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">var</span> currentMax = array[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> value <span class="keyword">in</span> array[<span class="number">1</span>..&lt;array.<span class="built_in">count</span>] &#123;</span><br><span class="line">		<span class="keyword">if</span> value &lt; currentMin &#123;</span><br><span class="line">			currentMin = value</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> value &gt; currentMax &#123;</span><br><span class="line">			currentMax = value</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (currentMin, currentMax)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, -<span class="number">10</span>, <span class="number">20</span>]</span><br><span class="line"><span class="keyword">let</span> bounds = minMax(array)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"min: <span class="subst">\(bounds.<span class="built_in">min</span>)</span>, max: <span class="subst">\(bounds.<span class="built_in">max</span>)</span>."</span>)</span><br></pre></td></tr></table></figure></p>
+<p>把多个返回值当成一个元组返回。<br>但如果，用户传入的数组为空则会出错，此时需要使用 <code>optional tuple</code>， 即 <code>(Int, Int)?</code>，上述程序改成：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">minMax</span><span class="params">(array: [Int])</span></span> -&gt; (<span class="built_in">min</span>: <span class="type">Int</span>, <span class="built_in">max</span>: <span class="type">Int</span>)? &#123;</span><br><span class="line">	<span class="keyword">if</span> array.isEmpty &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">	<span class="keyword">var</span> currentMin = array[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">var</span> currentMax = array[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> value <span class="keyword">in</span> array[<span class="number">1</span>..&lt;array.<span class="built_in">count</span>] &#123;</span><br><span class="line">		<span class="keyword">if</span> value &lt; currentMin &#123;</span><br><span class="line">			currentMin = value</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> value &gt; currentMax &#123;</span><br><span class="line">			currentMax = value</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (currentMin, currentMax)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, -<span class="number">10</span>, <span class="number">20</span>]</span><br><span class="line"><span class="keyword">let</span> bounds = minMax(array)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"min: <span class="subst">\(bounds.<span class="built_in">min</span>)</span>, max: <span class="subst">\(bounds.<span class="built_in">max</span>)</span>."</span>)</span><br><span class="line"><span class="comment">// as above</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> emptyArray = [<span class="type">Int</span>]()</span><br><span class="line"><span class="built_in">print</span>(minMax(emptyArray))</span><br><span class="line"><span class="comment">// prints "nil"</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>functon names</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">someFuction</span><span class="params">(fisrtParameterName: Int, secondParameterName: Int)</span></span> &#123;</span><br><span class="line">	<span class="comment">// function body goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calling</span></span><br><span class="line">someFuction(<span class="number">1</span>, secondParameterName: <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>默认情况下，省略了第一个参数额外参数，其他则使用 <code>local name</code> 作为 <code>external name</code></p>
+<p><strong>external parameter names</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">someFuction</span><span class="params">(externalParameterName localParameterName: Int)</span></span> &#123;</span><br><span class="line">	<span class="comment">// function body goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calling</span></span><br><span class="line">someFuction(externalParameterName: <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>omitting external names</strong><br>使用下划线 <code>_</code> 来替代，则调用时不用标明external names：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">someFuction</span><span class="params">(fisrtParameterName: Int, <span class="number">_</span> secondParameterName: Int)</span></span> &#123;</span><br><span class="line">	<span class="comment">// function body goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calling</span></span><br><span class="line">someFuction(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>default parameter values</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">someFuction</span><span class="params">(localParameterName: Int = <span class="number">12</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// function body goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// calling</span></span><br><span class="line">someFuction(<span class="number">1</span>)</span><br><span class="line">someFuction()</span><br></pre></td></tr></table></figure></p>
+<p><strong>variadic parameters</strong><br>参数个数可变的情况，在参数的类型后面使用 <code>...</code> 来表示该类型的参数可以不确定：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">arithmeticMean</span><span class="params">(numbers: Double...)</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> total: <span class="type">Double</span> = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">		total += number</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> total / <span class="type">Double</span>(numbers.<span class="built_in">count</span>)</span><br><span class="line">&#125;</span><br><span class="line">arithmeticMean(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">arithmeticMean(<span class="number">3</span>, <span class="number">1.5</span>, <span class="number">14.75</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>constant and variable parameter</strong><br>一般来说函数为常量参数，但也可以用变量参数。使用 <code>var</code> 来表明变量参数，这样就可以改变该变量的值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">alignRight</span><span class="params">(<span class="keyword">var</span> sting: String, totalLength: Int, pad: Character)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> amountToPad = totalLength - string.characters.<span class="built_in">count</span></span><br><span class="line">	<span class="keyword">if</span> amountToPad &lt; <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> string</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">let</span> padString = <span class="type">String</span>(pad)</span><br><span class="line">	<span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...amountToPad &#123;</span><br><span class="line">		string = padString + string</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> string</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> originalString = <span class="string">"hello"</span></span><br><span class="line"><span class="keyword">let</span> paddesString = alginRigth(originalString, totalLength: <span class="number">10</span>, pad: </span><br><span class="line"><span class="string">"-"</span>)</span><br><span class="line"><span class="comment">// prints "-----hello"</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>in-out parameters</strong><br>上面所说的变量参数，只能在当前函数内可以改变它的值，如果想要永久改变一个值则需要需用 <code>inout</code> 关键字标明。并且调用时需要在变量前加上 <code>&amp;</code> 符号：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">swapTwoInts</span><span class="params">(<span class="keyword">inout</span> a: Int, <span class="keyword">inout</span> <span class="number">_</span> b: Int)</span></span> &#123;</span><br><span class="line">	<span class="keyword">let</span> temporaryA = a</span><br><span class="line">	a = b</span><br><span class="line">	b = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> someInt = <span class="number">2</span></span><br><span class="line"><span class="keyword">var</span> anotherInt = <span class="number">3</span></span><br><span class="line">swapTwoInts(&amp;someInt, &amp;anotherInt)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Function types</strong><br>swift把函数也当作一种类型看待，可以像 <code>Int</code> 那样进行操作：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">addTwoInts</span><span class="params">(a: Int, <span class="number">_</span> b: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> a+ b</span><br><span class="line">&#125;</span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">multiplyTwoInts</span><span class="params">(a: Int, <span class="number">_</span> b: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> a * b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这两个函数都可以记作为 <code>(Int, Int) -&gt; Int</code>。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">printHelloWorld</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Hello World"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>则可以看做 <code>() -&gt; Void</code>。</p>
+<p><strong>using function type</strong><br>把 <code>addTwoInts</code> 函数当成是一种类型赋给 <code>mathFunction</code> 变量：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mathFunction: (<span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span> = addTwoInts</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(mathFunction(<span class="number">1</span>, <span class="number">2</span>)</span>)"</span>)</span><br><span class="line"><span class="comment">// prints "Result: 3"</span></span><br></pre></td></tr></table></figure></p>
+<p>前面说到， <code>addTwoInts</code> 和 <code>multiplyTwoInts</code> 函数在形式上是一致的，则下面代码也成立：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mathFunction = multiplyTwoInts</span><br></pre></td></tr></table></figure></p>
+<p><strong>function types as parameter type</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">printMathResult</span><span class="params">(mathFunction: <span class="params">(Int, Int)</span></span></span> -&gt; int, <span class="number">_</span> a: <span class="type">Int</span>, <span class="number">_</span> b: <span class="type">Int</span>) &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Result: <span class="subst">\(mathFunction(a, b)</span>)"</span>)</span><br><span class="line">&#125;</span><br><span class="line">printMathResult(addTwoInts, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">prints <span class="string">"Result: 8"</span></span><br></pre></td></tr></table></figure></p>
+<p>很容易看懂， <code>printMathResult(_:_:_:)</code> 函数有三个参数，分别是：<code>(Int, Int) -&gt; int</code>, <code>Int</code> 和 <code>Int</code>。</p>
+<p><strong>function types as return types</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">stepForward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> input + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">stepBackward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> input - <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">chooseStep</span><span class="params">(backwards: Bool)</span></span> -&gt; (<span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> backwards ? stepBackward : stepForward</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>显然 <code>chooseStep(:)</code> 函数使用 <code>(Int) -&gt; Int</code> 类型的函数作为返回值。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> moveNearerToZearo = chooseStep(value &gt; <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Counting to zero:"</span>)</span><br><span class="line"><span class="keyword">while</span> value != <span class="number">0</span> &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"<span class="subst">\(value)</span>..."</span>)</span><br><span class="line">	value = moveNearerToZero(value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"zero!"</span>)</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 3...</span></span><br><span class="line"><span class="comment">// 2...</span></span><br><span class="line"><span class="comment">// 1...</span></span><br><span class="line"><span class="comment">// zero!</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Nested function</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">chooseStep</span><span class="params">(backwards: Bool)</span></span> -&gt; (<span class="type">Int</span>) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">	<span class="func"><span class="keyword">func</span> <span class="title">stepForward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> input + <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="func"><span class="keyword">func</span> <span class="title">stepBackward</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> input - <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> backwards ? stepBackward : stepForward</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> value = -<span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> moveNearerToZearo = chooseStep(value &gt; <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Counting to zero:"</span>)</span><br><span class="line"><span class="keyword">while</span> value != <span class="number">0</span> &#123;</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"<span class="subst">\(value)</span>..."</span>)</span><br><span class="line">	value = moveNearerToZero(value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"zero!"</span>)</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// -4...</span></span><br><span class="line"><span class="comment">// -3...</span></span><br><span class="line"><span class="comment">// -2...</span></span><br><span class="line"><span class="comment">// -1...</span></span><br><span class="line"><span class="comment">// zero!</span></span><br></pre></td></tr></table></figure></p>
+<p>END.</p>
+<hr>
+<p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>defining and calling</strong></p>
+<p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+      <category term="Objective-C" scheme="http://bluestein.github.io/tags/Objective-C/"/>
+    
+      <category term="Swift" scheme="http://bluestein.github.io/tags/Swift/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Swift" scheme="http://bluestein.github.io/categories/Dev/Swift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[19:语句]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-primer4-19/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-primer4-19/</id>
+    <published>2015-12-17T08:13:33.000Z</published>
+    <updated>2015-12-20T11:58:50.376Z</updated>
+    <content type="html"><![CDATA[<p>开始学习第六章《语句》</p>
+<h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
+<p>只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> （<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">	;	<span class="comment">// null statement</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用空语句时最好加上注释</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = b + <span class="number">1</span>;;</span><br></pre></td></tr></table></figure>
+<p>看似非法的分号，其实是一个空语句。但并不意味着就能随便使用，如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (iter != vec.end()) ;	<span class="comment">// while循环体为空</span></span><br><span class="line">	++iter;	<span class="comment">// 不是循环体的一部分</span></span><br></pre></td></tr></table></figure>
+<p>会无限循环。</p>
+<p><strong>复合语句（块）</strong></p>
+<p>用花括号括起来的语句序列（也可能为空）。如 for 和 while</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; trans)</span><br><span class="line">	<span class="keyword">if</span> (total.same_isbn(trans))</span><br><span class="line">		total = total + trans;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; total &lt;&lt; endl;</span><br><span class="line">		total = trans;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p><code>else</code> 分支需要用块语句。</p>
+<blockquote>
+<p>块语句并不是以分号结束</p>
+</blockquote>
+<p>也可以是 <strong>空块</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">&#123;&#125;	<span class="comment">// 空块</span></span><br></pre></td></tr></table></figure>
+<p><strong>语句作用域</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="keyword">int</span> i = get_num())</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">i = <span class="number">0</span>;	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+<p><code>i</code> 超出了作用域。</p>
+<p><strong>控制结构中引入的变量是局部变量</strong>，仅在块语句结束前有效。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span>;</span><br><span class="line">		index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+<p>如果要在控制语句外访问，则需定义在控制语句外<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (; index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// ok</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2、if语句">2、if语句</h3><p><strong>if语句</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	statement1</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (condition2)</span><br><span class="line">&#123;</span><br><span class="line">	staement2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>目前为止，除了 vector 和 string 类型一般不可作为条件外，均可作为if语句的条件，包括 IO 类型。</p>
+<blockquote>
+<p>各分支语句用 <code>{}</code> 括起来是一个好的习惯</p>
+</blockquote>
+<p><strong>if语句可以嵌套</strong></p>
+<p>例如，<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (condition2)</span><br><span class="line">	&#123;</span><br><span class="line">		statement1</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		staement2</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// use if statement here also valid</span></span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>END.</p>
+<hr>
+<p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>开始学习第六章《语句》</p>
+<h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
+<p>只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> （<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">	;	<span class="comment">// null statement</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用空语句时最好加上注释</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
+    
+      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[c++ demo: if语句]]></title>
@@ -2147,226 +2278,6 @@
     <summary type="html">
     <![CDATA[<p>指针跟迭代器类似，也可以对指针进行 <strong>解引用</strong>（<code>*</code>） 和 <strong>自增</strong>（<code>++</code>） 操作，其含义和迭代器类似。</p>
 <p>指针用于指向对象，与迭代器类似，指针提供对其所指对象的间接访问。不同在于：指针指向单个对象，而迭代器只能访问容器内的元素。具体来说，指针保存的是另一个对象的地址：</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[10:数组]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-10/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-10/</id>
-    <published>2015-11-20T08:49:44.000Z</published>
-    <updated>2015-11-30T02:57:17.818Z</updated>
-    <content type="html"><![CDATA[<p>现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——<strong>数组和指针</strong>。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。</p>
-<a id="more"></a>
-<blockquote>
-<p>现代的C++程序应尽量使用vector和迭代器类型，而避免使用低级的数组和指针。设计良好的程序只有在强调速度时才在类实现的内部使用数组和指针。</p>
-</blockquote>
-<h3 id="1、数组的定义及初始化">1、数组的定义及初始化</h3><hr>
-<p>数组是由类型名、标识符和维数组成的复合数据类型，类型名规定了存放在数组中元素类型，而维数是指数组能存放的个数。</p>
-<blockquote>
-<p>数组定义中的类型名可以是内置数据类型或类类型；除引用之外，数组元素的类型还可以是任意的复合类型。没有所有元素都是引用的数组。</p>
-</blockquote>
-<p>数组维数必须用值大于等于 1 的常量表达式定义。此常量表达式只能是整型字面值常量、枚举常量或者用常量表达式初始化的整型const对象。<strong>非const变量或要到运行阶段才知道其值的const变量都不能用于定义数组的维数</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> buf_size = <span class="number">512</span>, max_files = <span class="number">20</span>;	<span class="comment">//const</span></span><br><span class="line"><span class="keyword">int</span> staff_size = <span class="number">27</span>;	<span class="comment">//non const</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> run_size = get_size();	<span class="comment">//const value unknown until run time</span></span><br><span class="line"><span class="keyword">char</span> input_buffer[buf_size];		<span class="comment">//ok：const</span></span><br><span class="line"><span class="built_in">string</span> file_table[max_files + <span class="number">1</span>];	<span class="comment">//ok：constant expression</span></span><br><span class="line"><span class="keyword">double</span> salaries[staff_size];		<span class="comment">//error:non const variable</span></span><br><span class="line"><span class="keyword">int</span> test[get_size()];				<span class="comment">//error:non const expression</span></span><br><span class="line"><span class="keyword">int</span> vals[run_size];					<span class="comment">//error:value unknown until run time</span></span><br></pre></td></tr></table></figure>
-<p>虽然 <code>staff_size</code> 是用字面值常量进行初始化，但它本身是一个非const变量，<strong>只有在运行时才能获得它的值</strong>；<code>run_size</code> 虽然是 const 对象，但它的值要到运行时调用 get_size() 函数才能知道；因此这两种都不能用来初始化维数。</p>
-<p>没有显式提供元素初值时，数组会跟普通的变量一样：</p>
-<ul>
-<li>在函数体 <strong>外</strong> 定义的内置数组，其元素均初始化为 0；</li>
-<li>在函数体 <strong>内</strong> 定义的内置数组，其元素均无初始化值；</li>
-<li>不管数组在哪定义，如富哦其元素是类类型，则自动调用默认构造函数进行初始化；如果无默认构造函数，则必须现实提供初始化值。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> array_size = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> vals1[array_size] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;	<span class="comment">//显式初始化</span></span><br><span class="line"><span class="keyword">int</span> vals2[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;			<span class="comment">//显示初始化，可以不提供维数</span></span><br><span class="line"><span class="keyword">int</span> vals3[array_size] = &#123;<span class="number">1</span>&#125;;		<span class="comment">//初始化列表的元素个数可以小于维数，但不能大于</span></span><br></pre></td></tr></table></figure>
-<p>上面的数组初始化结果为</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vals1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">vals2 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//对于vals3，若是内置类型，超出初始化列表的元素初始化为0；若是类类型，则使用默认构造函数初始化</span></span><br><span class="line">vals3 = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>字符数组</strong>： 既可以用花括号初始化，也可以用字符串字面值初始化。但不太相同，字符串字面值包含一个额外的空字符（null）用于结束字符串</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c1[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>&#125;;		<span class="comment">//c1 维数为3</span></span><br><span class="line"><span class="keyword">char</span> c2[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>, <span class="string">'\0'</span>&#125;;	<span class="comment">//c2 维数为4</span></span><br><span class="line"><span class="keyword">char</span> c3[] = <span class="string">"C++"</span>;					<span class="comment">//c3 维数为4，自动添加空字符</span></span><br><span class="line"><span class="keyword">char</span> c4[<span class="number">3</span>] = <span class="string">"C++"</span>;					<span class="comment">//error:自动添加空字符，所以 "C++" 维数为4</span></span><br></pre></td></tr></table></figure>
-<p><strong>不允许数组直接复制和赋值</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> vals1[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;	<span class="comment">//ok</span></span><br><span class="line"><span class="keyword">int</span> vals2[](vals1);		<span class="comment">//error</span></span><br><span class="line"><span class="keyword">int</span> vals3[<span class="number">3</span>] = vals1;	<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、数组的操作">2、数组的操作</h3><hr>
-<p>与vector类似，用下标类访问元素；vector用vector::size_type作为下标类型，数组的下标正确类型则是 size_t。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> array_size = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> arr1[array_size], arr2[array_size];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != array_size; ++i)&#123;</span><br><span class="line">	arr1[i] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制arr1数组到arr2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != array_size; ++i)&#123;</span><br><span class="line">	arr2[i] = arr1[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>需要注意下标不能越界</p>
-</blockquote>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——<strong>数组和指针</strong>。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。</p>]]>
-    
-    </summary>
-    
-      <category term="C++" scheme="http://bluestein.github.io/tags/C/"/>
-    
-      <category term="C++ primer" scheme="http://bluestein.github.io/tags/C-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="C++" scheme="http://bluestein.github.io/categories/Dev/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[9:bitset类型]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-9/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-9/</id>
-    <published>2015-11-19T08:49:39.000Z</published>
-    <updated>2015-11-30T02:57:17.815Z</updated>
-    <content type="html"><![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">bitset</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="1、bitset对象的初始化">1、bitset对象的初始化</h3><hr>
-<p>类似于 vector，bitset也是一种类模板。bitset 类型之间的区别在于其长度而不是类型，在定义 bitset 类型时，要明确其含有多少位，<code>&lt;&gt;</code> 内指定它的长度：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b;</span><br></pre></td></tr></table></figure>
-<p>给出的长度也可以是 <strong>常量表达式</strong>，长度必须定义为整型字面值常量或已用常量值初始化的整型const对象。</p>
-<p>上面的对象 <code>b</code> 含有32个位，每位都是 0。跟 vector 类似，<code>b</code> 中的位也没有命名，可以按位置来访问。位置： 0 ~ 31，以 0 开始的位串是 <strong>低阶位（low-order bit）</strong>，以 31 位结尾的位串是 <strong>高阶位（high-order bit）</strong>。</p>
-<p>所有方法如下表</p>
-<table>
-<thead>
-<tr>
-<th>初始化方法</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bitset<n> b;</n></td>
-<td>b 有 n 位，每位为 0</td>
-</tr>
-<tr>
-<td>bitset<n> b(u);</n></td>
-<td>b 是 unsigned long 型 u 的一个副本</td>
-</tr>
-<tr>
-<td>bitset<n> b(s);</n></td>
-<td>b 是 string 对象 s 中含有的位串的副本</td>
-</tr>
-<tr>
-<td>bitset<n> b(s, pos, n);</n></td>
-<td>b 是 s 中从位置 pos 开始的 n 个位的副本</td>
-</tr>
-</tbody>
-</table>
-<h4 id="1-1、用unsigned值初始化bitset对象">1.1、用unsigned值初始化bitset对象</h4><p>用unsigned long值初始化bitset对象时，该值会转化为二进制位模式。bitset 作为这种位模式的副本，如果bitset类型的长度大于unsigned long值的二进制位数，则其余的高阶位将置为0；如果bitset类型的长度小于二进制位数，则只使用unsigned值中的低阶位，超过bitset类型长度的高阶位将被丢弃。</p>
-<p>在32位unsigned long的机器上，十六进制 <code>0xffff</code> 表示为二进制位就是16个1和16个0（每个 <code>0xf</code> 可以表示 <code>1111</code>）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b1(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b2(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1；16~31位为0</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;128&gt; b3(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1；16~31位为0；32~127位为0</span></span><br></pre></td></tr></table></figure>
-<p><code>b1</code> 位数少于unsigned long的位数，所以高阶位被丢弃；<code>b2</code> 与unsigned long长度相同，所有位正好放初始值；<code>b3</code> 长度大于 32，31 位以上的高阶位就被置为 0.</p>
-<h4 id="1-2、用string对象初始化">1.2、用string对象初始化</h4><p>当用string对象初始化bitset对象时，string对象直接使用位模式。从string对象读入位集的顺序是 <strong>从右至左</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">str1</span><span class="params">(<span class="string">"1100"</span>)</span></span>;</span><br><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b4(str1);</span><br></pre></td></tr></table></figure>
-<p><code>b4</code> 的位模式中 2~3 位为 1，其余位置为 0。</p>
-<blockquote>
-<p>要注意，用 string 对象初始化 bitset 对象时，它们是反转的</p>
-</blockquote>
-<p>也可以使用 string 的子串初始 化bitset 对象</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">str2</span><span class="params">(<span class="string">"11000001111100001011"</span>)</span></span>;</span><br><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b5(str2, <span class="number">5</span>, <span class="number">4</span>);				<span class="comment">//从下标为5开始长度为4的子串 "0011"</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b6(str2, str2.size() - <span class="number">4</span>);	<span class="comment">//使用最后4个位 "1011"</span></span><br></pre></td></tr></table></figure>
-<p>详细的为</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b5: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line">b6: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">1011</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、bitset对象的操作">2、bitset对象的操作</h3><table>
-<thead>
-<tr>
-<th>操作</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>b.any()</td>
-<td>b 中是存在为1的二进制位</td>
-</tr>
-<tr>
-<td>b.none()</td>
-<td>b 中二进制位是否全为0</td>
-</tr>
-<tr>
-<td>b.count()</td>
-<td>b 中为1的二进制位的个数</td>
-</tr>
-<tr>
-<td>b.size()</td>
-<td>b 中二进制位的个数</td>
-</tr>
-<tr>
-<td>b[pos]</td>
-<td>访问 b 中位置为 pos 的二进制位</td>
-</tr>
-<tr>
-<td>b.test(pos)</td>
-<td>b 中位置为 pos 的二进制位是否为 1</td>
-</tr>
-<tr>
-<td>b.set()</td>
-<td>把 b 中所有二进制位置为 1</td>
-</tr>
-<tr>
-<td>b.set(pos)</td>
-<td>b 中位置为 pos 的二进制位是设为 1</td>
-</tr>
-<tr>
-<td>b.reset()</td>
-<td>把 b 中所有二进制位置为 0</td>
-</tr>
-<tr>
-<td>b.reset(pos)</td>
-<td>b 中位置为 pos 的二进制位是设为 0</td>
-</tr>
-<tr>
-<td>b.flip()</td>
-<td>把 b 中所有二进制位逐位反转</td>
-</tr>
-<tr>
-<td>b.flip(pos)</td>
-<td>把 b 中位置为 pos 的二进制位反转</td>
-</tr>
-<tr>
-<td>b.to_ulong()</td>
-<td>用 b 中同样的二进制位返回一个 unsigned long 值</td>
-</tr>
-<tr>
-<td>os &lt;&lt; b</td>
-<td>把 b 中的位输出到os流</td>
-</tr>
-</tbody>
-</table>
-<p>举例</p>
-<ul>
-<li><p>测试：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b;	<span class="comment">//32位，全0</span></span><br><span class="line"><span class="keyword">bool</span> is_set = b.any();		<span class="comment">//false</span></span><br><span class="line"><span class="keyword">bool</span> is_none = b.none();	<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>count &amp; size：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> cnt = b.count();</span><br><span class="line"><span class="keyword">size_t</span> siz = b.size();</span><br></pre></td></tr></table></figure>
-<p>  返回的类型 <strong>size_t</strong> 定义在 <strong>cstddef.h</strong> 中，对应于c语言的 <strong>stddef.h</strong>。</p>
-</li>
-<li><p>下标访问：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index != <span class="number">32</span>; index += <span class="number">2</span>) &#123;</span><br><span class="line">	b[index] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">//下面是等价方式</span></span><br><span class="line">	<span class="comment">//b.set(index);	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>把 <code>b</code> 中的偶数位置为 1。</p>
-<ul>
-<li><p>操作整个bitset对象</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b.reset();	<span class="comment">//set all bits to 0.</span></span><br><span class="line">b.<span class="built_in">set</span>();	<span class="comment">//set all bits to 1.</span></span><br><span class="line">b.flip();	<span class="comment">//reverse all bits</span></span><br><span class="line">b.flip(<span class="number">0</span>);	<span class="comment">//reverse the first bit</span></span><br><span class="line">b[<span class="number">0</span>].flip();<span class="comment">//as above</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>to_ulong &amp; cout</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b(<span class="number">0xffff</span>);</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ulong = b.to_ulong();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"b: "</span> &lt;&lt; b &lt;&lt; <span class="string">", ulong: "</span> &lt;&lt; ulong &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-<p>  <strong>仅当bitset类型的长度小于或等于 unsigned long 的长度时</strong>，才可以使用 to_ulong 操作。上例结果</p>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b: <span class="number">1111111111111111</span>, ulong: <span class="number">65535</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>位操作符</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span> 也支持内置的位操作符 `&lt;&lt;` 和 `&gt;&gt;`，后续介绍。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>]]>
     
     </summary>
     
