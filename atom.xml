@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Plodding wins the race]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-21T13:23:21.118Z</updated>
+  <updated>2015-12-21T13:32:59.941Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://bluestein.github.io/2015/12/swift-classesAndStructures/"/>
     <id>http://bluestein.github.io/2015/12/swift-classesAndStructures/</id>
     <published>2015-12-21T12:42:42.000Z</published>
-    <updated>2015-12-21T13:23:21.118Z</updated>
+    <updated>2015-12-21T13:32:59.941Z</updated>
     <content type="html"><![CDATA[<p><strong>comparing classes and structures</strong></p>
 <p>都可以：</p>
 <ul>
@@ -30,6 +30,7 @@
 <li>Be extended to expand their functionality beyond a default implementation</li>
 <li>Conform to protocols to provide standard functionality of a certain kind</li>
 </ul>
+<a id="more"></a>
 <p>class可以但structure不行：</p>
 <ul>
 <li>Inheritance enables one class to inherit the characteristics of another.（继承另一个类）</li>
@@ -110,7 +111,11 @@
 <li>定义 property 来存储值</li>
 <li>定义函数</li>
 <li>定义下标，以供下表式调用</li>
-<li>]]>
+<li>定义初始化函数</li>
+<li>Be extended to expand their functionality beyond a default implementation</li>
+<li>Conform to protocols to provide standard functionality of a certain kind</li>
+</ul>]]>
+    
     </summary>
     
       <category term="Swift" scheme="http://bluestein.github.io/tags/Swift/"/>
@@ -128,10 +133,11 @@
     <link href="http://bluestein.github.io/2015/12/swift-enumerations/"/>
     <id>http://bluestein.github.io/2015/12/swift-enumerations/</id>
     <published>2015-12-21T09:53:33.000Z</published>
-    <updated>2015-12-21T13:23:21.121Z</updated>
+    <updated>2015-12-21T13:33:11.666Z</updated>
     <content type="html"><![CDATA[<p><strong>Syntax</strong></p>
 <p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>下面是一个 compass 的例子，使用 <code>case</code> 来引出 enumeration 的各项：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="type">North</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">South</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">East</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">West</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -181,7 +187,8 @@
     <summary type="html">
     <![CDATA[<p><strong>Syntax</strong></p>
 <p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
-<figure class="highlight swift"><table><tr><td class="gutt]]>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    
     </summary>
     
       <category term="Swift" scheme="http://bluestein.github.io/tags/Swift/"/>
