@@ -746,7 +746,7 @@
     <link href="http://bluestein.github.io/2015/11/hexo-github-1/"/>
     <id>http://bluestein.github.io/2015/11/hexo-github-1/</id>
     <published>2015-11-30T07:54:49.000Z</published>
-    <updated>2015-12-21T02:17:30.212Z</updated>
+    <updated>2015-12-21T02:22:23.575Z</updated>
     <content type="html"><![CDATA[<h3 id="一、添加多说ID(必须)">一、添加多说ID(必须)</h3><p>在根目录的 <code>_config.yml</code> 中定义 <code>duoshuo_shortname: (你的多说ID)</code> 形如</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Comments</span><br><span class="line">duoshuo_shortname: (你的多说ID)</span><br></pre></td></tr></table></figure>
 <h3 id="二、引入多说JS(必须)">二、引入多说JS(必须)</h3><a id="more"></a>
@@ -784,7 +784,7 @@
     
       <category term="hexo" scheme="http://bluestein.github.io/tags/hexo/"/>
     
-      <category term="Hexo" scheme="http://bluestein.github.io/categories/Hexo/"/>
+      <category term="Github + Hexo" scheme="http://bluestein.github.io/categories/Github-Hexo/"/>
     
   </entry>
   
