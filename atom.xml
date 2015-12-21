@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Humooo's Blog]]></title>
-  <subtitle><![CDATA[Everything will be ok]]></subtitle>
+  <subtitle><![CDATA[Plodding wins the race]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
   <updated>2015-12-20T14:01:33.141Z</updated>
