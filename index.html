@@ -66,6 +66,234 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-swift-classesAndStructures" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/swift-classesAndStructures/" class="article-date">
+  <time datetime="2015-12-21T12:42:42.000Z" itemprop="datePublished">2015-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h3 itemprop="name">
+      <a class="article-title" href="/2015/12/swift-classesAndStructures/">swift: Classes and Structures</a>
+    </h3>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>comparing classes and structures</strong></p>
+<p>都可以：</p>
+<ul>
+<li>定义 property 来存储值</li>
+<li>定义函数</li>
+<li>定义下标，以供下表式调用</li>
+<li>定义初始化函数</li>
+<li>Be extended to expand their functionality beyond a default implementation</li>
+<li>Conform to protocols to provide standard functionality of a certain kind</li>
+</ul>
+<p>class可以但structure不行：</p>
+<ul>
+<li>Inheritance enables one class to inherit the characteristics of another.（继承另一个类）</li>
+<li><p>Type casting enables you to check and interpret the type of a class instance at runtime.（类型转换）</p>
+</li>
+<li><p>Deinitializers enable an instance of a class to free up any resources it has assigned.（析构函数）</p>
+</li>
+<li>Reference counting allows more than one reference to a class instance.（引用计数）</li>
+</ul>
+<blockquote>
+<p>Structures are always copied when they are passed around in your code, and do not use reference counting.</p>
+</blockquote>
+<p><strong>syntax</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructrue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个 class 或 struct 实际上是定义了一种类型，跟 String，Int 等类似。一般来说 class 和 struct 的名字用 UpperCamelCase，属性和方法名则用 lowerCamelCase。例如</p>
+<p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的 struct 有两个属性，class 有四个属性，其中一个是 struct 类型，name 属性会有一个默认值是 <code>nil</code>，因为它是 optional。</p>
+<p><strong>class and structure instances</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()</span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()</span><br></pre></td></tr></table></figure>
+<p>上面都使用初始化函数的方式声明对象。</p>
+<p><strong>accessing properties</strong></p>
+<p>使用 <code>.</code> 来访问属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"The width of resolution is <span class="subst">\(someResolution.width)</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The width of someVideoMode is <span class="subst">\(someVideoMode.resolution.width)</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>除了访问，也可以赋值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">someVideoMode.resolution.width = <span class="number">1280</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The width of someVideoMode is <span class="subst">\(someVideoMode.resolution.width)</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>可以直接设定 struct 的属性值。</p>
+<p><strong>memberwise initializers for structure types</strong></p>
+<p>struct 按成员的初始化函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>)</span><br></pre></td></tr></table></figure>
+<p>上面的方式，class 不支持。</p>
+<p><strong>structures and enumerations are value types</strong></p>
+<p>原话：A value type is a type whose value is copied when it is assigned to a variable or constant, or when it is passed to a function.</p>
+<p>其实swift中所有的基本类型——integers, floating-point, Booleans, strings, arrays and dictionaries——都是 value type。</p>
+<p>也就是说，当你创建 struct 或 enumeration 类型的实例时，都是拷贝。例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">et hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br></pre></td></tr></table></figure>
+<p>此时，<code>cinema</code> 就是 <code>hd</code> 的一份拷贝，尽管现在它们两者有相同的长和宽，它们是完全独立的两个实例。例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"cinema is now <span class="subst">\(cinema.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "cinema is now 2048 pixels wide."</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hd is still <span class="subst">\(hd.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "hd is still 1920 pixels wide."</span></span><br></pre></td></tr></table></figure>
+<p>类似的，enumeration 也有：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberDirection == .<span class="type">West</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The remembered direction is still .west"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>classes are reference types</strong></p>
+<p>与 value type 不同，reference type 会取代现有的实例：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tenEighty = <span class="type">VideoMode</span>()</span><br><span class="line">tenEighty.resolution = hd</span><br><span class="line">tenEighty.interlaced = <span class="literal">true</span></span><br><span class="line">tenEighty.name = <span class="string">"1080i"</span></span><br><span class="line">tenEighty.frameRate = <span class="number">25.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> alsoTenEighty = tenEighty</span><br><span class="line">alsoTenEighty.frameRate = <span class="number">30.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The frameRate property of tenEighty is now <span class="subst">\(tenEighty.frameRate)</span>"</span>)</span><br><span class="line"><span class="comment">// prints "The frameRate property of tenEighty is now 30.0"</span></span><br></pre></td></tr></table></figure>
+<p><strong>identity operators</strong></p>
+<p>因为 class 是 reference type，所以有必要比较两个常量或变量是否 refer 到同一个类的实例上，有两个操作符可以完成这件事：</p>
+<ul>
+<li>Identical to (===)</li>
+<li>Not identitcal to (!==)</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> tenEighty === alsoTenEighty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"tenEight and alsoTenEight refer to the same VideoMode instance."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints "tenEight and alsoTenEight refer to the same VideoMode instance."</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>“Identical to”: means that two constants or variables of class type refer to exactly the same class instance.</li>
+<li>“Equal to”: means that two instances are considered “equal” or “equivalent” in value, for some appropriate meaning of “equal”, as defined by the type’s designer.</li>
+</ul>
+<p><strong>Pointers</strong></p>
+<p>swift 中的 refer 到某个 reference type 的实例跟 C，C++ 中的指针是类似的，但不需要 <code>*</code> 来定义。</p>
+<p><strong>choose structure or class</strong></p>
+<p>structure instances are always passed by value, and class instances are always passed by reference.</p>
+<p>如果满足下面一个或多个条件，考虑使用 structure：</p>
+<ul>
+<li>The structure’s primary purpose is to encapsulate a few relatively simple data values.（为了概括一些数据）</li>
+<li>It is reasonable to expect that the encapsulated values will be copied rather than referenced when you assign or pass around an instance of that structure.（如果数据一般是拷贝而不是refer）</li>
+<li>Any properties stored by the structure are themselves value types, which would also be expected to be copied rather than referenced.（value types）</li>
+<li>The structure does not need to inherit properties or behavior from another existing type.（不需要继承性）</li>
+</ul>
+<p>一些可以使用 structure 的例子：</p>
+<ul>
+<li>The size of a geometric shape, perhaps encapsulating a width property and a height property, both of type Double.（几何形状的大小）</li>
+<li>A way to refer to ranges within a series, perhaps encapsulating a start property and a length property, both of type Int.（一系列的范围）</li>
+<li>A point in a 3D coordinate system, perhaps encapsulating x, y and z properties, each of type Double.（坐标系统）</li>
+</ul>
+<p><strong>Assignment and Copy Behavior for Strings, Arrays, and Dictionaries</strong></p>
+<p>In Swift, many basic data types such as String, Array, and Dictionary are implemented as structures.意思是说，当这些类型赋给一个新的 constant 或 variable ，或传递给函数时，都是原始数据的拷贝。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        <a href="http://bluestein.github.io/2015/12/swift-classesAndStructures/#duoshuo_thread" class="article-comment-link">评论
+        (<span class="post-comments-count ds-thread-count" data-thread-key="swift-classesAndStructures" data-count-type="comments"></span>)</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-swift-enumerations" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/swift-enumerations/" class="article-date">
+  <time datetime="2015-12-21T09:53:33.000Z" itemprop="datePublished">2015-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Swift/">Swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h3 itemprop="name">
+      <a class="article-title" href="/2015/12/swift-enumerations/">swift: enumerations</a>
+    </h3>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Syntax</strong></p>
+<p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是一个 compass 的例子，使用 <code>case</code> 来引出 enumeration 的各项：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="type">North</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">South</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">East</span></span><br><span class="line">	<span class="keyword">case</span> <span class="type">West</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>跟C或C++不同的是，上面例子中的 <code>North</code>, <code>South</code>, <code>East</code>, <code>Weat</code> 并不会隐式地声明为 0, 1, 2, 3，需要 <code>CompassPoint</code> 显示的定义。</p>
+</blockquote>
+<p>当有多个时，如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> planet = <span class="type">Planet</span>.<span class="type">Mercury</span></span><br><span class="line">planet = .<span class="type">Saturn</span></span><br></pre></td></tr></table></figure>
+<p>使用enum定义后都是一种类型。<br><code>planet</code> 被一个 <code>Planet</code> 初始化之后，它就可以被赋以该类型的其他值而不需要重新标明该类型。</p>
+<p><strong>matching enumeration with a switch statement</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> direction = <span class="type">CompassPoint</span>.<span class="type">South</span></span><br><span class="line"><span class="keyword">switch</span> direction &#123;</span><br><span class="line"><span class="keyword">case</span> .<span class="type">North</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">South</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Watch out for penguins"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">East</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Where the sun rise"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">West</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Where skies are blue"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>switch 必须是详尽彻底的，即 <code>case</code> 必须包含所有的情况，不然应该加上 <code>default</code> 分支：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> direction &#123;</span><br><span class="line"><span class="keyword">case</span> .<span class="type">North</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Lots of planets have a north"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">South</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Watch out for penguins"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">East</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Where the sun rise"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>associated values</strong></p>
+<p>可以给枚举来存放任何类型的值，例如条形码的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Barcode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">UPCA</span>(<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="type">QRCode</span>(<span class="type">String</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UPCA</code> 存放的是包含四个 Int 型的元组，<code>QRCode</code> 则为 String。可以给它们赋值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> productBarcode = <span class="type">Barcode</span>.<span class="type">UPCA</span>(<span class="number">8</span>, <span class="number">8590</span>, <span class="number">51226</span>, <span class="number">3</span>)</span><br><span class="line">productBarcode = .<span class="type">QRCode</span>(<span class="string">"ABCDEFGHIJKLMN"</span>)</span><br></pre></td></tr></table></figure>
+<p>还可以将枚举中的相关值取出来作为一个 constant (let) 或 variable (var)：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line"><span class="keyword">case</span> .<span class="type">UPCA</span>(<span class="keyword">let</span> numberSystem, <span class="keyword">let</span> manufacturer, <span class="keyword">let</span> product, <span class="keyword">let</span> check):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"UPC-A: <span class="subst">\(numberSystem)</span>, <span class="subst">\(manufacturer)</span>, <span class="subst">\(product)</span>, <span class="subst">\(check)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> .<span class="type">QRCode</span>(<span class="keyword">let</span> productCode):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"QR code: <span class="subst">\(productCode)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当取出的值均为同一类型时，可以将 let 或 var 提出来，下面代码与上面等价：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> productBarcode &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span>  .<span class="type">UPCA</span>(numberSystem, manufacturer, product, check):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"UPC-A: <span class="subst">\(numberSystem)</span>, <span class="subst">\(manufacturer)</span>, <span class="subst">\(product)</span>, <span class="subst">\(check)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .<span class="type">QRCode</span>(productCode):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"QR code: <span class="subst">\(productCode)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>raw values</strong></p>
+<p>一个叫 <code>ASCIIControlCharacter</code> 的枚举存放的是 Character 类型：</p>
+<p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ASCIIControlCharacter</span>: <span class="title">Character</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Tab</span> = <span class="string">"\t"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">LineFeed</span> = <span class="string">"\n"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">CarriageReturn</span> = <span class="string">"\r"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>raw value 可以是 string，character，int，float，每个 raw value 必须唯一。</p>
+<blockquote>
+<p>raw value 与 associated value 不同，raw value 是预设的值。</p>
+</blockquote>
+<p><strong>Implicitly Assigned raw value</strong></p>
+<p>隐式指定的 raw value 是指当指定了 raw type 时，每个值会比前一个大1，如果第一个未指定时，则赋为 0 ，依次增加。还是前面的 <code>Planet</code> 例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Planet</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Mercury</span> = <span class="number">1</span>, <span class="type">Venus</span>, <span class="type">Earth</span>, <span class="type">Mars</span>, <span class="type">Jupiter</span>, <span class="type">Saturn</span>, <span class="type">Uranus</span>, <span class="type">Neptune</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Planet</span>.<span class="type">Mercury</span>.rawValue <span class="comment">// prints "0"</span></span><br><span class="line"><span class="type">Planet</span>.<span class="type">Earth</span>.rawValue <span class="comment">// prints "4"</span></span><br></pre></td></tr></table></figure>
+<p>如果 raw type 为 String 时，隐式值为 case name：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">CompassPoint</span>.<span class="type">North</span>.rawValue <span class="comment">// prints "North"</span></span><br></pre></td></tr></table></figure>
+<p><strong>initializing from a raw value</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possiblePlanet = <span class="type">Planet</span>(rawValue: <span class="number">7</span>)</span><br><span class="line"><span class="comment">// possiblePlanet 是 Planet? 类型，等于 Planet.Uranus</span></span><br></pre></td></tr></table></figure>
+<p>因为初始化时，可能会超过界限，这就是为什么 <code>possiblePlanet</code> 为 <code>Planet?</code> 类型。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> positionToFind = <span class="number">9</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> somePlanet = <span class="type">Planet_raw</span>(rawValue: positionToFind) &#123;</span><br><span class="line">    <span class="keyword">switch</span> somePlanet &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Earth</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Mostly Harmless"</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Not a safe place for humans"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"There isn't a planet at position <span class="subst">\(positionToFind)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints "There isn't a planet at position 9"</span></span><br></pre></td></tr></table></figure>
+<p><strong>recursive enumrarions</strong></p>
+<p>像算术表达式一样可以嵌套 (5 + 4) * 2 ，要枚举支持嵌套（递归），需要用 <code>indirect</code> 关键字标明：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ArithmeticExpression</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Number</span>(<span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Addition</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">    <span class="keyword">indirect</span> <span class="keyword">case</span> <span class="type">Multiplication</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以把 <code>indirect</code> 放在外面，使所有 case 都支持 recursive：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">ArithmeticExpression</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Number</span>(<span class="type">Int</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Addition</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Multiplication</span>(<span class="type">ArithmeticExpression</span>, <span class="type">ArithmeticExpression</span>)</span><br></pre></td></tr></table></figure>
+<p>这个枚举类型包含三个算术表达式：一个数字，两个数相加，两个数相乘。用法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">evaluate</span><span class="params">(expression: ArithmeticExpression)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> expression &#123;</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Number</span>(<span class="keyword">let</span> value):</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Addition</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">        <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) + evaluate(<span class="keyword">right</span>)</span><br><span class="line">    <span class="keyword">case</span> .<span class="type">Multiplication</span>(<span class="keyword">let</span> <span class="keyword">left</span>, <span class="keyword">let</span> <span class="keyword">right</span>):</span><br><span class="line">        <span class="keyword">return</span> evaluate(<span class="keyword">left</span>) * evaluate(<span class="keyword">right</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// evaluate (5 + 4) * 2</span></span><br><span class="line"><span class="keyword">let</span> five = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">let</span> four = <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">4</span>)</span><br><span class="line"><span class="keyword">let</span> sum = <span class="type">ArithmeticExpression</span>.<span class="type">Addition</span>(five, four)</span><br><span class="line"><span class="keyword">let</span> product = <span class="type">ArithmeticExpression</span>.<span class="type">Multiplication</span>(sum, <span class="type">ArithmeticExpression</span>.<span class="type">Number</span>(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(evaluate(product))<span class="comment">// prints "18"</span></span><br></pre></td></tr></table></figure>
+<p>这个函数将数字进行简单的返回，而“加法”和“乘法”则 evaluate <code>left</code> 和 <code>right</code>，然后相加或相乘。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        <a href="http://bluestein.github.io/2015/12/swift-enumerations/#duoshuo_thread" class="article-comment-link">评论
+        (<span class="post-comments-count ds-thread-count" data-thread-key="swift-enumerations" data-count-type="comments"></span>)</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-swift-functions" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/swift-functions/" class="article-date">
@@ -108,7 +336,7 @@
         (<span class="post-comments-count ds-thread-count" data-thread-key="swift-functions" data-count-type="comments"></span>)</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -514,119 +742,9 @@
 
 
   
-    <article id="post-cpp-demo-3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/cpp-demo-3/" class="article-date">
-  <time datetime="2015-12-02T14:01:42.000Z" itemprop="datePublished">2015-12-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Demo/">Demo</a>►<a class="article-category-link" href="/categories/Demo/C/">C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h3 itemprop="name">
-      <a class="article-title" href="/2015/12/cpp-demo-3/">c++ demo: vector存放指针</a>
-    </h3>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>编写程序：定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/12/cpp-demo-3/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-        <a href="http://bluestein.github.io/2015/12/cpp-demo-3/#duoshuo_thread" class="article-comment-link">评论
-        (<span class="post-comments-count ds-thread-count" data-thread-key="cpp-demo-3" data-count-type="comments"></span>)</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Demo/">C++ Demo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-hexo-github-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/hexo-github-1/" class="article-date">
-  <time datetime="2015-11-30T07:54:49.000Z" itemprop="datePublished">2015-11-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Github-Hexo/">Github + Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h3 itemprop="name">
-      <a class="article-title" href="/2015/11/hexo-github-1/">hexo3.1.1 + github pages教程：添加多说评论系统</a>
-    </h3>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、添加多说ID(必须)">一、添加多说ID(必须)</h3><p>在根目录的 <code>_config.yml</code> 中定义 <code>duoshuo_shortname: (你的多说ID)</code> 形如</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Comments</span><br><span class="line">duoshuo_shortname: (你的多说ID)</span><br></pre></td></tr></table></figure>
-<h3 id="二、引入多说JS(必须)">二、引入多说JS(必须)</h3>
-        
-          <p class="article-more-link">
-            <a href="/2015/11/hexo-github-1/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-        <a href="http://bluestein.github.io/2015/11/hexo-github-1/#duoshuo_thread" class="article-comment-link">评论
-        (<span class="post-comments-count ds-thread-count" data-thread-key="hexo-github-1" data-count-type="comments"></span>)</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github-pages/">github pages</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -638,7 +756,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Demo/">Demo</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Demo/C/">C++</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">20</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/C/">C++</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Swift/">Swift</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github-Hexo/">Github + Hexo</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Demo/">Demo</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Demo/C/">C++</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/C/">C++</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Swift/">Swift</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github-Hexo/">Github + Hexo</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -648,6 +766,14 @@
     <h3 class="widget-title">最近发布</h3>
     <div class="widget recents">
       <ul>
+        
+          <li>
+            <a href="/2015/12/swift-classesAndStructures/">swift: Classes and Structures</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/swift-enumerations/">swift: enumerations</a>
+          </li>
         
           <li>
             <a href="/2015/12/swift-functions/">swift: functions</a>
@@ -661,14 +787,6 @@
             <a href="/2015/12/cpp-demo-4/">c++ demo: if语句</a>
           </li>
         
-          <li>
-            <a href="/2015/12/github-1/">Github: 账户的创建和配置</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/github-git-4/">Github: Git的使用 - 分支</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -678,7 +796,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-Demo/" style="font-size: 12.5px;">C++ Demo</a> <a href="/tags/C-primer/" style="font-size: 17.5px;">C++ primer</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/C-Demo/" style="font-size: 14px;">C++ Demo</a> <a href="/tags/C-primer/" style="font-size: 18px;">C++ primer</a> <a href="/tags/Swift/" style="font-size: 12px;">Swift</a> <a href="/tags/git/" style="font-size: 14px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iOS/" style="font-size: 12px;">iOS</a>
     </div>
   </div>
 
