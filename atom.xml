@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Plodding wins the race]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-23T12:13:52.693Z</updated>
+  <updated>2015-12-23T13:10:48.252Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,13 +15,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Cpp:参数传递]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-primer4-20/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-primer4-20/</id>
+    <published>2015-12-23T12:49:49.000Z</published>
+    <updated>2015-12-23T13:10:48.252Z</updated>
+    <content type="html"><![CDATA[<p><strong>引用型形参</strong></p>
+<p>利用引用形参，交换两个数的值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
+</blockquote>
+<p>比如，在某个vector中寻找某个特定的值，然后返回它出现的位置及出现的次数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">const_iterator <span class="title">findValue</span><span class="params">(</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end,</span><br><span class="line">	<span class="keyword">int</span> value,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type &amp;occurs)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator result_iter = end;</span><br><span class="line">	occurs = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; begin != end; ++begin)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*begin == value)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// remember first occurrence of value</span></span><br><span class="line">			<span class="keyword">if</span> (result_iter == end)</span><br><span class="line">			&#123;</span><br><span class="line">				result_iter = begin;</span><br><span class="line">			&#125;</span><br><span class="line">			++occurs;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result_iter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>利用const引用避免复制</strong></p>
+<p>一般的形参传递时需要复制，引用不需要。当使用大型引用形参时，为了避免复制实参，使用const引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isShorter</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>形参是引用，所以不需要复制实参；形参是const，所以不能通过该引用形参来修改实参的值。</p>
+<p><strong>传递指针的引用</strong></p>
+<p>交换指向数值的指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>vector或其他容器作为形参</strong></p>
+<p>为避免直接使用vector等类型做形参，一般使用它们的迭代器。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(begin != end)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *begin++;</span><br><span class="line">		<span class="keyword">if</span> (begin != end) <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>数组作为形参</strong></p>
+<p>肯定不能直接传递数组，通常使用指针进行操作。而下面三种是等价的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[<span class="number">10</span>])</span></span>;</span><br></pre></td></tr></table></figure>
+<p>但是后两种很容易引起误解。下面可以看出是否真的等价</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[<span class="number">10</span>])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> v1 = <span class="number">32</span>, arr[<span class="number">2</span>] = &#123;<span class="number">4</span>, <span class="number">0</span>&#125;;</span><br><span class="line">printv(&amp;v1); <span class="comment">//编译ok, 但会输出其他9个其他的值或者运行时错误</span></span><br><span class="line">printv(arr); <span class="comment">//编译ok, 但会输出其他8个其他的值或者运行时错误</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译器不会检查形参数组的大小。</p>
+</blockquote>
+<p><strong>通过引用传递数组</strong></p>
+<p>一般来讲，将数组作为形参传递给函数都会被转换为指针，但是数组的引用不会。此时，传递的是数组的引用本身，编译器会检查形参数组的大小。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void print(int (&amp;arr)[3]);</span><br><span class="line">int i = 0, j[2] = &#123;0, 1&#125;;</span><br><span class="line">int k[3] = &#123;0, 1, 2&#125;;</span><br><span class="line">print(&amp;i); // error</span><br><span class="line">print(j); // error</span><br><span class="line">print(k); // ok</span><br></pre></td></tr></table></figure>
+<p><strong>多维数组的传递</strong></p>
+<p>所谓多维数组，就是数组的数组。它的每个元素就是一个数组，第二维必须指定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void print(int (matrix*)[10], int row_size);</span><br><span class="line">// 或者</span><br><span class="line">void print(int matrix[][10], int row_size);</span><br></pre></td></tr></table></figure>
+<p><code>matrix</code> 是指向含10个int值的数组的指针。</p>
+<p><strong>在函数内处理数组</strong></p>
+<p>任何数组的操作都必须保持在数组的边界内。</p>
+<p>有三种常见的方法可以保证这一点：</p>
+<ol>
+<li>第一种是在数组的本身放置一个标记进行检测数组的结束。如C风格的字符串，使用 <code>\0</code> 标记表示结束；</li>
+<li>第二种是传递指向数组的第一个和最后一个元素的下一个位置的指针；</li>
+<li>显式地传递数组的大小。意思是告诉函数，我的大小是多少；<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[], size_t size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>引用型形参</strong></p>
+<p>利用引用形参，交换两个数的值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
+    
+      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Cpp Code: ex7.3 - 7.6]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-9/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-9/</id>
     <published>2015-12-23T11:03:42.000Z</published>
-    <updated>2015-12-23T12:13:52.693Z</updated>
+    <updated>2015-12-23T13:10:32.511Z</updated>
     <content type="html"><![CDATA[<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="Exercise_7-4">Exercise 7.4</h3><p>返回一个数的绝对值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> v)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> -v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Exercise_7-5">Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
@@ -37,7 +104,8 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
     <![CDATA[<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class]]>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    
     </summary>
     
       <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
@@ -1295,502 +1363,6 @@
     <summary type="html">
     <![CDATA[<p><strong>1、动态创建对象的初始化</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cpp:赋值操作和自增自减]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-16/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-16/</id>
-    <published>2015-11-26T08:50:15.000Z</published>
-    <updated>2015-12-23T09:18:17.016Z</updated>
-    <content type="html"><![CDATA[<p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
-<h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> + <span class="number">2</span> * <span class="number">3</span> / <span class="number">2</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tmp = <span class="number">2</span> * <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> tmp2 = tmp / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> tmp3 = tmp2 + <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> result = tmp3 - <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>括号可以改变优先级，括号内的表达式先行计算。</p>
-</blockquote>
-<h3 id="2、结合性">2、结合性</h3><p>结合性规定了具有相同优先级的操作符如何分组。如 <strong>赋值操作符</strong> <code>=</code> 具有右结合性，所以允许将多个赋值操作串连起来：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val1 = val2 = val3;</span><br><span class="line">(val1 = (val2 = val3));	<span class="comment">//与上式等价</span></span><br></pre></td></tr></table></figure>
-<p>而 <strong>算术操作符</strong> 具有右结合性：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val1 * val2 / val3;</span><br><span class="line">((val1 * val2) / val3);	<span class="comment">//与上式等价</span></span><br></pre></td></tr></table></figure>
-<p>下表是按照优先级顺序给出操作符，并用空行分成不同的段，每段内的优先级相同，且都高于后面各段的优先级。</p>
-<table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>结合性</th>
-<th>功能</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>::</td>
-<td>L</td>
-<td>全局作用域</td>
-<td>::name</td>
-</tr>
-<tr>
-<td>::</td>
-<td>L</td>
-<td>类作用域</td>
-<td>class::name</td>
-</tr>
-<tr>
-<td>::</td>
-<td>L</td>
-<td>名字空间作用域</td>
-<td>namespace::name</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>.</td>
-<td>L</td>
-<td>成员选择</td>
-<td>object.member</td>
-</tr>
-<tr>
-<td>-&gt;</td>
-<td>L</td>
-<td>成员选择</td>
-<td>pointer-&gt;member</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>L</td>
-<td>下标</td>
-<td>variable[expr]</td>
-</tr>
-<tr>
-<td>()</td>
-<td>L</td>
-<td>函数调用</td>
-<td>name(expr_list)</td>
-</tr>
-<tr>
-<td>()</td>
-<td>L</td>
-<td>函数构造</td>
-<td>type(expr_list)</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>++</td>
-<td>R</td>
-<td>后自增</td>
-<td>lvalue++</td>
-</tr>
-<tr>
-<td>–</td>
-<td>R</td>
-<td>后自减</td>
-<td>lvalue–</td>
-</tr>
-<tr>
-<td>typeid</td>
-<td>R</td>
-<td>类型ID</td>
-<td>typeid(type)</td>
-</tr>
-<tr>
-<td>typeid</td>
-<td>R</td>
-<td>运行时ID</td>
-<td>typeid(expr)</td>
-</tr>
-<tr>
-<td>显式强制类型转换</td>
-<td>R</td>
-<td>类型转换</td>
-<td>cast_name<type>(expr)</type></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>sizeof</td>
-<td>R</td>
-<td>对象大小</td>
-<td>sizeof expr</td>
-</tr>
-<tr>
-<td>sizeof</td>
-<td>R</td>
-<td>类型大小</td>
-<td>sizeof(type)</td>
-</tr>
-<tr>
-<td>++</td>
-<td>R</td>
-<td>前自增</td>
-<td>++lvalue</td>
-</tr>
-<tr>
-<td>–</td>
-<td>R</td>
-<td>前自减</td>
-<td>–lvalue</td>
-</tr>
-<tr>
-<td>~</td>
-<td>R</td>
-<td>位求反</td>
-<td>~expr</td>
-</tr>
-<tr>
-<td>!</td>
-<td>R</td>
-<td>逻辑非</td>
-<td>!expr</td>
-</tr>
-<tr>
-<td>-</td>
-<td>R</td>
-<td>一元负号</td>
-<td>-expr</td>
-</tr>
-<tr>
-<td>+</td>
-<td>R</td>
-<td>一元正号</td>
-<td>+expr</td>
-</tr>
-<tr>
-<td>*</td>
-<td>R</td>
-<td>解引用</td>
-<td>*expr</td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td>R</td>
-<td>取地址</td>
-<td>&amp;expr</td>
-</tr>
-<tr>
-<td>()</td>
-<td>R</td>
-<td>类型转换</td>
-<td>(type)expr</td>
-</tr>
-<tr>
-<td>new</td>
-<td>R</td>
-<td>创建对象</td>
-<td>new type</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>R</td>
-<td>释放对象</td>
-<td>delete expr</td>
-</tr>
-<tr>
-<td>delete[]</td>
-<td>R</td>
-<td>释放数组</td>
-<td>delete[] expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>-&gt;*</td>
-<td>L</td>
-<td>指向成员操作的指针</td>
-<td>ptr-&gt;*ptr_to_member</td>
-</tr>
-<tr>
-<td>.*</td>
-<td>L</td>
-<td>指向成员操作的指针</td>
-<td>obj.*ptr_to_member</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>*</td>
-<td>L</td>
-<td>乘法</td>
-<td>expr * expr</td>
-</tr>
-<tr>
-<td>/</td>
-<td>L</td>
-<td>除法</td>
-<td>expr / expr</td>
-</tr>
-<tr>
-<td>%</td>
-<td>L</td>
-<td>求模（求余）</td>
-<td>expr % expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>+</td>
-<td>L</td>
-<td>加法</td>
-<td>expr + expr</td>
-</tr>
-<tr>
-<td>-</td>
-<td>L</td>
-<td>减法</td>
-<td>expr - expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&lt;&lt;</td>
-<td>L</td>
-<td>位左移</td>
-<td>expr &lt;&lt; expr</td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td>L</td>
-<td>为右移</td>
-<td>expr &gt;&gt; expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>L</td>
-<td>小于</td>
-<td>expr &lt; expr</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>L</td>
-<td>小等于</td>
-<td>expr &lt;= expr</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>L</td>
-<td>大于</td>
-<td>expr &gt; expr</td>
-</tr>
-<tr>
-<td>&gt;=</td>
-<td>L</td>
-<td>大等于</td>
-<td>expr &gt;= expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>==</td>
-<td>L</td>
-<td>等于</td>
-<td>expr == expr</td>
-</tr>
-<tr>
-<td>!=</td>
-<td>L</td>
-<td>不等于</td>
-<td>expr != expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td>L</td>
-<td>位与</td>
-<td>expr &amp; expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>^</td>
-<td>L</td>
-<td>位异或</td>
-<td>expr ^ expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&#124;</td>
-<td>L</td>
-<td>位或</td>
-<td>expr &#124; expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&amp;&amp;</td>
-<td>L</td>
-<td>逻辑与</td>
-<td>expr &amp;&amp; expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>&#124;&#124;</td>
-<td>L</td>
-<td>逻辑或</td>
-<td>expr &#124;&#124; expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>?:</td>
-<td>R</td>
-<td>条件操作</td>
-<td>expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>=</td>
-<td>R</td>
-<td>赋值操作</td>
-<td>lvalue = expr</td>
-</tr>
-<tr>
-<td>*=, /=, %=</td>
-<td>R</td>
-<td>复合赋值操作</td>
-<td>expr *= expr等</td>
-</tr>
-<tr>
-<td>+=, -=</td>
-<td>R</td>
-<td>复合赋值操作</td>
-<td>expr += expr等</td>
-</tr>
-<tr>
-<td>&lt;&lt;=, &gt;&gt;=</td>
-<td>R</td>
-<td>复合赋值操作</td>
-<td>expr &lt;&lt;= expr等</td>
-</tr>
-<tr>
-<td>&amp;=, &#124;=, ^=</td>
-<td>R</td>
-<td>复合赋值操作</td>
-<td>expr &amp;= expr等</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>throw</td>
-<td>R</td>
-<td>抛出异常</td>
-<td>throw expr</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>,</td>
-<td>R</td>
-<td>逗号</td>
-<td>expr, expr</td>
-</tr>
-</tbody>
-</table>
-<p><strong>举例</strong></p>
-<p>考虑：如果字符串不是以’s’结尾则加上’s’，分析下列语句</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s = s + s[s.size() - <span class="number">1</span>] == <span class="string">'s'</span> ? <span class="string">""</span> : <span class="string">"s"</span>;</span><br></pre></td></tr></table></figure>
-<p>分析：</p>
-<p>根据上表知道优先级为：<code>.</code> = <code>()</code> = <code>[]</code> &gt; <code>-</code> = <code>+</code> &gt; <code>==</code> &gt; <code>?:</code> &gt; <code>=</code>；可知上述语句的结合顺序是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="built_in">string</span> s = (((s + (s[(s.size()) - <span class="number">1</span>])) == <span class="string">'s'</span>) ? <span class="string">""</span> : <span class="string">"s"</span>));</span><br></pre></td></tr></table></figure>
-<p>很明显不能得到想要的结果，改成如下形式即可</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s = s + (s[s.size() - <span class="number">1</span>] == <span class="string">'s'</span> ? <span class="string">""</span> : <span class="string">"s"</span>);</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
-<h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>]]>
     
     </summary>
     

@@ -66,6 +66,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cpp-primer4-16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/cpp-primer4-16/" class="article-date">
+  <time datetime="2015-11-26T08:50:15.000Z" itemprop="datePublished">2015-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Cpp/">Cpp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h3 itemprop="name">
+      <a class="article-title" href="/2015/11/cpp-primer4-16/">Cpp:赋值操作和自增自减</a>
+    </h3>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
+<h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/11/cpp-primer4-16/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        <a href="http://bluestein.github.io/2015/11/cpp-primer4-16/#duoshuo_thread" class="article-comment-link">评论
+        (<span class="post-comments-count ds-thread-count" data-thread-key="cpp-primer4-16" data-count-type="comments"></span>)</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp-primer/">Cpp primer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-cpp-demo-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/cpp-demo-2/" class="article-date">
@@ -256,96 +311,6 @@
       
         <a href="http://bluestein.github.io/2015/11/cpp-primer4-14/#duoshuo_thread" class="article-comment-link">评论
         (<span class="post-comments-count ds-thread-count" data-thread-key="cpp-primer4-14" data-count-type="comments"></span>)</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp-primer/">Cpp primer</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-cpp-primer4-20" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/cpp-primer4-20/" class="article-date">
-  <time datetime="2015-11-23T12:49:49.000Z" itemprop="datePublished">2015-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Cpp/">Cpp</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h3 itemprop="name">
-      <a class="article-title" href="/2015/11/cpp-primer4-20/">Cpp:参数传递</a>
-    </h3>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>引用型形参</strong></p>
-<p>利用引用形参，交换两个数的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
-</blockquote>
-<p>比如，在某个vector中寻找某个特定的值，然后返回它出现的位置及出现的次数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">const_iterator <span class="title">findValue</span><span class="params">(</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end,</span><br><span class="line">	<span class="keyword">int</span> value,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type &amp;occurs)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator result_iter = end;</span><br><span class="line">	occurs = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; begin != end; ++begin)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*begin == value)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// remember first occurrence of value</span></span><br><span class="line">			<span class="keyword">if</span> (result_iter == end)</span><br><span class="line">			&#123;</span><br><span class="line">				result_iter = begin;</span><br><span class="line">			&#125;</span><br><span class="line">			++occurs;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result_iter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>利用const引用避免复制</strong></p>
-<p>一般的形参传递时需要复制，引用不需要。当使用大型引用形参时，为了避免复制实参，使用const引用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isShorter</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>形参是引用，所以不需要复制实参；形参是const，所以不能通过该引用形参来修改实参的值。</p>
-<p><strong>传递指针的引用</strong></p>
-<p>交换指向数值的指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>vector或其他容器作为形参</strong></p>
-<p>为避免直接使用vector等类型做形参，一般使用它们的迭代器。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(begin != end)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *begin++;</span><br><span class="line">		<span class="keyword">if</span> (begin != end) <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>数组作为形参</strong></p>
-<p>肯定不能直接传递数组，通常使用指针进行操作。而下面三种是等价的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[<span class="number">10</span>])</span></span>;</span><br></pre></td></tr></table></figure>
-<p>但是后两种很容易引起误解。下面可以看出是否真的等价</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[<span class="number">10</span>])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> v1 = <span class="number">32</span>, arr[<span class="number">2</span>] = &#123;<span class="number">4</span>, <span class="number">0</span>&#125;;</span><br><span class="line">printv(&amp;v1); <span class="comment">//编译ok, 但会输出其他9个其他的值或者运行时错误</span></span><br><span class="line">printv(arr); <span class="comment">//编译ok, 但会输出其他8个其他的值或者运行时错误</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编译器不会检查形参数组的大小。</p>
-</blockquote>
-<p><strong>通过引用传递数组</strong></p>
-<p>一般来讲，将数组作为形参传递给函数都会被转换为指针，但是数组的引用不会。此时，传递的是数组的引用本身，编译器会检查形参数组的大小。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void print(int (&amp;arr)[3]);</span><br><span class="line">int i = 0, j[2] = &#123;0, 1&#125;;</span><br><span class="line">int k[3] = &#123;0, 1, 2&#125;;</span><br><span class="line">print(&amp;i); // error</span><br><span class="line">print(j); // error</span><br><span class="line">print(k); // ok</span><br></pre></td></tr></table></figure>
-<p><strong>多维数组的传递</strong></p>
-<p>所谓多维数组，就是数组的数组。它的每个元素就是一个数组，第二维必须指定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void print(int (matrix*)[10], int row_size);</span><br><span class="line">// 或者</span><br><span class="line">void print(int matrix[][10], int row_size);</span><br></pre></td></tr></table></figure>
-<p><code>matrix</code> 是指向含10个int值的数组的指针。</p>
-<p><strong>在函数内处理数组</strong></p>
-<p>任何数组的操作都必须保持在数组的边界内。</p>
-<p>有三种常见的方法可以保证这一点：</p>
-<ol>
-<li>第一种是在数组的本身放置一个标记进行检测数组的结束。如C风格的字符串，使用 <code>\0</code> 标记表示结束；</li>
-<li>第二种是传递指向数组的第一个和最后一个元素的下一个位置的指针；</li>
-<li>显式地传递数组的大小。意思是告诉函数，我的大小是多少；<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[], size_t size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-        <a href="http://bluestein.github.io/2015/11/cpp-primer4-20/#duoshuo_thread" class="article-comment-link">评论
-        (<span class="post-comments-count ds-thread-count" data-thread-key="cpp-primer4-20" data-count-type="comments"></span>)</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp-primer/">Cpp primer</a></li></ul>
@@ -713,6 +678,10 @@
       <ul>
         
           <li>
+            <a href="/2015/12/cpp-primer4-20/">Cpp:参数传递</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/cpp-demo-9/">Cpp Code: ex7.3 - 7.6</a>
           </li>
         
@@ -726,10 +695,6 @@
         
           <li>
             <a href="/2015/12/cpp-demo-6/">Cpp Code: while, ex6.12</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-5/">Cpp Code: switch, ex6.9</a>
           </li>
         
       </ul>
