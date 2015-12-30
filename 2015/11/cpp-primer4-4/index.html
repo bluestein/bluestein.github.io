@@ -1,17 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>Cpp:const、引用和typedef | Humooo&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、const
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cpp,Cpp primer," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
 123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cpp:const、引用和typedef">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-4/index.html">
-<meta property="og:site_name" content="Humooo's Blog">
+<meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
 123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
@@ -21,81 +75,216 @@
 <meta name="twitter:description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
 123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
-  
-    <link rel="alternative" href="/atom.xml" title="Humooo&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/H.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Cpp:const、引用和typedef | Humooo </title>
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-inner" class="inner">
-      <div id="header-title">
-        <h1 id="logo-wrap">
-          <a href="/" id="logo">
-          Humooo&#39;s Blog
-          </a>
-          
-              <br/><span id="subtitle">Plodding wins the race</span>
-          
-        </h1>
-      </div>
-      <nav id="sub-nav">
-        <a target="_blank" id="nav-github-link" class="nav-icon" href="https://github.com/bluestein" title="humooo's github"></a>
 
-        <a target="_blank" id="nav-weibo-link" class="nav-icon" href="http://weibo.com/u/3239589332" title="humooo's weibo"></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
-        
-      </nav>
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">主页</a>
-        
-          <a class="main-nav-link" href="/archives">归档</a>
-        
-          <a class="main-nav-link" href="/about">关于</a>
-        
-      </nav>
-    </div>
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
+  <p class="site-subtitle">Humooo's Blog</p>
 </div>
-      <div class="outer">
-        <section id="main"><article id="post-cpp-primer4-4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/cpp-primer4-4/" class="article-date">
-  <time datetime="2015-11-12T08:31:33.000Z" itemprop="datePublished">2015-11-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Cpp/">Cpp</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
         
-  
-    <h3 class="article-title" itemprop="name">
-      Cpp:const、引用和typedef
-    </h3>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
   
 
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cpp:const、引用和typedef
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-12T16:31:33+08:00" content="2015-11-12">
+              2015-11-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/cpp-primer4-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/cpp-primer4-4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h3 id="一、const">一、const</h3><hr>
 <p>考虑问题：下面程序中数字 <code>0</code> 的含义？</p>
@@ -220,286 +409,447 @@
 
       
     </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp-primer/">Cpp primer</a></li></ul>
 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+          
+            <a href="/tags/Cpp-primer/" rel="tag">#Cpp primer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/cpp-primer4-3/" rel="next" title="Cpp:变量">
+                <i class="fa fa-chevron-left"></i> Cpp:变量
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/cpp-primer4-5/" rel="prev" title="Cpp:头文件">
+                Cpp:头文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/11/cpp-primer4-3/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">旧的</strong>
-      <div class="article-nav-title">Cpp:变量</div>
-    </a>
-  
-  
-    <a href="/2015/11/cpp-primer4-5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新的</strong>
-      <div class="article-nav-title">
-        
-          Cpp:头文件
-        
-      </div>
-    </a>
-  
-</nav>
-
-  
-</article>
+  </article>
 
 
 
-
-<section id="comments">
-  <div id="duoshuo_thread">
-    <div class="ds-thread" data-thread-key="cpp-primer4-4" data-title="Cpp:const、引用和typedef" data-url="http://bluestein.github.io/2015/11/cpp-primer4-4/"></div>
-  </div>
-</section>
-
-
-
-
-  <div class="ds-share" data-thread-key="cpp-primer4-4" data-title="Cpp:const、引用和typedef" data-images="" data-content="&lt;h3 id=&quot;一、const&quot;&gt;一、const&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;考虑问题：下面程序中数字 &lt;code&gt;0&lt;/code&gt; 的含义？&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i != &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;; ++i)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;显然从程序来看，我们并不知道 &lt;code&gt;10&lt;/code&gt; 是怎样一个存在，因此它也被称为 &lt;strong&gt;魔数（magic number）&lt;/strong&gt;，意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;或者如果这个程序多次使用数字 &lt;code&gt;10&lt;/code&gt; 的话，当需要要把 &lt;code&gt;10&lt;/code&gt; 改为 &lt;code&gt;20&lt;/code&gt; 的话就麻烦了。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;一种简单的解决办法是&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i != max; ++i)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这样不仅可读性好很多，而且修改起来也相当方便。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;max&lt;/code&gt; 是可以被修改的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-1、定义const对象&quot;&gt;1.1、定义const对象&lt;/h4&gt;&lt;p&gt;上面到，&lt;code&gt;max&lt;/code&gt; 可能会被有意或无意的修改，在某些情况下这很严重。&lt;strong&gt;const&lt;/strong&gt; 提供一种解决办法&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;；&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此时定义 &lt;code&gt;max&lt;/code&gt; 为 &lt;strong&gt;常量&lt;/strong&gt; 并初始化为 10，但此时的 &lt;code&gt;max&lt;/code&gt; 不可被修改。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;C++中的 const 跟 &lt;strong&gt;Java 中的 final&lt;/strong&gt; 或 &lt;strong&gt;PHP 中的 define&lt;/strong&gt; 类似。&lt;br&gt;const 定义的常量不可修改，所以定义时必须初始化如下&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;:&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; hi = &lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//正确&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i;	&lt;span class=&quot;comment&quot;&gt;//错误&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;1-2、const对象默认为文件的局部变量&quot;&gt;1.2、const对象默认为文件的局部变量&lt;/h4&gt;&lt;p&gt;跟普通的变量不一样，const定义的变量需要特别的说明才可以在其他文件中访问。例如&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;普通变量&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//file1.cpp&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;		&lt;span class=&quot;comment&quot;&gt;//定义变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//file2.cpp&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max;	&lt;span class=&quot;comment&quot;&gt;//声明外部变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//下面可以使用变量 max&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;const变量&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//file1.cpp&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//定义变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//file2.cpp&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; max;		&lt;span class=&quot;comment&quot;&gt;//声明外部变量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//下面可以使用const变量 max&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;定义非 &lt;code&gt;const&lt;/code&gt; 变量时默认问 &lt;code&gt;extern&lt;/code&gt;。而 &lt;code&gt;cost&lt;/code&gt; 变量必须显式的指定它为 &lt;code&gt;extern&lt;/code&gt; 才可以被其他文件访问。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;二、引用&quot;&gt;二、引用&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;引用（reference）就是对象的另一个名字。在实际程序中，引用主要作为函数的形参，形参的内容将在后续介绍。&lt;/p&gt;
-&lt;p&gt;引用是一种 &lt;strong&gt;复合类型（compound type）&lt;/strong&gt;，在变量名前加 &lt;code&gt;&amp;amp;&lt;/code&gt; 符号来定义。复合类型是指用其他类型定义的类型。每个引用都关联到其他某一类型，&lt;strong&gt;不能定义引用的引用，但可以定义任意类型的引用，并且可以有多个引用&lt;/strong&gt;。下面用例子说明&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal1 = val;	&lt;span class=&quot;comment&quot;&gt;//正确&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal2 = val;	&lt;span class=&quot;comment&quot;&gt;//正确：val的第二个别名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal3;		&lt;span class=&quot;comment&quot;&gt;//错误：引用必须初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal4 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//错误：引用必须使用对象初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;2-1、引用是别名&quot;&gt;2.1、引用是别名&lt;/h4&gt;&lt;p&gt;引用只是它所绑定对象的另一个名字，在引用上做的所有操作实际上都作用在原对象上：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;reVal1 = &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;；			&lt;span class=&quot;comment&quot;&gt;//相当于：val = 5；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;reVal1 += &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;		&lt;span class=&quot;comment&quot;&gt;//相当于：val += 1;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val2 = reVal1;	&lt;span class=&quot;comment&quot;&gt;//相当于：int val2 = val;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;下面程序的结果更能直观的说明这个问题&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal1 = val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal2 = val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;val = &quot;&lt;/span&gt; &amp;lt;&amp;lt; val &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal1 = &quot;&lt;/span&gt;&amp;lt;&amp;lt; reVal1 &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal2 = &quot;&lt;/span&gt; &amp;lt;&amp;lt; reVal2 &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	reVal1 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//对 reVal1 操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;val = &quot;&lt;/span&gt; &amp;lt;&amp;lt; val &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal1 = &quot;&lt;/span&gt;&amp;lt;&amp;lt; reVal1 &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal2 = &quot;&lt;/span&gt; &amp;lt;&amp;lt; reVal2 &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	reVal2 = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;	&lt;span class=&quot;comment&quot;&gt;//对 reVal2 操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;val = &quot;&lt;/span&gt; &amp;lt;&amp;lt; val &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal1 = &quot;&lt;/span&gt;&amp;lt;&amp;lt; reVal1 &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;, reVal2 = &quot;&lt;/span&gt; &amp;lt;&amp;lt; reVal2 &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;运行结果是： &lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;val = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, reVal1 = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, reVal2 = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;val = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, reVal1 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, reVal2 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;val = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, reVal1 = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, reVal2 = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;2-2、const引用&quot;&gt;2.2、const引用&lt;/h4&gt;&lt;p&gt;非 const 不能引用 const，只有 const 能够引用 const，且 const 引用不能修改：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; val = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;			&lt;span class=&quot;comment&quot;&gt;//正确：0是右值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal1 = val;	&lt;span class=&quot;comment&quot;&gt;//正确：val是左值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal2 = i;		&lt;span class=&quot;comment&quot;&gt;//正确&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;reVal1 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;					&lt;span class=&quot;comment&quot;&gt;//错误：const 引用是只读的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;reVal3 = val;			&lt;span class=&quot;comment&quot;&gt;//错误：非 const 不能引用 const&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;跟非 const 不同之处还有：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;re1 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;			&lt;span class=&quot;comment&quot;&gt;//正确&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;re2 = re1 + i;	&lt;span class=&quot;comment&quot;&gt;//正确&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;对于下面这种绑定到同一类型的情况：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i =  &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;re1 = i;	&lt;span class=&quot;comment&quot;&gt;//此时 re1 = 0；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;				&lt;span class=&quot;comment&quot;&gt;//此时 re1 = 1；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;当改变 &lt;code&gt;i&lt;/code&gt; 时，&lt;code&gt;re1&lt;/code&gt; 也会被改变。&lt;/p&gt;
-&lt;p&gt;还有另一种情况：绑定到不同类型的值&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; i =  &lt;span class=&quot;number&quot;&gt;1.1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;re1 = i;	&lt;span class=&quot;comment&quot;&gt;//此时 re1 = 1；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;i = &lt;span class=&quot;number&quot;&gt;2.1&lt;/span&gt;;			&lt;span class=&quot;comment&quot;&gt;//此时 re1 = 1；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;因为对于这种情况，编译器会解释为：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; temp =  i;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &amp;amp;re1 = temp;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;所以，改变 &lt;code&gt;i&lt;/code&gt; 实际上改变的是 &lt;code&gt;temp&lt;/code&gt;， &lt;code&gt;re1&lt;/code&gt; 不受影响。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;const 引用可以绑定左值或右值，非 const 引用只能绑定左值。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;三、typedef&quot;&gt;三、typedef&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;typedef 跟引用有点类似，不过 typedef 是定义类型的别名：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; wages;	&lt;span class=&quot;comment&quot;&gt;//wages 是 double 的别名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; score;		&lt;span class=&quot;comment&quot;&gt;//score 是 int 的别名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;typedef&lt;/span&gt; wages salary;	&lt;span class=&quot;comment&quot;&gt;//salary 是 double 的别名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其作用是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;为了隐藏特定的类型，强调使用类型的目的；&lt;/li&gt;
-&lt;li&gt;简化复杂的类型定义，易于理解；&lt;/li&gt;
-&lt;li&gt;允许一个类型用于多个目的，并且每次使用时目的明确；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;四、枚举&quot;&gt;四、枚举&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;如果要为某属定义一组可选择的值，每个只对应一种状态，比如文件的打开状态：输出，输入和追加分别对应 0,1,2。则有可能会这样定义：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; input = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;；&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; output = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;；&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; append = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;；&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;属性选择很多时这样定义就不方便，&lt;strong&gt;枚举（enumeration）&lt;/strong&gt; 是一种替代方法。&lt;/p&gt;
-&lt;h4 id=&quot;4-1、定义和初始化枚举&quot;&gt;4.1、定义和初始化枚举&lt;/h4&gt;&lt;p&gt;枚举的关键字是 &lt;code&gt;enum&lt;/code&gt;，定义如下&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;enum&lt;/span&gt; open_modes &amp;#123;input, output, append&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;默认地，第一个枚举成员赋值为 0，后面的依次加 1。&lt;/p&gt;
-&lt;h4 id=&quot;4-2、枚举成员是常量&quot;&gt;4.2、枚举成员是常量&lt;/h4&gt;&lt;p&gt;可以为一个或多个成员提供初值，初始化枚举成员的值必须是一个 &lt;strong&gt;常量表达式（constant expression）&lt;/strong&gt;，整型字面值也是常量表达式。&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// sphere = 2, polygon = 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;enum&lt;/span&gt; forms &amp;#123;shape = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, sphere, cylinder = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, polygon&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;4-3、每个enum都定义了一种唯一的类型&quot;&gt;4.3、每个enum都定义了一种唯一的类型&lt;/h4&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;forms f1 = shape;	&lt;span class=&quot;comment&quot;&gt;//正确：shape 是 forms 类型的枚举成员&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;forms f2 = square;	&lt;span class=&quot;comment&quot;&gt;//错误：square 不是 forms 类型；&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;forms f3 = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;；		&lt;span class=&quot;comment&quot;&gt;//错误：1 是 int类型，不是forms类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;p&gt;即使 1 与 shape 相关联，但是 1 赋值给 f3 还是非法的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;五、类类型&quot;&gt;五、类类型&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;在C++中可以通过定义 &lt;strong&gt;类（class）&lt;/strong&gt; 来自定义数据类型。类定义了该类型的对象包含的数据和该类型对象可以执行的操作。标准库类型 &lt;strong&gt;string、istream、ostream&lt;/strong&gt;都定义成类，关于类后续详细介绍。&lt;/p&gt;
-&lt;p&gt;本节继续使用在 &lt;a href=&quot;http://www.jianshu.com/p/67a45978af28&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;读《C++primer》day1：快速入门&lt;/a&gt; 的第三部分提到的 &lt;strong&gt;Sales_item&lt;/strong&gt; 类举例。&lt;/p&gt;
-&lt;h4 id=&quot;5-1、从操作开始设计类&quot;&gt;5.1、从操作开始设计类&lt;/h4&gt;&lt;p&gt;每个类都定义了一个 &lt;strong&gt;接口（interface）&lt;/strong&gt; 和一个 &lt;strong&gt;实现（implementation）&lt;/strong&gt;。接口由使用该类的代码需要执行组成，实现一般包括该类所需的数据及操作。&lt;/p&gt;
-&lt;p&gt;定义类时，通常先定义接口，即该类所提供的操作。以 Sales_item 举例：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;加法 &lt;code&gt;+&lt;/code&gt; ：将两个对象相加；&lt;/li&gt;
-&lt;li&gt;输入 &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; ： 读取一个对象；&lt;/li&gt;
-&lt;li&gt;输出 &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; ：输出一个对象；&lt;/li&gt;
-&lt;li&gt;赋值 &lt;code&gt;=&lt;/code&gt; ：将一个对象赋给另一个对象；&lt;/li&gt;
-&lt;li&gt;对比 &lt;code&gt;?&lt;/code&gt; ：对比两个对象是否属于同一本书（函数same_isbn）；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;虽然现在我们并不能实现这些操作（需要更多的知识），但可以考虑实现这些操作需要什么样的数据：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;记录各书本的销售册数；&lt;/li&gt;
-&lt;li&gt;该书的总销售收入；&lt;/li&gt;
-&lt;li&gt;计算该书的平均售价；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;大概就可以知道需要一个 &lt;code&gt;unsigned&lt;/code&gt; 类型对象来记录数的销售册数，一个 &lt;code&gt;double&lt;/code&gt; 类型对象计入总收入，&lt;code&gt;string&lt;/code&gt; 类型对象记录书本的ISBN。&lt;/p&gt;
-&lt;h4 id=&quot;5-2、定义Sales_item类&quot;&gt;5.2、定义Sales_item类&lt;/h4&gt;&lt;p&gt;按上一节提到的操作和数据，可以这样定义：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; Sales_item &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//各种操作在此定义&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;:&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; isbn;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; units_sold;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; revenue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;类定义以关键字 &lt;strong&gt;class&lt;/strong&gt; 开始，后面是该类的类名，类体位于花括号内部，花括号后面必须要跟一个分号。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;新手经常会忘记类定义后面的分号！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;类体可以为空，类体定义了该类型的数据和操作。这些数据和操作也称为 &lt;strong&gt;成员（member）&lt;/strong&gt;，数据称为 &lt;strong&gt;数据成员（data member）&lt;/strong&gt;，操作称为 &lt;strong&gt;成员函数&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;类定义可以包含多个 private 和 public &lt;strong&gt;访问标号（access label）&lt;/strong&gt;，给定的访问标号作用域到下一个访问标号出现时为止。类中 &lt;strong&gt;public&lt;/strong&gt; 部分定义的成员在程序的任何部分都可以访问，不是类的组成部分的代码不能方便问 &lt;strong&gt;private&lt;/strong&gt; 成员，这样可以保证Sales_item对象不能直接操纵数据成员。&lt;/p&gt;
-&lt;h4 id=&quot;5-3、使用struct关键字&quot;&gt;5.3、使用struct关键字&lt;/h4&gt;&lt;p&gt;struct 关键字也可以定义类类型，它是从 C 语言继承而来。区别&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用关键字 &lt;code&gt;class&lt;/code&gt; 定义类：定义在第一个标号之前的所有成员都默认为private；&lt;/li&gt;
-&lt;li&gt;用关键字 &lt;code&gt;struct&lt;/code&gt; 定义类：定义在第一个标号之前的所有成员都默认为public；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用 &lt;code&gt;struct&lt;/code&gt; 重新定义前面的Sales_item类：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; Sales_item &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//不需要 public 访问标号&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;:&lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; isbn;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;unsigned&lt;/span&gt; units_sold;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; revenue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;p&gt;用 class 和 struct 关键字定义类的唯一区别就在于 &lt;strong&gt;默认访问级别&lt;/strong&gt;。默认情况下，struct 的成员为 public，而 class 的成员的是 private。 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;END.&lt;/p&gt;
-" data-url="http://bluestein.github.io/2015/11/cpp-primer4-4/">
-    <div class="ds-share-aside-right">
-      <div class="ds-share-aside-inner">
-      </div>
-      <div class="ds-share-aside-toggle">分享</div>
+    <div class="post-spread">
+      
     </div>
-</div>
+  </div>
 
-</section>
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/cpp-primer4-4/"
+           data-title="Cpp:const、引用和typedef" data-url="http://bluestein.github.io/2015/11/cpp-primer4-4/">
+      </div>
+    
+  </div>
+
+
+        </div>
         
           
-            <aside id="sidebar">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Code/">Code</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Code/Cpp/">Cpp</a><span class="category-list-count">9</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Cpp/">Cpp</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Swift/">Swift</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github-Hexo/">Github + Hexo</a><span class="category-list-count">6</span></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最近发布</h3>
-    <div class="widget recents">
-      <ul>
-        
-          <li>
-            <a href="/2015/12/cpp-primer4-20/">Cpp:参数传递</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-9/">Cpp Code: ex7.3 - 7.6</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-8/">Cpp Code: ex6.18, 6.20, 6.21</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-7/">Cpp Code: : ex6.16</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-6/">Cpp Code: while, ex6.12</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/Cpp-primer/" style="font-size: 18px;">Cpp primer</a> <a href="/tags/Swift/" style="font-size: 12px;">Swift</a> <a href="/tags/git/" style="font-size: 14px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iOS/" style="font-size: 12px;">iOS</a>
-    </div>
-  </div>
+      
 
-  
-    <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=3239589332&verifier=6ee67f7f&dpc=1"></iframe>
-  
-</aside>
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ye.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
           
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、const"><span class="nav-number">1.</span> <span class="nav-text">一、const</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、定义const对象"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、定义const对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、const对象默认为文件的局部变量"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、const对象默认为文件的局部变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、引用"><span class="nav-number">2.</span> <span class="nav-text">二、引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、引用是别名"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、引用是别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、const引用"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、const引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、typedef"><span class="nav-number">3.</span> <span class="nav-text">三、typedef</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、枚举"><span class="nav-number">4.</span> <span class="nav-text">四、枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1、定义和初始化枚举"><span class="nav-number">4.1.</span> <span class="nav-text">4.1、定义和初始化枚举</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2、枚举成员是常量"><span class="nav-number">4.2.</span> <span class="nav-text">4.2、枚举成员是常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3、每个enum都定义了一种唯一的类型"><span class="nav-number">4.3.</span> <span class="nav-text">4.3、每个enum都定义了一种唯一的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、类类型"><span class="nav-number">5.</span> <span class="nav-text">五、类类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1、从操作开始设计类"><span class="nav-number">5.1.</span> <span class="nav-text">5.1、从操作开始设计类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2、定义Sales_item类"><span class="nav-number">5.2.</span> <span class="nav-text">5.2、定义Sales_item类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3、使用struct关键字"><span class="nav-number">5.3.</span> <span class="nav-text">5.3、使用struct关键字</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <div id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons License</a><br/>
-      &copy; 2015 Humooo<br/>
-      The theme is <a target="_blank" href="https://github.com/bluestein/hexo-theme-allgreen">Allgreen</a>,
-      based on <a target="_blank" href="https://github.com/xing5/hexo-theme-codeland">Codeland</a>,
-      modified by <a target="_blank" href="http://bluestein.github.io/about/">Humooo</a><br/>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Humooo</span>
 </div>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">主页</a>
-  
-    <a href="/archives" class="mobile-nav-link">归档</a>
-  
-    <a href="/about" class="mobile-nav-link">关于</a>
-  
-</nav>
-    
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
-<script>
-  var duoshuoQuery = {short_name:"humooo"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+  
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
 </body>
 </html>

@@ -1,98 +1,287 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>Cpp: 基本类型与字面值常量 | Humooo&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、基本内置类型
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cpp,Cpp primer," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="一、基本内置类型
 C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cpp: 基本类型与字面值常量">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp_primer4-2/index.html">
-<meta property="og:site_name" content="Humooo's Blog">
+<meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="一、基本内置类型
 C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。">
-<meta property="og:updated_time" content="2015-12-23T09:20:30.320Z">
+<meta property="og:updated_time" content="2015-12-30T01:54:34.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cpp: 基本类型与字面值常量">
 <meta name="twitter:description" content="一、基本内置类型
 C++定义的几种基本的算术类型：int，char，float和bool。以及特殊的void类型，void类型没有对应的值，通常用作无返回值函数的返回类型。">
-  
-    <link rel="alternative" href="/atom.xml" title="Humooo&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" type="image/x-icon" href="/H.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Cpp: 基本类型与字面值常量 | Humooo </title>
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div id="header">
-  <div id="header-outer" class="outer">
-    <div id="header-inner" class="inner">
-      <div id="header-title">
-        <h1 id="logo-wrap">
-          <a href="/" id="logo">
-          Humooo&#39;s Blog
-          </a>
-          
-              <br/><span id="subtitle">Plodding wins the race</span>
-          
-        </h1>
-      </div>
-      <nav id="sub-nav">
-        <a target="_blank" id="nav-github-link" class="nav-icon" href="https://github.com/bluestein" title="humooo's github"></a>
 
-        <a target="_blank" id="nav-weibo-link" class="nav-icon" href="http://weibo.com/u/3239589332" title="humooo's weibo"></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
-        
-      </nav>
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">主页</a>
-        
-          <a class="main-nav-link" href="/archives">归档</a>
-        
-          <a class="main-nav-link" href="/about">关于</a>
-        
-      </nav>
-    </div>
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
+  <p class="site-subtitle">Humooo's Blog</p>
 </div>
-      <div class="outer">
-        <section id="main"><article id="post-cpp_primer4-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/cpp_primer4-2/" class="article-date">
-  <time datetime="2015-11-09T02:36:09.000Z" itemprop="datePublished">2015-11-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Dev/">Dev</a>►<a class="article-category-link" href="/categories/Dev/Cpp/">Cpp</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
         
-  
-    <h3 class="article-title" itemprop="name">
-      Cpp: 基本类型与字面值常量
-    </h3>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
   
 
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cpp: 基本类型与字面值常量
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-09T10:36:09+08:00" content="2015-11-09">
+              2015-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/cpp_primer4-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/cpp_primer4-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h3 id="一、基本内置类型">一、基本内置类型</h3><hr>
 <p>C++定义的几种基本的<em>算术类型</em>：<strong>int</strong>，<strong>char</strong>，<strong>float</strong>和<strong>bool</strong>。以及特殊的<strong>void</strong>类型，void类型没有对应的值，通常用作无返回值函数的返回类型。</p>
@@ -157,7 +346,7 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 <p>注：即使是c++标准规定了存储标准，但是并不能阻止编译器使用更大的存储空间。而且，对于int型几乎所有编译器使用的空间都比所要求的大。</p>
 </blockquote>
 <!-- more -->
-<h4 id="1、整型">1、整型</h4><p>表示整数、<span style="color:red">字符</span>和布尔值的算术类型合称为<strong>整型(integral type)</strong>。（<em>没错，字符也是整型！）</em> <br> <strong>1 word(字) = 4 byte(字节) = 32 bit(位)</strong></p>
+<h4 id="整型">整型</h4><p>表示整数、<span style="color:red">字符</span>和布尔值的算术类型合称为<strong>整型(integral type)</strong>。（<em>没错，字符也是整型！）</em> <br> <strong>1 word(字) = 4 byte(字节) = 32 bit(位)</strong></p>
 <ul>
 <li>字符类型有两种：<strong>char</strong>和<strong>wchar_t</strong>。char能够保证存储机器基本字符集中任何字符相应的数值，因此char通常是<strong>单个机器字节</strong>（byte）；<strong>wchar_t</strong>类型用于拓展字符集，如汉字和日语，这些字符集中的一些字符不能用单个char表示；</li>
 <li><strong>short</strong>、<strong>int</strong>和<strong>long</strong>都表示<strong>整型值</strong>。一般short为半个字（word）长，int为一个字长，而long为一个或两个字长（32位机器中int和long通常字长相同）；</li>
@@ -184,7 +373,7 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 </li>
 <li>signed：由编译器决定，可能跟unsigned类似，也可能采取其他方式。</li>
 </ul>
-<h4 id="2、浮点型">2、浮点型</h4><ul>
+<h4 id="浮点型">浮点型</h4><ul>
 <li>float（单精度浮点数）：一个字长（32位）</li>
 <li>double（双精度浮点数）：两个字长（64位）</li>
 <li>long double（拓展精度）：三或四个字长（96位或128位）</li>
@@ -194,7 +383,7 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 <p>称它为<strong>字面值</strong>是因为只能用它的值来称呼它，称为<strong>常量</strong>是因为它的值不能被修改。</p>
 <p>每个字面值都有相应的类型，例如：0是int型；3.14159是double型。</p>
 <p>只有内置类型存在字面值，没有类类型的字面值。因此，标准库类型没有字面值。</p>
-<h4 id="2-1、整型字面值规则">2.1、整型字面值规则</h4><p>整数常量可以使用下列三种进制的任意一种：<strong>十进制、八进制和十六进制</strong>。</p>
+<h4 id="整型字面值规则">整型字面值规则</h4><p>整数常量可以使用下列三种进制的任意一种：<strong>十进制、八进制和十六进制</strong>。</p>
 <p>例如值20的定义：</p>
 <ul>
 <li>decimal:&#9;20</li>
@@ -212,7 +401,7 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 <blockquote>
 <p>注：定义long类型时，推荐使用大写字母 L ，因为用户读起来时，小写字母 l 很容易和数字 1 混淆！</p>
 </blockquote>
-<h4 id="2-2、浮点字面值规则">2.2、浮点字面值规则</h4><p>可以用<strong>十进制或科学计数法</strong>表示浮点字面值常量。</p>
+<h4 id="浮点字面值规则">浮点字面值规则</h4><p>可以用<strong>十进制或科学计数法</strong>表示浮点字面值常量。</p>
 <p>科学计数法指的是，<strong>指数</strong>用 E 或 e 表示。</p>
 <p>默认的浮点字面值常量是<strong>double型</strong>。后缀加上 F 或 f 表示单精度，加上 L 或 l 表示拓展精度（<span style="color:red">不推荐使用小写字母 l</span>）</p>
 <p>下面每一列的字面值是表示相同的值：</p>
@@ -234,9 +423,9 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 </tr>
 </tbody>
 </table>
-<h3 id="2-3、布尔字面值和字符字面值">2.3、布尔字面值和字符字面值</h3><p>bool的字面值： <strong>true和false</strong>。</p>
+<h3 id="布尔字面值和字符字面值">布尔字面值和字符字面值</h3><p>bool的字面值： <strong>true和false</strong>。</p>
 <p>可打印的字符型字面常量通常用一对单引号来定义： <strong>‘a’, ‘2’, ‘,’, ‘ ‘(空格)</strong>；<br> 加上 L 可以得到 wchar_t 类型的宽字符字面值： <strong>L’a’</strong>。</p>
-<h4 id="2-4、非打印字符的转义序列">2.4、非打印字符的转义序列</h4><table>
+<h4 id="非打印字符的转义序列">非打印字符的转义序列</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">\n</th>
@@ -277,7 +466,7 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 <li>\115: ‘M’</li>
 <li>\062: ‘2’</li>
 </ul>
-<h4 id="2-5、字符串字面值">2.5、字符串字面值</h4><p>前面的均是基本内置类型，下面的 <strong>字符串字面值</strong> 会更复杂一些，后续会详细说明。</p>
+<h4 id="字符串字面值">字符串字面值</h4><p>前面的均是基本内置类型，下面的 <strong>字符串字面值</strong> 会更复杂一些，后续会详细说明。</p>
 <p>字符串字面值常量是 <strong>双引号括起来的零个或多个字符</strong>，<strong>不可打印的字符</strong>使用相应的转义字符。</p>
 <ul>
 <li>“Hello World!”</li>
@@ -287,12 +476,12 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 <blockquote>
 <p>注：为了兼容C语言，C++会在所有字符串字面值常量末尾添加一个空字符<code>&lt;br/&gt;</code>如 ‘A’ 表示 单个字符 A，而 “A” 表示字符 A 和一个空字符两个字符的字符串</p>
 </blockquote>
-<h4 id="2-6、字符串字面值的连接">2.6、字符串字面值的连接</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span></span><br><span class="line">	<span class="string">" "</span></span><br><span class="line">	<span class="string">"World"</span> <span class="string">"!"</span></span><br><span class="line">	&lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串字面值的连接">字符串字面值的连接</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span></span><br><span class="line">	<span class="string">" "</span></span><br><span class="line">	<span class="string">"World"</span> <span class="string">"!"</span></span><br><span class="line">	&lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
 <p>等价于</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
 <p>但是下面试图连接 <strong>字符串字面值和宽字符串字面值</strong> 是非法的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> <span class="string">L" World!"</span> &lt;&lt;<span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
-<h4 id="2-7、多行字面值">2.7、多行字面值</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::cou\</span><br><span class="line">t&lt;&lt; <span class="string">"Hello"</span> &lt;&lt; st\</span><br><span class="line">d::endl;</span><br></pre></td></tr></table></figure>
+<h4 id="多行字面值">多行字面值</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::cou\</span><br><span class="line">t&lt;&lt; <span class="string">"Hello"</span> &lt;&lt; st\</span><br><span class="line">d::endl;</span><br></pre></td></tr></table></figure>
 <p>等价于</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; <span class="built_in">std</span>::endl;</span><br></pre></td></tr></table></figure>
 <p>反斜杠 <strong>‘\’</strong> 必须是该行的结尾，不允许后面有空格或注释。同样的，下一行的前面也不能有任何空格和制表符。</p>
@@ -302,371 +491,447 @@ C++定义的几种基本的算术类型：int，char，float和bool。以及特�
 
       
     </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp-primer/">Cpp primer</a></li></ul>
 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+          
+            <a href="/tags/Cpp-primer/" rel="tag">#Cpp primer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/cpp_primer4-1/" rel="next" title="Cpp: 快速入门">
+                <i class="fa fa-chevron-left"></i> Cpp: 快速入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/cpp-primer4-3/" rel="prev" title="Cpp:变量">
+                Cpp:变量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/11/cpp_primer4-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">旧的</strong>
-      <div class="article-nav-title">Cpp: 快速入门</div>
-    </a>
-  
-  
-    <a href="/2015/11/cpp-primer4-3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新的</strong>
-      <div class="article-nav-title">
-        
-          Cpp:变量
-        
-      </div>
-    </a>
-  
-</nav>
-
-  
-</article>
+  </article>
 
 
 
-
-<section id="comments">
-  <div id="duoshuo_thread">
-    <div class="ds-thread" data-thread-key="cpp_primer4-2" data-title="Cpp: 基本类型与字面值常量" data-url="http://bluestein.github.io/2015/11/cpp_primer4-2/"></div>
-  </div>
-</section>
-
-
-
-
-  <div class="ds-share" data-thread-key="cpp_primer4-2" data-title="Cpp: 基本类型与字面值常量" data-images="" data-content="&lt;h3 id=&quot;一、基本内置类型&quot;&gt;一、基本内置类型&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;C++定义的几种基本的&lt;em&gt;算术类型&lt;/em&gt;：&lt;strong&gt;int&lt;/strong&gt;，&lt;strong&gt;char&lt;/strong&gt;，&lt;strong&gt;float&lt;/strong&gt;和&lt;strong&gt;bool&lt;/strong&gt;。以及特殊的&lt;strong&gt;void&lt;/strong&gt;类型，void类型没有对应的值，通常用作无返回值函数的返回类型。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;类型&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;最小存储空间（位）&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;bool&lt;/td&gt;
-&lt;td&gt;布尔型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;char&lt;/td&gt;
-&lt;td&gt;字符型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;wchar_t&lt;/td&gt;
-&lt;td&gt;宽字符型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;16&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;short&lt;/td&gt;
-&lt;td&gt;短整型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;16&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;int&lt;/td&gt;
-&lt;td&gt;整型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;16&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;long&lt;/td&gt;
-&lt;td&gt;长整型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;32&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;float&lt;/td&gt;
-&lt;td&gt;单精度浮点型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;6位有效数字&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;double&lt;/td&gt;
-&lt;td&gt;双精度浮点型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;10位有效数字&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;long double&lt;/td&gt;
-&lt;td&gt;拓展精度浮点型&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;10位有效数字&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注：即使是c++标准规定了存储标准，但是并不能阻止编译器使用更大的存储空间。而且，对于int型几乎所有编译器使用的空间都比所要求的大。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- more --&gt;
-&lt;h4 id=&quot;1、整型&quot;&gt;1、整型&lt;/h4&gt;&lt;p&gt;表示整数、&lt;span style=&quot;color:red&quot;&gt;字符&lt;/span&gt;和布尔值的算术类型合称为&lt;strong&gt;整型(integral type)&lt;/strong&gt;。（&lt;em&gt;没错，字符也是整型！）&lt;/em&gt; &lt;br&gt; &lt;strong&gt;1 word(字) = 4 byte(字节) = 32 bit(位)&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;字符类型有两种：&lt;strong&gt;char&lt;/strong&gt;和&lt;strong&gt;wchar_t&lt;/strong&gt;。char能够保证存储机器基本字符集中任何字符相应的数值，因此char通常是&lt;strong&gt;单个机器字节&lt;/strong&gt;（byte）；&lt;strong&gt;wchar_t&lt;/strong&gt;类型用于拓展字符集，如汉字和日语，这些字符集中的一些字符不能用单个char表示；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;short&lt;/strong&gt;、&lt;strong&gt;int&lt;/strong&gt;和&lt;strong&gt;long&lt;/strong&gt;都表示&lt;strong&gt;整型值&lt;/strong&gt;。一般short为半个字（word）长，int为一个字长，而long为一个或两个字长（32位机器中int和long通常字长相同）；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;bool&lt;/strong&gt;：true, false。可以将整型值赋给bool对象，0值表示false，非0值都代表true；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;1.1、signed和unsigned&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;整型除了bool之外都可以&lt;strong&gt;带符号&lt;/strong&gt;（signed）也可以&lt;strong&gt;不带符号&lt;/strong&gt;（unsigned）。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;signed（带符号）：能表示正数也可以表示负数（包括0）；&lt;/li&gt;
-&lt;li&gt;unsigned（不带符号）：只能表示0及以上的数；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;int，short和long默认是带符号型，需要指定unsigned才能获得无符号类型，其中unsigned int可以简写为unsigned。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1.2、整型值的表示&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;unsigned类型的所有位均可表示数值。例如，在机器中定义了一种类型使用8位表示，则该类型的取值范围是 0~255；&lt;/li&gt;
-&lt;li&gt;signed类型在c++标准中并未定义如何用位来表示（我读的《C++primer》版本是第4版），由编译器自由决定。8位的signed类型取值范围至少是 -127~127，也有允许 -128~127.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;1.3、整型的赋值&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;疑问：当把一个超过其取值范围的值赋给一个指定类型的对象时，会发生什么？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;unsigned：编译器必须调整越界值使其满足要求，编译器会将该值对该类型的&lt;strong&gt;可能取值数&lt;/strong&gt;求模。&lt;br&gt;例如8位的unsigned char，取值范围是 0~255，则可能的取值数是 256。当试图把 336存储到unsigned char中，实际存储的是80，因为 336%256 = 80。&lt;br&gt;&lt;blockquote&gt;
-&lt;p&gt;注：c++中把负值赋给unsigned对象是完全合法的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;signed：由编译器决定，可能跟unsigned类似，也可能采取其他方式。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;2、浮点型&quot;&gt;2、浮点型&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;float（单精度浮点数）：一个字长（32位）&lt;/li&gt;
-&lt;li&gt;double（双精度浮点数）：两个字长（64位）&lt;/li&gt;
-&lt;li&gt;long double（拓展精度）：三或四个字长（96位或128位）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;二、字面值常量&quot;&gt;二、字面值常量&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;像42这样的值，在程序中被称为&lt;strong&gt;字面值常量&lt;/strong&gt;（literal constant）。&lt;/p&gt;
-&lt;p&gt;称它为&lt;strong&gt;字面值&lt;/strong&gt;是因为只能用它的值来称呼它，称为&lt;strong&gt;常量&lt;/strong&gt;是因为它的值不能被修改。&lt;/p&gt;
-&lt;p&gt;每个字面值都有相应的类型，例如：0是int型；3.14159是double型。&lt;/p&gt;
-&lt;p&gt;只有内置类型存在字面值，没有类类型的字面值。因此，标准库类型没有字面值。&lt;/p&gt;
-&lt;h4 id=&quot;2-1、整型字面值规则&quot;&gt;2.1、整型字面值规则&lt;/h4&gt;&lt;p&gt;整数常量可以使用下列三种进制的任意一种：&lt;strong&gt;十进制、八进制和十六进制&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;例如值20的定义：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;decimal:&amp;#9;20&lt;/li&gt;
-&lt;li&gt;octal:&amp;#9;024&lt;/li&gt;
-&lt;li&gt;hexadecimal:&amp;#9;0x14&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;字面值整数常量的默认类型为&lt;strong&gt;int或long&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;这取决与字面值——值适合int就是int型，大于int就是long（即，假设int为1机器字长(32位)，则 &lt;code&gt;-2^31+1 ~ 2^31-1&lt;/code&gt; 为int，大于 &lt;code&gt;2^31-1&lt;/code&gt; 的为long）。&lt;/p&gt;
-&lt;p&gt;通过加后缀可以把字面值类型转换成long，unsigned或unsigned long。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;long: 20L&lt;/li&gt;
-&lt;li&gt;unsigned: 20U(20u)&lt;/li&gt;
-&lt;li&gt;unsigned long: 20UL(20LU/20Lu/20uL)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注：定义long类型时，推荐使用大写字母 L ，因为用户读起来时，小写字母 l 很容易和数字 1 混淆！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;2-2、浮点字面值规则&quot;&gt;2.2、浮点字面值规则&lt;/h4&gt;&lt;p&gt;可以用&lt;strong&gt;十进制或科学计数法&lt;/strong&gt;表示浮点字面值常量。&lt;/p&gt;
-&lt;p&gt;科学计数法指的是，&lt;strong&gt;指数&lt;/strong&gt;用 E 或 e 表示。&lt;/p&gt;
-&lt;p&gt;默认的浮点字面值常量是&lt;strong&gt;double型&lt;/strong&gt;。后缀加上 F 或 f 表示单精度，加上 L 或 l 表示拓展精度（&lt;span style=&quot;color:red&quot;&gt;不推荐使用小写字母 l&lt;/span&gt;）&lt;/p&gt;
-&lt;p&gt;下面每一列的字面值是表示相同的值：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;3.14159F&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;.001f&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;12.345L&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;0.&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;3.14159E0f&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;1E-3f&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;1.2345E1L&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;0e0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;2-3、布尔字面值和字符字面值&quot;&gt;2.3、布尔字面值和字符字面值&lt;/h3&gt;&lt;p&gt;bool的字面值： &lt;strong&gt;true和false&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;可打印的字符型字面常量通常用一对单引号来定义： &lt;strong&gt;‘a’, ‘2’, ‘,’, ‘ ‘(空格)&lt;/strong&gt;；&lt;br&gt; 加上 L 可以得到 wchar_t 类型的宽字符字面值： &lt;strong&gt;L’a’&lt;/strong&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;2-4、非打印字符的转义序列&quot;&gt;2.4、非打印字符的转义序列&lt;/h4&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\n&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\r&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\a&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\b&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\t&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\v&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\f&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\?&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\”&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\’&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;\&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;换行符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;回车符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;报警符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;退格符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;水平制表符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;纵向制表符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;进纸符&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;疑问号&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;双引号&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;单引号&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;反斜杠&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;任何字符都可以通过 &lt;strong&gt;“\XXX”&lt;/strong&gt; 的形式表示，“XXX”表示三位八进制数字。下面是用ASCII码表示字面常量：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;\7 : 报警符&lt;/li&gt;
-&lt;li&gt;\0 : 空格符&lt;/li&gt;
-&lt;li&gt;\12: 换行符&lt;/li&gt;
-&lt;li&gt;\40: 空格符&lt;/li&gt;
-&lt;li&gt;\115: ‘M’&lt;/li&gt;
-&lt;li&gt;\062: ‘2’&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;2-5、字符串字面值&quot;&gt;2.5、字符串字面值&lt;/h4&gt;&lt;p&gt;前面的均是基本内置类型，下面的 &lt;strong&gt;字符串字面值&lt;/strong&gt; 会更复杂一些，后续会详细说明。&lt;/p&gt;
-&lt;p&gt;字符串字面值常量是 &lt;strong&gt;双引号括起来的零个或多个字符&lt;/strong&gt;，&lt;strong&gt;不可打印的字符&lt;/strong&gt;使用相应的转义字符。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;“Hello World!”&lt;/li&gt;
-&lt;li&gt;“”&lt;/li&gt;
-&lt;li&gt;“\nHello\tWorld!\n”&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注：为了兼容C语言，C++会在所有字符串字面值常量末尾添加一个空字符&lt;code&gt;&amp;lt;br/&amp;gt;&lt;/code&gt;如 ‘A’ 表示 单个字符 A，而 “A” 表示字符 A 和一个空字符两个字符的字符串&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;2-6、字符串字面值的连接&quot;&gt;2.6、字符串字面值的连接&lt;/h4&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;World&quot;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;!&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;等价于&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt; &amp;lt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;但是下面试图连接 &lt;strong&gt;字符串字面值和宽字符串字面值&lt;/strong&gt; 是非法的&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;L&quot; World!&quot;&lt;/span&gt; &amp;lt;&amp;lt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;2-7、多行字面值&quot;&gt;2.7、多行字面值&lt;/h4&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::cou\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;t&amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt; &amp;lt;&amp;lt; st\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;d::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;等价于&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;反斜杠 &lt;strong&gt;‘\’&lt;/strong&gt; 必须是该行的结尾，不允许后面有空格或注释。同样的，下一行的前面也不能有任何空格和制表符。&lt;/p&gt;
-&lt;p&gt;对于下一个 &lt;strong&gt;长字符串&lt;/strong&gt; 例子，反斜杠后也不能有其他字符；而后一行的前面所有空格或制表符都会成为 &lt;strong&gt;长字符串的一部分&lt;/strong&gt;。&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;Hello \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	World!&quot;&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;END.&lt;/p&gt;
-" data-url="http://bluestein.github.io/2015/11/cpp_primer4-2/">
-    <div class="ds-share-aside-right">
-      <div class="ds-share-aside-inner">
-      </div>
-      <div class="ds-share-aside-toggle">分享</div>
+    <div class="post-spread">
+      
     </div>
-</div>
+  </div>
 
-</section>
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/cpp_primer4-2/"
+           data-title="Cpp: 基本类型与字面值常量" data-url="http://bluestein.github.io/2015/11/cpp_primer4-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
         
           
-            <aside id="sidebar">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Code/">Code</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Code/Cpp/">Cpp</a><span class="category-list-count">9</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Cpp/">Cpp</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/Swift/">Swift</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github-Hexo/">Github + Hexo</a><span class="category-list-count">6</span></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最近发布</h3>
-    <div class="widget recents">
-      <ul>
-        
-          <li>
-            <a href="/2015/12/cpp-primer4-20/">Cpp:参数传递</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-9/">Cpp Code: ex7.3 - 7.6</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-8/">Cpp Code: ex6.18, 6.20, 6.21</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-7/">Cpp Code: : ex6.16</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/cpp-demo-6/">Cpp Code: while, ex6.12</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cpp/" style="font-size: 20px;">Cpp</a> <a href="/tags/Cpp-primer/" style="font-size: 18px;">Cpp primer</a> <a href="/tags/Swift/" style="font-size: 12px;">Swift</a> <a href="/tags/git/" style="font-size: 14px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/github-pages/" style="font-size: 10px;">github pages</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/iOS/" style="font-size: 12px;">iOS</a>
-    </div>
-  </div>
+      
 
-  
-    <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=3239589332&verifier=6ee67f7f&dpc=1"></iframe>
-  
-</aside>
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ye.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
           
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本内置类型"><span class="nav-number">1.</span> <span class="nav-text">一、基本内置类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整型"><span class="nav-number">1.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点型"><span class="nav-number">1.2.</span> <span class="nav-text">浮点型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、字面值常量"><span class="nav-number">2.</span> <span class="nav-text">二、字面值常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整型字面值规则"><span class="nav-number">2.1.</span> <span class="nav-text">整型字面值规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点字面值规则"><span class="nav-number">2.2.</span> <span class="nav-text">浮点字面值规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔字面值和字符字面值"><span class="nav-number">3.</span> <span class="nav-text">布尔字面值和字符字面值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#非打印字符的转义序列"><span class="nav-number">3.1.</span> <span class="nav-text">非打印字符的转义序列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串字面值"><span class="nav-number">3.2.</span> <span class="nav-text">字符串字面值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串字面值的连接"><span class="nav-number">3.3.</span> <span class="nav-text">字符串字面值的连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多行字面值"><span class="nav-number">3.4.</span> <span class="nav-text">多行字面值</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <div id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons License</a><br/>
-      &copy; 2015 Humooo<br/>
-      The theme is <a target="_blank" href="https://github.com/bluestein/hexo-theme-allgreen">Allgreen</a>,
-      based on <a target="_blank" href="https://github.com/xing5/hexo-theme-codeland">Codeland</a>,
-      modified by <a target="_blank" href="http://bluestein.github.io/about/">Humooo</a><br/>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Humooo</span>
 </div>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">主页</a>
-  
-    <a href="/archives" class="mobile-nav-link">归档</a>
-  
-    <a href="/about" class="mobile-nav-link">关于</a>
-  
-</nav>
-    
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
-<script>
-  var duoshuoQuery = {short_name:"humooo"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+  
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
 
-  </div>
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
 </body>
 </html>
