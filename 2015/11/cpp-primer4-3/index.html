@@ -61,20 +61,23 @@
 
 <meta name="description" content="首先
 考虑问题：求2的3次方？
-最直接的想到的可能是：">
+最直接的想到的可能是：
+1234567#include &amp;lt;iostream&amp;gt;int main()&amp;#123;	std::cout &amp;lt;&amp;lt; &quot;2 raised to the power of 3 is &quot; &amp;lt;&amp;lt; 2*2*2  &amp;lt;&amp;lt; std::endl;	return 0;&amp;#125;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cpp:变量">
+<meta property="og:title" content="变量">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-3/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="首先
 考虑问题：求2的3次方？
-最直接的想到的可能是：">
-<meta property="og:updated_time" content="2015-12-23T09:20:30.316Z">
+最直接的想到的可能是：
+1234567#include &amp;lt;iostream&amp;gt;int main()&amp;#123;	std::cout &amp;lt;&amp;lt; &quot;2 raised to the power of 3 is &quot; &amp;lt;&amp;lt; 2*2*2  &amp;lt;&amp;lt; std::endl;	return 0;&amp;#125;">
+<meta property="og:updated_time" content="2015-12-30T06:15:20.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cpp:变量">
+<meta name="twitter:title" content="变量">
 <meta name="twitter:description" content="首先
 考虑问题：求2的3次方？
-最直接的想到的可能是：">
+最直接的想到的可能是：
+1234567#include &amp;lt;iostream&amp;gt;int main()&amp;#123;	std::cout &amp;lt;&amp;lt; &quot;2 raised to the power of 3 is &quot; &amp;lt;&amp;lt; 2*2*2  &amp;lt;&amp;lt; std::endl;	return 0;&amp;#125;">
 
 
 
@@ -92,7 +95,7 @@
   };
 </script>
 
-  <title> Cpp:变量 | Humooo </title>
+  <title> 变量 | Humooo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +213,7 @@
             
             
               
-                Cpp:变量
+                变量
               
             
           </h1>
@@ -289,8 +292,8 @@
         <h3 id="首先">首先</h3><hr>
 <p>考虑问题：<code>求2的3次方？</code></p>
 <p>最直接的想到的可能是：</p>
-<a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 raised to the power of 3 is "</span> &lt;&lt; <span class="number">2</span>*<span class="number">2</span>*<span class="number">2</span>  &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>固然，此方法可以求出2的3次方；但是如果要求2的20次方的话不太可能去连续乘20次，此时的替代方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val = <span class="number">2</span>;<span class="comment">//2为底</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">pow</span> = <span class="number">20</span>;<span class="comment">//20次方</span></span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="built_in">pow</span>; ++i)&#123;</span><br><span class="line">    	result *= val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2 raised to the power of "</span> &lt;&lt; <span class="built_in">pow</span> &lt;&lt; <span class="string">" is "</span> &lt;&lt; result  &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的 <code>val, pow, result 和 i</code> 都是变量。可以对数值进行存储、修改和查询。</p>
@@ -536,16 +539,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/cpp_primer4-2/" rel="next" title="Cpp: 基本类型与字面值常量">
-                <i class="fa fa-chevron-left"></i> Cpp: 基本类型与字面值常量
+              <a href="/2015/11/cpp_primer4-2/" rel="next" title="基本类型与字面值常量">
+                <i class="fa fa-chevron-left"></i> 基本类型与字面值常量
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/cpp-primer4-4/" rel="prev" title="Cpp:const、引用和typedef">
-                Cpp:const、引用和typedef <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/cpp-primer4-4/" rel="prev" title="const、引用和typedef">
+                const、引用和typedef <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +576,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2015/11/cpp-primer4-3/"
-           data-title="Cpp:变量" data-url="http://bluestein.github.io/2015/11/cpp-primer4-3/">
+           data-title="变量" data-url="http://bluestein.github.io/2015/11/cpp-primer4-3/">
       </div>
     
   </div>
@@ -618,7 +621,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

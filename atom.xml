@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2015-12-30T01:48:30.642Z</updated>
+  <updated>2015-12-31T04:30:06.343Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,11 +15,165 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Cpp:参数传递]]></title>
+    <title><![CDATA[函数的声明]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-primer4-22/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-primer4-22/</id>
+    <published>2015-12-31T07:11:49.000Z</published>
+    <updated>2015-12-31T04:30:06.343Z</updated>
+    <content type="html"><![CDATA[<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
+<p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="默认实参">默认实参</h3><p>调用函数时，可以省略有默认值的实参。如果一个参数有默认值，那么它后面的实参都必须有默认值。如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">screenInit</span><span class="params">(<span class="built_in">string</span>::size_type height = <span class="number">24</span>,</span><br><span class="line">				<span class="built_in">string</span>::size_type width = <span class="number">80</span>,</span><br><span class="line">				<span class="keyword">char</span> background = <span class="string">' '</span>)</span></span>;</span><br><span class="line"><span class="comment">// 下面调用均正确</span></span><br><span class="line"><span class="built_in">string</span> screen;</span><br><span class="line">screen = screenInit();</span><br><span class="line">screen = screenInit(<span class="number">66</span>);</span><br><span class="line">screen = screenInit(<span class="number">66</span>, <span class="number">256</span>);</span><br><span class="line">screen = screenInit(<span class="number">66</span>, <span class="number">256</span>, <span class="string">'#'</span>);</span><br></pre></td></tr></table></figure>
+<p>设置默认形参时，最少使用的默认值放在最前，最多使用的放在最后。</p>
+<blockquote>
+<p>函数在声明时可以指定默认实参，但是在一个文件中，只能为形参指定一次默认参数。所以可以将声明放在头文件中。</p>
+</blockquote>
+<h3 id="静态局部对象">静态局部对象</h3><p>上面的形参都会在定义它们的快语句结束时被撤销，如果需要跨越多个作用域，定义为 <strong>static</strong>，它能保证在程序结束前不被撤销：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> count() &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">size_t</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> ++cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i!= <span class="number">5</span>; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; count() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="内联函数">内联函数</h3><p>一般的函数调用要比求解表达式慢得多，<strong>内联函数可以避免函数调用的开销</strong>。使用 <strong>inline</strong> 关键字定义，如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">shorterString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &gt; s2.size() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则在调用 <code>cout &lt;&lt; shorterString(s1, s2) &lt;&lt; endl;</code> 时， 编译时展开为 <code>cout &lt;&lt; (s1.size() &gt; s2.size() ? s1 : s2) &lt;&lt; endl;</code>。</p>
+<p>内联机制适用于优化小的、几行的且经常调用的函数。</p>
+<h3 id="类的成员函数">类的成员函数</h3><p>和任何函数一样，包含下面四个部分：</p>
+<ol>
+<li>返回类型</li>
+<li>函数名</li>
+<li>逗号分隔的形参列表（可为空）</li>
+<li>花括号内的函数体</li>
+</ol>
+<p>1,2,3 组成的是函数原型，<strong>函数的原型必须在类中定义</strong>，函数体则可以在类外。假设 Sales_item 类有两个成员函数 avgPrice() 和 sameIsbn(const Sales_item &amp;):</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">avgPrice</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> isbn == rhs.isbn;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可以发现形参的后面有 <code>const</code>，在解释之前，说明成员函数如何定义：</p>
+<h4 id="成员函数的函数体">成员函数的函数体</h4><p>类的所有成员必须在<strong>定义类的花括号中声明</strong>，并且<strong>编译器隐式地将类内定义的成员函数当作是内联函数</strong>。</p>
+<blockquote>
+<p>类的成员函数可以访问 private 成员，如 isbn。</p>
+</blockquote>
+<p><strong>this 指针的引入</strong></p>
+<p>每个成员函数都有一个额外的、隐式的形参 <strong>this</strong>，在调用成员函数时，形参 this 初始化为调用函数的对象的地址。可以这样理解：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item.sameIsbn(otherItem);</span><br></pre></td></tr></table></figure>
+<p>编译器会重写这个函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sales_item::sameIsbn(&amp;item, otherItem);</span><br></pre></td></tr></table></figure>
+<p><strong>const 成员函数的引入</strong></p>
+<p>也就是上面提到的形参后面 <strong>const</strong>，<strong>它改变了隐式形参 this 的类型</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item *<span class="keyword">const</span> <span class="keyword">this</span>,</span><br><span class="line">			<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>-&gt;isbn == rhs.isbn);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>这种使用 const 的函数称为<strong>常量成员函数</strong>（const member function）。由于 this 指向 const 对象，const 成员函数不能修改调用该函数的对象。</p>
+<h4 id="类外定义成员函数">类外定义成员函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> Sales_item::avgPrice() <span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (units_sold)&#123;</span><br><span class="line">		<span class="keyword">return</span> revenue / units_sold;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用了域操作符 <code>::</code> 及类名 <code>Sales_item</code>。</p>
+<h4 id="Sale_item_的构造函数">Sale_item 的构造函数</h4><p>构造函数是特殊的成员函数，<strong>构造函数名与类名相同，而且无返回类型</strong>。可以有多个构造函数，相互之间的具有不同数目或类型的形参。</p>
+<p>跟普通成员函数一样，必须在类内声明，类内或类外定义。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">avgPrice</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> isbn == rhs.isbn;</span><br><span class="line">	&#125;</span><br><span class="line">	Sales_item(): units_sold(<span class="number">0</span>), revenue(<span class="number">0.0</span>) &#123;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>构造函数的初始化列表</strong></p>
+<p><strong>在冒号与花括号之间的代码称为构造函数的初始化列表</strong>，即 <code>units_sold(0), revenue(0.0)</code> 为成员指定初值，括号内是初值。<strong>构造函数的形参表为空说明此为默认调用的</strong></p>
+<p><strong>类代码的组织</strong></p>
+<p>通常将类的声明放置在头文件中，在类外定义的成员函数则置于源文件中。</p>
+<h3 id="重载函数">重载函数</h3><p>在相同作用域中，出现相同名字而形参表不同的函数，称为重载函数。如电话本的查找：基于姓名、基于号码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Record <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> Name&amp;)</span></span>;</span><br><span class="line"><span class="function">Record <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> Phone&amp;)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>重载与重复声明的区别</strong></p>
+<p>如果两个函数声明的返回类型和参数表完全匹配，叫重复声明；<strong>如果形参表完全相同，返回类型不同，则第二个错误</strong>。</p>
+<p>在函数中局部声明的名字会屏蔽全局名，即使是变量名对函数名也同样成立：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> init = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> s = init(); <span class="comment">// error: global init is hidden</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="指向函数的指针">指向函数的指针</h3><p>函数指针是指指向函数而非对象的指针，像其他指针一样，函数指针指向的是函数类型，<strong>函数类型由其返回类型和形参表确定，与函数名无关</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> (*pf)(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br></pre></td></tr></table></figure>
+<h4 id="用typedef简化定义">用typedef简化定义</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">bool</span> <span class="params">(*cmpFcn)</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>则 <code>cmpFcn</code> 表示<strong>指向返回类型为 bool 类型并带有两个 const string 引用形参的函数的指针</strong>。若要定义此类型的函数指针，则直接使用 <code>cmpFcn</code> 即可。</p>
+<h4 id="初始化和赋值">初始化和赋值</h4><p>在引用函数名又没调用该函数，函数名将被自动解释为指向函数的指针。假设有函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">lengthCpmpare</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>会被解释为如下类型的指针：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> (*)(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br></pre></td></tr></table></figure>
+<p>可以做如下初始化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf1 = <span class="number">0</span>;				<span class="comment">// ok：不指向任何函数</span></span><br><span class="line">cmpFcn pf2 = lengthCompare;	<span class="comment">// ok：指向类型匹配的函数</span></span><br><span class="line">pf1 = lengthCompare;		<span class="comment">// ok：同上</span></span><br><span class="line">pf2 = pf1;					<span class="comment">// ok：同上</span></span><br></pre></td></tr></table></figure>
+<p>此时，直接饮用函数名等效于在函数名上应用取地址操作符：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf1 = lengthCompare;</span><br><span class="line">cmpFcn pf2 = &amp;lengthCompare;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数指针只能通过同类型的函数或函数指针或 0 值常量表达式进行初始化或赋值</p>
+</blockquote>
+<h4 id="通过指针调用函数">通过指针调用函数</h4><p>不需要解引用操作符，直接通过指针调用函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf = lengthcompare;</span><br><span class="line">lengthCompare(<span class="string">"hi"</span>, <span class="string">"bye"</span>);	<span class="comment">// 直接调用</span></span><br><span class="line">pf(<span class="string">"hi"</span>, <span class="string">"bye"</span>);			<span class="comment">// 等价调用：pf隐式解引用</span></span><br><span class="line">(*pf)(<span class="string">"hi"</span>, <span class="string">"bye"</span>);			<span class="comment">// 等价调用：pf显式解引用</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数指针形参">函数指针形参</h4><p>函数的形参可以是指向函数的指针，这种形参可以用以下两种形式编写：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void useBigger(const string &amp;, const string &amp;,</span><br><span class="line">			bool (const string &amp;, const string &amp;));</span><br><span class="line">void useBigger(const string &amp;, const string &amp;,</span><br><span class="line">			bool (*)(const string &amp;, const string &amp;));</span><br></pre></td></tr></table></figure>
+<h4 id="返回指向函数的指针">返回指向函数的指针</h4><p>函数可以返回指向函数的指针，但是，这并不简单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ff is a function taking an int and returing a function pointer</span></span><br><span class="line"><span class="comment">// the function pointed to returns an int and takes an int* and an int</span></span><br><span class="line"><span class="keyword">int</span> (*ff(<span class="keyword">int</span>)) (<span class="keyword">int</span>*, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<p>这样理解： <code>ff(int)</code> 表明 ff 为一个函数，它带有一个 int 型形参，该参数返回 <code>int (*)(int*, int)</code>，它是指向一个函数的指针。用 typedef 可以更加明白：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PF is a pointer to a function returing an int, taking an int* and an int</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*PF)</span><span class="params">(<span class="keyword">int</span>*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function">PF <span class="title">ff</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
+<p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
+    
+      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[return]]></title>
+    <link href="http://bluestein.github.io/2015/12/cpp-primer4-21/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-primer4-21/</id>
+    <published>2015-12-30T06:11:49.000Z</published>
+    <updated>2015-12-30T08:19:19.076Z</updated>
+    <content type="html"><![CDATA[<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="没有返回值的函数">没有返回值的函数</h3><p>不带返回值的return语句用于 void 类型的函数。在 void 类型的函数中，return 语句不是必须的，它会在函数的最后一个语句隐式的完成。</p>
+<p><strong>隐式的return</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = v2;</span><br><span class="line">	v2 = v1;</span><br><span class="line">	v1 = tmp;</span><br><span class="line">	<span class="comment">// 隐式的return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>return</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v1 == v2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span>; <span class="comment">// 不带返回值的return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> tmp = v2;</span><br><span class="line">	v2 = v1;</span><br><span class="line">	v1 = tmp;</span><br><span class="line">	<span class="comment">// 隐式的return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有返回值的函数">有返回值的函数</h3><p>使用第二种形式，即 <code>return expression;</code> 返回值给非 void 函数。</p>
+<h4 id="主函数_main_的返回值">主函数 main 的返回值</h4><p>可将 main 函数的返回值作为状态指示器，0 表示运行成功，其他返回值则因机器的不同而不同，因此 cstdlib 头文件定义了两个预定于变量 <code>EXIT_FAILURE</code> <code>EXIT_SUCCESS</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sctdlib&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (some_failure)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="返回非引用类型">返回非引用类型</h4><p>此时可以返回局部对象，或表达式的结果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">makePlural</span><span class="params">(size_t ctr, <span class="keyword">const</span> <span class="built_in">string</span> &amp;word, <span class="keyword">const</span> <span class="built_in">string</span> &amp;ending)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (ctr == <span class="number">1</span>) ? word : word + ending;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="返回引用">返回引用</h4><p>返回的是对象本身</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">shorterString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &gt; s2.size() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="不能返回局部变量的引用">不能返回局部变量的引用</h4><p>因为程序执行完毕时，将释放该对象的存储空间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">mainp</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> ret = s;</span><br><span class="line">	<span class="keyword">return</span> ret; <span class="comment">// wrong: local object</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同样不要返回局部变量的指针</p>
+</blockquote>
+<h4 id="引用返回左值">引用返回左值</h4><p>可以使用在要求使用左值的地方</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> &amp;<span class="title">getVal</span><span class="params">(<span class="built_in">string</span> &amp;str, <span class="built_in">string</span>::size_type ix)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> str[ix];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"a string"</span>)</span></span>;</span><br><span class="line">	getVal(s, <span class="number">0</span>) = <span class="string">'A'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints: </span></span><br><span class="line"><span class="comment">// A string</span></span><br></pre></td></tr></table></figure>
+<p>如果不想引用返回值被修改，则返回值应声明为const： <code>const char &amp;getVal(...</code>。</p>
+<h3 id="递归">递归</h3><p>间接或直接调用子集的函数称为递归函数（recursion function）。例如阶乘运算</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> val)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (val &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> fact(val - <span class="number">1</span>) * val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或最大公约数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rgcd</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v2 != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> rgcd(v2, v1 % v2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于 <code>fact</code> 与 <code>rgcd</code> 它们的终止条件分别是： <code>val = 1</code>; 余数等于零。</p>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
+    
+      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[参数传递]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-primer4-20/"/>
     <id>http://bluestein.github.io/2015/12/cpp-primer4-20/</id>
-    <published>2015-12-23T12:49:49.000Z</published>
-    <updated>2015-12-30T01:48:30.642Z</updated>
+    <published>2015-12-29T12:49:49.000Z</published>
+    <updated>2015-12-30T06:10:49.921Z</updated>
     <content type="html"><![CDATA[<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -72,11 +226,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: ex7.3 - 7.6]]></title>
+    <title><![CDATA[ex7.3 - 7.6]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-9/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-9/</id>
-    <published>2015-12-23T11:03:42.000Z</published>
-    <updated>2015-12-23T13:10:32.511Z</updated>
+    <published>2015-12-25T11:03:42.000Z</published>
+    <updated>2015-12-30T06:16:34.240Z</updated>
     <content type="html"><![CDATA[<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -108,11 +262,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: ex6.18, 6.20, 6.21]]></title>
+    <title><![CDATA[ex6.18, 6.20, 6.21]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-8/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-8/</id>
-    <published>2015-12-22T12:03:42.000Z</published>
-    <updated>2015-12-23T09:15:23.021Z</updated>
+    <published>2015-12-24T12:03:42.000Z</published>
+    <updated>2015-12-30T06:16:34.243Z</updated>
     <content type="html"><![CDATA[<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dictOrder</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp1 = a.c_str();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp2 = b.c_str();</span><br><span class="line">	<span class="keyword">while</span> (*cp1 &amp;&amp; *cp2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*cp1 != *cp2)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> *cp1 &gt; *cp2 ? <span class="string">"First bigger"</span> : <span class="string">"First smaller"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cp1++;</span><br><span class="line">		cp2++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"Same"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Please input two strings.\nIf you want to quit, input two 'q'."</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nTwo strings:\n"</span>;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; str1 &gt;&gt; str2;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; dictOrder(str1, str2) &lt;&lt; endl;</span><br><span class="line">	&#125; <span class="keyword">while</span> (str1 != <span class="string">"q"</span> &amp;&amp; str2 != <span class="string">"q"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -140,11 +294,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: : ex6.16]]></title>
+    <title><![CDATA[ex6.16]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-7/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-7/</id>
     <published>2015-12-22T12:03:42.000Z</published>
-    <updated>2015-12-23T09:15:25.062Z</updated>
+    <updated>2015-12-30T06:16:34.247Z</updated>
     <content type="html"><![CDATA[<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sz1 = a.size(), sz2 = b.size();</span><br><span class="line">	<span class="keyword">int</span> sz = sz1 &gt; sz2 ? sz2 : sz1;</span><br><span class="line">	<span class="keyword">int</span> matched = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i] == b[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			++matched;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sz == matched;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr1[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> arr2[<span class="number">7</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> sz1 = <span class="keyword">sizeof</span>(arr1) / <span class="keyword">sizeof</span>(*arr1);</span><br><span class="line">	<span class="keyword">int</span> sz2 = <span class="keyword">sizeof</span>(arr2) / <span class="keyword">sizeof</span>(*arr2);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec1(arr1, arr1 + sz1);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec2(arr2, arr2 + sz2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; isPrefix(vec1, vec2) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -164,11 +318,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: while, ex6.12]]></title>
+    <title><![CDATA[while, ex6.12]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-6/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-6/</id>
     <published>2015-12-22T07:03:42.000Z</published>
-    <updated>2015-12-23T09:15:25.059Z</updated>
+    <updated>2015-12-30T06:16:48.424Z</updated>
     <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> *source = arr;</span><br><span class="line">	<span class="keyword">size_t</span> sz = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(*arr);</span><br><span class="line">	<span class="keyword">int</span> *dest = <span class="keyword">new</span> <span class="keyword">int</span>[sz];</span><br><span class="line">	<span class="keyword">while</span> (source != arr + sz) </span><br><span class="line">	&#123;</span><br><span class="line">		*dest++ = *source++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// test</span></span><br><span class="line">	<span class="keyword">int</span> *dp = dest - sz;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; ++i) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *dp &lt;&lt; endl;</span><br><span class="line">		dp++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -193,11 +347,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: switch, ex6.9]]></title>
+    <title><![CDATA[switch, ex6.9]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-5/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-5/</id>
     <published>2015-12-22T01:42:42.000Z</published>
-    <updated>2015-12-23T09:15:25.056Z</updated>
+    <updated>2015-12-30T06:17:31.503Z</updated>
     <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> aCnt = <span class="number">0</span>, eCnt = <span class="number">0</span>, iCnt = <span class="number">0</span>, oCnt = <span class="number">0</span>, uCnt = <span class="number">0</span>, otherCnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ch)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (ch)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">			++aCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">			++eCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">			++iCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'o'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'O'</span>:</span><br><span class="line">			++oCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'u'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'U'</span>:</span><br><span class="line">			++uCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			++otherCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of vowel a/A:\t"</span> &lt;&lt; aCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel e/E:\t"</span> &lt;&lt; eCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel i/I:\t"</span> &lt;&lt; iCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel o/O:\t"</span> &lt;&lt; oCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel u/U:\t"</span> &lt;&lt; uCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of other characters:\t"</span> &lt;&lt; otherCnt &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -225,11 +379,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[swift: Classes and Structures]]></title>
+    <title><![CDATA[Classes and Structures]]></title>
     <link href="http://bluestein.github.io/2015/12/swift-classesAndStructures/"/>
     <id>http://bluestein.github.io/2015/12/swift-classesAndStructures/</id>
     <published>2015-12-21T12:42:42.000Z</published>
-    <updated>2015-12-30T01:46:32.318Z</updated>
+    <updated>2015-12-30T06:12:01.571Z</updated>
     <content type="html"><![CDATA[<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
 <ul>
 <li>定义 property 来存储值</li>
@@ -331,11 +485,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[swift: enumerations]]></title>
+    <title><![CDATA[enumerations]]></title>
     <link href="http://bluestein.github.io/2015/12/swift-enumerations/"/>
     <id>http://bluestein.github.io/2015/12/swift-enumerations/</id>
     <published>2015-12-21T09:53:33.000Z</published>
-    <updated>2015-12-30T01:44:57.894Z</updated>
+    <updated>2015-12-30T06:11:55.386Z</updated>
     <content type="html"><![CDATA[<h3 id="Syntax">Syntax</h3><p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -396,11 +550,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[swift: functions]]></title>
+    <title><![CDATA[functions]]></title>
     <link href="http://bluestein.github.io/2015/12/swift-functions/"/>
     <id>http://bluestein.github.io/2015/12/swift-functions/</id>
     <published>2015-12-20T11:53:33.000Z</published>
-    <updated>2015-12-30T01:43:21.281Z</updated>
+    <updated>2015-12-30T06:11:50.020Z</updated>
     <content type="html"><![CDATA[<h3 id="defining_and_calling">defining and calling</h3><p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <ul>
@@ -478,11 +632,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp:语句]]></title>
+    <title><![CDATA[语句]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-primer4-19/"/>
     <id>http://bluestein.github.io/2015/12/cpp-primer4-19/</id>
     <published>2015-12-17T08:13:33.000Z</published>
-    <updated>2015-12-23T09:18:17.007Z</updated>
+    <updated>2015-12-30T06:13:20.882Z</updated>
     <content type="html"><![CDATA[<p>开始学习第六章《语句》</p>
 <h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
@@ -543,11 +697,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: if语句]]></title>
+    <title><![CDATA[if语句]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-4/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-4/</id>
     <published>2015-12-17T07:32:42.000Z</published>
-    <updated>2015-12-23T09:15:25.053Z</updated>
+    <updated>2015-12-30T06:17:31.506Z</updated>
     <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>寻找vector中的最小值，并记录这个最小值出现的次数。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ivec.push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 这两步是为了制造最小值</span></span><br><span class="line">	ivec[<span class="number">0</span>] = ivec[<span class="number">1</span>] = <span class="number">3</span>;</span><br><span class="line">	ivec[<span class="number">5</span>] = ivec[<span class="number">8</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> min_val = ivec[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> min_cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; ivec.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ivec[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (min_val == ivec[i])</span><br><span class="line">		&#123;</span><br><span class="line">			++min_cnt;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (min_val &gt; ivec[i])</span><br><span class="line">		&#123;</span><br><span class="line">			min_val = ivec[i];</span><br><span class="line">			min_cnt = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="string">"min value: "</span>&lt;&lt; min_val &lt;&lt;<span class="string">", count: "</span>&lt;&lt; min_cnt &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1107,11 +1261,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Cpp Code: vector存放指针]]></title>
+    <title><![CDATA[vector存放指针]]></title>
     <link href="http://bluestein.github.io/2015/12/cpp-demo-3/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-3/</id>
     <published>2015-12-02T14:01:42.000Z</published>
-    <updated>2015-12-23T09:15:25.050Z</updated>
+    <updated>2015-12-30T06:17:31.509Z</updated>
     <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt; v;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(s);</span><br><span class="line">		v.push_back(sp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt;::iterator iter = v.begin();</span><br><span class="line">	<span class="keyword">while</span> (iter != v.end()) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *tmp = *iter;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; tmp-&gt;size() &lt;&lt; <span class="string">", "</span> &lt;&lt; *tmp &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		iter++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1176,160 +1330,6 @@
       <category term="hexo" scheme="http://bluestein.github.io/tags/hexo/"/>
     
       <category term="Github + Hexo" scheme="http://bluestein.github.io/categories/Github-Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cpp:类型转换]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-18/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-18/</id>
-    <published>2015-11-28T08:50:29.000Z</published>
-    <updated>2015-12-30T01:49:20.618Z</updated>
-    <content type="html"><![CDATA[<p>如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
-<p>上面称为 <strong>隐式类型转换</strong>。</p>
-<a id="more"></a>
-<h3 id="发生隐式转换">发生隐式转换</h3><ul>
-<li><p>混合表达式中，操作数被转化为相同类型</p>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line">iv += dv;	<span class="comment">//iv会被转换为double</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>作为条件表达式转换为bool</p>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">if</span>(val)	<span class="comment">//int to bool</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span>)	<span class="comment">//cin to bool</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用表达式初始化某变量，该表达式结果被转换为该变量的类型</p>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv = <span class="number">3.14</span>;	<span class="comment">//3.14 to int</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="算术转换">算术转换</h3><p><strong>signed 与 unsigned 类型间的转换</strong></p>
-<ul>
-<li><p>如果包含 short 和 int 类型的表达式，short 转换为int。如果 int 足够表示所有 unsigned short ，则将 unsigned short 转换为 int。</p>
-</li>
-<li><p>long 和 unsigned int 转换也一样，如果 long 足够表示所有 unsigned int ，则将 unsigned int 转换为 long。</p>
-</li>
-</ul>
-<blockquote>
-<p>在32机器中，long和int通常使用一个字长表示，因此包含 unsigned int 和 long 类型的表达式，都应该转换为 unsigned long</p>
-</blockquote>
-<ul>
-<li>signed 和 unsigned int，signed转换成 unsigned int。</li>
-</ul>
-<p><strong>举例</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> bv;</span><br><span class="line"><span class="keyword">char</span> cv;</span><br><span class="line"><span class="keyword">short</span> siv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> usiv;</span><br><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> uiv;</span><br><span class="line"><span class="keyword">long</span> lv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ulv;</span><br><span class="line"><span class="keyword">float</span> fv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line"><span class="number">3.14L</span> + <span class="string">'a'</span>;	<span class="comment">//'a' 先转换成 int，再转换成double</span></span><br><span class="line">dv + iv;	<span class="comment">//iv to double</span></span><br><span class="line">dv + fv;	<span class="comment">//fv to double</span></span><br><span class="line">iv = dv;	<span class="comment">//dv to(截断) int</span></span><br><span class="line">bv = dv;	<span class="comment">//if dv=0, bv = false, else bv = true</span></span><br><span class="line">cv + fv;	<span class="comment">//cv to int, then, int to float</span></span><br><span class="line">siv + cv;	<span class="comment">//siv and cv to int</span></span><br><span class="line">cv + lv;	<span class="comment">//cv to long</span></span><br><span class="line">iv + ulv;	<span class="comment">//iv to unsigned long</span></span><br><span class="line">usiv + iv;	<span class="comment">//依赖于 unsigned short 和 int 的大小</span></span><br><span class="line">uiv + lv;	<span class="comment">//依赖于 unsigned int 和 long 的大小</span></span><br></pre></td></tr></table></figure>
-<h3 id="其他隐式转换">其他隐式转换</h3><p><strong>指针转换</strong></p>
-<p>使用数组时，大多数情况下数组都会自动转化为指向第一个元素的指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">10</span>];	<span class="comment">//数组</span></span><br><span class="line"><span class="keyword">int</span> *ip = ia;	<span class="comment">//转化成指向第一个元素的指针</span></span><br></pre></td></tr></table></figure>
-<p>还有另外两种指针转换：</p>
-<ul>
-<li>指向任意数据类型的指针都能够转化成 void*类型；</li>
-<li>整型字面常量值 0 可以转换为任意指针类型；</li>
-</ul>
-<p><strong>转换为bool类型</strong></p>
-<p>算术值和指针纸都可以转为bool类型。如果指针或算术值为0，则其bool值为false，其他则为true：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cp)	<span class="comment">/*...*/</span> <span class="comment">//true if not zero</span></span><br><span class="line"><span class="keyword">while</span>(*cp)	<span class="comment">/*...*/</span> <span class="comment">//convert char to bool</span></span><br></pre></td></tr></table></figure>
-<p>while 语句对 <code>cp</code> 解引用，如果结果为 null ，则转化成false，否则转化成true</p>
-<p><strong>算术类型与bool类型的转换</strong></p>
-<p>可将算术类型转换成bool型，也可将bool型转换成int型。算术类型转bool时，0转换成false，其他转换成true；bool转int时，true转成1，false转成0。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">int</span> ival = b;	<span class="comment">//ival == 1</span></span><br><span class="line"><span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">bool</span> b2 = pi;	<span class="comment">//b2 is true</span></span><br><span class="line">pi = <span class="literal">false</span>; <span class="comment">//pi == 0</span></span><br></pre></td></tr></table></figure>
-<p><strong>转化与枚举</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p3 = 3; p4 = 4</span></span><br><span class="line"><span class="keyword">enum</span> points &#123;p1 = <span class="number">2</span>, p3, p3 = <span class="number">3</span>, p4&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>转化为const类型</strong></p>
-<p>使用非const对象初始化const对象的引用时，系统将非const对象转化成const对象。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;j = i;	<span class="comment">//ok: 将非const对象转化成const对象</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = &amp;ci;	<span class="comment">//ok: 将非const对象的地址转化为指向const类型的指针</span></span><br></pre></td></tr></table></figure>
-<p><strong>由标准库类型定义的转换</strong></p>
-<p>典型的例子就是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s)</span><br></pre></td></tr></table></figure>
-<p>该表达式 <code>cin&gt;&gt;s</code> 的结果 <code>cin</code> 对象，为istream对象，所以此时会将其转化成bool类型。</p>
-<h3 id="显式转换">显式转换</h3><p>显式转换也称为<strong>强制类型转换（cast）</strong>，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。</p>
-<p><strong>何时需要强制转换</strong></p>
-<p>例如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line">ival *= dval;</span><br></pre></td></tr></table></figure>
-<p>上述程序首先会将 ival 转换为 double 型，乘法操作后又将double型的结果转成int型。为了避免不必要的转换，可以如下操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ival *= <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(dval);</span><br></pre></td></tr></table></figure>
-<p><strong>命名的强制类型转换</strong></p>
-<p>形式如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast-name&lt;type&gt;(expression);</span><br></pre></td></tr></table></figure>
-<p>cast-name的选择有</p>
-<ul>
-<li><p>static_cast: 编译器隐式执行的任何类型转换都可以通过 static_cast 显式完成</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d = <span class="number">1.5</span>;</span><br><span class="line"><span class="keyword">char</span> ch = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>&gt;(d);</span><br><span class="line"><span class="keyword">void</span> *p = &amp;d;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>*&gt;(p);	<span class="comment">//可以找回存在void*中的值</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>dynamic_cast: 支持运行时识别指针或引用所指的对象。</p>
-</li>
-<li><p>const_cast: 去掉表达式的const性质</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *ccp;</span><br><span class="line"><span class="keyword">char</span> *cp = string_copy(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(ccp));</span><br><span class="line"><span class="comment">//使string_copy接受const char*类型的参数</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>reinterpret_cast: 通常为操作数的位模式提供较低层次的重新解释</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip;</span><br><span class="line"><span class="keyword">char</span> *cp = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(ip);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>cp 所指的真实对象时 int 类型，所以不能用来初始化 string 对象。</p>
-<p>type表示目标类型，expression表示被转换的表达式。</p>
-<blockquote>
-<p>避免使用强制类型转换</p>
-</blockquote>
-<p><strong>旧式的强制转换</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *cp = (<span class="keyword">char</span>*) ip;</span><br></pre></td></tr></table></figure>
-<p>这种方式不容易错误跟踪，可视性差。</p>
-<blockquote>
-<p>C++仍旧支持旧式强制转换，但不推荐这样做。除非在C语言下，或旧式编译器上才使用。</p>
-</blockquote>
-<p>END.</p>
-<hr>
-<p>Github Pages同步更新<br>Github Pages: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
-<p>上面称为 <strong>隐式类型转换</strong>。</p>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cpp:new & delete]]></title>
-    <link href="http://bluestein.github.io/2015/11/cpp-primer4-17/"/>
-    <id>http://bluestein.github.io/2015/11/cpp-primer4-17/</id>
-    <published>2015-11-27T08:50:24.000Z</published>
-    <updated>2015-12-30T01:50:00.786Z</updated>
-    <content type="html"><![CDATA[<h3 id="动态创建对象的初始化">动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="动态创建对象的默认初始化">动态创建对象的默认初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>;	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>;	<span class="comment">//未初始化</span></span><br></pre></td></tr></table></figure>
-<p>可以利用下列方式进行默认初始化</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>();	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>();	<span class="comment">//0</span></span><br></pre></td></tr></table></figure>
-<h3 id="撤销动态创建对象">撤销动态创建对象</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> *ip = &amp;i;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"str"</span>)</span></span>;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">new</span> <span class="keyword">double</span>(<span class="number">3.14</span>);</span><br><span class="line"><span class="keyword">int</span> *ip0 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> s;	<span class="comment">//error: s是非动态对象</span></span><br><span class="line"><span class="keyword">delete</span> ip;	<span class="comment">//error: ip指向本地对象</span></span><br><span class="line"><span class="keyword">delete</span> dp;	<span class="comment">//ok</span></span><br><span class="line"><span class="keyword">delete</span> ip0;	<span class="comment">//ok: 但没什么意义</span></span><br></pre></td></tr></table></figure>
-<p>C++未明确定义如何释放非new分配的内存地址。</p>
-<h3 id="delete后重设指针的值">delete后重设指针的值</h3><p>执行delete语句后，尽管指针变成未定义，但仍存放了之前所指对象的地址，称为 <strong>悬挂指针（dangling pointer）</strong> 。这种指针往往容易出错。</p>
-<blockquote>
-<p>一旦delete指针，立即将其置为0，就可以避免悬挂指针。</p>
-</blockquote>
-<h3 id="const对象的动态分配和回收">const对象的动态分配和回收</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip = <span class="keyword">new</span> <span class="function"><span class="keyword">const</span> <span class="title">int</span><span class="params">(<span class="number">1024</span>)</span></span>;	<span class="comment">//必须初始化，且不能再修改</span></span><br></pre></td></tr></table></figure>
-<p>如果有默认构造函数，则可以隐式初始化，如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> *csp = <span class="keyword">new</span> <span class="keyword">const</span> <span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
-<p>尽管不能改变const对象的值，但可撤销对象本身</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> cip;	<span class="comment">//ok</span></span><br><span class="line">cip = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="动态创建对象的初始化">动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
     
   </entry>
   

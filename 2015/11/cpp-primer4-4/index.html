@@ -61,20 +61,26 @@
 
 <meta name="description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
-123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
+123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;
+
+显然从程序来看，我们并不知道 10 是怎样一个存在，因此它也被称为 魔数（magic number），意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cpp:const、引用和typedef">
+<meta property="og:title" content="const、引用和typedef">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-4/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
-123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
-<meta property="og:updated_time" content="2015-12-23T09:20:30.313Z">
+123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;
+
+显然从程序来看，我们并不知道 10 是怎样一个存在，因此它也被称为 魔数（magic number），意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。">
+<meta property="og:updated_time" content="2015-12-30T06:15:44.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cpp:const、引用和typedef">
+<meta name="twitter:title" content="const、引用和typedef">
 <meta name="twitter:description" content="一、const
 考虑问题：下面程序中数字 0 的含义？
-123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;">
+123for (int i = 0; i != 10; ++i)&amp;#123;	//...&amp;#125;
+
+显然从程序来看，我们并不知道 10 是怎样一个存在，因此它也被称为 魔数（magic number），意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。">
 
 
 
@@ -92,7 +98,7 @@
   };
 </script>
 
-  <title> Cpp:const、引用和typedef | Humooo </title>
+  <title> const、引用和typedef | Humooo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +216,7 @@
             
             
               
-                Cpp:const、引用和typedef
+                const、引用和typedef
               
             
           </h1>
@@ -289,12 +295,12 @@
         <h3 id="一、const">一、const</h3><hr>
 <p>考虑问题：下面程序中数字 <code>0</code> 的含义？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显然从程序来看，我们并不知道 <code>10</code> 是怎样一个存在，因此它也被称为 <strong>魔数（magic number）</strong>，意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。</li>
+</ul>
 <a id="more"></a>
 <ul>
-<li><p>显然从程序来看，我们并不知道 <code>10</code> 是怎样一个存在，因此它也被称为 <strong>魔数（magic number）</strong>，意思是这个数的意义不能从上下文体现出来，就像魔术一样凭空出现了。</p>
-</li>
-<li><p>或者如果这个程序多次使用数字 <code>10</code> 的话，当需要要把 <code>10</code> 改为 <code>20</code> 的话就麻烦了。</p>
-</li>
+<li>或者如果这个程序多次使用数字 <code>10</code> 的话，当需要要把 <code>10</code> 改为 <code>20</code> 的话就麻烦了。</li>
 </ul>
 <p>一种简单的解决办法是</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != max; ++i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -425,16 +431,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/cpp-primer4-3/" rel="next" title="Cpp:变量">
-                <i class="fa fa-chevron-left"></i> Cpp:变量
+              <a href="/2015/11/cpp-primer4-3/" rel="next" title="变量">
+                <i class="fa fa-chevron-left"></i> 变量
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/cpp-primer4-5/" rel="prev" title="Cpp:头文件">
-                Cpp:头文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/cpp-primer4-5/" rel="prev" title="头文件">
+                头文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,7 +468,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2015/11/cpp-primer4-4/"
-           data-title="Cpp:const、引用和typedef" data-url="http://bluestein.github.io/2015/11/cpp-primer4-4/">
+           data-title="const、引用和typedef" data-url="http://bluestein.github.io/2015/11/cpp-primer4-4/">
       </div>
     
   </div>
@@ -507,7 +513,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
