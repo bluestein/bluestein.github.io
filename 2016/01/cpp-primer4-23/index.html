@@ -1,0 +1,1010 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cpp,Cpp primer," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="标准库IO类型在三个独立的头文件中定义：iostream，fstream，sstream
+
+
+
+头文件
+类型
+
+
+
+
+iostream
+istream 从流中读取；ostream 写到流中去；iostream 对流进行读写，由 iostream 和 ostream 派生而来；
+
+
+fstream
+ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到文件对象中去，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO库">
+<meta property="og:url" content="http://bluestein.github.io/2016/01/cpp-primer4-23/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="标准库IO类型在三个独立的头文件中定义：iostream，fstream，sstream
+
+
+
+头文件
+类型
+
+
+
+
+iostream
+istream 从流中读取；ostream 写到流中去；iostream 对流进行读写，由 iostream 和 ostream 派生而来；
+
+
+fstream
+ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到文件对象中去，">
+<meta property="og:updated_time" content="2016-01-01T13:08:23.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IO库">
+<meta name="twitter:description" content="标准库IO类型在三个独立的头文件中定义：iostream，fstream，sstream
+
+
+
+头文件
+类型
+
+
+
+
+iostream
+istream 从流中读取；ostream 写到流中去；iostream 对流进行读写，由 iostream 和 ostream 派生而来；
+
+
+fstream
+ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到文件对象中去，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> IO库 | Humooo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Humooo's Blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IO库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-01T15:11:49+08:00" content="2016-01-01">
+              2016-01-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/cpp-primer4-23/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/cpp-primer4-23/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
+<table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iostream</td>
+<td>istream 从流中读取；<br>ostream 写到流中去；<br>iostream 对流进行读写，由 iostream 和 ostream 派生而来；</td>
+</tr>
+<tr>
+<td>fstream</td>
+<td>ifstream 从文件对象中读取，由 istream 派生而来；<br>ofstream 写到文件对象中去，由 ostream 派生而来；<br>fstream 对文件进行读写，由 iostream 派生而来；</td>
+</tr>
+<tr>
+<td>sstream</td>
+<td>istringstream 从 string 对象中读取，由 istream 派生而来；<br>ostringstream 写到 string 对象中去，由 ostream 派生而来；<br>stringstream 对 string 进行读写，由 iostream 派生而来；</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p><strong>国际字符的支持</strong></p>
+<p>前面所说的流类（stream class）读写均是 char 类型组成的流，不过，标准库还定义了一套支持 wchar_t 的类型。每个类加上 <strong>w</strong> 前缀，表示宽字符，如 wostream, wistream, wiostream。</p>
+<p><strong>IO 对象不可复制或赋值</strong></p>
+<p>处于一些原因，标准库不允许赋值或复制操作，原因在后面阐明</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ofstream out1, out2;</span><br><span class="line">out1 = out2; <span class="comment">// error</span></span><br><span class="line"><span class="comment">// function func: parameter is copied</span></span><br><span class="line"><span class="function">ofstream <span class="title">func</span><span class="params">(ofstream)</span></span>;</span><br><span class="line">out2 = func(out2); <span class="comment">//error: cannot copy stream objects</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>由于不能复制，因此不能存储在 vector 等容器中</li>
+<li>形参或返回类型也不能为流类型。如果需要传递或返回 IO 类型，则必须使用<strong>指针或引用</strong>：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ofstream &amp;<span class="title">func</span><span class="params">(ofstream&amp;)</span></span>; <span class="comment">// ok: takes a reference, no copy</span></span><br><span class="line"><span class="keyword">while</span> (func(out2)) &#123; <span class="comment">/*...*/</span> &#125; <span class="comment">// ok: pass reference to out2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="条件状态">条件状态</h3><p>IO 标准库管理一系列的<strong>条件状态（condition state）</strong>成员，用来标记给定的 IO 对象是否处于可用状态，或者碰到了哪种特定的错误。</p>
+<table>
+<thead>
+<tr>
+<th>IO 标准库的条件状态</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strm::iostate</td>
+<td>机器相关的整型名，由各个 iostream 类定义，用于定义条件状态</td>
+</tr>
+<tr>
+<td>strm::badbit</td>
+<td>strm::iostate类型的值，用于指出被破坏的流</td>
+</tr>
+<tr>
+<td>strm::failbit</td>
+<td>strm::iostate类型的值，用于指出失败的 IO 操作</td>
+</tr>
+<tr>
+<td>strm::eofbit</td>
+<td>strm::iostate类型的值，用于指出流已经达到文件的结束符</td>
+</tr>
+<tr>
+<td>s.eof()</td>
+<td>如果设置了流 s 的 eofbit 值，该函数返回true</td>
+</tr>
+<tr>
+<td>s.fail()</td>
+<td>如果设置了流 s 的 failbit 值，该函数返回true</td>
+</tr>
+<tr>
+<td>s.bad()</td>
+<td>如果设置了流 s 的 badbit 值，该函数返回true</td>
+</tr>
+<tr>
+<td>s.good()</td>
+<td>如果设置了流 s 处于有效状态，该函数返回true</td>
+</tr>
+<tr>
+<td>s.clear()</td>
+<td>将流 s 的所有状态值重设为有效状态</td>
+</tr>
+<tr>
+<td>s.clear(flag)</td>
+<td>将流 s 中某个指定的条件状态设置为有效。flag 类型为 strm::iostate</td>
+</tr>
+<tr>
+<td>s.setstate(flag)</td>
+<td>给流 s 添加指定条件。flag 类型为 strm::iostate</td>
+</tr>
+<tr>
+<td>s.rdstate()</td>
+<td>返回流 s 当前条件。返回值类型为 strm::iostate</td>
+</tr>
+</tbody>
+</table>
+<p>流的状态由 bad、fail、eof 或 good 操作揭示。badbit 标志着系统级的错误，如无法读写的错误。其他都设置了 failbit 标志，通常可修正。</p>
+<p><strong>流状态的查询和控制</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line"><span class="comment">// read cin and test only for EOF; loop is executed even if there are IO failures</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ival, !<span class="built_in">cin</span>.eof()) &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">cin</span>.bad()) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"IO stream corrupted"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">cin</span>.fail()) &#123;</span><br><span class="line">		<span class="built_in">cerr</span> &lt;&lt; <span class="string">"bad data, try again"</span>;</span><br><span class="line">		<span class="built_in">cin</span>.clear(istream::failbit);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>条件状态的访问</strong></p>
+<p>rdstate 成员函数返回一个 iostate 类型的值，该值对应于流当前的整个条件状态：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">istream::iostate old_state = <span class="built_in">cin</span>.rdstate();</span><br><span class="line"><span class="built_in">cin</span>.clear();</span><br><span class="line">process_input(); <span class="comment">// use cin</span></span><br><span class="line"><span class="built_in">cin</span>.clear(old_state); <span class="comment">// reset cin to old state</span></span><br></pre></td></tr></table></figure>
+<h3 id="输出缓冲区的管理">输出缓冲区的管理</h3><p>每个IO对象管理一个缓冲区，用于存储程序读写的数据。如有下面语句：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os &lt;&lt; <span class="string">"Plz enter a value:"</span>;</span><br></pre></td></tr></table></figure>
+<p>系统会将字符串字面值存储在与流 os 关联的缓冲区中。</p>
+<p>下面情况将导致缓冲区的内容被刷新，即写入到真实的输出设备或文件中：</p>
+<ol>
+<li>程序正常结束。作为 main 返回工作的一部分，将清空所有输出缓冲区；</li>
+<li>缓冲区已满，写入下一个值时；</li>
+<li>用操纵符显示刷新缓冲区，如行结束符 endl；</li>
+<li>每次输出操作完成后，用 unitbuf 操纵符设置流内部的状态，从而清空缓冲区；</li>
+<li>将输出流与输入流关联起来。在读入流时将刷新其关联的输出缓冲区；</li>
+</ol>
+<p><strong>输出缓冲区的刷新</strong></p>
+<p>除了 <code>endl</code> 之外，还有其他两个类似的操纵符： <code>flush</code>, <code>ends</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"hi"</span> &lt;&lt; flush; <span class="comment">// flushes the buffer, adds no data;</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"hi"</span> &lt;&lt; ends; <span class="comment">// inserts a null, then flushes the buffer; </span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"hi"</span> &lt;&lt; endl; <span class="comment">// inserts a newline, then flushes the buffer;</span></span><br></pre></td></tr></table></figure>
+<p><strong>unitbuf</strong></p>
+<p>如果需要刷新所有输出，最好使用 unitbuf 操纵符。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; unitbuf &lt;&lt; <span class="string">"first"</span> &lt;&lt; <span class="string">"second"</span> &lt;&lt; nounitbuf;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"first"</span> &lt;&lt; flush &lt;&lt; <span class="string">"second"</span> &lt;&lt; flush;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果程序崩溃了，则不刷新缓冲区。</p>
+</blockquote>
+<p><strong>输入与输出绑定</strong></p>
+<p>将 cout 与 cin 绑定，则任何读输入流的操作都将刷新其输出流关联的缓冲区。使用 tie 函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.tie(&amp;<span class="built_in">cout</span>);</span><br><span class="line">ostream *old_tie = <span class="built_in">cin</span>.tie();</span><br><span class="line"><span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="comment">// 终止绑定</span></span><br><span class="line"><span class="built_in">cin</span>.tie(&amp;<span class="built_in">cerr</span>); <span class="comment">// cin 与 cerr 绑定，但不推荐</span></span><br><span class="line"><span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">cin</span>.tie(old_tie); <span class="comment">// cin 与 cout 重新绑定</span></span><br></pre></td></tr></table></figure>
+<h3 id="文件的输入输出">文件的输入输出</h3><h4 id="文件流对象的使用">文件流对象的使用</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// construct an ifstream and bind it to the file named ifile </span><br><span class="line">ifstream infile(ifile.c_str());</span><br><span class="line">// ofstream output file object to write file named ofile</span><br><span class="line">ofstream outfile(ofile.c_str());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>open需要使用C风格字符串</p>
+</blockquote>
+<p>或者</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ifstream infile; <span class="comment">// input file stream</span></span><br><span class="line">ofstream outfile; <span class="comment">// output file stream</span></span><br><span class="line">infile.open(<span class="string">"in"</span>); <span class="comment">// open file named "in" in current directory</span></span><br><span class="line">outfile.open(<span class="string">"out"</span>); <span class="comment">// open file named "out" in current directory</span></span><br></pre></td></tr></table></figure>
+<p><strong>检查文件打开是否成功</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!infile) &#123;</span><br><span class="line">	<span class="built_in">cerr</span> &lt;&lt; <span class="string">"error: unable to open input file:"</span> &lt;&lt; ifle &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>与其他文件绑定</strong></p>
+<p>如果把现有 fstream 对象与另一个不同的文件关联，则必须先关闭现有文件，然后打开另一个文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream <span class="title">infile</span><span class="params">(<span class="string">"in"</span>)</span></span>;</span><br><span class="line">infile.close();</span><br><span class="line">infile.open(<span class="string">"next"</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>清楚文件流的状态</strong></p>
+<p>使用 clear() 函数即可。比如有一个vector对象，存放了一些要打开的文件名，程序要对这些文件处理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ifstream input;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::const_iterator it = files.begin();</span><br><span class="line"><span class="keyword">while</span> (it != files.end()) &#123;</span><br><span class="line">	input.open(it-&gt;c_str());</span><br><span class="line">	<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (input &gt;&gt; s)</span><br><span class="line">		process(s);</span><br><span class="line">	input.close();</span><br><span class="line">	input.clear();</span><br><span class="line">	++it;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果忽略 <code>input.clear()</code> 则循环只能读入一个文件，因为读取文件到达文件的结束或出错时，input 的状态都是 failbit，此时任何尝试读取 input 都会失败。</p>
+<h4 id="文件模式">文件模式</h4><table>
+<thead>
+<tr>
+<th>文件模式</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in</td>
+<td>打开文件作读操作</td>
+</tr>
+<tr>
+<td>out</td>
+<td>打开文件作写操作</td>
+</tr>
+<tr>
+<td>app</td>
+<td>每次写之前找到文件尾</td>
+</tr>
+<tr>
+<td>ate</td>
+<td>打开文件后立即定位到文件尾</td>
+</tr>
+<tr>
+<td>trunc</td>
+<td>打开文件时，清空已存在的文件流</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>以二进制模式进行IO操作</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>out, trunc, app 模式只能用于指定与 ofstream 或 fstream 对象关联的文件；</li>
+<li>in 模式只能用于指定与 ifstream 或 fstream 对象关联的文件；</li>
+<li>ate, binary 模式可用于所有文件；</li>
+</ul>
+<p>默认时，与 ifstream 流对象关联的文件以 in 模式打开；与 ofstream 流对象关联的文件以 out 模式打开；<strong>以out模式打开文件原内容会被清空</strong>，若要保留，则以 app 模式打开：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 会清空file1</span></span><br><span class="line"><span class="function">ofstream <span class="title">outfile</span><span class="params">(<span class="string">"file1"</span>)</span></span>;</span><br><span class="line"><span class="comment">// 等价上面，显式清空</span></span><br><span class="line"><span class="function">ofstream <span class="title">outfile2</span><span class="params">(<span class="string">"file1"</span>, ofstream::out | ofstream::trunc)</span></span>;</span><br><span class="line"><span class="comment">// 在末尾添加内容</span></span><br><span class="line"><span class="function">ofstream <span class="title">appfile</span><span class="params">(<span class="string">"file2"</span>, ofstream::app)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认情况下，fstream 以 in 和 out 模式同时打开。此时，文件不会被清空。</li>
+<li>如果打开 fstream 所关联的文件，只使用 out 模式，而不指定 in 模式，则会被清空。</li>
+<li>如果指定了 trunc 模式，则无论如何都会被清空；</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// open for input and output</span></span><br><span class="line"><span class="function">fstream <span class="title">inOut</span><span class="params">(<span class="string">"copyOut"</span>, fstream::in | fstream::out)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>有效的文件模式组合</strong></p>
+<table>
+<thead>
+<tr>
+<th>模式组合</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>out</td>
+<td>打开文件做写，清空已有数据</td>
+</tr>
+<tr>
+<td>out &#124; app</td>
+<td>打开文件做写，文件尾写入</td>
+</tr>
+<tr>
+<td>out &#124; trunc</td>
+<td>同out模式</td>
+</tr>
+<tr>
+<td>in</td>
+<td>打开文件做读</td>
+</tr>
+<tr>
+<td>in &#124; out</td>
+<td>打开文件做读、写，定位在文件开头</td>
+</tr>
+<tr>
+<td>in &#124; out &#124; trunc</td>
+<td>打开文件做读、写，清空已有数据</td>
+</tr>
+</tbody>
+</table>
+<p>举例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream&amp; <span class="title">open_file</span><span class="params">(ifstream &amp;in, <span class="keyword">const</span> <span class="built_in">string</span> &amp;file)</span> </span>&#123;</span><br><span class="line">	in.close();</span><br><span class="line">	in.clear();</span><br><span class="line">	in.open(file.c_str());</span><br><span class="line">	<span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于不清楚流 in 的状态，则先调用 close 和 clear 设置为有效状态。然后尝试打开文件，最后返回流 in 对象。此时，in 要么与文件绑定，要么处于错误状态。</p>
+<h3 id="字符串流">字符串流</h3><p>标准库定义了三个类型的字符串流：</p>
+<ul>
+<li>istringstream，由 istream 派生而来，提供读 string 的功能。</li>
+<li>ostringstream，由 ostream 派生而来，提供写 string 的功能。</li>
+<li>stringstream，由 iostream 派生而来，提供读写 string 的功能</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stringstream</span> strm; <span class="comment">// 创建 stringstream 对象</span></span><br><span class="line"><span class="function"><span class="built_in">stringstream</span> <span class="title">strm</span><span class="params">(s)</span></span>; <span class="comment">//存储 s 的副本 stringstream 对象，其中 s 是 string 类型的对象</span></span><br><span class="line">strm.str(); <span class="comment">// 返回 strm 中存储的 string 对象</span></span><br><span class="line">strm.str(s); <span class="comment">// 将 string 对象 s 复制给 strm，返回 void</span></span><br></pre></td></tr></table></figure>
+<p><strong>操纵每行中的每个单词</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> line, word;</span><br><span class="line"><span class="keyword">while</span> (getline(<span class="built_in">cin</span>, line)) <span class="comment">// 读取一行到 line 中</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="built_in">istringstream</span> <span class="title">stream</span><span class="params">(line)</span></span>; <span class="comment">// bind strem to the line</span></span><br><span class="line">	<span class="keyword">while</span> (stream &gt;&gt; word) <span class="comment">// 从 line 读取一个单词</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl; <span class="comment">// 可以操纵这句话中的每个单词，这里是输出它</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>stringstream提供转换的格式化</strong></p>
+<p>把一些数据转换成它们的 string 表示形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v1 = <span class="number">512</span>, v2 = <span class="number">1024</span>;</span><br><span class="line"><span class="built_in">ostringstream</span> format_msg;</span><br><span class="line">format_msg &lt;&lt; <span class="string">"v1: "</span> &lt;&lt; v1 &lt;&lt; <span class="string">", v2: "</span> &lt;&lt; v2 ;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; format_msg.str();</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// v1: 512, v2: 1024</span></span><br></pre></td></tr></table></figure>
+<p>或者反过来</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int v1 = 512, v2 = 1024;</span><br><span class="line">ostringstream format_msg;</span><br><span class="line">format_msg &lt;&lt; "v1: " &lt;&lt; v1 &lt;&lt; ", v2: " &lt;&lt; v2 ;</span><br><span class="line">cout &lt;&lt; format_msg.str();</span><br><span class="line">istringstream istring(format_msg.str());</span><br><span class="line">string dump;</span><br><span class="line">int new_v1, new_v2;</span><br><span class="line">istring &gt;&gt; dump &gt;&gt; new_v1 &gt;&gt; dump &gt;&gt; dump &gt;&gt; new_v2;</span><br><span class="line">cout &lt;&lt; new_v1 &lt;&lt; " " &lt;&lt; new_v2 &lt;&lt; " " &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; dump &lt;&lt; endl;</span><br><span class="line">// prints:</span><br><span class="line">// v1: 512, v2: 1024</span><br><span class="line">// 512 1024</span><br><span class="line">// v2:</span><br></pre></td></tr></table></figure>
+<p>可以发现 istringstream 可以将 string 对象按原来的位置恢复到对应的变量位置。上面程序中 <code>dump</code> 在此过程中相当于一个临时变量，在不断的变化。从输出来看，最后一次 <code>dump</code> 的值为 <code>v2:</code>，前面两次的值依次是：<code>v1:</code>, <code>,</code>（string类型，不带空格）。</p>
+<p>END.</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+          
+            <a href="/tags/Cpp-primer/" rel="tag">#Cpp primer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/cpp-demo-10/" rel="next" title="ex8.3, 8.7, 8.8">
+                <i class="fa fa-chevron-left"></i> ex8.3, 8.7, 8.8
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/cpp-primer4-23/"
+           data-title="IO库" data-url="http://bluestein.github.io/2016/01/cpp-primer4-23/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ye.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准库"><span class="nav-number">1.</span> <span class="nav-text">标准库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件状态"><span class="nav-number">2.</span> <span class="nav-text">条件状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出缓冲区的管理"><span class="nav-number">3.</span> <span class="nav-text">输出缓冲区的管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的输入输出"><span class="nav-number">4.</span> <span class="nav-text">文件的输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件流对象的使用"><span class="nav-number">4.1.</span> <span class="nav-text">文件流对象的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件模式"><span class="nav-number">4.2.</span> <span class="nav-text">文件模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串流"><span class="nav-number">5.</span> <span class="nav-text">字符串流</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Humooo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
