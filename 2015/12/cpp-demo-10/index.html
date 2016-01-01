@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cpp," />
+  <meta name="keywords" content="Cpp,Cpp Code," />
 
 
 
@@ -59,19 +59,16 @@
 
 
 
-<meta name="description" content="Exercise 7.3产生第一个参数的第二个参数次幂的值
-12345678910int pow(int base, int power) &amp;#123;	int i = 0, result = 1;	while (i &amp;lt; power) 	&amp;#123;		result *= base;		++i;	&amp;#125;	return result;&amp;#125;">
+<meta name="description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ex7.3 - 7.6">
-<meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-9/index.html">
+<meta property="og:title" content="ex8.3, 8.7, 8.8">
+<meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-10/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="Exercise 7.3产生第一个参数的第二个参数次幂的值
-12345678910int pow(int base, int power) &amp;#123;	int i = 0, result = 1;	while (i &amp;lt; power) 	&amp;#123;		result *= base;		++i;	&amp;#125;	return result;&amp;#125;">
-<meta property="og:updated_time" content="2015-12-30T06:16:34.240Z">
+<meta property="og:description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
+<meta property="og:updated_time" content="2016-01-01T13:04:11.395Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ex7.3 - 7.6">
-<meta name="twitter:description" content="Exercise 7.3产生第一个参数的第二个参数次幂的值
-12345678910int pow(int base, int power) &amp;#123;	int i = 0, result = 1;	while (i &amp;lt; power) 	&amp;#123;		result *= base;		++i;	&amp;#125;	return result;&amp;#125;">
+<meta name="twitter:title" content="ex8.3, 8.7, 8.8">
+<meta name="twitter:description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
 
 
 
@@ -89,7 +86,7 @@
   };
 </script>
 
-  <title> ex7.3 - 7.6 | Humooo </title>
+  <title> ex8.3, 8.7, 8.8 | Humooo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -207,7 +204,7 @@
             
             
               
-                ex7.3 - 7.6
+                ex8.3, 8.7, 8.8
               
             
           </h1>
@@ -219,8 +216,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-25T19:03:42+08:00" content="2015-12-25">
-              2015-12-25
+            <time itemprop="dateCreated" datetime="2015-12-31T14:03:42+08:00" content="2015-12-31">
+              2015-12-31
             </time>
           </span>
 
@@ -261,8 +258,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/cpp-demo-9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/cpp-demo-9/" itemprop="commentsCount"></span>
+                <a href="/2015/12/cpp-demo-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/cpp-demo-10/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -283,22 +280,17 @@
       
 
       
-        <h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
 <a id="more"></a>
-<h3 id="Exercise_7-4">Exercise 7.4</h3><p>返回一个数的绝对值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> v)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> -v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-5">Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">biggerOne</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">const</span> <span class="keyword">int</span> *ip)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> biggerOne = v &gt; *ip ? v : *ip;</span><br><span class="line">	ip = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> biggerOne;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-6">Exercise 7.6</h3><p>交换两个int指针所指对象的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pSwap</span><span class="params">(<span class="keyword">int</span> *p1, <span class="keyword">int</span> *p2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *p1;</span><br><span class="line">	*p1 = *p2;</span><br><span class="line">	*p2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Bonus">Bonus</h3><p>利用引用交换两个数的值（跟ex 7.6一样的效果）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
-</blockquote>
-<h3 id="Bonus-1">Bonus</h3><p>交换指向数值的指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">istream &amp;<span class="title">input</span><span class="params">(istream &amp;in)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">while</span> (in &gt;&gt; val, !in.eof())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	in.clear();</span><br><span class="line">	<span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// use cin for test</span></span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 1↙</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2↙</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// ^Z↙</span></span><br></pre></td></tr></table></figure>
+<h3 id="Exercise_8-7">Exercise 8.7</h3><p>vector 容器中存放了将要处理的文件名，当打开失败时，输出警告信息，然后取下一个文件处理。假设当前文件夹下有一个名为 <code>test.txt</code> 的文件，内容是：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test!</span><br></pre></td></tr></table></figure>
+<p>则程序及运行测试如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	ifstream input;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; files;</span><br><span class="line">	files.push_back(<span class="string">"willfail.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"test.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"willfail.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"test.txt"</span>);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::const_iterator it = files.begin();</span><br><span class="line">	<span class="keyword">while</span> (it != files.end()) &#123;</span><br><span class="line">		input.open(it-&gt;c_str());</span><br><span class="line">		<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">			<span class="built_in">cerr</span> &lt;&lt; it-&gt;c_str() &lt;&lt; <span class="string">": failed to open."</span> &lt;&lt; endl;</span><br><span class="line">			++it;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; it-&gt;c_str() &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">		<span class="keyword">char</span> s;</span><br><span class="line">		<span class="keyword">while</span> (input &gt;&gt; s)</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; s;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">		input.close();</span><br><span class="line">		input.clear();</span><br><span class="line">		++it;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// willfail.txt: failed to open</span></span><br><span class="line"><span class="comment">// test.txt: test!</span></span><br><span class="line"><span class="comment">// willfail.txt: failed to open</span></span><br><span class="line"><span class="comment">// test.txt: test!</span></span><br></pre></td></tr></table></figure>
+<h3 id="Exercise_8-8">Exercise 8.8</h3><p>不用 continue 实现 ex8.7</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	ifstream input;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; files;</span><br><span class="line">	files.push_back(<span class="string">"willfail.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"test.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"willfail.txt"</span>);</span><br><span class="line">	files.push_back(<span class="string">"test.txt"</span>);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::const_iterator it = files.begin();</span><br><span class="line">	<span class="keyword">while</span> (it != files.end()) &#123;</span><br><span class="line">		input.open(it-&gt;c_str());</span><br><span class="line">		<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">			<span class="built_in">cerr</span> &lt;&lt; it-&gt;c_str() &lt;&lt; <span class="string">": failed to open."</span> &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; it-&gt;c_str() &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">			<span class="keyword">char</span> s;</span><br><span class="line">			<span class="keyword">while</span> (input &gt;&gt; s)</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; s;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">			input.close();</span><br><span class="line">			input.clear();</span><br><span class="line">		&#125;</span><br><span class="line">		++it;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
       
     </div>
 
@@ -308,6 +300,8 @@
           
             <a href="/tags/Cpp/" rel="tag">#Cpp</a>
           
+            <a href="/tags/Cpp-Code/" rel="tag">#Cpp Code</a>
+          
         </div>
       
 
@@ -315,16 +309,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/cpp-demo-8/" rel="next" title="ex6.18, 6.20, 6.21">
-                <i class="fa fa-chevron-left"></i> ex6.18, 6.20, 6.21
+              <a href="/2015/12/cpp-primer4-21/" rel="next" title="return">
+                <i class="fa fa-chevron-left"></i> return
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/cpp-primer4-20/" rel="prev" title="参数传递">
-                参数传递 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/cpp-primer4-22/" rel="prev" title="函数的声明">
+                函数的声明 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -351,8 +345,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/cpp-demo-9/"
-           data-title="ex7.3 - 7.6" data-url="http://bluestein.github.io/2015/12/cpp-demo-9/">
+      <div class="ds-thread" data-thread-key="2015/12/cpp-demo-10/"
+           data-title="ex8.3, 8.7, 8.8" data-url="http://bluestein.github.io/2015/12/cpp-demo-10/">
       </div>
     
   </div>
@@ -450,7 +444,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_7-3"><span class="nav-number">1.</span> <span class="nav-text">Exercise 7.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_7-4"><span class="nav-number">2.</span> <span class="nav-text">Exercise 7.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_7-5"><span class="nav-number">3.</span> <span class="nav-text">Exercise 7.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_7-6"><span class="nav-number">4.</span> <span class="nav-text">Exercise 7.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus"><span class="nav-number">5.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus-1"><span class="nav-number">6.</span> <span class="nav-text">Bonus</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_8-3"><span class="nav-number">1.</span> <span class="nav-text">Exercise 8.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_8-7"><span class="nav-number">2.</span> <span class="nav-text">Exercise 8.7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_8-8"><span class="nav-number">3.</span> <span class="nav-text">Exercise 8.8</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
