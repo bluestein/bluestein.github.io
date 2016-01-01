@@ -52,7 +52,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.0.0" />
 
 
 
@@ -95,7 +95,7 @@ istream 从流中读取；ostream 写到流中去；iostream 对流进行读写�
 
 fstream
 ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到文件对象中去，">
-<meta property="og:updated_time" content="2016-01-01T13:08:23.060Z">
+<meta property="og:updated_time" content="2016-01-01T13:17:55.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IO库">
 <meta name="twitter:description" content="标准库IO类型在三个独立的头文件中定义：iostream，fstream，sstream
@@ -190,6 +190,16 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -200,12 +210,22 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
-            关于
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
           </a>
         </li>
       
@@ -562,7 +582,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <p>把一些数据转换成它们的 string 表示形式</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> v1 = <span class="number">512</span>, v2 = <span class="number">1024</span>;</span><br><span class="line"><span class="built_in">ostringstream</span> format_msg;</span><br><span class="line">format_msg &lt;&lt; <span class="string">"v1: "</span> &lt;&lt; v1 &lt;&lt; <span class="string">", v2: "</span> &lt;&lt; v2 ;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; format_msg.str();</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// v1: 512, v2: 1024</span></span><br></pre></td></tr></table></figure>
 <p>或者反过来</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int v1 = 512, v2 = 1024;</span><br><span class="line">ostringstream format_msg;</span><br><span class="line">format_msg &lt;&lt; "v1: " &lt;&lt; v1 &lt;&lt; ", v2: " &lt;&lt; v2 ;</span><br><span class="line">cout &lt;&lt; format_msg.str();</span><br><span class="line">istringstream istring(format_msg.str());</span><br><span class="line">string dump;</span><br><span class="line">int new_v1, new_v2;</span><br><span class="line">istring &gt;&gt; dump &gt;&gt; new_v1 &gt;&gt; dump &gt;&gt; dump &gt;&gt; new_v2;</span><br><span class="line">cout &lt;&lt; new_v1 &lt;&lt; " " &lt;&lt; new_v2 &lt;&lt; " " &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; dump &lt;&lt; endl;</span><br><span class="line">// prints:</span><br><span class="line">// v1: 512, v2: 1024</span><br><span class="line">// 512 1024</span><br><span class="line">// v2:</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int v1 = 512, v2 = 1024;</span><br><span class="line">ostringstream format_msg;</span><br><span class="line">format_msg &lt;&lt; "v1: " &lt;&lt; v1 &lt;&lt; ", v2: " &lt;&lt; v2 &lt;&lt; "\n";</span><br><span class="line">cout &lt;&lt; format_msg.str();</span><br><span class="line">istringstream istring(format_msg.str());</span><br><span class="line">string dump;</span><br><span class="line">int new_v1, new_v2;</span><br><span class="line">istring &gt;&gt; dump &gt;&gt; new_v1 &gt;&gt; dump &gt;&gt; dump &gt;&gt; new_v2;</span><br><span class="line">cout &lt;&lt; new_v1 &lt;&lt; " " &lt;&lt; new_v2 &lt;&lt; " " &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; dump &lt;&lt; endl;</span><br><span class="line">// prints:</span><br><span class="line">// v1: 512, v2: 1024</span><br><span class="line">// 512 1024</span><br><span class="line">// v2:</span><br></pre></td></tr></table></figure>
 <p>可以发现 istringstream 可以将 string 对象按原来的位置恢复到对应的变量位置。上面程序中 <code>dump</code> 在此过程中相当于一个临时变量，在不断的变化。从输出来看，最后一次 <code>dump</code> 的值为 <code>v2:</code>，前面两次的值依次是：<code>v1:</code>, <code>,</code>（string类型，不带空格）。</p>
 <p>END.</p>
 
@@ -668,17 +688,17 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
-            
+            <a href="/tags">
               <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
-              
+              </a>
           </div>
 
         </nav>
@@ -693,6 +713,32 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bluestein" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/2d2dcfdbf403" target="_blank">
+                  
+                    <i class="fa fa-heartbeat"></i> 简书
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3239589332" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
           
         </div>
 
