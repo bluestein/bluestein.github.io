@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="本次内容是：复合表达式的求值。尤其是 优先级 和 结合性 部分可以作为字典查看。
 1、优先级在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合">
-<meta property="og:updated_time" content="2015-12-30T06:13:49.948Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="赋值操作和自增自减">
 <meta name="twitter:description" content="本次内容是：复合表达式的求值。尤其是 优先级 和 结合性 部分可以作为字典查看。
@@ -304,7 +304,7 @@
 
       
         <p>本次内容是：复合表达式的求值。尤其是 <strong>优先级</strong> 和 <strong>结合性</strong> 部分可以作为字典查看。</p>
-<h3 id="1、优先级">1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
+<h3 id="1_u3001_u4F18_u5148_u7EA7"><a href="#1_u3001_u4F18_u5148_u7EA7" class="headerlink" title="1、优先级"></a>1、优先级</h3><p>在表达式求解过程中，优先级关系到表示如何分组，会影响整个表达式的值。其次是结合性，当优先级相同时，结合性决定求解次序。算术操作符具有左结合性，即从左至右结合</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> + <span class="number">2</span> * <span class="number">3</span> / <span class="number">2</span> - <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>等价于</p>
@@ -312,7 +312,7 @@
 <blockquote>
 <p>括号可以改变优先级，括号内的表达式先行计算。</p>
 </blockquote>
-<h3 id="2、结合性">2、结合性</h3><p>结合性规定了具有相同优先级的操作符如何分组。如 <strong>赋值操作符</strong> <code>=</code> 具有右结合性，所以允许将多个赋值操作串连起来：</p>
+<h3 id="2_u3001_u7ED3_u5408_u6027"><a href="#2_u3001_u7ED3_u5408_u6027" class="headerlink" title="2、结合性"></a>2、结合性</h3><p>结合性规定了具有相同优先级的操作符如何分组。如 <strong>赋值操作符</strong> <code>=</code> 具有右结合性，所以允许将多个赋值操作串连起来：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val1 = val2 = val3;</span><br><span class="line">(val1 = (val2 = val3));	<span class="comment">//与上式等价</span></span><br></pre></td></tr></table></figure>
 <p>而 <strong>算术操作符</strong> 具有右结合性：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val1 * val2 / val3;</span><br><span class="line">((val1 * val2) / val3);	<span class="comment">//与上式等价</span></span><br></pre></td></tr></table></figure>
@@ -956,7 +956,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、优先级"><span class="nav-number">1.</span> <span class="nav-text">1、优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、结合性"><span class="nav-number">2.</span> <span class="nav-text">2、结合性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001_u4F18_u5148_u7EA7"><span class="nav-number">1.</span> <span class="nav-text">1、优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001_u7ED3_u5408_u6027"><span class="nav-number">2.</span> <span class="nav-text">2、结合性</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -983,6 +983,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

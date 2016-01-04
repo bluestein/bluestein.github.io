@@ -69,7 +69,7 @@
 <meta property="og:description" content="从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。
 一、using声明
 在本章之前所用到的标准库类型都使用了 :: 操作符，该操作符是作用域操作符，如 std::cin。但每次使用标准库类型就需要添加 std:: 显得非常麻烦，本节介绍一种安全的机制：using声明。">
-<meta property="og:updated_time" content="2015-12-30T06:15:59.008Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="using声明和string类型">
 <meta name="twitter:description" content="从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。
@@ -307,7 +307,7 @@
 
       
         <p>从这篇博客开始学习《C++ primer》的第三章“标准库类型”。首先介绍命名空间的using声明和第一种库类型string。</p>
-<h3 id="一、using声明">一、using声明</h3><hr>
+<h3 id="u4E00_u3001using_u58F0_u660E"><a href="#u4E00_u3001using_u58F0_u660E" class="headerlink" title="一、using声明"></a>一、using声明</h3><hr>
 <p>在本章之前所用到的标准库类型都使用了 <code>::</code> 操作符，该操作符是作用域操作符，如 <code>std::cin</code>。但每次使用标准库类型就需要添加 <code>std::</code> 显得非常麻烦，本节介绍一种安全的机制：<strong>using声明</strong>。</p>
 <a id="more"></a>
 <p>使用using声明可以不再需要添加 <code>namespace_name::</code>，如下</p>
@@ -315,10 +315,10 @@
 <p>一旦使用了 using 声明，后面就不要再次引用命名空间了：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter two Numbers:"</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">int</span> val1, val2;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt; val1 &gt;&gt; val2;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; val1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; val2</span><br><span class="line">			&lt;&lt; <span class="string">" is "</span> &lt;&lt; val1+val2 &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以对比之前我们写的程序，发现明显可以简洁很多。在接下来的例子中，我们均假设已经提供了using声明。</p>
-<h3 id="二、标准库string类型">二、标准库string类型</h3><hr>
+<h3 id="u4E8C_u3001_u6807_u51C6_u5E93string_u7C7B_u578B"><a href="#u4E8C_u3001_u6807_u51C6_u5E93string_u7C7B_u578B" class="headerlink" title="二、标准库string类型"></a>二、标准库string类型</h3><hr>
 <p>string 类型支持可变长度的字符串，我们不需要知道它的具体实现，只需要知道它提供的操作。跟其他标准库类型一样，要使用也需要添加头文件：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
-<h4 id="2-1、string对象的定义和初始化">2.1、string对象的定义和初始化</h4><p>string 标准库支持几个构造函数，构造函数是一个特殊成员函数，定义如何初始化该类型的对象。下表列出了几个构造函数</p>
+<h4 id="2-1_u3001string_u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><a href="#2-1_u3001string_u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316" class="headerlink" title="2.1、string对象的定义和初始化"></a>2.1、string对象的定义和初始化</h4><p>string 标准库支持几个构造函数，构造函数是一个特殊成员函数，定义如何初始化该类型的对象。下表列出了几个构造函数</p>
 <table>
 <thead>
 <tr>
@@ -348,7 +348,7 @@
 <blockquote>
 <p>字符串的字面值与标准库string类型不是同一种类型，需要注意！</p>
 </blockquote>
-<h4 id="2-2、string对象的读写">2.2、string对象的读写</h4><p>跟前面的 iostream 标准库的内置类型 int，double相似：</p>
+<h4 id="2-2_u3001string_u5BF9_u8C61_u7684_u8BFB_u5199"><a href="#2-2_u3001string_u5BF9_u8C61_u7684_u8BFB_u5199" class="headerlink" title="2.2、string对象的读写"></a>2.2、string对象的读写</h4><p>跟前面的 iostream 标准库的内置类型 int，double相似：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设using声明已经提供</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>string的输入操作：</p>
 <ul>
@@ -367,7 +367,7 @@
 </ul>
 <p>该函数是读入输入流的下一行，并保存在string对象中。但行中不包含 <strong>换行符</strong>，getline只要遇到换行符，即便是输入的第一个字符，getline也会停止读入并返回。如果第一个字符是换行符，则string对象为空。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="keyword">while</span>(getline(<span class="built_in">cin</span>,word))&#123;	<span class="comment">//输入“ctrl+z”可以结束</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-3、string对象的操作">2.3、string对象的操作</h4><table>
+<h4 id="2-3_u3001string_u5BF9_u8C61_u7684_u64CD_u4F5C"><a href="#2-3_u3001string_u5BF9_u8C61_u7684_u64CD_u4F5C" class="headerlink" title="2.3、string对象的操作"></a>2.3、string对象的操作</h4><table>
 <thead>
 <tr>
 <th>string的操作</th>
@@ -436,7 +436,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">string</span>::size_type i=<span class="number">0</span>; i!=s.size(); ++i)&#123;</span><br><span class="line">	s[i] = <span class="string">'*'</span>;	<span class="comment">//注意是 '*'，不是 "*"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>任意可以产生整数值的表达式都可以作为下标：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; s[<span class="number">2</span>*<span class="number">2</span>] &lt;&lt; endl；</span><br></pre></td></tr></table></figure>
-<h4 id="2-4、string对象中的字符处理">2.4、string对象中的字符处理</h4><p>经常需要对string对象中的单个字符处理，这些处理的函数在头文件 cctype 中定义</p>
+<h4 id="2-4_u3001string_u5BF9_u8C61_u4E2D_u7684_u5B57_u7B26_u5904_u7406"><a href="#2-4_u3001string_u5BF9_u8C61_u4E2D_u7684_u5B57_u7B26_u5904_u7406" class="headerlink" title="2.4、string对象中的字符处理"></a>2.4、string对象中的字符处理</h4><p>经常需要对string对象中的单个字符处理，这些处理的函数在头文件 cctype 中定义</p>
 <table>
 <thead>
 <tr>
@@ -684,7 +684,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、using声明"><span class="nav-number">1.</span> <span class="nav-text">一、using声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、标准库string类型"><span class="nav-number">2.</span> <span class="nav-text">二、标准库string类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、string对象的定义和初始化"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、string对象的定义和初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、string对象的读写"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、string对象的读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3、string对象的操作"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、string对象的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4、string对象中的字符处理"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、string对象中的字符处理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E00_u3001using_u58F0_u660E"><span class="nav-number">1.</span> <span class="nav-text">一、using声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8C_u3001_u6807_u51C6_u5E93string_u7C7B_u578B"><span class="nav-number">2.</span> <span class="nav-text">二、标准库string类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1_u3001string_u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、string对象的定义和初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2_u3001string_u5BF9_u8C61_u7684_u8BFB_u5199"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、string对象的读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3_u3001string_u5BF9_u8C61_u7684_u64CD_u4F5C"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、string对象的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4_u3001string_u5BF9_u8C61_u4E2D_u7684_u5B57_u7B26_u5904_u7406"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、string对象中的字符处理</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -711,6 +711,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

@@ -75,7 +75,7 @@
 只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：12while （cin &amp;gt;&amp;gt; s &amp;amp;&amp;amp; s != &quot;abc&quot;)	;	// null statement
 
 使用空语句时最好加上注释">
-<meta property="og:updated_time" content="2015-12-30T06:13:20.882Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="语句">
 <meta name="twitter:description" content="开始学习第六章《语句》
@@ -316,7 +316,7 @@
 
       
         <p>开始学习第六章《语句》</p>
-<h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
+<h3 id="1_u3001_u7B80_u5355_u8BED_u53E5"><a href="#1_u3001_u7B80_u5355_u8BED_u53E5" class="headerlink" title="1、简单语句"></a>1、简单语句</h3><p><strong>空语句</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
 <p>只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> （<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">	;	<span class="comment">// null statement</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
@@ -342,7 +342,7 @@
 <p><strong>控制结构中引入的变量是局部变量</strong>，仅在块语句结束前有效。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span>;</span><br><span class="line">		index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
 <p>如果要在控制语句外访问，则需定义在控制语句外<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (; index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// ok</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、if语句">2、if语句</h3><p><strong>if语句</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	statement1</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (condition2)</span><br><span class="line">&#123;</span><br><span class="line">	staement2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2_u3001if_u8BED_u53E5"><a href="#2_u3001if_u8BED_u53E5" class="headerlink" title="2、if语句"></a>2、if语句</h3><p><strong>if语句</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	statement1</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (condition2)</span><br><span class="line">&#123;</span><br><span class="line">	staement2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>目前为止，除了 vector 和 string 类型一般不可作为条件外，均可作为if语句的条件，包括 IO 类型。</p>
 <blockquote>
 <p>各分支语句用 <code>{}</code> 括起来是一个好的习惯</p>
@@ -532,7 +532,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、简单语句"><span class="nav-number">1.</span> <span class="nav-text">1、简单语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、if语句"><span class="nav-number">2.</span> <span class="nav-text">2、if语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001_u7B80_u5355_u8BED_u53E5"><span class="nav-number">1.</span> <span class="nav-text">1、简单语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001if_u8BED_u53E5"><span class="nav-number">2.</span> <span class="nav-text">2、if语句</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -559,6 +559,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

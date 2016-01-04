@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="humooo,bluestein,swift,cpp,apple" />
 
 
 
@@ -208,6 +208,15 @@
     
 
     
+    
+      
+      
+        
+        
+        
+      
+
+      
     
 
     
@@ -437,7 +446,7 @@
       
         
           
-            <h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
+            <h3 id="Exercise_9-9"><a href="#Exercise_9-9" class="headerlink" title="Exercise 9.9"></a>Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s[] = &#123; <span class="string">"hi"</span>, <span class="string">"hey"</span>, <span class="string">"hello"</span> &#125;;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; slist(s, s + <span class="number">3</span>); </span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = --slist.end();</span><br><span class="line">	<span class="keyword">int</span> sz = <span class="keyword">sizeof</span>(s) / <span class="keyword">sizeof</span>(s[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (cnt &lt; sz) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; (*iter) &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (++cnt &lt; sz) &#123;</span><br><span class="line">			--iter;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// hello</span></span><br><span class="line"><span class="comment">// hey</span></span><br><span class="line"><span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
 <p>待续。。。</p>
 
@@ -560,7 +569,7 @@
 
       
         
-          <h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
+          <h3 id="u6807_u51C6_u5E93"><a href="#u6807_u51C6_u5E93" class="headerlink" title="标准库"></a>标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
 <table>
 <thead>
 <tr>
@@ -706,7 +715,7 @@
 
       
         
-          <h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
+          <h3 id="Exercise_8-3"><a href="#Exercise_8-3" class="headerlink" title="Exercise 8.3"></a>Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/01/cpp-demo-10/#more" rel="contents">
               阅读全文 &raquo;
@@ -991,6 +1000,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

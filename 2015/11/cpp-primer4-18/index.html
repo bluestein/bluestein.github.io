@@ -69,7 +69,7 @@
 <meta property="og:description" content="如：
 12int val;val = 3.14 + 3;	//val = 6
 上面称为 隐式类型转换。">
-<meta property="og:updated_time" content="2015-12-30T06:13:25.849Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型转换">
 <meta name="twitter:description" content="如：
@@ -310,7 +310,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val;</span><br><span class="line">val = <span class="number">3.14</span> + <span class="number">3</span>;	<span class="comment">//val = 6</span></span><br></pre></td></tr></table></figure>
 <p>上面称为 <strong>隐式类型转换</strong>。</p>
 <a id="more"></a>
-<h3 id="发生隐式转换">发生隐式转换</h3><ul>
+<h3 id="u53D1_u751F_u9690_u5F0F_u8F6C_u6362"><a href="#u53D1_u751F_u9690_u5F0F_u8F6C_u6362" class="headerlink" title="发生隐式转换"></a>发生隐式转换</h3><ul>
 <li><p>混合表达式中，操作数被转化为相同类型</p>
   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line">iv += dv;	<span class="comment">//iv会被转换为double</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -321,7 +321,7 @@
   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> iv = <span class="number">3.14</span>;	<span class="comment">//3.14 to int</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="算术转换">算术转换</h3><p><strong>signed 与 unsigned 类型间的转换</strong></p>
+<h3 id="u7B97_u672F_u8F6C_u6362"><a href="#u7B97_u672F_u8F6C_u6362" class="headerlink" title="算术转换"></a>算术转换</h3><p><strong>signed 与 unsigned 类型间的转换</strong></p>
 <ul>
 <li><p>如果包含 short 和 int 类型的表达式，short 转换为int。如果 int 足够表示所有 unsigned short ，则将 unsigned short 转换为 int。</p>
 </li>
@@ -336,7 +336,7 @@
 </ul>
 <p><strong>举例</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> bv;</span><br><span class="line"><span class="keyword">char</span> cv;</span><br><span class="line"><span class="keyword">short</span> siv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">short</span> usiv;</span><br><span class="line"><span class="keyword">int</span> iv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> uiv;</span><br><span class="line"><span class="keyword">long</span> lv;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> ulv;</span><br><span class="line"><span class="keyword">float</span> fv;</span><br><span class="line"><span class="keyword">double</span> dv;</span><br><span class="line"><span class="number">3.14L</span> + <span class="string">'a'</span>;	<span class="comment">//'a' 先转换成 int，再转换成double</span></span><br><span class="line">dv + iv;	<span class="comment">//iv to double</span></span><br><span class="line">dv + fv;	<span class="comment">//fv to double</span></span><br><span class="line">iv = dv;	<span class="comment">//dv to(截断) int</span></span><br><span class="line">bv = dv;	<span class="comment">//if dv=0, bv = false, else bv = true</span></span><br><span class="line">cv + fv;	<span class="comment">//cv to int, then, int to float</span></span><br><span class="line">siv + cv;	<span class="comment">//siv and cv to int</span></span><br><span class="line">cv + lv;	<span class="comment">//cv to long</span></span><br><span class="line">iv + ulv;	<span class="comment">//iv to unsigned long</span></span><br><span class="line">usiv + iv;	<span class="comment">//依赖于 unsigned short 和 int 的大小</span></span><br><span class="line">uiv + lv;	<span class="comment">//依赖于 unsigned int 和 long 的大小</span></span><br></pre></td></tr></table></figure>
-<h3 id="其他隐式转换">其他隐式转换</h3><p><strong>指针转换</strong></p>
+<h3 id="u5176_u4ED6_u9690_u5F0F_u8F6C_u6362"><a href="#u5176_u4ED6_u9690_u5F0F_u8F6C_u6362" class="headerlink" title="其他隐式转换"></a>其他隐式转换</h3><p><strong>指针转换</strong></p>
 <p>使用数组时，大多数情况下数组都会自动转化为指向第一个元素的指针</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">10</span>];	<span class="comment">//数组</span></span><br><span class="line"><span class="keyword">int</span> *ip = ia;	<span class="comment">//转化成指向第一个元素的指针</span></span><br></pre></td></tr></table></figure>
 <p>还有另外两种指针转换：</p>
@@ -360,7 +360,7 @@
 <p>典型的例子就是</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s)</span><br></pre></td></tr></table></figure>
 <p>该表达式 <code>cin&gt;&gt;s</code> 的结果 <code>cin</code> 对象，为istream对象，所以此时会将其转化成bool类型。</p>
-<h3 id="显式转换">显式转换</h3><p>显式转换也称为<strong>强制类型转换（cast）</strong>，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。</p>
+<h3 id="u663E_u5F0F_u8F6C_u6362"><a href="#u663E_u5F0F_u8F6C_u6362" class="headerlink" title="显式转换"></a>显式转换</h3><p>显式转换也称为<strong>强制类型转换（cast）</strong>，有以下操作符：static_cast, dynamic_cast, const_cast, reinterpret_cast。</p>
 <p><strong>何时需要强制转换</strong></p>
 <p>例如</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line">ival *= dval;</span><br></pre></td></tr></table></figure>
@@ -577,7 +577,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#发生隐式转换"><span class="nav-number">1.</span> <span class="nav-text">发生隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术转换"><span class="nav-number">2.</span> <span class="nav-text">算术转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他隐式转换"><span class="nav-number">3.</span> <span class="nav-text">其他隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显式转换"><span class="nav-number">4.</span> <span class="nav-text">显式转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u53D1_u751F_u9690_u5F0F_u8F6C_u6362"><span class="nav-number">1.</span> <span class="nav-text">发生隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7B97_u672F_u8F6C_u6362"><span class="nav-number">2.</span> <span class="nav-text">算术转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5176_u4ED6_u9690_u5F0F_u8F6C_u6362"><span class="nav-number">3.</span> <span class="nav-text">其他隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u663E_u5F0F_u8F6C_u6362"><span class="nav-number">4.</span> <span class="nav-text">显式转换</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -604,6 +604,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

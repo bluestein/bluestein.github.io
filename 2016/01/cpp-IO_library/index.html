@@ -95,7 +95,7 @@ istream 从流中读取；ostream 写到流中去；iostream 对流进行读写�
 
 fstream
 ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到文件对象中去，">
-<meta property="og:updated_time" content="2016-01-01T13:17:55.438Z">
+<meta property="og:updated_time" content="2016-01-04T04:11:34.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IO库">
 <meta name="twitter:description" content="标准库IO类型在三个独立的头文件中定义：iostream，fstream，sstream
@@ -345,7 +345,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
       
 
       
-        <h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
+        <h3 id="u6807_u51C6_u5E93"><a href="#u6807_u51C6_u5E93" class="headerlink" title="标准库"></a>标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
 <table>
 <thead>
 <tr>
@@ -379,7 +379,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <li>形参或返回类型也不能为流类型。如果需要传递或返回 IO 类型，则必须使用<strong>指针或引用</strong>：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ofstream &amp;<span class="title">func</span><span class="params">(ofstream&amp;)</span></span>; <span class="comment">// ok: takes a reference, no copy</span></span><br><span class="line"><span class="keyword">while</span> (func(out2)) &#123; <span class="comment">/*...*/</span> &#125; <span class="comment">// ok: pass reference to out2</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="条件状态">条件状态</h3><p>IO 标准库管理一系列的<strong>条件状态（condition state）</strong>成员，用来标记给定的 IO 对象是否处于可用状态，或者碰到了哪种特定的错误。</p>
+<h3 id="u6761_u4EF6_u72B6_u6001"><a href="#u6761_u4EF6_u72B6_u6001" class="headerlink" title="条件状态"></a>条件状态</h3><p>IO 标准库管理一系列的<strong>条件状态（condition state）</strong>成员，用来标记给定的 IO 对象是否处于可用状态，或者碰到了哪种特定的错误。</p>
 <table>
 <thead>
 <tr>
@@ -444,7 +444,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <p><strong>条件状态的访问</strong></p>
 <p>rdstate 成员函数返回一个 iostate 类型的值，该值对应于流当前的整个条件状态：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">istream::iostate old_state = <span class="built_in">cin</span>.rdstate();</span><br><span class="line"><span class="built_in">cin</span>.clear();</span><br><span class="line">process_input(); <span class="comment">// use cin</span></span><br><span class="line"><span class="built_in">cin</span>.clear(old_state); <span class="comment">// reset cin to old state</span></span><br></pre></td></tr></table></figure>
-<h3 id="输出缓冲区的管理">输出缓冲区的管理</h3><p>每个IO对象管理一个缓冲区，用于存储程序读写的数据。如有下面语句：</p>
+<h3 id="u8F93_u51FA_u7F13_u51B2_u533A_u7684_u7BA1_u7406"><a href="#u8F93_u51FA_u7F13_u51B2_u533A_u7684_u7BA1_u7406" class="headerlink" title="输出缓冲区的管理"></a>输出缓冲区的管理</h3><p>每个IO对象管理一个缓冲区，用于存储程序读写的数据。如有下面语句：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os &lt;&lt; <span class="string">"Plz enter a value:"</span>;</span><br></pre></td></tr></table></figure>
 <p>系统会将字符串字面值存储在与流 os 关联的缓冲区中。</p>
 <p>下面情况将导致缓冲区的内容被刷新，即写入到真实的输出设备或文件中：</p>
@@ -469,7 +469,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <p><strong>输入与输出绑定</strong></p>
 <p>将 cout 与 cin 绑定，则任何读输入流的操作都将刷新其输出流关联的缓冲区。使用 tie 函数：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.tie(&amp;<span class="built_in">cout</span>);</span><br><span class="line">ostream *old_tie = <span class="built_in">cin</span>.tie();</span><br><span class="line"><span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="comment">// 终止绑定</span></span><br><span class="line"><span class="built_in">cin</span>.tie(&amp;<span class="built_in">cerr</span>); <span class="comment">// cin 与 cerr 绑定，但不推荐</span></span><br><span class="line"><span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">cin</span>.tie(old_tie); <span class="comment">// cin 与 cout 重新绑定</span></span><br></pre></td></tr></table></figure>
-<h3 id="文件的输入输出">文件的输入输出</h3><h4 id="文件流对象的使用">文件流对象的使用</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// construct an ifstream and bind it to the file named ifile </span><br><span class="line">ifstream infile(ifile.c_str());</span><br><span class="line">// ofstream output file object to write file named ofile</span><br><span class="line">ofstream outfile(ofile.c_str());</span><br></pre></td></tr></table></figure>
+<h3 id="u6587_u4EF6_u7684_u8F93_u5165_u8F93_u51FA"><a href="#u6587_u4EF6_u7684_u8F93_u5165_u8F93_u51FA" class="headerlink" title="文件的输入输出"></a>文件的输入输出</h3><h4 id="u6587_u4EF6_u6D41_u5BF9_u8C61_u7684_u4F7F_u7528"><a href="#u6587_u4EF6_u6D41_u5BF9_u8C61_u7684_u4F7F_u7528" class="headerlink" title="文件流对象的使用"></a>文件流对象的使用</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// construct an ifstream and bind it to the file named ifile </span><br><span class="line">ifstream infile(ifile.c_str());</span><br><span class="line">// ofstream output file object to write file named ofile</span><br><span class="line">ofstream outfile(ofile.c_str());</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>open需要使用C风格字符串</p>
 </blockquote>
@@ -484,7 +484,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <p>使用 clear() 函数即可。比如有一个vector对象，存放了一些要打开的文件名，程序要对这些文件处理</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ifstream input;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::const_iterator it = files.begin();</span><br><span class="line"><span class="keyword">while</span> (it != files.end()) &#123;</span><br><span class="line">	input.open(it-&gt;c_str());</span><br><span class="line">	<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (input &gt;&gt; s)</span><br><span class="line">		process(s);</span><br><span class="line">	input.close();</span><br><span class="line">	input.clear();</span><br><span class="line">	++it;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果忽略 <code>input.clear()</code> 则循环只能读入一个文件，因为读取文件到达文件的结束或出错时，input 的状态都是 failbit，此时任何尝试读取 input 都会失败。</p>
-<h4 id="文件模式">文件模式</h4><table>
+<h4 id="u6587_u4EF6_u6A21_u5F0F"><a href="#u6587_u4EF6_u6A21_u5F0F" class="headerlink" title="文件模式"></a>文件模式</h4><table>
 <thead>
 <tr>
 <th>文件模式</th>
@@ -569,7 +569,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
 <p>举例</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream&amp; <span class="title">open_file</span><span class="params">(ifstream &amp;in, <span class="keyword">const</span> <span class="built_in">string</span> &amp;file)</span> </span>&#123;</span><br><span class="line">	in.close();</span><br><span class="line">	in.clear();</span><br><span class="line">	in.open(file.c_str());</span><br><span class="line">	<span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于不清楚流 in 的状态，则先调用 close 和 clear 设置为有效状态。然后尝试打开文件，最后返回流 in 对象。此时，in 要么与文件绑定，要么处于错误状态。</p>
-<h3 id="字符串流">字符串流</h3><p>标准库定义了三个类型的字符串流：</p>
+<h3 id="u5B57_u7B26_u4E32_u6D41"><a href="#u5B57_u7B26_u4E32_u6D41" class="headerlink" title="字符串流"></a>字符串流</h3><p>标准库定义了三个类型的字符串流：</p>
 <ul>
 <li>istringstream，由 istream 派生而来，提供读 string 的功能。</li>
 <li>ostringstream，由 ostream 派生而来，提供写 string 的功能。</li>
@@ -765,7 +765,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准库"><span class="nav-number">1.</span> <span class="nav-text">标准库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件状态"><span class="nav-number">2.</span> <span class="nav-text">条件状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出缓冲区的管理"><span class="nav-number">3.</span> <span class="nav-text">输出缓冲区的管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的输入输出"><span class="nav-number">4.</span> <span class="nav-text">文件的输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件流对象的使用"><span class="nav-number">4.1.</span> <span class="nav-text">文件流对象的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件模式"><span class="nav-number">4.2.</span> <span class="nav-text">文件模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串流"><span class="nav-number">5.</span> <span class="nav-text">字符串流</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6807_u51C6_u5E93"><span class="nav-number">1.</span> <span class="nav-text">标准库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6761_u4EF6_u72B6_u6001"><span class="nav-number">2.</span> <span class="nav-text">条件状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8F93_u51FA_u7F13_u51B2_u533A_u7684_u7BA1_u7406"><span class="nav-number">3.</span> <span class="nav-text">输出缓冲区的管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6587_u4EF6_u7684_u8F93_u5165_u8F93_u51FA"><span class="nav-number">4.</span> <span class="nav-text">文件的输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6587_u4EF6_u6D41_u5BF9_u8C61_u7684_u4F7F_u7528"><span class="nav-number">4.1.</span> <span class="nav-text">文件流对象的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6587_u4EF6_u6A21_u5F0F"><span class="nav-number">4.2.</span> <span class="nav-text">文件模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B57_u7B26_u4E32_u6D41"><span class="nav-number">5.</span> <span class="nav-text">字符串流</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -792,6 +792,7 @@ ifstream 从文件对象中读取，由 istream 派生而来；ofstream 写到�
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

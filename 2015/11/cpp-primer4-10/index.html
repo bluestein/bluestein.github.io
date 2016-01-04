@@ -65,7 +65,7 @@
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-10/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——数组和指针。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。">
-<meta property="og:updated_time" content="2015-12-30T06:14:30.005Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组">
 <meta name="twitter:description" content="现在开始学习第四章“数组和指针”。C++语言提供了两种类似于vector和迭代器类型的低级复合类型——数组和指针。数组与vector类似，区别在于：数组的长度是固定的，一经创建不允许添加新的元素，如果一定要增加元素，只能创建更大的数组；指针则可以像迭代器一样用于遍历和检查数组中的元素。">
@@ -305,7 +305,7 @@
 <blockquote>
 <p>现代的C++程序应尽量使用vector和迭代器类型，而避免使用低级的数组和指针。设计良好的程序只有在强调速度时才在类实现的内部使用数组和指针。</p>
 </blockquote>
-<h3 id="1、数组的定义及初始化">1、数组的定义及初始化</h3><hr>
+<h3 id="1_u3001_u6570_u7EC4_u7684_u5B9A_u4E49_u53CA_u521D_u59CB_u5316"><a href="#1_u3001_u6570_u7EC4_u7684_u5B9A_u4E49_u53CA_u521D_u59CB_u5316" class="headerlink" title="1、数组的定义及初始化"></a>1、数组的定义及初始化</h3><hr>
 <p>数组是由类型名、标识符和维数组成的复合数据类型，类型名规定了存放在数组中元素类型，而维数是指数组能存放的个数。</p>
 <blockquote>
 <p>数组定义中的类型名可以是内置数据类型或类类型；除引用之外，数组元素的类型还可以是任意的复合类型。没有所有元素都是引用的数组。</p>
@@ -326,7 +326,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c1[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>&#125;;		<span class="comment">//c1 维数为3</span></span><br><span class="line"><span class="keyword">char</span> c2[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>, <span class="string">'\0'</span>&#125;;	<span class="comment">//c2 维数为4</span></span><br><span class="line"><span class="keyword">char</span> c3[] = <span class="string">"C++"</span>;					<span class="comment">//c3 维数为4，自动添加空字符</span></span><br><span class="line"><span class="keyword">char</span> c4[<span class="number">3</span>] = <span class="string">"C++"</span>;					<span class="comment">//error:自动添加空字符，所以 "C++" 维数为4</span></span><br></pre></td></tr></table></figure>
 <p><strong>不允许数组直接复制和赋值</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> vals1[] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;	<span class="comment">//ok</span></span><br><span class="line"><span class="keyword">int</span> vals2[](vals1);		<span class="comment">//error</span></span><br><span class="line"><span class="keyword">int</span> vals3[<span class="number">3</span>] = vals1;	<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、数组的操作">2、数组的操作</h3><hr>
+<h3 id="2_u3001_u6570_u7EC4_u7684_u64CD_u4F5C"><a href="#2_u3001_u6570_u7EC4_u7684_u64CD_u4F5C" class="headerlink" title="2、数组的操作"></a>2、数组的操作</h3><hr>
 <p>与vector类似，用下标类访问元素；vector用vector::size_type作为下标类型，数组的下标正确类型则是 size_t。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> array_size = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> arr1[array_size], arr2[array_size];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != array_size; ++i)&#123;</span><br><span class="line">	arr1[i] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//复制arr1数组到arr2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != array_size; ++i)&#123;</span><br><span class="line">	arr2[i] = arr1[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -513,7 +513,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、数组的定义及初始化"><span class="nav-number">1.</span> <span class="nav-text">1、数组的定义及初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、数组的操作"><span class="nav-number">2.</span> <span class="nav-text">2、数组的操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001_u6570_u7EC4_u7684_u5B9A_u4E49_u53CA_u521D_u59CB_u5316"><span class="nav-number">1.</span> <span class="nav-text">1、数组的定义及初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001_u6570_u7EC4_u7684_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">2、数组的操作</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -540,6 +540,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

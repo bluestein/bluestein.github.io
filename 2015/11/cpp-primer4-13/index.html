@@ -67,7 +67,7 @@ C++有丰富的操作符，并定义了当操作数是内置类型时操作符�
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="这里开始第五章《表达式》的内容。下面是 算术操作符 的内容
 C++有丰富的操作符，并定义了当操作数是内置类型时操作符的含义。而且C++还支持操作符重载，标准库正是使用该功能定义。">
-<meta property="og:updated_time" content="2015-12-30T06:13:49.957Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.429Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算术操作符">
 <meta name="twitter:description" content="这里开始第五章《表达式》的内容。下面是 算术操作符 的内容
@@ -372,7 +372,7 @@ C++有丰富的操作符，并定义了当操作数是内置类型时操作符�
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; -<span class="number">30</span>/<span class="number">3</span>*<span class="number">21</span>%<span class="number">4</span> &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="number">30</span>/<span class="number">3</span>*<span class="number">21</span>%<span class="number">5</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
 <p>结果</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">2</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="关系操作符和逻辑运算符">关系操作符和逻辑运算符</h3><table>
+<h3 id="u5173_u7CFB_u64CD_u4F5C_u7B26_u548C_u903B_u8F91_u8FD0_u7B97_u7B26"><a href="#u5173_u7CFB_u64CD_u4F5C_u7B26_u548C_u903B_u8F91_u8FD0_u7B97_u7B26" class="headerlink" title="关系操作符和逻辑运算符"></a>关系操作符和逻辑运算符</h3><table>
 <thead>
 <tr>
 <th>操作符</th>
@@ -445,7 +445,7 @@ C++有丰富的操作符，并定义了当操作数是内置类型时操作符�
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *cp = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">while</span> (cp &amp;&amp; *cp)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; cp &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *cp &lt;&lt; endl;</span><br><span class="line">	++cp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br><span class="line">h</span><br><span class="line">ello</span><br><span class="line">e</span><br><span class="line">llo</span><br><span class="line">l</span><br><span class="line">lo</span><br><span class="line">l</span><br><span class="line">o</span><br><span class="line">o</span><br></pre></td></tr></table></figure>
-<h3 id="举例">举例</h3><p>编写程序：判断四个值a、b、c、d是否满足 a&gt;b、b&gt;c且c&gt;d。</p>
+<h3 id="u4E3E_u4F8B"><a href="#u4E3E_u4F8B" class="headerlink" title="举例"></a>举例</h3><p>编写程序：判断四个值a、b、c、d是否满足 a&gt;b、b&gt;c且c&gt;d。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">3</span>, b = <span class="number">2</span>, c = <span class="number">1</span>, d = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (a &gt; b &amp;&amp; b &gt; c &amp;&amp; c &gt; d) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -631,7 +631,7 @@ C++有丰富的操作符，并定义了当操作数是内置类型时操作符�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系操作符和逻辑运算符"><span class="nav-number">1.</span> <span class="nav-text">关系操作符和逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">2.</span> <span class="nav-text">举例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5173_u7CFB_u64CD_u4F5C_u7B26_u548C_u903B_u8F91_u8FD0_u7B97_u7B26"><span class="nav-number">1.</span> <span class="nav-text">关系操作符和逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E3E_u4F8B"><span class="nav-number">2.</span> <span class="nav-text">举例</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -658,6 +658,7 @@ C++有丰富的操作符，并定义了当操作数是内置类型时操作符�
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

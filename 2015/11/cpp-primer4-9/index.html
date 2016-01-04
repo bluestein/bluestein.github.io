@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 bitset 类型简化了位集的处理，使用时必须包含头文件
 12#include &amp;lt;bitset&amp;gt;using std::bitset;">
-<meta property="og:updated_time" content="2015-12-30T06:14:42.896Z">
+<meta property="og:updated_time" content="2016-01-01T11:41:55.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bitset类型">
 <meta name="twitter:description" content="有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 bitset 类型简化了位集的处理，使用时必须包含头文件
@@ -306,7 +306,7 @@
         <p>有些程序需要处理二进制位的有序集，每位个能包含 0 或 1。 <strong>bitset</strong> 类型简化了位集的处理，使用时必须包含头文件</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">bitset</span>;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="1、bitset对象的初始化">1、bitset对象的初始化</h3><hr>
+<h3 id="1_u3001bitset_u5BF9_u8C61_u7684_u521D_u59CB_u5316"><a href="#1_u3001bitset_u5BF9_u8C61_u7684_u521D_u59CB_u5316" class="headerlink" title="1、bitset对象的初始化"></a>1、bitset对象的初始化</h3><hr>
 <p>类似于 vector，bitset也是一种类模板。bitset 类型之间的区别在于其长度而不是类型，在定义 bitset 类型时，要明确其含有多少位，<code>&lt;&gt;</code> 内指定它的长度：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b;</span><br></pre></td></tr></table></figure>
 <p>给出的长度也可以是 <strong>常量表达式</strong>，长度必须定义为整型字面值常量或已用常量值初始化的整型const对象。</p>
@@ -338,11 +338,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="1-1、用unsigned值初始化bitset对象">1.1、用unsigned值初始化bitset对象</h4><p>用unsigned long值初始化bitset对象时，该值会转化为二进制位模式。bitset 作为这种位模式的副本，如果bitset类型的长度大于unsigned long值的二进制位数，则其余的高阶位将置为0；如果bitset类型的长度小于二进制位数，则只使用unsigned值中的低阶位，超过bitset类型长度的高阶位将被丢弃。</p>
+<h4 id="1-1_u3001_u7528unsigned_u503C_u521D_u59CB_u5316bitset_u5BF9_u8C61"><a href="#1-1_u3001_u7528unsigned_u503C_u521D_u59CB_u5316bitset_u5BF9_u8C61" class="headerlink" title="1.1、用unsigned值初始化bitset对象"></a>1.1、用unsigned值初始化bitset对象</h4><p>用unsigned long值初始化bitset对象时，该值会转化为二进制位模式。bitset 作为这种位模式的副本，如果bitset类型的长度大于unsigned long值的二进制位数，则其余的高阶位将置为0；如果bitset类型的长度小于二进制位数，则只使用unsigned值中的低阶位，超过bitset类型长度的高阶位将被丢弃。</p>
 <p>在32位unsigned long的机器上，十六进制 <code>0xffff</code> 表示为二进制位就是16个1和16个0（每个 <code>0xf</code> 可以表示 <code>1111</code>）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b1(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b2(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1；16~31位为0</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;128&gt; b3(<span class="number">0xffff</span>);	<span class="comment">//0~15位为1；16~31位为0；32~127位为0</span></span><br></pre></td></tr></table></figure>
 <p><code>b1</code> 位数少于unsigned long的位数，所以高阶位被丢弃；<code>b2</code> 与unsigned long长度相同，所有位正好放初始值；<code>b3</code> 长度大于 32，31 位以上的高阶位就被置为 0.</p>
-<h4 id="1-2、用string对象初始化">1.2、用string对象初始化</h4><p>当用string对象初始化bitset对象时，string对象直接使用位模式。从string对象读入位集的顺序是 <strong>从右至左</strong></p>
+<h4 id="1-2_u3001_u7528string_u5BF9_u8C61_u521D_u59CB_u5316"><a href="#1-2_u3001_u7528string_u5BF9_u8C61_u521D_u59CB_u5316" class="headerlink" title="1.2、用string对象初始化"></a>1.2、用string对象初始化</h4><p>当用string对象初始化bitset对象时，string对象直接使用位模式。从string对象读入位集的顺序是 <strong>从右至左</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">str1</span><span class="params">(<span class="string">"1100"</span>)</span></span>;</span><br><span class="line"><span class="built_in">bitset</span>&lt;32&gt; b4(str1);</span><br></pre></td></tr></table></figure>
 <p><code>b4</code> 的位模式中 2~3 位为 1，其余位置为 0。</p>
 <blockquote>
@@ -352,7 +352,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">str2</span><span class="params">(<span class="string">"11000001111100001011"</span>)</span></span>;</span><br><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b5(str2, <span class="number">5</span>, <span class="number">4</span>);				<span class="comment">//从下标为5开始长度为4的子串 "0011"</span></span><br><span class="line"><span class="built_in">bitset</span>&lt;16&gt; b6(str2, str2.size() - <span class="number">4</span>);	<span class="comment">//使用最后4个位 "1011"</span></span><br></pre></td></tr></table></figure>
 <p>详细的为</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b5: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0011</span></span><br><span class="line">b6: <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">1011</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、bitset对象的操作">2、bitset对象的操作</h3><table>
+<h3 id="2_u3001bitset_u5BF9_u8C61_u7684_u64CD_u4F5C"><a href="#2_u3001bitset_u5BF9_u8C61_u7684_u64CD_u4F5C" class="headerlink" title="2、bitset对象的操作"></a>2、bitset对象的操作</h3><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -626,7 +626,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、bitset对象的初始化"><span class="nav-number">1.</span> <span class="nav-text">1、bitset对象的初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、用unsigned值初始化bitset对象"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、用unsigned值初始化bitset对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、用string对象初始化"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、用string对象初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、bitset对象的操作"><span class="nav-number">2.</span> <span class="nav-text">2、bitset对象的操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001bitset_u5BF9_u8C61_u7684_u521D_u59CB_u5316"><span class="nav-number">1.</span> <span class="nav-text">1、bitset对象的初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1_u3001_u7528unsigned_u503C_u521D_u59CB_u5316bitset_u5BF9_u8C61"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、用unsigned值初始化bitset对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2_u3001_u7528string_u5BF9_u8C61_u521D_u59CB_u5316"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、用string对象初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001bitset_u5BF9_u8C61_u7684_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">2、bitset对象的操作</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -653,6 +653,7 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
+  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">
