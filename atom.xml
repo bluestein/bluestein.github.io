@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-01-09T11:34:16.158Z</updated>
+  <updated>2016-01-09T11:42:20.163Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://bluestein.github.io/2016/01/LATEX-LLNCS/"/>
     <id>http://bluestein.github.io/2016/01/LATEX-LLNCS/</id>
     <published>2016-01-09T02:02:00.000Z</published>
-    <updated>2016-01-09T11:34:16.158Z</updated>
+    <updated>2016-01-09T11:42:20.163Z</updated>
     <content type="html"><![CDATA[<h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
@@ -190,11 +190,11 @@
 <td>产生一个小型空格。例如在数字之间</td>
 </tr>
 <tr>
-<td>–</td>
+<td>—</td>
 <td>产生一个横杠。前后无空格</td>
 </tr>
 <tr>
-<td>&nbsp;–&nbsp;</td>
+<td>&nbsp;—&nbsp;</td>
 <td>产生一个横杠。前后各一空格</td>
 </tr>
 <tr>
