@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="Exercise 7.3产生第一个参数的第二个参数次幂的值
 12345678910int pow(int base, int power) &amp;#123;	int i = 0, result = 1;	while (i &amp;lt; power) 	&amp;#123;		result *= base;		++i;	&amp;#125;	return result;&amp;#125;">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.411Z">
+<meta property="og:updated_time" content="2015-12-30T06:16:34.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ex7.3 - 7.6">
 <meta name="twitter:description" content="Exercise 7.3产生第一个参数的第二个参数次幂的值
@@ -303,21 +303,21 @@
       
 
       
-        <h3 id="Exercise_7-3"><a href="#Exercise_7-3" class="headerlink" title="Exercise 7.3"></a>Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
+        <h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="Exercise_7-4"><a href="#Exercise_7-4" class="headerlink" title="Exercise 7.4"></a>Exercise 7.4</h3><p>返回一个数的绝对值</p>
+<h3 id="Exercise_7-4">Exercise 7.4</h3><p>返回一个数的绝对值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> v)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> -v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-5"><a href="#Exercise_7-5" class="headerlink" title="Exercise 7.5"></a>Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
+<h3 id="Exercise_7-5">Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">biggerOne</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">const</span> <span class="keyword">int</span> *ip)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> biggerOne = v &gt; *ip ? v : *ip;</span><br><span class="line">	ip = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> biggerOne;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-6"><a href="#Exercise_7-6" class="headerlink" title="Exercise 7.6"></a>Exercise 7.6</h3><p>交换两个int指针所指对象的值</p>
+<h3 id="Exercise_7-6">Exercise 7.6</h3><p>交换两个int指针所指对象的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pSwap</span><span class="params">(<span class="keyword">int</span> *p1, <span class="keyword">int</span> *p2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *p1;</span><br><span class="line">	*p1 = *p2;</span><br><span class="line">	*p2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h3><p>利用引用交换两个数的值（跟ex 7.6一样的效果）</p>
+<h3 id="Bonus">Bonus</h3><p>利用引用交换两个数的值（跟ex 7.6一样的效果）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
 </blockquote>
-<h3 id="Bonus-1"><a href="#Bonus-1" class="headerlink" title="Bonus"></a>Bonus</h3><p>交换指向数值的指针</p>
+<h3 id="Bonus-1">Bonus</h3><p>交换指向数值的指针</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -417,21 +417,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -523,7 +523,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

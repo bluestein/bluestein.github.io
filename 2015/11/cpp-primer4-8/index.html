@@ -65,7 +65,7 @@
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-8/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="除了使用下标访问vector对象的元素外，还有另一种方式：迭代器（iterator）。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.496Z">
+<meta property="og:updated_time" content="2015-12-30T06:14:30.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="迭代器iterator">
 <meta name="twitter:description" content="除了使用下标访问vector对象的元素外，还有另一种方式：迭代器（iterator）。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。">
@@ -302,13 +302,13 @@
       
         <p>除了使用下标访问vector对象的元素外，还有另一种方式：<strong>迭代器（iterator）</strong>。标准库为每一种容器（包括 vector）定义了一种迭代器类型，现代的C++程序更倾向于使用迭代器，即使支持下标操作的容器也是如此，如 vector。在第11章会详细介绍迭代器。</p>
 <a id="more"></a>
-<h3 id="1_u3001_u5BB9_u5668_u7684iterator_u7C7B_u578B"><a href="#1_u3001_u5BB9_u5668_u7684iterator_u7C7B_u578B" class="headerlink" title="1、容器的iterator类型"></a>1、容器的iterator类型</h3><hr>
+<h3 id="1、容器的iterator类型">1、容器的iterator类型</h3><hr>
 <p>每种容器都定义了自己的迭代器类型，如vector：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>同一术语 <code>iterator</code> 往往表示两个不同的事物，一般来说是指 <strong>迭代器</strong> 的概念；而具体而言时是指由容器定义的iterator类型，如vector<int>。</int></p>
 </blockquote>
-<h3 id="2_u3001begin_u548Cend_u64CD_u4F5C"><a href="#2_u3001begin_u548Cend_u64CD_u4F5C" class="headerlink" title="2、begin和end操作"></a>2、begin和end操作</h3><hr>
+<h3 id="2、begin和end操作">2、begin和end操作</h3><hr>
 <p>每种容器都定义了一对名为 begin 和 end 的函数，用于返回迭代器。容器不为空时，begin 返回的是容器的第一个元素：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin();</span><br></pre></td></tr></table></figure>
 <p><code>iter</code> 指向的是 <code>intv[0]</code>。</p>
@@ -316,7 +316,7 @@
 <blockquote>
 <p>end只是起一个<strong>哨兵（sentinel）</strong>的作用，表示已处理完所有元素。</p>
 </blockquote>
-<h3 id="3_u3001vector_u8FED_u4EE3_u5668_u7684_u81EA_u589E_u548C_u89E3_u5F15_u7528_u8FD0_u7B97_u7B49"><a href="#3_u3001vector_u8FED_u4EE3_u5668_u7684_u81EA_u589E_u548C_u89E3_u5F15_u7528_u8FD0_u7B97_u7B49" class="headerlink" title="3、vector迭代器的自增和解引用运算等"></a>3、vector迭代器的自增和解引用运算等</h3><hr>
+<h3 id="3、vector迭代器的自增和解引用运算等">3、vector迭代器的自增和解引用运算等</h3><hr>
 <ul>
 <li><p><strong>自增操作</strong> <code>++</code>：表示向前移动迭代器，指向下一个元素。可以结合 int 的自增理解：对于 int 类型来说，表示 “加1”，而对容器来说，是“下移一个位置”。如果当前迭代器指向第一个元素，则 <code>++iter</code> 表示指向第二个元素。</p>
 </li>
@@ -327,11 +327,11 @@
 <li><p><code>==, !=</code> 可以用来比较两个迭代器</p>
 </li>
 </ul>
-<h3 id="3_u3001_u793A_u4F8B"><a href="#3_u3001_u793A_u4F8B" class="headerlink" title="3、示例"></a>3、示例</h3><hr>
+<h3 id="3、示例">3、示例</h3><hr>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) &#123;</span><br><span class="line">		intv.push_back(i);	<span class="comment">//ok:动态增加</span></span><br><span class="line">	&#125;	<span class="comment">//添加元素 0-9</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;</span><br><span class="line">		*iter = <span class="number">1</span>;	<span class="comment">//改变vector的值</span></span><br><span class="line">	&#125;	<span class="comment">//跟下面的可以达到相同的效果</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != intv.size(); ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; intv[i] &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,</span><br><span class="line"><span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,</span><br></pre></td></tr></table></figure>
-<h3 id="4_u3001const_iterator"><a href="#4_u3001const_iterator" class="headerlink" title="4、const_iterator"></a>4、const_iterator</h3><hr>
+<h3 id="4、const_iterator">4、const_iterator</h3><hr>
 <p>前面的 <code>vector::iterator</code> 可以用来改变元素的值，每个容器还定义了一种只能读取元素但不能改变值得iterator类型：<strong>const_iterator</strong>。</p>
 <p>跟普通的iterator类型的区别在于：普通iterator类型解引用时得到的是非const引用，而const_iterator解引用时，得到的是const引用。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter = intv.begin(); iter != intv.end(); ++iter)&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt;<span class="string">","</span>;	<span class="comment">//ok</span></span><br><span class="line">	*iter = <span class="number">0</span>;				<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -342,7 +342,7 @@
 <blockquote>
 <p>vector<int>::const_iterator //不能改变容器的值<br>const vector<int>::iterator //不能改变迭代器的值</int></int></p>
 </blockquote>
-<h3 id="5_u3001_u8FED_u4EE3_u5668_u7684_u7B97_u672F_u8FD0_u7B97"><a href="#5_u3001_u8FED_u4EE3_u5668_u7684_u7B97_u672F_u8FD0_u7B97" class="headerlink" title="5、迭代器的算术运算"></a>5、迭代器的算术运算</h3><hr>
+<h3 id="5、迭代器的算术运算">5、迭代器的算术运算</h3><hr>
 <p>除了一次移动一个元素之外，迭代器还支持其他算术操作</p>
 <ul>
 <li><code>iter +(-) n</code>：产生一个新的迭代器，其位置在iter之前（加）或之后（减）的位置。但是加减后的位置还必须是指向vector中的某个元素，或末端的下一个；</li>
@@ -455,21 +455,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -534,7 +534,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001_u5BB9_u5668_u7684iterator_u7C7B_u578B"><span class="nav-number">1.</span> <span class="nav-text">1、容器的iterator类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001begin_u548Cend_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">2、begin和end操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3_u3001vector_u8FED_u4EE3_u5668_u7684_u81EA_u589E_u548C_u89E3_u5F15_u7528_u8FD0_u7B97_u7B49"><span class="nav-number">3.</span> <span class="nav-text">3、vector迭代器的自增和解引用运算等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3_u3001_u793A_u4F8B"><span class="nav-number">4.</span> <span class="nav-text">3、示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4_u3001const_iterator"><span class="nav-number">5.</span> <span class="nav-text">4、const_iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5_u3001_u8FED_u4EE3_u5668_u7684_u7B97_u672F_u8FD0_u7B97"><span class="nav-number">6.</span> <span class="nav-text">5、迭代器的算术运算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、容器的iterator类型"><span class="nav-number">1.</span> <span class="nav-text">1、容器的iterator类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、begin和end操作"><span class="nav-number">2.</span> <span class="nav-text">2、begin和end操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、vector迭代器的自增和解引用运算等"><span class="nav-number">3.</span> <span class="nav-text">3、vector迭代器的自增和解引用运算等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、示例"><span class="nav-number">4.</span> <span class="nav-text">3、示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、const_iterator"><span class="nav-number">5.</span> <span class="nav-text">4、const_iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、迭代器的算术运算"><span class="nav-number">6.</span> <span class="nav-text">5、迭代器的算术运算</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -561,7 +561,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

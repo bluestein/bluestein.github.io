@@ -69,7 +69,7 @@
 <meta property="og:description" content="接上一节 Github: Git的使用 - 历史记录的第三小节，下面继续介绍git的更多用法。
 3.4、撤消操作撤消操作
 在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。">
-<meta property="og:updated_time" content="2015-12-28T02:59:25.156Z">
+<meta property="og:updated_time" content="2016-01-09T02:08:06.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github: Git的使用 - 撤销操作">
 <meta name="twitter:description" content="接上一节 Github: Git的使用 - 历史记录的第三小节，下面继续介绍git的更多用法。
@@ -256,7 +256,19 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Github-Hexo/" itemprop="url" rel="index">
+                  <a href="/categories/Odds-Ends/" itemprop="url" rel="index">
+                    <span itemprop="name">Odds&Ends</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Odds-Ends/Github-Hexo/" itemprop="url" rel="index">
                     <span itemprop="name">Github + Hexo</span>
                   </a>
                 </span>
@@ -295,7 +307,7 @@
 
       
         <p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-2/">Github: Git的使用 - 历史记录</a>的第三小节，下面继续介绍git的更多用法。</p>
-<h3 id="3-4_u3001_u64A4_u6D88_u64CD_u4F5C"><a href="#3-4_u3001_u64A4_u6D88_u64CD_u4F5C" class="headerlink" title="3.4、撤消操作"></a>3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
+<h3 id="3-4、撤消操作">3.4、撤消操作</h3><p><strong>撤消操作</strong></p>
 <p>在任何一个阶段，你都有可能想要撤消某些操作。 这里，我们将会学习几个撤消你所做修改的基本工具。 注意，有些撤消操作是不可逆的。 这是在使用 Git 的过程中，会因为操作失误而导致之前的工作丢失的少有的几个地方之一。</p>
 <a id="more"></a>
 <p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 –amend 选项的提交命令尝试重新提交：</p>
@@ -315,7 +327,7 @@
 <blockquote>
 <p>你需要知道 <code>git checkout -- [file]</code> 是一个危险的命令，这很重要。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。</p>
 </blockquote>
-<h3 id="3-5_u3001_u8FDC_u7A0B_u4ED3_u5E93_u7684_u4F7F_u7528"><a href="#3-5_u3001_u8FDC_u7A0B_u4ED3_u5E93_u7684_u4F7F_u7528" class="headerlink" title="3.5、远程仓库的使用"></a>3.5、远程仓库的使用</h3><p>为了能在任意 Git 项目上协作，你需要知道如何管理自己的远程仓库。 远程仓库是指托管在因特网或其他网络中的你的项目的版本库。 你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。 与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。 管理远程仓库包括了解如何添加远程仓库、移除无效的远程仓库、管理不同的远程分支并定义它们是否被跟踪等等。 在本节中，我们将介绍一部分远程管理的技能。</p>
+<h3 id="3-5、远程仓库的使用">3.5、远程仓库的使用</h3><p>为了能在任意 Git 项目上协作，你需要知道如何管理自己的远程仓库。 远程仓库是指托管在因特网或其他网络中的你的项目的版本库。 你可以有好几个远程仓库，通常有些仓库对你只读，有些则可以读写。 与他人协作涉及管理远程仓库以及根据需要推送或拉取数据。 管理远程仓库包括了解如何添加远程仓库、移除无效的远程仓库、管理不同的远程分支并定义它们是否被跟踪等等。 在本节中，我们将介绍一部分远程管理的技能。</p>
 <p><strong>查看远程仓库</strong></p>
 <p>如果想查看你已经配置的远程仓库服务器，可以运行 <code>git remote</code> 命令。 它会列出你指定的每一个远程服务器的简写。 如果你已经克隆了自己的仓库，那么至少应该能看到 origin - 这是 Git 给你克隆的仓库服务器的默认名字：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/bluestein/hexo-theme-allgreen.git</span><br><span class="line">...</span><br><span class="line">$ <span class="built_in">cd</span> hexo-theme-allgreen</span><br><span class="line">$ git remote</span><br><span class="line">origin</span><br></pre></td></tr></table></figure>
@@ -451,21 +463,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -530,7 +542,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4_u3001_u64A4_u6D88_u64CD_u4F5C"><span class="nav-number">1.</span> <span class="nav-text">3.4、撤消操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5_u3001_u8FDC_u7A0B_u4ED3_u5E93_u7684_u4F7F_u7528"><span class="nav-number">2.</span> <span class="nav-text">3.5、远程仓库的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4、撤消操作"><span class="nav-number">1.</span> <span class="nav-text">3.4、撤消操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5、远程仓库的使用"><span class="nav-number">2.</span> <span class="nav-text">3.5、远程仓库的使用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -557,7 +569,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

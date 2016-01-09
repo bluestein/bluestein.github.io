@@ -1,0 +1,1123 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LATEX,LLNCS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="How to proceed下载的压缩包包含如下文件:
+
+
+
+Files in package
+说明
+
+
+
+
+history.txt
+the version history of the package
+
+
+llncs.cls
+class ﬁle for LATEX
+
+
+llncs.dem
+an example showing how to code the text
+
+
+llncs.doc
+ge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LATEX: LLNCS v2.4">
+<meta property="og:url" content="http://bluestein.github.io/2016/01/LATEX-LLNCS/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="How to proceed下载的压缩包包含如下文件:
+
+
+
+Files in package
+说明
+
+
+
+
+history.txt
+the version history of the package
+
+
+llncs.cls
+class ﬁle for LATEX
+
+
+llncs.dem
+an example showing how to code the text
+
+
+llncs.doc
+ge">
+<meta property="og:image" content="http://bluestein.github.io/images/equation_sample.png">
+<meta property="og:image" content="http://bluestein.github.io/images/paper_sample.png">
+<meta property="og:image" content="http://bluestein.github.io/images/table_sample.png">
+<meta property="og:updated_time" content="2016-01-09T11:14:01.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LATEX: LLNCS v2.4">
+<meta name="twitter:description" content="How to proceed下载的压缩包包含如下文件:
+
+
+
+Files in package
+说明
+
+
+
+
+history.txt
+the version history of the package
+
+
+llncs.cls
+class ﬁle for LATEX
+
+
+llncs.dem
+an example showing how to code the text
+
+
+llncs.doc
+ge">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LATEX: LLNCS v2.4 | Humooo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Humooo's Blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LATEX: LLNCS v2.4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-09T10:02:00+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Odds-Ends/" itemprop="url" rel="index">
+                    <span itemprop="name">Odds&Ends</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Odds-Ends/LATEX/" itemprop="url" rel="index">
+                    <span itemprop="name">LATEX</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/LATEX-LLNCS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/LATEX-LLNCS/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
+<table>
+<thead>
+<tr>
+<th>Files in package</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>history.txt</td>
+<td>the version history of the package</td>
+</tr>
+<tr>
+<td>llncs.cls</td>
+<td>class ﬁle for LATEX</td>
+</tr>
+<tr>
+<td>llncs.dem</td>
+<td>an example showing how to code the text</td>
+</tr>
+<tr>
+<td>llncs.doc</td>
+<td>general instructions (source of this document), llncs.doc means latex documentation for Lecture Notes in Computer Science</td>
+</tr>
+<tr>
+<td>llncsdoc.pdf</td>
+<td>the documentation of the class (PDF version)</td>
+</tr>
+<tr>
+<td>llncs.doc</td>
+<td>general instructions (source of this document)</td>
+</tr>
+<tr>
+<td>llncsdoc.sty</td>
+<td>class modiﬁcations to help for the instructions</td>
+</tr>
+<tr>
+<td>llncs.ind</td>
+<td>an external (faked) author index ﬁle</td>
+</tr>
+<tr>
+<td>subjidx.ind</td>
+<td>subject index demo from the Springer book package</td>
+</tr>
+<tr>
+<td>llncs.dvi</td>
+<td>the resultig DVI ﬁle (remember to use binary transfer!)</td>
+</tr>
+<tr>
+<td>sprmindx.sty</td>
+<td>supplementary style ﬁle for MakeIndex (usage: <code>makeindex -s sprmindx.sty &lt;yourfile.idx&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h4 id="Invoke_LLNCS_class">Invoke LLNCS class</h4><p>LLNCS 只是标准 LATEX “article” class 的拓展版本，所以在文章中可以使用所有 “article” 的语法。如果要使用 LLNCS class，则使用如下形式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\documentclass&#123;llncs&#125;</span><br><span class="line">%</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">&lt;Your contribution&gt;</span><br><span class="line">\end&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="文章已经用_LATEX_写好而未使用_LLNCS_格式的情况">文章已经用 LATEX 写好而未使用 LLNCS 格式的情况</h4><p>请不要使用任何会影响文档布局或格式的 LATEX 或 TEX命令（即像 <code>\textheight</code>, <code>\vspace</code>, <code>\headsep</code>, etc）。然而，有可能会有例外的情况下，可以使用一些。</p>
+<h3 id="公式输入">公式输入</h3><p>公式会以您文章出现的顺序在右手边使用阿拉伯数字自动编号。当你的工作在数学模式时，都是用斜体字排版。有时候你需要插入非数学元素（例如单词或短语）。这种插入的代码应该使用 roman（即 <code>\mbox</code>）如下例所示： </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;equation&#125; </span><br><span class="line">\left(\frac&#123;a^&#123;<span class="number">2</span>&#125; + b^&#123;<span class="number">2</span>&#125;&#125;&#123;c^&#123;<span class="number">3</span>&#125;&#125; \right) = <span class="number">1</span> \quad</span><br><span class="line">\mbox&#123; <span class="keyword">if</span> &#125; c\neq <span class="number">0</span> \mbox&#123; and <span class="keyword">if</span> &#125; a,b,c\in \bbbr \enspace .</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<p>输出示例：</p>
+<p><img src="/images/equation_sample.png" alt=""></p>
+<p>如果你想在一个显示公式后立即开始新的段落，插入一个空白行，以产生所需的缩进。如果不插入一个空白行或代码 <code>\noindent</code> 会立即继续之前的文本而没有没有新的段落。</p>
+<p>displayed 公式也使用相同的方式处理，其他普通文本则在结束本句前使用 <code>\enspace</code>。</p>
+<p>注意括号的尺寸或其他分隔符必须保证是闭合的，使用下面命令可以保证：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\left( 或者 \left[ 和 \right) 或者 \right].</span><br></pre></td></tr></table></figure>
+<h4 id="斜体和_Roman_体">斜体和 Roman 体</h4><ol>
+<li>在公式中，一般使用斜体，但下标应使用 Roman 体而不是斜体。</li>
+<li>确保一些物理标记使用 <code>\mathrm</code> 命令，如 Hz： <code>\mathrm{Hz}</code>。还有一些常用的数学函数，如 log，sin，exp，max和sup应该使用：<code>\log</code>，<code>\sin</code>，<code>\exp</code>，<code>\max</code> 和 <code>\sup</code>。</li>
+<li>化学式应该使用 Roman 体，如： H2O。</li>
+<li>熟悉的单词或句子不应使用斜体，如： et al., a priori, in situ, bremsstrahlung, eigenvalues。</li>
+</ol>
+<h3 id="How_to_Edit_Input_(Source)_File">How to Edit Input (Source) File</h3><h4 id="Headings">Headings</h4><p>标题中的所有单词应该都大写，除了连词、介词 (例如 on, of, by, and, or, but, from, with, without, under) 还有定冠词和不定冠词 (the, a, an) 除非他们出现在开头，否则均小写。公式的字母必须在文本内排版。</p>
+<h4 id="大写和不大写">大写和不大写</h4><ol>
+<li>下面情况均需大写：<ol>
+<li>Headings。</li>
+<li>文章中的缩写和表达式，如：  Fig(s)., Table(s), Sect(s)., Chap(s)., Theorem, Corollary, Deﬁnition etc. 跟数字一起使用时，如： Fig.3, Table 1, Theorem 2。</li>
+</ol>
+</li>
+<li>下面情况不能大写：<ol>
+<li>在文章中，当 ﬁgure(s), table(s), equation(s), theorem(s) 等词没有与编号一起使用时。</li>
+<li>图表图例和表格标题，除非是缩写。</li>
+</ol>
+</li>
+</ol>
+<h4 id="词的缩写">词的缩写</h4><ol>
+<li>下列词除非是出现在句子开头，否则在文章中应该使用缩写： Chap., Sect., Fig.。例如： The results are depicted in Fig.5. Figure 9 reveals that …. <blockquote>
+<p>注： 公式一般使用括号跟数字代替，但出现在句子开头时需使用 “Equation”。 例如：Equation (14) is very important. However, (15) makes it clear that …. </p>
+</blockquote>
+</li>
+<li>如果文章中有出现全局的缩写，应该在第一次出现的时候标明，如： Plurisubharmonic (PSH) Functions, Strong Optimization (SOPT) Problem.</li>
+</ol>
+<h3 id="文章的开头">文章的开头</h3><p>文章的标题（必须的）使用如下形式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\title&#123;&lt;Your contribution title&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>标题中所有单词应大写，除了连词、介词和不出现在开头的定冠词和不定冠词。标题没有结束标点。</p>
+<p>如果是很长的标题，使用 <code>\\</code> 另起一行。</p>
+<p>If you are to produce running heads for a speciﬁc volume the standard (of no such running heads) is overwritten with the [runningheads] option in the \documentclass line. For long titles that do not ﬁt in the single line of the running head a warning is generated. You can specify an abbreviated title for the running head on odd pages with the command：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\titlerunning&#123;&lt;Your abbreviated contribution title&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>There is also a possibility to change the text of the title that goes into the table of contents (that’s for volume editors only – there is no table of contents for a single contribution). For this use the command:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\toctitle&#123;&lt;Your changed title <span class="keyword">for</span> the table of contents&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>副标题使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\subtitle&#123;&lt;subtitle of your contribution&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>作者使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\author&#123;&lt;author(s) name(s)&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>为每个作者或地址指定标号时，使用： </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\inst&#123;&lt;no&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>超过一位作者的话，可以使用 <code>\and</code> 分隔。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\author&#123;Ivar Ekeland\inst&#123;<span class="number">1</span>&#125; \and Roger Temam\inst&#123;<span class="number">2</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>下面就是地址（学校，公司）了，多于一个地址，使用 <code>\and</code> 命令会自动编号，请确保跟作者顺序对应。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\institute&#123;&lt;name of an institute&gt;</span><br><span class="line">\and &lt;name of the next institute&gt;</span><br><span class="line">\and &lt;name of the next institute&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>\institute</code> 内使用 <code>\email{&lt;email address&gt;}</code> 可以提供email地址。如果在文章的任何地方需要注脚，请使用(immediately after the word where the footnote indicator should be placed)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\thanks&#123;&lt;text&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\thanks</code> 仅能出现在 <code>\title</code>, <code>\author</code> and <code>\institute</code>中. 如果有两个或更多的脚注使用 <code>\fnmsep</code> (i.e. footnote mark separator) 分隔.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\maketitle</span><br></pre></td></tr></table></figure>
+<p>然后 heading 就结束了，到这一步为止，还不会产生任何文本。</p>
+<p>接下来就是摘要：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;abstract&#125;</span><br><span class="line">&lt;Text of the summary of your article&gt;</span><br><span class="line">\end&#123;abstract&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### How to Code Your Text ###</span></span><br><span class="line"></span><br><span class="line">用以下代码的话，标题会自动编号：</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">\section&#123;This is a First-Order Title&#125; </span><br><span class="line">\subsection&#123;This is a Second-Order Title&#125; </span><br><span class="line">\subsubsection&#123;This is a Third-Order Title.&#125; </span><br><span class="line">\paragraph&#123;This is a Fourth-Order Title.&#125;</span><br></pre></td></tr></table></figure>
+<p><code>\section</code> and <code>\subsection</code> 没有 end punctuation。<code>\subsubsection</code> and <code>\paragraph</code> 需要在末尾 punctuate。 </p>
+<p>另外，theorem-like environments 会自动编号，如果要使用计数器，只需指定 <code>envcountsame</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[envcountsame]&#123;llncs&#125;</span><br></pre></td></tr></table></figure>
+<p>例如 <code>\begin{lema}</code>，第一次调用时会编号为1，再次调用编号为2，以此类推。如果需要每个 section 都重新计数，则指定为 <code>envcountreset</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[envcountreset]&#123;llncs&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="预定义的_Theorem-like_Environments">预定义的 Theorem-like Environments</h3><p>下面的标题随你选择：</p>
+<ol>
+<li><p>加粗并带斜体文本的 run-in 标题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;corollary&#125; &lt;text&gt; \end&#123;corollary&#125; </span><br><span class="line">\begin&#123;lemma&#125; &lt;text&gt; \end&#123;lemma&#125; </span><br><span class="line">\begin&#123;proposition&#125; &lt;text&gt; \end&#123;proposition&#125; </span><br><span class="line">\begin&#123;theorem&#125; &lt;text&gt; \end&#123;theorem&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以下的一般表现为斜体 run-in 标题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;proof&#125; &lt;text&gt; \qed \end&#123;proof&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这不编号，并且在结束前有一个吸引眼球的 square （即 <code>\qed</code>）。</p>
+<ol>
+<li>更多斜体和加粗体 run-in 标题：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;definition&#125; &lt;text&gt; \end&#123;definition&#125;</span><br><span class="line">\begin&#123;example&#125; &lt;text&gt; \end&#123;example&#125; </span><br><span class="line">\begin&#123;exercise&#125; &lt;text&gt; \end&#123;exercise&#125; </span><br><span class="line">\begin&#123;note&#125; &lt;text&gt; \end&#123;note&#125; </span><br><span class="line">\begin&#123;problem&#125; &lt;text&gt; \end&#123;problem&#125; </span><br><span class="line">\begin&#123;question&#125; &lt;text&gt; \end&#123;question&#125; </span><br><span class="line">\begin&#123;remark&#125; &lt;text&gt; \end&#123;remark&#125; </span><br><span class="line">\begin&#123;solution&#125; &lt;text&gt; \end&#123;solution&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="自定义的_Theorem-like_Environments">自定义的 Theorem-like Environments</h3><p>加强了标准的 <code>\newtheorem</code> 命令，得到两个新的命令 <code>\ spnewtheorem</code> 和 <code>\spnewtheorem*</code>，现在可以使用来定义新的语法。需要两个参数：type style 和 text style。type style 表示所出现的环境，text style 表示新环境的 text style。使用 <code>\ spnewtheorem</code> 的两种方法：</p>
+<h4 id="第一种（推荐！）">第一种（推荐！）</h4><p>如果想与其他环境共享计数器，使用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\spnewtheorem&#123;&lt;env_nam&gt;&#125;[&lt;num_like&gt;]&#123;&lt;caption&gt;&#125; &#123;&lt;cap_font&gt;&#125;&#123;&lt;body_font&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p><code>[&lt;num_like&gt;]</code> 指定为想要共享的环境。</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\spnewtheorem&#123;mainth&#125;[theorem]&#123;Main Theorem&#125;&#123;\bfseries&#125;&#123;\itshape&#125; </span><br><span class="line">\begin&#123;theorem&#125; The early bird gets the worm. \end&#123;theorem&#125; </span><br><span class="line">\begin&#123;mainth&#125; The early worm gets eaten. \end&#123;mainth&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Theorem <span class="number">3.</span> The early bird gets the worm. </span><br><span class="line">Main Theorem <span class="number">4.</span> The early worm gets eaten.</span><br></pre></td></tr></table></figure>
+<h4 id="第二种">第二种</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\spnewtheorem&#123;&lt;env_nam&gt;&#125;&#123;&lt;caption&gt;&#125;[&lt;within&gt;]</span><br><span class="line">&#123;&lt;cap_font&gt;&#125;&#123;&lt;body_font&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码会定义一个名为 <code>&lt;env_name&gt;</code> 的环境，它以 <code>&lt;cap_font&gt;</code> 打印标题 <code>&lt;caption&gt;</code>， 它以 <code>&lt;body_font&gt;</code> 打印文本。在每个新 section 指定 <code>&lt;within&gt;</code> 时，会重新编号。</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\spnewtheorem&#123;joke&#125;&#123;Joke&#125;[subsection]&#123;\bfseries&#125;&#123;\rmfamily&#125;</span><br></pre></td></tr></table></figure>
+<p>deﬁnes a new environment called joke which prints the caption Joke in boldface and the text in roman. The jokes are numbered starting from 1 at the beginning of every subsection with the number of the subsection preceding the number of the joke e.g. 7.2.1 for the ﬁrst joke in subsection 7.2.</p>
+<h4 id="Unnumbered_Environments">Unnumbered Environments</h4><p>如果想要非编号环境，使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\spnewtheorem*&#123;&lt;env_nam&gt;&#125;&#123;&lt;caption&gt;&#125;&#123;&lt;cap_font&gt;&#125;&#123;&lt;body_font&gt;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="程序代码">程序代码</h3><p>可以使用 verbatim 环境或者 LATEX 的 verbatim package。</p>
+<p>文章示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">\title&#123;Hamiltonian Mechanics&#125;</span><br><span class="line">\author&#123;Ivar Ekeland\inst&#123;<span class="number">1</span>&#125; \and Roger Temam\inst&#123;<span class="number">2</span>&#125;&#125;</span><br><span class="line">\institute&#123;Princeton University, Princeton NJ <span class="number">08544</span>, USA</span><br><span class="line">\and </span><br><span class="line">Universit\’&#123;e&#125; de Paris-Sud, </span><br><span class="line">Laboratoire d’Analyse Num\’&#123;e&#125;rique, B\^&#123;a&#125;timent <span class="number">425</span>,\\</span><br><span class="line">F-<span class="number">91405</span> Orsay Cedex, France&#125;</span><br><span class="line"></span><br><span class="line">\maketitle </span><br><span class="line">% </span><br><span class="line">\begin&#123;abstract&#125;</span><br><span class="line">This paragraph shall summarize the contents of the paper in <span class="keyword">short</span> terms. </span><br><span class="line">\end&#123;abstract&#125; </span><br><span class="line">%</span><br><span class="line">\section&#123;Fixed-Period Problems: The Sublinear Case&#125; </span><br><span class="line">% </span><br><span class="line">With <span class="keyword">this</span> chapter, the preliminaries are over, and we begin the search <span class="keyword">for</span> periodic solutions \dots </span><br><span class="line">% </span><br><span class="line">\subsection&#123;Autonomous Systems&#125; </span><br><span class="line">% </span><br><span class="line">In <span class="keyword">this</span> section we will consider the <span class="keyword">case</span> when the Hamiltonian </span><br><span class="line">$H(x)$ \dots </span><br><span class="line">% </span><br><span class="line">\subsubsection*&#123;The General Case: Nontriviality.&#125; </span><br><span class="line">% </span><br><span class="line">We assume that $H$ is </span><br><span class="line">$\left(A_&#123;\infty&#125;, B_&#123;\infty&#125;\right)$-subqua\-dra\-tic </span><br><span class="line">at infinity, <span class="keyword">for</span> some constant \dots </span><br><span class="line">% </span><br><span class="line">\paragraph&#123;Notes and Comments.&#125; </span><br><span class="line">The first results on subharmonics were \dots </span><br><span class="line">% </span><br><span class="line">\begin&#123;proposition&#125;</span><br><span class="line">Assume $H’(<span class="number">0</span>)=<span class="number">0</span>$ and $ H(<span class="number">0</span>)=<span class="number">0</span>$. Set \dots </span><br><span class="line">\end&#123;proposition&#125; </span><br><span class="line">\begin&#123;proof&#125;[of proposition] </span><br><span class="line">Condition (<span class="number">8</span>) means that, <span class="keyword">for</span> every $\delta’&gt;\delta$, there is </span><br><span class="line">some $\varepsilon&gt;<span class="number">0</span>$ such that \dots \qed </span><br><span class="line">\end&#123;proof&#125; </span><br><span class="line">% </span><br><span class="line">\begin&#123;example&#125;[\rmfamily (External forcing)] </span><br><span class="line">Consider the system \dots </span><br><span class="line">\end&#123;example&#125; </span><br><span class="line">\begin&#123;corollary&#125; </span><br><span class="line">Assume $H$ is $C^&#123;<span class="number">2</span>&#125;$ and </span><br><span class="line">$\left(a_&#123;\infty&#125;, b_&#123;\infty&#125;\right)$-subquadratic </span><br><span class="line">at infinity. Let \dots </span><br><span class="line">\end&#123;corollary&#125; </span><br><span class="line">\begin&#123;lemma&#125; </span><br><span class="line">Assume that $H$ is $C^&#123;<span class="number">2</span>&#125;$ on $\bbbr^&#123;<span class="number">2</span>n&#125;\backslash \&#123;<span class="number">0</span>\&#125;$ </span><br><span class="line">and that $H’’(x)$ is \dots </span><br><span class="line">\end&#123;lemma&#125; </span><br><span class="line">\begin&#123;theorem&#125;[(Ghoussoub-Preiss)] </span><br><span class="line">Let $X$ be a Banach Space and $\Phi:X\to\bbbr$ \dots</span><br><span class="line">\end&#123;theorem&#125; </span><br><span class="line">\begin&#123;definition&#125; </span><br><span class="line">We shall say that a $C^&#123;<span class="number">1</span>&#125;$ function $\Phi:X\to\bbbr$ </span><br><span class="line">satisfies \dots </span><br><span class="line">\end&#123;definition&#125;</span><br></pre></td></tr></table></figure>
+<p>输出示例如下图，或<a href="http://www.springer.com/computer/lncs/lncs+authors" target="_blank" rel="external">官网</a>下载查看</p>
+<p><img src="/images/paper_sample.png" alt=""></p>
+<h3 id="文本优化">文本优化</h3><table>
+<thead>
+<tr>
+<th>文本优化</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\,</td>
+<td>产生一个小型空格。例如在数字之间</td>
+</tr>
+<tr>
+<td>–</td>
+<td>产生一个横杠。前后无空格</td>
+</tr>
+<tr>
+<td>&nbsp;–&nbsp;</td>
+<td>产生一个横杠。前后各一空格</td>
+</tr>
+<tr>
+<td>-</td>
+<td>连字符。前后无空格</td>
+</tr>
+<tr>
+<td>$-$</td>
+<td>负号。只在文本中使用</td>
+</tr>
+</tbody>
+</table>
+<p>例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">21</span>\,$^&#123;\circ&#125;$C etc., </span><br><span class="line">Dr h.\,c.\,Rockefellar-Smith \dots </span><br><span class="line"><span class="number">20</span>,<span class="number">000</span>\,km and Prof.\,Dr Mallory \dots </span><br><span class="line"><span class="number">1950</span>--<span class="number">1985</span> \dots </span><br><span class="line"><span class="keyword">this</span> -- written on a computer -- is now printed </span><br><span class="line">$-<span class="number">30</span>$\,K \dots</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">21</span>◦C etc., Dr h.c.Rockefellar-Smith ... </span><br><span class="line"><span class="number">20</span>,<span class="number">000</span>km and Prof.Dr Mallory ... </span><br><span class="line"><span class="number">1950</span>–<span class="number">1985</span> ... </span><br><span class="line"><span class="keyword">this</span> – written on a computer – is now printed </span><br><span class="line">−<span class="number">30</span>K ...</span><br></pre></td></tr></table></figure>
+<h3 id="特殊字体">特殊字体</h3><p>普通的字体类型（Roman）不需要代码。斜体 (<code>{\em &lt;text&gt;}</code> 或 <code>\emph{&lt;text&gt;}</code>)，如果需要，黑体用于强调：</p>
+<table>
+<thead>
+<tr>
+<th>特殊字体</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{\itshape Text}</code></td>
+<td>斜体文本</td>
+</tr>
+<tr>
+<td><code>{\em &lt;text&gt;}</code></td>
+<td>强调的文本</td>
+</tr>
+<tr>
+<td><code>{\bfseries Text}</code></td>
+<td>重要文本</td>
+</tr>
+<tr>
+<td><code>\vec{Symbol}</code></td>
+<td>向量只能出现在 math mode。如 <code>$\vec{A \times B\cdot C}</code> 得到 <code>A×B ·C</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Footnotes">Footnotes</h3><p>注脚应该被包含在下面代码中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\footnote&#123;Text&#125;</span><br></pre></td></tr></table></figure>
+<p>例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Text with a footnote\footnote&#123;The footnote is automatically numbered.&#125; and text continues ...</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Text with a footnote^<span class="number">4</span> and text continues ...</span><br></pre></td></tr></table></figure>
+<h3 id="Lists">Lists</h3><p>例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;enumerate&#125; </span><br><span class="line">  \item First item </span><br><span class="line">  \item Second item </span><br><span class="line">  \begin&#123;enumerate&#125; </span><br><span class="line">    \item First nested item </span><br><span class="line">    \item Second nested item </span><br><span class="line">  \end&#123;enumerate&#125; \item </span><br><span class="line">  Third item </span><br><span class="line">\end&#123;enumerate&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. First item </span><br><span class="line">2. 2. Second item </span><br><span class="line">   (a) First nested item</span><br><span class="line">   (b) Second nested item </span><br><span class="line">3. Third item</span><br></pre></td></tr></table></figure>
+<h3 id="插图">插图</h3><p>图片应该插入到第一次提到该图片的段落后（不是段落中），它会被自动编号。图片应该是 PostScript 文件——最好是 EPS 数据，通过 epsfig package 生成。</p>
+<p>格式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;figure&#125; </span><br><span class="line">\vspace&#123;x cm&#125; </span><br><span class="line">\caption[ ]&#123;...text of caption...&#125; (Do type [ ]) </span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p><code>x</code>表示图片的高度。 </p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;figure&#125; </span><br><span class="line">\vspace&#123;<span class="number">2.5</span>cm&#125; </span><br><span class="line">\caption&#123;This is the caption of the figure displaying a white eagle and a white horse on a snow field&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更多请参见 LATEX 文档 p. 26 ff. 和 p. 204</p>
+</blockquote>
+<h3 id="表格">表格</h3><h4 id="使用_LATEX_编写表格">使用 LATEX 编写表格</h4><p>例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;table&#125; </span><br><span class="line">\caption&#123;Critical $N$ values&#125; </span><br><span class="line">\begin&#123;tabular&#125;&#123;llllll&#125; </span><br><span class="line">\hline\noalign&#123;\smallskip&#125;</span><br><span class="line">$&#123;\mathrm M&#125;_\odot$ &amp; $\beta_&#123;<span class="number">0</span>&#125;$ &amp; $T_&#123;\mathrm c6&#125;$ &amp; $\gamma$ </span><br><span class="line">  &amp; $N_&#123;\mathrm&#123;crit&#125;&#125;^&#123;\mathrm L&#125;$ </span><br><span class="line">  &amp; $N_&#123;\mathrm&#123;crit&#125;&#125;^&#123;\mathrm&#123;Te&#125;&#125;$\\ </span><br><span class="line">\noalign&#123;\smallskip&#125; </span><br><span class="line">\hline </span><br><span class="line">\noalign&#123;\smallskip&#125; </span><br><span class="line">  <span class="number">30</span> &amp; <span class="number">0.82</span> &amp; <span class="number">38.4</span> &amp; <span class="number">35.7</span> &amp; <span class="number">154</span> &amp; <span class="number">320</span> \\ </span><br><span class="line">  <span class="number">60</span> &amp; <span class="number">0.67</span> &amp; <span class="number">42.1</span> &amp; <span class="number">34.7</span> &amp; <span class="number">138</span> &amp; <span class="number">340</span> \\ </span><br><span class="line">  <span class="number">120</span> &amp; <span class="number">0.52</span> &amp; <span class="number">45.1</span> &amp; <span class="number">34.0</span> &amp; <span class="number">124</span> &amp; <span class="number">370</span> \\ </span><br><span class="line">\hline </span><br><span class="line">\end&#123;tabular&#125; </span><br><span class="line">\end&#123;table&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<p><img src="/images/table_sample.png" alt=""></p>
+<h4 id="不使用_LATEX">不使用 LATEX</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;table&#125;</span><br><span class="line">\caption&#123;text of your caption&#125; </span><br><span class="line">\vspace&#123;x cm&#125; % the actual height needed <span class="keyword">for</span> your table </span><br><span class="line">\end&#123;table&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Signs_and_Characters">Signs and Characters</h4><p>更多请参见原文档和 LATEX 官方文档 pp.41 ff.</p>
+<h4 id="参考文献">参考文献</h4><p>有三种参考文献模式：number only，letter-number， 或 author-year。更多请参见 LATEX 官方文档 p. 71.<br>LLNCS 有一种特殊的 BIBTEX 格式，使用class： splncs.bst。调用代码 <code>\bibliographystyle{splncs}</code>。<br>如果打算使用 author BIBTEX style，请指定 <code>[oribibl]</code> 参数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[oribibl]&#123;llncs&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Letter-Number_或_Number_Only">Letter-Number 或 Number Only</h4><p>在文章中使用 <code>\cite</code> 命令来引用文章，会得到形如：[1]，[E1, S2], [P1] 中之一的格式，这取决于  thebibliography 环境中 <code>\bibitem</code> 的使用。</p>
+<p>thebibliography 环境:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;thebibliography&#125;&#123;[MT1]&#125; </span><br><span class="line">. </span><br><span class="line">. </span><br><span class="line">\bibitem[CE1]&#123;clar:eke&#125; </span><br><span class="line">Clarke, F., Ekeland, I.: </span><br><span class="line">Nonlinear oscillations and boundary-value problems <span class="keyword">for</span> </span><br><span class="line">Hamiltonian systems. </span><br><span class="line">Arch. Rat. Mech. Anal. <span class="number">78</span>, <span class="number">315</span>--<span class="number">333</span> (<span class="number">1982</span>) </span><br><span class="line">.</span><br><span class="line">. </span><br><span class="line">\end&#123;thebibliography&#125;</span><br></pre></td></tr></table></figure>
+<p>会产生类似的效果：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[CE1] Clarke, F., Ekeland, I.: Nonlinear oscillations and boundary-value problems <span class="keyword">for</span> Hamiltonian systems. Arch. Rat. Mech. Anal. <span class="number">78</span>, <span class="number">315</span>–<span class="number">333</span> (<span class="number">1982</span>) </span><br><span class="line">[CE2] Clarke, F., Ekeland, I.: Solutions p´eriodiques, du p´eriode donn´ee, des ´equations hamiltoniennes. Note CRAS Paris <span class="number">287</span>, <span class="number">1013</span>–<span class="number">1015</span> (<span class="number">1978</span>)</span><br></pre></td></tr></table></figure>
+<p>在文章中引用时：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The results in <span class="keyword">this</span> section are a refined version of \cite&#123;clar:eke&#125;;</span><br></pre></td></tr></table></figure>
+<p>会得到</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The results in <span class="keyword">this</span> section are a refined version of [CE1];</span><br></pre></td></tr></table></figure>
+<p><strong>Number-Only System</strong></p>
+<p>thebibliography 环境:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;thebibliography&#125;&#123;<span class="number">1</span>&#125; </span><br><span class="line">\bibitem &#123;clar:eke&#125; </span><br><span class="line">Clarke, F., Ekeland, I.: </span><br><span class="line">Nonlinear oscillations and boundary-value problems <span class="keyword">for</span> </span><br><span class="line">Hamiltonian systems. </span><br><span class="line">Arch. Rat. Mech. Anal. <span class="number">78</span>, <span class="number">315</span>--<span class="number">333</span> (<span class="number">1982</span>) </span><br><span class="line">\end&#123;thebibliography&#125;</span><br></pre></td></tr></table></figure>
+<p>在文章中引用时：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\cite&#123;n1,n3,n2,n3,n4,n5,foo,n1,n2,n3,?,n4,n5&#125;</span><br></pre></td></tr></table></figure>
+<p>能够得到：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>-<span class="number">5</span>,foo,<span class="number">1</span>-<span class="number">3</span>,?,<span class="number">4</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="Author-Year_System">Author-Year System</h4><p>效果就像这样：<code>(Smith 1970,1980),(Ekelandetal.1985,Theorem2),(JonesandJffe 1986; Farrow 1988, Chap.2)</code>。如果名字作为句子的一部分，那么括号内就可能只出现年份，如，<code>Ekeland et al. (1985, Sect.2.1)</code>。</p>
+<p>如果有几个文章属于同一（多）个作者，引用时应列在适当的顺序，表示如下：</p>
+<ol>
+<li>一个作者：按文章时间排序；</li>
+<li>相同的合作作者：按文章时间排序；</li>
+<li>和不同的合作作者：按合作作者名字进行字母排序；</li>
+</ol>
+<p>如果，有多个同样的作者同样的时间的文章，用 “a”, “b”, “c”, etc 区分。</p>
+<p><strong>How to Code Author-Year System</strong></p>
+<p>要使用这个系统，则需指定 <code>[citeauthoryear]</code> 参数，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\documentclass[citeauthoryear]&#123;llncs&#125;</span><br></pre></td></tr></table></figure>
+<p>thebibliography 环境:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;thebibliography&#125;&#123;&#125; % (<span class="keyword">do</span> not forget &#123;&#125;)</span><br><span class="line">. </span><br><span class="line">. </span><br><span class="line">\bibitem[<span class="number">1982</span>]&#123;clar:eke&#125; </span><br><span class="line">Clarke, F., Ekeland, I.: </span><br><span class="line">Nonlinear oscillations and boundary-value problems <span class="keyword">for</span> </span><br><span class="line">Hamiltonian systems. </span><br><span class="line">Arch. Rat. Mech. Anal. <span class="number">78</span>, <span class="number">315</span>--<span class="number">333</span> (<span class="number">1982</span>) </span><br><span class="line">.</span><br><span class="line">. </span><br><span class="line">\end&#123;thebibliography&#125;</span><br></pre></td></tr></table></figure>
+<p>产生样例：<br>cpp<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Clarke, F., Ekeland, I.: Nonlinear oscillations and boundary-value problems <span class="keyword">for</span> Hamiltonian systems. Arch. Rat. Mech. Anal. <span class="number">78</span>, <span class="number">315</span>–<span class="number">333</span> (<span class="number">1982</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在文章中引用时：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">The results in <span class="keyword">this</span> section are a refined version of Clarke and <span class="title">Ekeland</span> <span class="params">(\cite&#123;clar:eke&#125;)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>产生</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">The results in <span class="keyword">this</span> section are a refined version of Clarke and <span class="title">Ekeland</span> <span class="params">(<span class="number">1982</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>END. </p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LATEX/" rel="tag">#LATEX</a>
+          
+            <a href="/tags/LLNCS/" rel="tag">#LLNCS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/cpp-sequential_container/" rel="next" title="顺序容器">
+                <i class="fa fa-chevron-left"></i> 顺序容器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/LATEX-LLNCS/"
+           data-title="LATEX: LLNCS v2.4" data-url="http://bluestein.github.io/2016/01/LATEX-LLNCS/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ye.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bluestein" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/2d2dcfdbf403" target="_blank">
+                  
+                    <i class="fa fa-heartbeat"></i> 简书
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3239589332" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How_to_proceed"><span class="nav-number">1.</span> <span class="nav-text">How to proceed</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Invoke_LLNCS_class"><span class="nav-number">1.1.</span> <span class="nav-text">Invoke LLNCS class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章已经用_LATEX_写好而未使用_LLNCS_格式的情况"><span class="nav-number">1.2.</span> <span class="nav-text">文章已经用 LATEX 写好而未使用 LLNCS 格式的情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公式输入"><span class="nav-number">2.</span> <span class="nav-text">公式输入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#斜体和_Roman_体"><span class="nav-number">2.1.</span> <span class="nav-text">斜体和 Roman 体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How_to_Edit_Input_(Source)_File"><span class="nav-number">3.</span> <span class="nav-text">How to Edit Input (Source) File</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Headings"><span class="nav-number">3.1.</span> <span class="nav-text">Headings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大写和不大写"><span class="nav-number">3.2.</span> <span class="nav-text">大写和不大写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词的缩写"><span class="nav-number">3.3.</span> <span class="nav-text">词的缩写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章的开头"><span class="nav-number">4.</span> <span class="nav-text">文章的开头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预定义的_Theorem-like_Environments"><span class="nav-number">5.</span> <span class="nav-text">预定义的 Theorem-like Environments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义的_Theorem-like_Environments"><span class="nav-number">6.</span> <span class="nav-text">自定义的 Theorem-like Environments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种（推荐！）"><span class="nav-number">6.1.</span> <span class="nav-text">第一种（推荐！）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种"><span class="nav-number">6.2.</span> <span class="nav-text">第二种</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unnumbered_Environments"><span class="nav-number">6.3.</span> <span class="nav-text">Unnumbered Environments</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序代码"><span class="nav-number">7.</span> <span class="nav-text">程序代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本优化"><span class="nav-number">8.</span> <span class="nav-text">文本优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊字体"><span class="nav-number">9.</span> <span class="nav-text">特殊字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footnotes"><span class="nav-number">10.</span> <span class="nav-text">Footnotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lists"><span class="nav-number">11.</span> <span class="nav-text">Lists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插图"><span class="nav-number">12.</span> <span class="nav-text">插图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">13.</span> <span class="nav-text">表格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用_LATEX_编写表格"><span class="nav-number">13.1.</span> <span class="nav-text">使用 LATEX 编写表格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不使用_LATEX"><span class="nav-number">13.2.</span> <span class="nav-text">不使用 LATEX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Signs_and_Characters"><span class="nav-number">13.3.</span> <span class="nav-text">Signs and Characters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献"><span class="nav-number">13.4.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Letter-Number_或_Number_Only"><span class="nav-number">13.5.</span> <span class="nav-text">Letter-Number 或 Number Only</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Author-Year_System"><span class="nav-number">13.6.</span> <span class="nav-text">Author-Year System</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Humooo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>

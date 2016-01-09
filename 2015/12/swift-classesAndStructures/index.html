@@ -79,7 +79,7 @@ Conform to protocols to provide standard func">
 定义初始化函数
 Be extended to expand their functionality beyond a default implementation
 Conform to protocols to provide standard func">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.520Z">
+<meta property="og:updated_time" content="2015-12-30T06:12:01.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Classes and Structures">
 <meta name="twitter:description" content="comparing classes and structures都可以：
@@ -321,7 +321,7 @@ Conform to protocols to provide standard func">
       
 
       
-        <h3 id="comparing_classes_and_structures"><a href="#comparing_classes_and_structures" class="headerlink" title="comparing classes and structures"></a>comparing classes and structures</h3><p>都可以：</p>
+        <h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
 <ul>
 <li>定义 property 来存储值</li>
 <li>定义函数</li>
@@ -343,11 +343,11 @@ Conform to protocols to provide standard func">
 <blockquote>
 <p>Structures are always copied when they are passed around in your code, and do not use reference counting.</p>
 </blockquote>
-<h3 id="syntax"><a href="#syntax" class="headerlink" title="syntax"></a>syntax</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructrue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="syntax">syntax</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructrue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义一个 class 或 struct 实际上是定义了一种类型，跟 String，Int 等类似。一般来说 class 和 struct 的名字用 UpperCamelCase，属性和方法名则用 lowerCamelCase。例如</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的 struct 有两个属性，class 有四个属性，其中一个是 struct 类型，name 属性会有一个默认值是 <code>nil</code>，因为它是 optional。</p>
-<h3 id="class_and_structure_instances"><a href="#class_and_structure_instances" class="headerlink" title="class and structure instances"></a>class and structure instances</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()</span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="class_and_structure_instances">class and structure instances</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()</span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()</span><br></pre></td></tr></table></figure>
 <p>上面都使用初始化函数的方式声明对象。</p>
 <p><strong>accessing properties</strong></p>
 <p>使用 <code>.</code> 来访问属性：</p>
@@ -359,7 +359,7 @@ Conform to protocols to provide standard func">
 <p>struct 按成员的初始化函数：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>)</span><br></pre></td></tr></table></figure>
 <p>上面的方式，class 不支持。</p>
-<h3 id="structures_and_enumerations_are_value_types"><a href="#structures_and_enumerations_are_value_types" class="headerlink" title="structures and enumerations are value types"></a>structures and enumerations are value types</h3><p>原话：A value type is a type whose value is copied when it is assigned to a variable or constant, or when it is passed to a function.</p>
+<h3 id="structures_and_enumerations_are_value_types">structures and enumerations are value types</h3><p>原话：A value type is a type whose value is copied when it is assigned to a variable or constant, or when it is passed to a function.</p>
 <p>其实swift中所有的基本类型——integers, floating-point, Booleans, strings, arrays and dictionaries——都是 value type。</p>
 <p>也就是说，当你创建 struct 或 enumeration 类型的实例时，都是拷贝。例如：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">et hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br></pre></td></tr></table></figure>
@@ -367,9 +367,9 @@ Conform to protocols to provide standard func">
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"cinema is now <span class="subst">\(cinema.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "cinema is now 2048 pixels wide."</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hd is still <span class="subst">\(hd.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "hd is still 1920 pixels wide."</span></span><br></pre></td></tr></table></figure>
 <p>类似的，enumeration 也有：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberDirection == .<span class="type">West</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The remembered direction is still .west"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="classes_are_reference_types"><a href="#classes_are_reference_types" class="headerlink" title="classes are reference types"></a>classes are reference types</h3><p>与 value type 不同，reference type 会取代现有的实例：</p>
+<h3 id="classes_are_reference_types">classes are reference types</h3><p>与 value type 不同，reference type 会取代现有的实例：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tenEighty = <span class="type">VideoMode</span>()</span><br><span class="line">tenEighty.resolution = hd</span><br><span class="line">tenEighty.interlaced = <span class="literal">true</span></span><br><span class="line">tenEighty.name = <span class="string">"1080i"</span></span><br><span class="line">tenEighty.frameRate = <span class="number">25.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> alsoTenEighty = tenEighty</span><br><span class="line">alsoTenEighty.frameRate = <span class="number">30.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The frameRate property of tenEighty is now <span class="subst">\(tenEighty.frameRate)</span>"</span>)</span><br><span class="line"><span class="comment">// prints "The frameRate property of tenEighty is now 30.0"</span></span><br></pre></td></tr></table></figure>
-<h3 id="identity_operators"><a href="#identity_operators" class="headerlink" title="identity operators"></a>identity operators</h3><p>因为 class 是 reference type，所以有必要比较两个常量或变量是否 refer 到同一个类的实例上，有两个操作符可以完成这件事：</p>
+<h3 id="identity_operators">identity operators</h3><p>因为 class 是 reference type，所以有必要比较两个常量或变量是否 refer 到同一个类的实例上，有两个操作符可以完成这件事：</p>
 <ul>
 <li>Identical to (===)</li>
 <li>Not identitcal to (!==)</li>
@@ -381,7 +381,7 @@ Conform to protocols to provide standard func">
 </ul>
 <p><strong>Pointers</strong></p>
 <p>swift 中的 refer 到某个 reference type 的实例跟 C，C++ 中的指针是类似的，但不需要 <code>*</code> 来定义。</p>
-<h3 id="choose_structure_or_class"><a href="#choose_structure_or_class" class="headerlink" title="choose structure or class"></a>choose structure or class</h3><p>structure instances are always passed by value, and class instances are always passed by reference.</p>
+<h3 id="choose_structure_or_class">choose structure or class</h3><p>structure instances are always passed by value, and class instances are always passed by reference.</p>
 <p>如果满足下面一个或多个条件，考虑使用 structure：</p>
 <ul>
 <li>The structure’s primary purpose is to encapsulate a few relatively simple data values.（为了概括一些数据）</li>
@@ -498,21 +498,21 @@ Conform to protocols to provide standard func">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -604,7 +604,6 @@ Conform to protocols to provide standard func">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

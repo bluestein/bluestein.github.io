@@ -141,7 +141,7 @@ expr1 ^ expr2
 &amp;#124;
 位或
 expr1 &amp;#124">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.434Z">
+<meta property="og:updated_time" content="2015-12-30T06:13:49.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位操作符">
 <meta name="twitter:description" content="位操作符：位操作符操作的整数可以是有符号或无符号数。
@@ -475,7 +475,7 @@ expr1 &amp;#124">
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> bits = c1 | c2;	<span class="comment">//二进制形式：11101011</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; bits &lt;&lt; endl;	<span class="comment">//对应的十进制为239</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="bitset_u5BF9_u8C61_u6216_u6574_u578B_u503C_u7684_u4F7F_u7528"><a href="#bitset_u5BF9_u8C61_u6216_u6574_u578B_u503C_u7684_u4F7F_u7528" class="headerlink" title="bitset对象或整型值的使用"></a>bitset对象或整型值的使用</h3><p>unsigned long 有 32 位</p>
+<h3 id="bitset对象或整型值的使用">bitset对象或整型值的使用</h3><p>unsigned long 有 32 位</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;30&gt; bset;	<span class="comment">//大小为30的bitset，每一位默认值0</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> val = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 <p>如果要将第27位设为1，有如下两种方式</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bset.<span class="built_in">set</span>(<span class="number">27</span>);		<span class="comment">//法1</span></span><br><span class="line">val |= <span class="number">1U</span>L &lt;&lt; <span class="number">27</span>;	<span class="comment">//法2</span></span><br></pre></td></tr></table></figure>
@@ -500,7 +500,7 @@ expr1 &amp;#124">
 <blockquote>
 <p>通常来说，bitset更易阅读和理解。</p>
 </blockquote>
-<h3 id="u5C06_u79FB_u4F4D_u64CD_u4F5C_u7B26_u7528_u4E8EIO"><a href="#u5C06_u79FB_u4F4D_u64CD_u4F5C_u7B26_u7528_u4E8EIO" class="headerlink" title="将移位操作符用于IO"></a>将移位操作符用于IO</h3><p>一直再用的 <code>cout&lt;&lt;</code> 和 <code>cin&gt;&gt;</code> 就用到了移位操作符，IO操作符是左结合的</p>
+<h3 id="将移位操作符用于IO">将移位操作符用于IO</h3><p>一直再用的 <code>cout&lt;&lt;</code> 和 <code>cin&gt;&gt;</code> 就用到了移位操作符，IO操作符是左结合的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"he"</span> &lt;&lt; <span class="string">"llo"</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
 <p>等价于</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((<span class="built_in">cout</span> &lt;&lt; <span class="string">"he"</span>) &lt;&lt; <span class="string">"llo"</span>) &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
@@ -609,21 +609,21 @@ expr1 &amp;#124">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -688,7 +688,7 @@ expr1 &amp;#124">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#bitset_u5BF9_u8C61_u6216_u6574_u578B_u503C_u7684_u4F7F_u7528"><span class="nav-number">1.</span> <span class="nav-text">bitset对象或整型值的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C06_u79FB_u4F4D_u64CD_u4F5C_u7B26_u7528_u4E8EIO"><span class="nav-number">2.</span> <span class="nav-text">将移位操作符用于IO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#bitset对象或整型值的使用"><span class="nav-number">1.</span> <span class="nav-text">bitset对象或整型值的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将移位操作符用于IO"><span class="nav-number">2.</span> <span class="nav-text">将移位操作符用于IO</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -715,7 +715,6 @@ expr1 &amp;#124">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

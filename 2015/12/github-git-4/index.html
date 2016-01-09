@@ -69,7 +69,7 @@
 <meta property="og:description" content="接上一节 Github: Git的使用 - 撤销操作，下面继续介绍git的更多用法。
 4、分支详细的可以看官网教程。
 几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。">
-<meta property="og:updated_time" content="2015-12-28T02:59:25.160Z">
+<meta property="og:updated_time" content="2016-01-09T02:08:06.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github: Git的使用 - 分支">
 <meta name="twitter:description" content="接上一节 Github: Git的使用 - 撤销操作，下面继续介绍git的更多用法。
@@ -256,7 +256,19 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Github-Hexo/" itemprop="url" rel="index">
+                  <a href="/categories/Odds-Ends/" itemprop="url" rel="index">
+                    <span itemprop="name">Odds&Ends</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Odds-Ends/Github-Hexo/" itemprop="url" rel="index">
                     <span itemprop="name">Github + Hexo</span>
                   </a>
                 </span>
@@ -295,7 +307,7 @@
 
       
         <p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
-<h3 id="4_u3001_u5206_u652F"><a href="#4_u3001_u5206_u652F" class="headerlink" title="4、分支"></a>4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
+<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
 <p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
 <a id="more"></a>
 <p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象，</p>
@@ -317,7 +329,7 @@
 <p>要切换到一个已存在的分支，你需要使用 <code>git checkout</code> 命令。 我们现在切换到新创建的 <code>testing</code> 分支去：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout testing</span><br></pre></td></tr></table></figure>
 <p>这样 HEAD 就指向 <code>testing</code> 分支了。</p>
-<h3 id="4_u3001_u5206_u652F_u7684_u65B0_u5EFA_u4E0E_u5408_u5E76"><a href="#4_u3001_u5206_u652F_u7684_u65B0_u5EFA_u4E0E_u5408_u5E76" class="headerlink" title="4、分支的新建与合并"></a>4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
+<h3 id="4、分支的新建与合并">4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
 <p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
 <ol>
 <li>开发某个网站。</li>
@@ -459,21 +471,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -538,7 +550,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#4_u3001_u5206_u652F"><span class="nav-number">1.</span> <span class="nav-text">4、分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4_u3001_u5206_u652F_u7684_u65B0_u5EFA_u4E0E_u5408_u5E76"><span class="nav-number">2.</span> <span class="nav-text">4、分支的新建与合并</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#4、分支"><span class="nav-number">1.</span> <span class="nav-text">4、分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、分支的新建与合并"><span class="nav-number">2.</span> <span class="nav-text">4、分支的新建与合并</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -565,7 +577,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

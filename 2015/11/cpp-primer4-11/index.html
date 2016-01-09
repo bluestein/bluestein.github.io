@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="指针跟迭代器类似，也可以对指针进行 解引用（*） 和 自增（++） 操作，其含义和迭代器类似。
 指针用于指向对象，与迭代器类似，指针提供对其所指对象的间接访问。不同在于：指针指向单个对象，而迭代器只能访问容器内的元素。具体来说，指针保存的是另一个对象的地址：">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.420Z">
+<meta property="og:updated_time" content="2015-12-30T06:14:30.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指针">
 <meta name="twitter:description" content="指针跟迭代器类似，也可以对指针进行 解引用（*） 和 自增（++） 操作，其含义和迭代器类似。
@@ -308,7 +308,7 @@
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hello"</span>)</span></span>;</span><br><span class="line"><span class="built_in">string</span> *p = &amp;s;		<span class="comment">//指针 p 保存 s 的地址</span></span><br></pre></td></tr></table></figure>
 <p><code>&amp;</code> 是取地址符号，该符号只能用于左值。只有变量作为左值时，才能取其地址。</p>
-<h3 id="1_u3001_u6307_u9488_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><a href="#1_u3001_u6307_u9488_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316" class="headerlink" title="1、指针的定义和初始化"></a>1、指针的定义和初始化</h3><hr>
+<h3 id="1、指针的定义和初始化">1、指针的定义和初始化</h3><hr>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *vp;	<span class="comment">//指向 vector&lt;int&gt; 对象的指针</span></span><br><span class="line"><span class="keyword">int</span> *ip;			<span class="comment">//指向 int 对象的指针</span></span><br><span class="line"><span class="built_in">string</span> *sp; 		<span class="comment">//指向 string 对象的指针</span></span><br></pre></td></tr></table></figure>
 <p><strong>另一种风格的指针</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* ip;</span><br></pre></td></tr></table></figure>
@@ -344,7 +344,7 @@
 <blockquote>
 <p>不允许 void* 指针操作所指向的对象。</p>
 </blockquote>
-<h3 id="3_u3001_u6307_u9488_u7684_u64CD_u4F5C"><a href="#3_u3001_u6307_u9488_u7684_u64CD_u4F5C" class="headerlink" title="3、指针的操作"></a>3、指针的操作</h3><hr>
+<h3 id="3、指针的操作">3、指针的操作</h3><hr>
 <p><strong>*操作符</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string s1("hello");</span><br><span class="line">string s2("world")；</span><br><span class="line">string *sp = &amp;s1;</span><br><span class="line">cout &lt;&lt; *sp &lt;&lt; endl;	//解引用</span><br><span class="line">sp = &amp;s2;				//改变指针所指对象</span><br><span class="line">cout &lt;&lt; *sp &lt;&lt; endl;	//解引用</span><br><span class="line">*sp = "hello world";	//改变所指的内容</span><br><span class="line">cout &lt;&lt; *sp &lt;&lt; endl;	//解引用</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
@@ -372,7 +372,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">10</span>, j =<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *p1 = &amp;i, *p2 = &amp;j;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p2 &lt;&lt; endl;</span><br><span class="line">*p2 = *p1 * *p2;			<span class="comment">//改变 p2 所指的内容</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p2 &lt;&lt; endl;</span><br><span class="line">*p1 *= *p1;				<span class="comment">//改变 p1 所指的内容</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p1 &lt;&lt; endl;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p2 &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
 <p>结果</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">100</span></span><br><span class="line"><span class="number">100</span></span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h3 id="4_u3001_u4F7F_u7528_u6307_u9488_u8BBF_u95EE_u6570_u7EC4"><a href="#4_u3001_u4F7F_u7528_u6307_u9488_u8BBF_u95EE_u6570_u7EC4" class="headerlink" title="4、使用指针访问数组"></a>4、使用指针访问数组</h3><hr>
+<h3 id="4、使用指针访问数组">4、使用指针访问数组</h3><hr>
 <p>指针与数组密切相关。特别是在表达式中使用数组名时，改名字会自动转换为指向数组第一个元素的指针：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p = val;	<span class="comment">//p 指向 val[0]</span></span><br><span class="line">p = &amp;val[<span class="number">3</span>];	<span class="comment">//p 指向 val[3]</span></span><br></pre></td></tr></table></figure>
 <p><strong>指针的算术运算</strong></p>
@@ -406,7 +406,7 @@
 <blockquote>
 <p>指针是数组的迭代器。上面的程序与迭代器程序非常相似，事实上，内置类型具有标准库容器的许多性质，指针就是数组的迭代器。</p>
 </blockquote>
-<h3 id="5_u3001_u6307_u9488_u4E0Econst_u9650_u5B9A_u7B26"><a href="#5_u3001_u6307_u9488_u4E0Econst_u9650_u5B9A_u7B26" class="headerlink" title="5、指针与const限定符"></a>5、指针与const限定符</h3><hr>
+<h3 id="5、指针与const限定符">5、指针与const限定符</h3><hr>
 <p>两种类型：</p>
 <ul>
 <li>指向const对象的指针；</li>
@@ -558,21 +558,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -637,7 +637,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001_u6307_u9488_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><span class="nav-number">1.</span> <span class="nav-text">1、指针的定义和初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3_u3001_u6307_u9488_u7684_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">3、指针的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4_u3001_u4F7F_u7528_u6307_u9488_u8BBF_u95EE_u6570_u7EC4"><span class="nav-number">3.</span> <span class="nav-text">4、使用指针访问数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5_u3001_u6307_u9488_u4E0Econst_u9650_u5B9A_u7B26"><span class="nav-number">4.</span> <span class="nav-text">5、指针与const限定符</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、指针的定义和初始化"><span class="nav-number">1.</span> <span class="nav-text">1、指针的定义和初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、指针的操作"><span class="nav-number">2.</span> <span class="nav-text">3、指针的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、使用指针访问数组"><span class="nav-number">3.</span> <span class="nav-text">4、使用指针访问数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、指针与const限定符"><span class="nav-number">4.</span> <span class="nav-text">5、指针与const限定符</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -664,7 +664,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

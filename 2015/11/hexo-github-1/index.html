@@ -69,7 +69,7 @@
 <meta property="og:description" content="一、添加多说ID(必须)在根目录的 _config.yml 中定义 duoshuo_shortname: (你的多说ID) 形如
 12# Commentsduoshuo_shortname: (你的多说ID)
 二、引入多说JS(必须)">
-<meta property="og:updated_time" content="2015-12-28T02:59:25.175Z">
+<meta property="og:updated_time" content="2016-01-09T02:08:03.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo3.1.1 + github pages教程：添加多说评论系统">
 <meta name="twitter:description" content="一、添加多说ID(必须)在根目录的 _config.yml 中定义 duoshuo_shortname: (你的多说ID) 形如
@@ -256,7 +256,19 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Github-Hexo/" itemprop="url" rel="index">
+                  <a href="/categories/Odds-Ends/" itemprop="url" rel="index">
+                    <span itemprop="name">Odds&Ends</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Odds-Ends/Github-Hexo/" itemprop="url" rel="index">
                     <span itemprop="name">Github + Hexo</span>
                   </a>
                 </span>
@@ -294,15 +306,15 @@
       
 
       
-        <h3 id="u4E00_u3001_u6DFB_u52A0_u591A_u8BF4ID_28_u5FC5_u987B_29"><a href="#u4E00_u3001_u6DFB_u52A0_u591A_u8BF4ID_28_u5FC5_u987B_29" class="headerlink" title="一、添加多说ID(必须)"></a>一、添加多说ID(必须)</h3><p>在根目录的 <code>_config.yml</code> 中定义 <code>duoshuo_shortname: (你的多说ID)</code> 形如</p>
+        <h3 id="一、添加多说ID(必须)">一、添加多说ID(必须)</h3><p>在根目录的 <code>_config.yml</code> 中定义 <code>duoshuo_shortname: (你的多说ID)</code> 形如</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Comments</span><br><span class="line">duoshuo_shortname: (你的多说ID)</span><br></pre></td></tr></table></figure>
-<h3 id="u4E8C_u3001_u5F15_u5165_u591A_u8BF4JS_28_u5FC5_u987B_29"><a href="#u4E8C_u3001_u5F15_u5165_u591A_u8BF4JS_28_u5FC5_u987B_29" class="headerlink" title="二、引入多说JS(必须)"></a>二、引入多说JS(必须)</h3><a id="more"></a>
+<h3 id="二、引入多说JS(必须)">二、引入多说JS(必须)</h3><a id="more"></a>
 <p>将 <code>themes/(你的主题)/layout/_partial/after-footer.ejs</code> 中的</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (config.disqus_shortname)&#123; %&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">  <span class="keyword">var</span> disqus_shortname = <span class="string">'&lt;%= config.disqus_shortname %&gt;'</span>;</span><br><span class="line">  &lt;% <span class="keyword">if</span> (page.permalink)&#123; %&gt;</span><br><span class="line">  <span class="keyword">var</span> disqus_url = <span class="string">'&lt;%= page.permalink %&gt;'</span>;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dsq = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">    dsq.type = <span class="string">'text/javascript'</span>;</span><br><span class="line">    dsq.async = <span class="literal">true</span>;</span><br><span class="line">    dsq.src = <span class="string">'//'</span> + disqus_shortname + <span class="string">'.disqus.com/&lt;% if (page.comments) &#123; %&gt;embed.js&lt;% &#125; else &#123; %&gt;count.js&lt;% &#125; %&gt;'</span>;</span><br><span class="line">    (document.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || document.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(dsq);</span><br><span class="line">  &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>部分修改成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (config.duoshuo_shortname)&#123; %&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> duoshuoQuery = &#123;short_name:<span class="string">"你的多说ID"</span>&#125;;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">    ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</span><br><span class="line">    ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">    (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] </span><br><span class="line">     || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">  &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>这个步骤是全局引入多说js，后面就可以直接使用了。</p>
-<h3 id="u4E09_u3001_u5F15_u5165_u591A_u8BF4_u8BC4_u8BBA_u7A97_u53E3_28_u5FC5_u987B_29"><a href="#u4E09_u3001_u5F15_u5165_u591A_u8BF4_u8BC4_u8BBA_u7A97_u53E3_28_u5FC5_u987B_29" class="headerlink" title="三、引入多说评论窗口(必须)"></a>三、引入多说评论窗口(必须)</h3><p><strong>首先，</strong>将 <code>themes/(你的主题)/layout/_partial/article.ejs</code> 中的下面部分</p>
+<h3 id="三、引入多说评论窗口(必须)">三、引入多说评论窗口(必须)</h3><p><strong>首先，</strong>将 <code>themes/(你的主题)/layout/_partial/article.ejs</code> 中的下面部分</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer <span class="class"><span class="keyword">class</span></span>=<span class="string">"article-footer"</span>&gt;</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%- post.permalink %&gt;"</span> <span class="attribute">data-id</span>=<span class="value">"&lt;%= post._id %&gt;"</span> <span class="attribute">class</span>=<span class="value">"article-share-link"</span>&gt;</span>Share<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%</span> <span class="attribute">if</span> (<span class="attribute">post.comments</span> &amp;&amp; <span class="attribute">config.disqus_shortname</span>)&#123; %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- post.permalink %&gt;#disqus_thread"</span> <span class="attribute">class</span>=<span class="value">"article-comment-link"</span>&gt;</span>Comments<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%-</span> <span class="attribute">partial</span>('<span class="attribute">post</span>/<span class="attribute">tag</span>') %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>修改成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer <span class="class"><span class="keyword">class</span></span>=<span class="string">"article-footer"</span>&gt;</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%- post.permalink %&gt;"</span> <span class="attribute">data-id</span>=<span class="value">"&lt;%= post._id %&gt;"</span> <span class="attribute">class</span>=<span class="value">"article-share-link"</span>&gt;</span>Share<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%</span> <span class="attribute">if</span> (<span class="attribute">post.comments</span> &amp;&amp; <span class="attribute">config.duoshuo_shortname</span>)&#123; %&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- post.permalink %&gt;#duoshuo_thread"</span> <span class="attribute">class</span>=<span class="value">"article-comment-link"</span>&gt;</span>评论<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">%-</span> <span class="attribute">partial</span>('<span class="attribute">post</span>/<span class="attribute">tag</span>') %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
@@ -311,7 +323,7 @@
 <p>修改成</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"duoshuo_thread"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= post.slug %&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%= post.title %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%- post.permalink %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>至此，多说的评论功能基本可以用了。</p>
-<h3 id="u56DB_u3001_u5F15_u5165_u591A_u8BF4_u7684_u5206_u4EAB_u63D2_u4EF6_28_u53EF_u9009_29"><a href="#u56DB_u3001_u5F15_u5165_u591A_u8BF4_u7684_u5206_u4EAB_u63D2_u4EF6_28_u53EF_u9009_29" class="headerlink" title="四、引入多说的分享插件(可选)"></a>四、引入多说的分享插件(可选)</h3><p>在 <code>themes/(你的主题)/layout/_partial/article.ejs</code> 文件的末尾添加下列代码即可</p>
+<h3 id="四、引入多说的分享插件(可选)">四、引入多说的分享插件(可选)</h3><p>在 <code>themes/(你的主题)/layout/_partial/article.ejs</code> 文件的末尾添加下列代码即可</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</span><br><span class="line"></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-share"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= post.slug %&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%= post.title %&gt;"</span> <span class="attribute">data-images</span>=<span class="value">""</span> <span class="attribute">data-content</span>=<span class="value">"&lt;%= post.content %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%- post.permalink %&gt;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-share-aside-right"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-share-aside-inner"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-share-aside-toggle"</span>&gt;</span>分享<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注：请注意替换 <code>你的多说ID</code> 和 <code>你的主题</code></p>
@@ -420,21 +432,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -499,7 +511,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E00_u3001_u6DFB_u52A0_u591A_u8BF4ID_28_u5FC5_u987B_29"><span class="nav-number">1.</span> <span class="nav-text">一、添加多说ID(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8C_u3001_u5F15_u5165_u591A_u8BF4JS_28_u5FC5_u987B_29"><span class="nav-number">2.</span> <span class="nav-text">二、引入多说JS(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u3001_u5F15_u5165_u591A_u8BF4_u8BC4_u8BBA_u7A97_u53E3_28_u5FC5_u987B_29"><span class="nav-number">3.</span> <span class="nav-text">三、引入多说评论窗口(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u56DB_u3001_u5F15_u5165_u591A_u8BF4_u7684_u5206_u4EAB_u63D2_u4EF6_28_u53EF_u9009_29"><span class="nav-number">4.</span> <span class="nav-text">四、引入多说的分享插件(可选)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、添加多说ID(必须)"><span class="nav-number">1.</span> <span class="nav-text">一、添加多说ID(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、引入多说JS(必须)"><span class="nav-number">2.</span> <span class="nav-text">二、引入多说JS(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、引入多说评论窗口(必须)"><span class="nav-number">3.</span> <span class="nav-text">三、引入多说评论窗口(必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、引入多说的分享插件(可选)"><span class="nav-number">4.</span> <span class="nav-text">四、引入多说的分享插件(可选)</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -526,7 +538,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

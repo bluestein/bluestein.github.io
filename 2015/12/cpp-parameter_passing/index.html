@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="引用型形参利用引用形参，交换两个数的值
 123456void rSwap(int &amp;amp;v1, int &amp;amp;v2)&amp;#123;	int temp = v1;	v1 = v2;	v2 = temp;&amp;#125;">
-<meta property="og:updated_time" content="2016-01-04T04:11:34.232Z">
+<meta property="og:updated_time" content="2015-12-30T06:10:49.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="参数传递">
 <meta name="twitter:description" content="引用型形参利用引用形参，交换两个数的值
@@ -303,7 +303,7 @@
       
 
       
-        <h3 id="u5F15_u7528_u578B_u5F62_u53C2"><a href="#u5F15_u7528_u578B_u5F62_u53C2" class="headerlink" title="引用型形参"></a>引用型形参</h3><p>利用引用形参，交换两个数的值</p>
+        <h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
@@ -311,26 +311,26 @@
 </blockquote>
 <p>比如，在某个vector中寻找某个特定的值，然后返回它出现的位置及出现的次数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">const_iterator <span class="title">findValue</span><span class="params">(</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end,</span><br><span class="line">	<span class="keyword">int</span> value,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type &amp;occurs)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator result_iter = end;</span><br><span class="line">	occurs = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; begin != end; ++begin)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*begin == value)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// remember first occurrence of value</span></span><br><span class="line">			<span class="keyword">if</span> (result_iter == end)</span><br><span class="line">			&#123;</span><br><span class="line">				result_iter = begin;</span><br><span class="line">			&#125;</span><br><span class="line">			++occurs;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result_iter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="u5229_u7528const_u5F15_u7528_u907F_u514D_u590D_u5236"><a href="#u5229_u7528const_u5F15_u7528_u907F_u514D_u590D_u5236" class="headerlink" title="利用const引用避免复制"></a>利用const引用避免复制</h3><p>一般的形参传递时需要复制，引用不需要。当使用大型引用形参时，为了避免复制实参，使用const引用。</p>
+<h3 id="利用const引用避免复制">利用const引用避免复制</h3><p>一般的形参传递时需要复制，引用不需要。当使用大型引用形参时，为了避免复制实参，使用const引用。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isShorter</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>形参是引用，所以不需要复制实参；形参是const，所以不能通过该引用形参来修改实参的值。</p>
-<h3 id="u4F20_u9012_u6307_u9488_u7684_u5F15_u7528"><a href="#u4F20_u9012_u6307_u9488_u7684_u5F15_u7528" class="headerlink" title="传递指针的引用"></a>传递指针的引用</h3><p>交换指向数值的指针</p>
+<h3 id="传递指针的引用">传递指针的引用</h3><p>交换指向数值的指针</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="vector_u6216_u5176_u4ED6_u5BB9_u5668_u4F5C_u4E3A_u5F62_u53C2"><a href="#vector_u6216_u5176_u4ED6_u5BB9_u5668_u4F5C_u4E3A_u5F62_u53C2" class="headerlink" title="vector或其他容器作为形参"></a>vector或其他容器作为形参</h3><p>为避免直接使用vector等类型做形参，一般使用它们的迭代器。</p>
+<h3 id="vector或其他容器作为形参">vector或其他容器作为形参</h3><p>为避免直接使用vector等类型做形参，一般使用它们的迭代器。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(begin != end)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *begin++;</span><br><span class="line">		<span class="keyword">if</span> (begin != end) <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="u6570_u7EC4_u4F5C_u4E3A_u5F62_u53C2"><a href="#u6570_u7EC4_u4F5C_u4E3A_u5F62_u53C2" class="headerlink" title="数组作为形参"></a>数组作为形参</h3><p>肯定不能直接传递数组，通常使用指针进行操作。而下面三种是等价的</p>
+<h3 id="数组作为形参">数组作为形参</h3><p>肯定不能直接传递数组，通常使用指针进行操作。而下面三种是等价的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[<span class="number">10</span>])</span></span>;</span><br></pre></td></tr></table></figure>
 <p>但是后两种很容易引起误解。下面可以看出是否真的等价</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[<span class="number">10</span>])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> v1 = <span class="number">32</span>, arr[<span class="number">2</span>] = &#123;<span class="number">4</span>, <span class="number">0</span>&#125;;</span><br><span class="line">printv(&amp;v1); <span class="comment">//编译ok, 但会输出其他9个其他的值或者运行时错误</span></span><br><span class="line">printv(arr); <span class="comment">//编译ok, 但会输出其他8个其他的值或者运行时错误</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>编译器不会检查形参数组的大小。</p>
 </blockquote>
-<h3 id="u901A_u8FC7_u5F15_u7528_u4F20_u9012_u6570_u7EC4"><a href="#u901A_u8FC7_u5F15_u7528_u4F20_u9012_u6570_u7EC4" class="headerlink" title="通过引用传递数组"></a>通过引用传递数组</h3><p>一般来讲，将数组作为形参传递给函数都会被转换为指针，但是数组的引用不会。此时，传递的是数组的引用本身，编译器会检查形参数组的大小。</p>
+<h3 id="通过引用传递数组">通过引用传递数组</h3><p>一般来讲，将数组作为形参传递给函数都会被转换为指针，但是数组的引用不会。此时，传递的是数组的引用本身，编译器会检查形参数组的大小。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void print(int (&amp;arr)[3]);</span><br><span class="line">int i = 0, j[2] = &#123;0, 1&#125;;</span><br><span class="line">int k[3] = &#123;0, 1, 2&#125;;</span><br><span class="line">print(&amp;i); // error</span><br><span class="line">print(j); // error</span><br><span class="line">print(k); // ok</span><br></pre></td></tr></table></figure>
-<h3 id="u591A_u7EF4_u6570_u7EC4_u7684_u4F20_u9012"><a href="#u591A_u7EF4_u6570_u7EC4_u7684_u4F20_u9012" class="headerlink" title="多维数组的传递"></a>多维数组的传递</h3><p>所谓多维数组，就是数组的数组。它的每个元素就是一个数组，第二维必须指定</p>
+<h3 id="多维数组的传递">多维数组的传递</h3><p>所谓多维数组，就是数组的数组。它的每个元素就是一个数组，第二维必须指定</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void print(int (matrix*)[10], int row_size);</span><br><span class="line">// 或者</span><br><span class="line">void print(int matrix[][10], int row_size);</span><br></pre></td></tr></table></figure>
 <p><code>matrix</code> 是指向含10个int值的数组的指针。</p>
-<h3 id="u5728_u51FD_u6570_u5185_u5904_u7406_u6570_u7EC4"><a href="#u5728_u51FD_u6570_u5185_u5904_u7406_u6570_u7EC4" class="headerlink" title="在函数内处理数组"></a>在函数内处理数组</h3><p>任何数组的操作都必须保持在数组的边界内。</p>
+<h3 id="在函数内处理数组">在函数内处理数组</h3><p>任何数组的操作都必须保持在数组的边界内。</p>
 <p>有三种常见的方法可以保证这一点：</p>
 <ol>
 <li>第一种是在数组的本身放置一个标记进行检测数组的结束。如C风格的字符串，使用 <code>\0</code> 标记表示结束；</li>
@@ -438,21 +438,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -517,7 +517,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F15_u7528_u578B_u5F62_u53C2"><span class="nav-number">1.</span> <span class="nav-text">引用型形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5229_u7528const_u5F15_u7528_u907F_u514D_u590D_u5236"><span class="nav-number">2.</span> <span class="nav-text">利用const引用避免复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F20_u9012_u6307_u9488_u7684_u5F15_u7528"><span class="nav-number">3.</span> <span class="nav-text">传递指针的引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector_u6216_u5176_u4ED6_u5BB9_u5668_u4F5C_u4E3A_u5F62_u53C2"><span class="nav-number">4.</span> <span class="nav-text">vector或其他容器作为形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6570_u7EC4_u4F5C_u4E3A_u5F62_u53C2"><span class="nav-number">5.</span> <span class="nav-text">数组作为形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u901A_u8FC7_u5F15_u7528_u4F20_u9012_u6570_u7EC4"><span class="nav-number">6.</span> <span class="nav-text">通过引用传递数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u591A_u7EF4_u6570_u7EC4_u7684_u4F20_u9012"><span class="nav-number">7.</span> <span class="nav-text">多维数组的传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_u51FD_u6570_u5185_u5904_u7406_u6570_u7EC4"><span class="nav-number">8.</span> <span class="nav-text">在函数内处理数组</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用型形参"><span class="nav-number">1.</span> <span class="nav-text">引用型形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用const引用避免复制"><span class="nav-number">2.</span> <span class="nav-text">利用const引用避免复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传递指针的引用"><span class="nav-number">3.</span> <span class="nav-text">传递指针的引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector或其他容器作为形参"><span class="nav-number">4.</span> <span class="nav-text">vector或其他容器作为形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组作为形参"><span class="nav-number">5.</span> <span class="nav-text">数组作为形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过引用传递数组"><span class="nav-number">6.</span> <span class="nav-text">通过引用传递数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维数组的传递"><span class="nav-number">7.</span> <span class="nav-text">多维数组的传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在函数内处理数组"><span class="nav-number">8.</span> <span class="nav-text">在函数内处理数组</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -544,7 +544,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

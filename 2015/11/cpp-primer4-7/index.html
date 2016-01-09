@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 容器，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：
 12#include &amp;lt;vector&amp;gt;using std::vector;">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.492Z">
+<meta property="og:updated_time" content="2015-12-30T06:14:54.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vector类型">
 <meta name="twitter:description" content="vector 是一种类型对象的容器，每个对象都有一个对应的整数索引值。我们还把它称之为 容器，是因为它可以包含其他对象。一个容器中必须包含的是同一种类型的对象，地9章会详细介绍容器。首先是声明：
@@ -311,7 +311,7 @@
 <blockquote>
 <p>vector 不是一种数据类型，只是一个模板，可用来定义任意多种数据类型。但 vector<int> 或 vector<string> 可以看成是一种类型。</string></int></p>
 </blockquote>
-<h3 id="1_u3001vector__u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><a href="#1_u3001vector__u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316" class="headerlink" title="1、vector 对象的定义和初始化"></a>1、vector 对象的定义和初始化</h3><hr>
+<h3 id="1、vector_对象的定义和初始化">1、vector 对象的定义和初始化</h3><hr>
 <table>
 <thead>
 <tr>
@@ -353,7 +353,7 @@
 <li><code>strv</code> 会被初始化成包含 10 个 <strong>空字符串</strong> 的 vector 对象；</li>
 </ul>
 <p>这种初始化方式叫做 <strong>值初始化</strong>。</p>
-<h3 id="2_u3001vector_u5BF9_u8C61_u7684_u64CD_u4F5C"><a href="#2_u3001vector_u5BF9_u8C61_u7684_u64CD_u4F5C" class="headerlink" title="2、vector对象的操作"></a>2、vector对象的操作</h3><hr>
+<h3 id="2、vector对象的操作">2、vector对象的操作</h3><hr>
 <table>
 <thead>
 <tr>
@@ -392,20 +392,20 @@
 </tr>
 </tbody>
 </table>
-<h4 id="2-1_u3001empty_u548Csize"><a href="#2-1_u3001empty_u548Csize" class="headerlink" title="2.1、empty和size"></a>2.1、empty和size</h4><p>empty和size的操作类似于string，成员函数返回的vector类型定义的size_type的值。</p>
+<h4 id="2-1、empty和size">2.1、empty和size</h4><p>empty和size的操作类似于string，成员函数返回的vector类型定义的size_type的值。</p>
 <blockquote>
 <p>使用size_type时，必须指出该类型是在哪里定义的，如<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type	<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">vector</span>::size_type		<span class="comment">//error</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<h4 id="2-2_u3001_u5411vector_u6DFB_u52A0_u5143_u7D20"><a href="#2-2_u3001_u5411vector_u6DFB_u52A0_u5143_u7D20" class="headerlink" title="2.2、向vector添加元素"></a>2.2、向vector添加元素</h4><p>push_back()接受一个元素值，并将它作为一个新的元素添加到vector对象的末尾</p>
+<h4 id="2-2、向vector添加元素">2.2、向vector添加元素</h4><p>push_back()接受一个元素值，并将它作为一个新的元素添加到vector对象的末尾</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; text;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; word)&#123;</span><br><span class="line">	text.push_back(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面程序的意思是从标准输入读取一系列string对象，并逐一添加到vector对象的末尾。</p>
-<h4 id="2-3_u3001vector_u7684_u4E0B_u6807_u64CD_u4F5C"><a href="#2-3_u3001vector_u7684_u4E0B_u6807_u64CD_u4F5C" class="headerlink" title="2.3、vector的下标操作"></a>2.3、vector的下标操作</h4><p>vector对象的元素是没有命名的，但可以按vector对象中的位置来访问它们，跟string类似，位置从0开始计数，下例是将vector中的每个元素置为0：</p>
+<h4 id="2-3、vector的下标操作">2.3、vector的下标操作</h4><p>vector对象的元素是没有命名的，但可以按vector对象中的位置来访问它们，跟string类似，位置从0开始计数，下例是将vector中的每个元素置为0：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv(<span class="number">10</span>);	<span class="comment">//含有10各元素的vector</span></span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != intv.size(); ++i)&#123;</span><br><span class="line">	intv[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>习惯于Java和C的程序员可能会觉得难以理解<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、for循环用 <span class="escape">`!</span>=<span class="escape">` </span>来作为判断条件；</span><br><span class="line"><span class="number">2</span>、不用变量保存 <span class="escape">`i</span>ntv.size()<span class="escape">`；</span></span><br></pre></td></tr></table></figure></p>
 <p>到学习过泛型编程后就会明白 <code>1</code> 的合理性，至于 <code>2</code>，上述循环不需要增加元素，但循环很容易增加元素，所以如果增加了元素的话，那保存就不合理了。</p>
 </blockquote>
-<h4 id="2-4_u3001_u4E0B_u6807_u64CD_u4F5C_u4E0D_u80FD_u6DFB_u52A0_u5143_u7D20"><a href="#2-4_u3001_u4E0B_u6807_u64CD_u4F5C_u4E0D_u80FD_u6DFB_u52A0_u5143_u7D20" class="headerlink" title="2.4、下标操作不能添加元素"></a>2.4、下标操作不能添加元素</h4><p>下标操作不能添加元素，但能对已有的元素进行操作，如上例中的将所有元素重置为0。所以下面的例子是错误的</p>
+<h4 id="2-4、下标操作不能添加元素">2.4、下标操作不能添加元素</h4><p>下标操作不能添加元素，但能对已有的元素进行操作，如上例中的将所有元素重置为0。所以下面的例子是错误的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	intv[i] = i;	<span class="comment">//error：intv是空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但下面的例子是正确的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intv;	<span class="comment">//这是空vector，没有元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)&#123;</span><br><span class="line">	intv.push_back(i);	<span class="comment">//ok:动态增加</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -511,21 +511,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -590,7 +590,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_u3001vector__u5BF9_u8C61_u7684_u5B9A_u4E49_u548C_u521D_u59CB_u5316"><span class="nav-number">1.</span> <span class="nav-text">1、vector 对象的定义和初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_u3001vector_u5BF9_u8C61_u7684_u64CD_u4F5C"><span class="nav-number">2.</span> <span class="nav-text">2、vector对象的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1_u3001empty_u548Csize"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、empty和size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2_u3001_u5411vector_u6DFB_u52A0_u5143_u7D20"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、向vector添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3_u3001vector_u7684_u4E0B_u6807_u64CD_u4F5C"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、vector的下标操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4_u3001_u4E0B_u6807_u64CD_u4F5C_u4E0D_u80FD_u6DFB_u52A0_u5143_u7D20"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、下标操作不能添加元素</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、vector_对象的定义和初始化"><span class="nav-number">1.</span> <span class="nav-text">1、vector 对象的定义和初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、vector对象的操作"><span class="nav-number">2.</span> <span class="nav-text">2、vector对象的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、empty和size"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、empty和size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、向vector添加元素"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、向vector添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3、vector的下标操作"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、vector的下标操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4、下标操作不能添加元素"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、下标操作不能添加元素</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -617,7 +617,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

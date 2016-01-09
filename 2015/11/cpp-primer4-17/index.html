@@ -65,7 +65,7 @@
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-17/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;9999999999&quot;string *sp = new string(10, &apos;9&apos;);	//*sp = &quot;9999999999&quot;">
-<meta property="og:updated_time" content="2016-01-01T11:41:55.447Z">
+<meta property="og:updated_time" content="2015-12-30T06:13:49.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new & delete">
 <meta name="twitter:description" content="动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;9999999999&quot;string *sp = new string(10, &apos;9&apos;);	//*sp = &quot;9999999999&quot;">
@@ -300,18 +300,18 @@
       
 
       
-        <h3 id="u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u521D_u59CB_u5316"><a href="#u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u521D_u59CB_u5316" class="headerlink" title="动态创建对象的初始化"></a>动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
+        <h3 id="动态创建对象的初始化">动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u9ED8_u8BA4_u521D_u59CB_u5316"><a href="#u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u9ED8_u8BA4_u521D_u59CB_u5316" class="headerlink" title="动态创建对象的默认初始化"></a>动态创建对象的默认初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>;	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>;	<span class="comment">//未初始化</span></span><br></pre></td></tr></table></figure>
+<h3 id="动态创建对象的默认初始化">动态创建对象的默认初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>;	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>;	<span class="comment">//未初始化</span></span><br></pre></td></tr></table></figure>
 <p>可以利用下列方式进行默认初始化</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>();	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>();	<span class="comment">//0</span></span><br></pre></td></tr></table></figure>
-<h3 id="u64A4_u9500_u52A8_u6001_u521B_u5EFA_u5BF9_u8C61"><a href="#u64A4_u9500_u52A8_u6001_u521B_u5EFA_u5BF9_u8C61" class="headerlink" title="撤销动态创建对象"></a>撤销动态创建对象</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> *ip = &amp;i;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"str"</span>)</span></span>;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">new</span> <span class="keyword">double</span>(<span class="number">3.14</span>);</span><br><span class="line"><span class="keyword">int</span> *ip0 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> s;	<span class="comment">//error: s是非动态对象</span></span><br><span class="line"><span class="keyword">delete</span> ip;	<span class="comment">//error: ip指向本地对象</span></span><br><span class="line"><span class="keyword">delete</span> dp;	<span class="comment">//ok</span></span><br><span class="line"><span class="keyword">delete</span> ip0;	<span class="comment">//ok: 但没什么意义</span></span><br></pre></td></tr></table></figure>
+<h3 id="撤销动态创建对象">撤销动态创建对象</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> *ip = &amp;i;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"str"</span>)</span></span>;</span><br><span class="line"><span class="keyword">double</span> *dp = <span class="keyword">new</span> <span class="keyword">double</span>(<span class="number">3.14</span>);</span><br><span class="line"><span class="keyword">int</span> *ip0 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> s;	<span class="comment">//error: s是非动态对象</span></span><br><span class="line"><span class="keyword">delete</span> ip;	<span class="comment">//error: ip指向本地对象</span></span><br><span class="line"><span class="keyword">delete</span> dp;	<span class="comment">//ok</span></span><br><span class="line"><span class="keyword">delete</span> ip0;	<span class="comment">//ok: 但没什么意义</span></span><br></pre></td></tr></table></figure>
 <p>C++未明确定义如何释放非new分配的内存地址。</p>
-<h3 id="delete_u540E_u91CD_u8BBE_u6307_u9488_u7684_u503C"><a href="#delete_u540E_u91CD_u8BBE_u6307_u9488_u7684_u503C" class="headerlink" title="delete后重设指针的值"></a>delete后重设指针的值</h3><p>执行delete语句后，尽管指针变成未定义，但仍存放了之前所指对象的地址，称为 <strong>悬挂指针（dangling pointer）</strong> 。这种指针往往容易出错。</p>
+<h3 id="delete后重设指针的值">delete后重设指针的值</h3><p>执行delete语句后，尽管指针变成未定义，但仍存放了之前所指对象的地址，称为 <strong>悬挂指针（dangling pointer）</strong> 。这种指针往往容易出错。</p>
 <blockquote>
 <p>一旦delete指针，立即将其置为0，就可以避免悬挂指针。</p>
 </blockquote>
-<h3 id="const_u5BF9_u8C61_u7684_u52A8_u6001_u5206_u914D_u548C_u56DE_u6536"><a href="#const_u5BF9_u8C61_u7684_u52A8_u6001_u5206_u914D_u548C_u56DE_u6536" class="headerlink" title="const对象的动态分配和回收"></a>const对象的动态分配和回收</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip = <span class="keyword">new</span> <span class="function"><span class="keyword">const</span> <span class="title">int</span><span class="params">(<span class="number">1024</span>)</span></span>;	<span class="comment">//必须初始化，且不能再修改</span></span><br></pre></td></tr></table></figure>
+<h3 id="const对象的动态分配和回收">const对象的动态分配和回收</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *cip = <span class="keyword">new</span> <span class="function"><span class="keyword">const</span> <span class="title">int</span><span class="params">(<span class="number">1024</span>)</span></span>;	<span class="comment">//必须初始化，且不能再修改</span></span><br></pre></td></tr></table></figure>
 <p>如果有默认构造函数，则可以隐式初始化，如</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> *csp = <span class="keyword">new</span> <span class="keyword">const</span> <span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
 <p>尽管不能改变const对象的值，但可撤销对象本身</p>
@@ -418,21 +418,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -497,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u521D_u59CB_u5316"><span class="nav-number">1.</span> <span class="nav-text">动态创建对象的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u52A8_u6001_u521B_u5EFA_u5BF9_u8C61_u7684_u9ED8_u8BA4_u521D_u59CB_u5316"><span class="nav-number">2.</span> <span class="nav-text">动态创建对象的默认初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u64A4_u9500_u52A8_u6001_u521B_u5EFA_u5BF9_u8C61"><span class="nav-number">3.</span> <span class="nav-text">撤销动态创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete_u540E_u91CD_u8BBE_u6307_u9488_u7684_u503C"><span class="nav-number">4.</span> <span class="nav-text">delete后重设指针的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const_u5BF9_u8C61_u7684_u52A8_u6001_u5206_u914D_u548C_u56DE_u6536"><span class="nav-number">5.</span> <span class="nav-text">const对象的动态分配和回收</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态创建对象的初始化"><span class="nav-number">1.</span> <span class="nav-text">动态创建对象的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态创建对象的默认初始化"><span class="nav-number">2.</span> <span class="nav-text">动态创建对象的默认初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销动态创建对象"><span class="nav-number">3.</span> <span class="nav-text">撤销动态创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete后重设指针的值"><span class="nav-number">4.</span> <span class="nav-text">delete后重设指针的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const对象的动态分配和回收"><span class="nav-number">5.</span> <span class="nav-text">const对象的动态分配和回收</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -524,7 +524,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

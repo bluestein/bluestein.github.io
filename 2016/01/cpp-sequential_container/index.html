@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。
 标准库定义了三种顺序容器类型：vector，list 和 deque（double-ended queue，发音同 deck）。差别在于访问元素的方式，以及添加或删除元素的">
-<meta property="og:updated_time" content="2016-01-04T04:11:34.232Z">
+<meta property="og:updated_time" content="2016-01-03T09:45:36.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序容器">
 <meta name="twitter:description" content="前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。
@@ -348,14 +348,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="u987A_u5E8F_u5BB9_u5668_u7684_u5B9A_u4E49"><a href="#u987A_u5E8F_u5BB9_u5668_u7684_u5B9A_u4E49" class="headerlink" title="顺序容器的定义"></a>顺序容器的定义</h3><p>首先必须包含头文件</p>
+<h3 id="顺序容器的定义">顺序容器的定义</h3><p>首先必须包含头文件</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>所有顺序容器都是类模板</strong>。要定义某种特殊的容器，必须在容器名后添加一对尖括号，尖括号内提供容器将要存放元素的类型</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; ilist;</span><br><span class="line"><span class="built_in">deque</span>&lt;Sales_item&gt; item;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>所有容器都有默认构造函数，该构造函数不带任何参数</p>
 </blockquote>
-<h4 id="u521D_u59CB_u5316"><a href="#u521D_u59CB_u5316" class="headerlink" title="初始化"></a>初始化</h4><p>除了默认构造函数，容器类型还提供了其他的构造函数，可以指定其元素的初值</p>
+<h4 id="初始化">初始化</h4><p>除了默认构造函数，容器类型还提供了其他的构造函数，可以指定其元素的初值</p>
 <table>
 <thead>
 <tr>
@@ -403,7 +403,7 @@
 <p>支持容器的容器，不过要注意使用空格</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt; <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; &gt; lines; <span class="comment">// ok</span></span><br><span class="line"><span class="built_in">vector</span>&lt; <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; lines; <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
 <p>否则被认为是右移操作。</p>
-<h3 id="u8FED_u4EE3_u5668_u548C_u8FED_u4EE3_u5668_u7684_u8303_u56F4"><a href="#u8FED_u4EE3_u5668_u548C_u8FED_u4EE3_u5668_u7684_u8303_u56F4" class="headerlink" title="迭代器和迭代器的范围"></a>迭代器和迭代器的范围</h3><p>标准库为所有容器类提供的操作</p>
+<h3 id="迭代器和迭代器的范围">迭代器和迭代器的范围</h3><p>标准库为所有容器类提供的操作</p>
 <table>
 <thead>
 <tr>
@@ -434,7 +434,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="vector_2C_deque_u989D_u5916_u7684_u64CD_u4F5C"><a href="#vector_2C_deque_u989D_u5916_u7684_u64CD_u4F5C" class="headerlink" title="vector, deque额外的操作"></a>vector, deque额外的操作</h4><table>
+<h4 id="vector,_deque额外的操作">vector, deque额外的操作</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -459,14 +459,14 @@
 <blockquote>
 <p>只适用于 vector 和 deque</p>
 </blockquote>
-<h3 id="u987A_u5E8F_u5BB9_u5668_u7684_u64CD_u4F5C"><a href="#u987A_u5E8F_u5BB9_u5668_u7684_u64CD_u4F5C" class="headerlink" title="顺序容器的操作"></a>顺序容器的操作</h3><p>每种顺序容器都有以下操作</p>
+<h3 id="顺序容器的操作">顺序容器的操作</h3><p>每种顺序容器都有以下操作</p>
 <ol>
 <li>向容器添加元素</li>
 <li>删除元素</li>
 <li>设置容器大小</li>
 <li>获取容器第一个或最后一个元素（如果有的话）</li>
 </ol>
-<h4 id="u4E3A_u5BB9_u5668_u5B9A_u4E49_u7684_u7C7B_u578B_u522B_u540D"><a href="#u4E3A_u5BB9_u5668_u5B9A_u4E49_u7684_u7C7B_u578B_u522B_u540D" class="headerlink" title="为容器定义的类型别名"></a>为容器定义的类型别名</h4><table>
+<h4 id="为容器定义的类型别名">为容器定义的类型别名</h4><table>
 <thead>
 <tr>
 <th>别名</th>
@@ -512,7 +512,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="begin__u548C_end__u6210_u5458"><a href="#begin__u548C_end__u6210_u5458" class="headerlink" title="begin 和 end 成员"></a>begin 和 end 成员</h4><table>
+<h4 id="begin_和_end_成员">begin 和 end 成员</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -538,7 +538,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u6DFB_u52A0_u5143_u7D20"><a href="#u6DFB_u52A0_u5143_u7D20" class="headerlink" title="添加元素"></a>添加元素</h4><table>
+<h4 id="添加元素">添加元素</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -571,13 +571,13 @@
 <blockquote>
 <p>迭代器可能会失效。指向新加入元素后面的那个元素的迭代器会失效</p>
 </blockquote>
-<h4 id="u5173_u7CFB_u64CD_u4F5C_u7B26"><a href="#u5173_u7CFB_u64CD_u4F5C_u7B26" class="headerlink" title="关系操作符"></a>关系操作符</h4><p>要使用类型相同的进行比较</p>
+<h4 id="关系操作符">关系操作符</h4><p>要使用类型相同的进行比较</p>
 <ol>
 <li>如果两容器有相同长度并且所有元素相等，则两个容器相等；</li>
 <li>如果两容器有不同长度，但较短容器的元素等于较长容器的子序列，则短容器小于长容器；</li>
 <li>如果不存在子序列，则比较第一个不同的元素；</li>
 </ol>
-<h4 id="u5BB9_u5668_u5927_u5C0F"><a href="#u5BB9_u5668_u5927_u5C0F" class="headerlink" title="容器大小"></a>容器大小</h4><table>
+<h4 id="容器大小">容器大小</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -607,7 +607,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u8BBF_u95EE_u5143_u7D20"><a href="#u8BBF_u95EE_u5143_u7D20" class="headerlink" title="访问元素"></a>访问元素</h4><table>
+<h4 id="访问元素">访问元素</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -634,7 +634,7 @@
 </tbody>
 </table>
 <p>back 和 front 同样可以用 end 和 begin 迭代器的解引用完成。</p>
-<h4 id="u5220_u9664_u5143_u7D20"><a href="#u5220_u9664_u5143_u7D20" class="headerlink" title="删除元素"></a>删除元素</h4><table>
+<h4 id="删除元素">删除元素</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -664,7 +664,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u8D4B_u503C_u548C_u4EA4_u6362"><a href="#u8D4B_u503C_u548C_u4EA4_u6362" class="headerlink" title="赋值和交换"></a>赋值和交换</h4><table>
+<h4 id="赋值和交换">赋值和交换</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -691,14 +691,14 @@
 </tbody>
 </table>
 <p>assign 会删除原容器中的元素，然后将所指定的新元素插入到该容器中。如果两个容器类型相同，就可以使用赋值操作符将一个容器赋值给另一个容器。如果在不同容器中，元素类型不同但相互兼容，那么必须使用 assign 函数。</p>
-<h3 id="vector_u5BB9_u5668_u7684_u81EA_u589E_u957F"><a href="#vector_u5BB9_u5668_u7684_u81EA_u589E_u957F" class="headerlink" title="vector容器的自增长"></a>vector容器的自增长</h3><p>vector 以连续的方式存储每一个元素，一个挨着一个。所以当在超过预申请内存时再插入元素时，必须重新申请空间，然后将旧元素赋值到新空间中。此时就要用到 capacity 和 reserve，capacity 表示在必须重新非配空间之前可以存储元素的个数，一般由标准库定义，至少等于容器的大小，但一般来说会更大一些；而 reserve 表示人工预留存储空间（类似于数组大小的声明），当使用过程中超过人工预留空间后，vector会自己重新分配空间。</p>
+<h3 id="vector容器的自增长">vector容器的自增长</h3><p>vector 以连续的方式存储每一个元素，一个挨着一个。所以当在超过预申请内存时再插入元素时，必须重新申请空间，然后将旧元素赋值到新空间中。此时就要用到 capacity 和 reserve，capacity 表示在必须重新非配空间之前可以存储元素的个数，一般由标准库定义，至少等于容器的大小，但一般来说会更大一些；而 reserve 表示人工预留存储空间（类似于数组大小的声明），当使用过程中超过人工预留空间后，vector会自己重新分配空间。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec(<span class="number">10</span>, <span class="string">"hi"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; svec.capacity() &lt;&lt; endl;</span><br><span class="line">svec.push_back(<span class="string">"hi"</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; svec.capacity() &lt;&lt; endl;</span><br><span class="line">svec.reserve(<span class="number">50</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; svec.capacity() &lt;&lt; endl;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"><span class="comment">// 15</span></span><br><span class="line"><span class="comment">// 50</span></span><br></pre></td></tr></table></figure>
-<h3 id="u5BB9_u5668_u7684_u9009_u62E9"><a href="#u5BB9_u5668_u7684_u9009_u62E9" class="headerlink" title="容器的选择"></a>容器的选择</h3><p>元素是否连续存储会显著的影响：</p>
+<h3 id="容器的选择">容器的选择</h3><p>元素是否连续存储会显著的影响：</p>
 <ol>
 <li>在容器内部位置添加或删除元素；</li>
 <li>执行元素的随机访问的代价；</li>
 </ol>
-<h4 id="u63D2_u5165_u64CD_u4F5C_u5F71_u54CD_u5BB9_u5668_u7684_u9009_u62E9"><a href="#u63D2_u5165_u64CD_u4F5C_u5F71_u54CD_u5BB9_u5668_u7684_u9009_u62E9" class="headerlink" title="插入操作影响容器的选择"></a>插入操作影响容器的选择</h4><ol>
+<h4 id="插入操作影响容器的选择">插入操作影响容器的选择</h4><ol>
 <li>list 存储在不连续的空间，允许向前向后逐个遍历，<strong>在任何位置可以高效的 insert 和 erase</strong>。不过它不支持随机访问，必须遍历涉及到的元素。</li>
 <li>vector 存储在连续区域，除了在尾部插入（删除），其他任何位置插入（删除）时都必须移动其后面的元素。</li>
 <li>deque 更加复杂，在两段插入和删除都非常快，但在内部差入或删除时代价会更高。它还同时提供了 list 和 vector 的性质：<ol>
@@ -709,8 +709,8 @@
 </ol>
 </li>
 </ol>
-<h4 id="u8BBF_u95EE_u5F71_u54CD"><a href="#u8BBF_u95EE_u5F71_u54CD" class="headerlink" title="访问影响"></a>访问影响</h4><p>vector 和 deque 都支持高效的随机访问，而 list 只能顺序的跟随指针，一直遍历。</p>
-<h4 id="u5EFA_u8BAE"><a href="#u5EFA_u8BAE" class="headerlink" title="建议"></a>建议</h4><ol>
+<h4 id="访问影响">访问影响</h4><p>vector 和 deque 都支持高效的随机访问，而 list 只能顺序的跟随指针，一直遍历。</p>
+<h4 id="建议">建议</h4><ol>
 <li>要求随机访问，使用 vector 或 deque；</li>
 <li>要求内部插入（删除）元素，选择 list；</li>
 <li>如果在首部或尾部插入（删除），则选择 deque；</li>
@@ -721,7 +721,7 @@
 </ol>
 </li>
 </ol>
-<h3 id="u6DF1_u5165string_u7C7B_u578B"><a href="#u6DF1_u5165string_u7C7B_u578B" class="headerlink" title="深入string类型"></a>深入string类型</h3><p>除了前面用过的操作外，string 类型还支持大多数顺序容器操作。在某些方面可将 string 类型视为字符容器，操作也与 vector 类似，不过 string 不支持以栈方式操作容器：即 string 不能使用 front, back, pop_back等操作。下表扼要的介绍了一些 string 的操作</p>
+<h3 id="深入string类型">深入string类型</h3><p>除了前面用过的操作外，string 类型还支持大多数顺序容器操作。在某些方面可将 string 类型视为字符容器，操作也与 vector 类似，不过 string 不支持以栈方式操作容器：即 string 不能使用 front, back, pop_back等操作。下表扼要的介绍了一些 string 的操作</p>
 <table>
 <thead>
 <tr>
@@ -782,7 +782,7 @@
 </ol>
 <p>例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"hey!"</span>)</span></span>;</span><br><span class="line"><span class="built_in">string</span>::iterator iter = s.begin();</span><br><span class="line"><span class="keyword">while</span> (iter != s.end()) &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *iter++ &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u6784_u9020_string__u5BF9_u8C61"><a href="#u6784_u9020_string__u5BF9_u8C61" class="headerlink" title="构造 string 对象"></a>构造 string 对象</h4><p>string 几乎支持<a href="#初始化">前面</a>所有的构造函数</p>
+<h4 id="构造_string_对象">构造 string 对象</h4><p>string 几乎支持<a href="#初始化">前面</a>所有的构造函数</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">string s1;</span><br><span class="line">string s2(5, 'a'); // s2 == "aaaaa"</span><br><span class="line">string s3(s2); // s3 是 s2 的副本</span><br><span class="line">string s4(s3.begin(),</span><br><span class="line">		s3.begin() + s3.size() / 2); // s4 == "aa"</span><br><span class="line"></span><br><span class="line">char *cp = "hey!";</span><br><span class="line">char carr[] = "Hello!";</span><br><span class="line">char no_null[] = &#123;'H', 'i'&#125;;</span><br><span class="line">string ss1(cp); // ss1 == "hey!"</span><br><span class="line">string ss2(carr,5); // ss2 == "Hello"</span><br><span class="line">string ss3(carr + 2, 3); // ss3 == "llo"</span><br><span class="line">string ss4(no_null); // runtime_error: 没有 null 结束符</span><br><span class="line">string ss5(no_null, 2); // ok</span><br></pre></td></tr></table></figure>
 <p>构造 string 对象的其他方法</p>
 <table>
@@ -810,7 +810,7 @@
 <blockquote>
 <p>n, len, pos 都是 unsigned 值。</p>
 </blockquote>
-<h4 id="u4FEE_u6539string_u5BF9_u8C61"><a href="#u4FEE_u6539string_u5BF9_u8C61" class="headerlink" title="修改string对象"></a>修改string对象</h4><p><strong>与容器共有的操作</strong></p>
+<h4 id="修改string对象">修改string对象</h4><p><strong>与容器共有的操作</strong></p>
 <table>
 <thead>
 <tr>
@@ -900,12 +900,12 @@
 </tr>
 </tbody>
 </table>
-<h3 id="u53EA_u9002_u7528_u4E8E_string__u7684_u64CD_u4F5C"><a href="#u53EA_u9002_u7528_u4E8E_string__u7684_u64CD_u4F5C" class="headerlink" title="只适用于 string 的操作"></a>只适用于 string 的操作</h3><ol>
+<h3 id="只适用于_string_的操作">只适用于 string 的操作</h3><ol>
 <li>substr 函数；</li>
 <li>append 和 replace</li>
 <li>find</li>
 </ol>
-<h4 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h4><table>
+<h4 id="substr">substr</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -927,7 +927,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="append__u548C_replace"><a href="#append__u548C_replace" class="headerlink" title="append 和 replace"></a>append 和 replace</h4><table>
+<h4 id="append_和_replace">append 和 replace</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -984,7 +984,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><table>
+<h4 id="find">find</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -1045,7 +1045,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="string__u5BF9_u8C61_u7684_u6BD4_u8F83"><a href="#string__u5BF9_u8C61_u7684_u6BD4_u8F83" class="headerlink" title="string 对象的比较"></a>string 对象的比较</h4><table>
+<h4 id="string_对象的比较">string 对象的比较</h4><table>
 <thead>
 <tr>
 <th>操作</th>
@@ -1079,7 +1079,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="u5BB9_u5668_u9002_u914D_u5668"><a href="#u5BB9_u5668_u9002_u914D_u5668" class="headerlink" title="容器适配器"></a>容器适配器</h3><p>标准库提供三种顺序容器适配器：queue, priority_queue, stack。</p>
+<h3 id="容器适配器">容器适配器</h3><p>标准库提供三种顺序容器适配器：queue, priority_queue, stack。</p>
 <p><strong>初始化</strong></p>
 <p>肯定需要包含头文件</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// deq 是 deque&lt;int&gt; 类型</span></span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; stk(deq);</span><br></pre></td></tr></table></figure>
@@ -1089,7 +1089,7 @@
 <blockquote>
 <p>两个相同类型的适配器可以做关系运算，第一个不对等的元素决定大于或小于关系。</p>
 </blockquote>
-<h4 id="u6808_u9002_u914D_u5668"><a href="#u6808_u9002_u914D_u5668" class="headerlink" title="栈适配器"></a>栈适配器</h4><p>栈的操作</p>
+<h4 id="栈适配器">栈适配器</h4><p>栈的操作</p>
 <table>
 <thead>
 <tr>
@@ -1122,7 +1122,7 @@
 </table>
 <p>例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;::size_type sz = <span class="number">10</span>;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; istk;</span><br><span class="line">	<span class="keyword">int</span> ix = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (istk.size() != sz)</span><br><span class="line">	&#123;</span><br><span class="line">		istk.push(ix++);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> error_cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (istk.empty() == <span class="literal">false</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> value = istk.top();</span><br><span class="line">		<span class="keyword">if</span> (value != --ix)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cerr</span> &lt;&lt; <span class="string">"expected "</span> &lt;&lt; ix &lt;&lt; <span class="string">"recieved "</span> &lt;&lt; value &lt;&lt; endl;</span><br><span class="line">			++error_cnt;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; endl;</span><br><span class="line">		istk.pop();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"errors: "</span> &lt;&lt; error_cnt &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">errors: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h4 id="queue__u548C_priority_queue"><a href="#queue__u548C_priority_queue" class="headerlink" title="queue 和 priority_queue"></a>queue 和 priority_queue</h4><p>操作</p>
+<h4 id="queue_和_priority_queue">queue 和 priority_queue</h4><p>操作</p>
 <table>
 <thead>
 <tr>
@@ -1188,6 +1188,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/LATEX-LLNCS/" rel="prev" title="LATEX: LLNCS v2.4">
+                LATEX: LLNCS v2.4 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1259,21 +1263,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1338,7 +1342,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u987A_u5E8F_u5BB9_u5668_u7684_u5B9A_u4E49"><span class="nav-number">1.</span> <span class="nav-text">顺序容器的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u521D_u59CB_u5316"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8FED_u4EE3_u5668_u548C_u8FED_u4EE3_u5668_u7684_u8303_u56F4"><span class="nav-number">2.</span> <span class="nav-text">迭代器和迭代器的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vector_2C_deque_u989D_u5916_u7684_u64CD_u4F5C"><span class="nav-number">2.1.</span> <span class="nav-text">vector, deque额外的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u987A_u5E8F_u5BB9_u5668_u7684_u64CD_u4F5C"><span class="nav-number">3.</span> <span class="nav-text">顺序容器的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E3A_u5BB9_u5668_u5B9A_u4E49_u7684_u7C7B_u578B_u522B_u540D"><span class="nav-number">3.1.</span> <span class="nav-text">为容器定义的类型别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#begin__u548C_end__u6210_u5458"><span class="nav-number">3.2.</span> <span class="nav-text">begin 和 end 成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6DFB_u52A0_u5143_u7D20"><span class="nav-number">3.3.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5173_u7CFB_u64CD_u4F5C_u7B26"><span class="nav-number">3.4.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5BB9_u5668_u5927_u5C0F"><span class="nav-number">3.5.</span> <span class="nav-text">容器大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBF_u95EE_u5143_u7D20"><span class="nav-number">3.6.</span> <span class="nav-text">访问元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5220_u9664_u5143_u7D20"><span class="nav-number">3.7.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8D4B_u503C_u548C_u4EA4_u6362"><span class="nav-number">3.8.</span> <span class="nav-text">赋值和交换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector_u5BB9_u5668_u7684_u81EA_u589E_u957F"><span class="nav-number">4.</span> <span class="nav-text">vector容器的自增长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BB9_u5668_u7684_u9009_u62E9"><span class="nav-number">5.</span> <span class="nav-text">容器的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u63D2_u5165_u64CD_u4F5C_u5F71_u54CD_u5BB9_u5668_u7684_u9009_u62E9"><span class="nav-number">5.1.</span> <span class="nav-text">插入操作影响容器的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBF_u95EE_u5F71_u54CD"><span class="nav-number">5.2.</span> <span class="nav-text">访问影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5EFA_u8BAE"><span class="nav-number">5.3.</span> <span class="nav-text">建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6DF1_u5165string_u7C7B_u578B"><span class="nav-number">6.</span> <span class="nav-text">深入string类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6784_u9020_string__u5BF9_u8C61"><span class="nav-number">6.1.</span> <span class="nav-text">构造 string 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4FEE_u6539string_u5BF9_u8C61"><span class="nav-number">6.2.</span> <span class="nav-text">修改string对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53EA_u9002_u7528_u4E8E_string__u7684_u64CD_u4F5C"><span class="nav-number">7.</span> <span class="nav-text">只适用于 string 的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#substr"><span class="nav-number">7.1.</span> <span class="nav-text">substr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append__u548C_replace"><span class="nav-number">7.2.</span> <span class="nav-text">append 和 replace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find"><span class="nav-number">7.3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string__u5BF9_u8C61_u7684_u6BD4_u8F83"><span class="nav-number">7.4.</span> <span class="nav-text">string 对象的比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BB9_u5668_u9002_u914D_u5668"><span class="nav-number">8.</span> <span class="nav-text">容器适配器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6808_u9002_u914D_u5668"><span class="nav-number">8.1.</span> <span class="nav-text">栈适配器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue__u548C_priority_queue"><span class="nav-number">8.2.</span> <span class="nav-text">queue 和 priority_queue</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序容器的定义"><span class="nav-number">1.</span> <span class="nav-text">顺序容器的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器和迭代器的范围"><span class="nav-number">2.</span> <span class="nav-text">迭代器和迭代器的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vector,_deque额外的操作"><span class="nav-number">2.1.</span> <span class="nav-text">vector, deque额外的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序容器的操作"><span class="nav-number">3.</span> <span class="nav-text">顺序容器的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为容器定义的类型别名"><span class="nav-number">3.1.</span> <span class="nav-text">为容器定义的类型别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#begin_和_end_成员"><span class="nav-number">3.2.</span> <span class="nav-text">begin 和 end 成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加元素"><span class="nav-number">3.3.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系操作符"><span class="nav-number">3.4.</span> <span class="nav-text">关系操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器大小"><span class="nav-number">3.5.</span> <span class="nav-text">容器大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问元素"><span class="nav-number">3.6.</span> <span class="nav-text">访问元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除元素"><span class="nav-number">3.7.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值和交换"><span class="nav-number">3.8.</span> <span class="nav-text">赋值和交换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector容器的自增长"><span class="nav-number">4.</span> <span class="nav-text">vector容器的自增长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器的选择"><span class="nav-number">5.</span> <span class="nav-text">容器的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入操作影响容器的选择"><span class="nav-number">5.1.</span> <span class="nav-text">插入操作影响容器的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问影响"><span class="nav-number">5.2.</span> <span class="nav-text">访问影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建议"><span class="nav-number">5.3.</span> <span class="nav-text">建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入string类型"><span class="nav-number">6.</span> <span class="nav-text">深入string类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造_string_对象"><span class="nav-number">6.1.</span> <span class="nav-text">构造 string 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改string对象"><span class="nav-number">6.2.</span> <span class="nav-text">修改string对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只适用于_string_的操作"><span class="nav-number">7.</span> <span class="nav-text">只适用于 string 的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#substr"><span class="nav-number">7.1.</span> <span class="nav-text">substr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append_和_replace"><span class="nav-number">7.2.</span> <span class="nav-text">append 和 replace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find"><span class="nav-number">7.3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string_对象的比较"><span class="nav-number">7.4.</span> <span class="nav-text">string 对象的比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器适配器"><span class="nav-number">8.</span> <span class="nav-text">容器适配器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈适配器"><span class="nav-number">8.1.</span> <span class="nav-text">栈适配器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue_和_priority_queue"><span class="nav-number">8.2.</span> <span class="nav-text">queue 和 priority_queue</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -1365,7 +1369,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">

@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：
 12return;return expression;">
-<meta property="og:updated_time" content="2016-01-04T04:11:34.232Z">
+<meta property="og:updated_time" content="2015-12-30T08:19:19.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="return">
 <meta name="twitter:description" content="return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：
@@ -306,27 +306,27 @@
         <p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="u6CA1_u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570"><a href="#u6CA1_u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570" class="headerlink" title="没有返回值的函数"></a>没有返回值的函数</h3><p>不带返回值的return语句用于 void 类型的函数。在 void 类型的函数中，return 语句不是必须的，它会在函数的最后一个语句隐式的完成。</p>
+<h3 id="没有返回值的函数">没有返回值的函数</h3><p>不带返回值的return语句用于 void 类型的函数。在 void 类型的函数中，return 语句不是必须的，它会在函数的最后一个语句隐式的完成。</p>
 <p><strong>隐式的return</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = v2;</span><br><span class="line">	v2 = v1;</span><br><span class="line">	v1 = tmp;</span><br><span class="line">	<span class="comment">// 隐式的return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>return</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v1 == v2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span>; <span class="comment">// 不带返回值的return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> tmp = v2;</span><br><span class="line">	v2 = v1;</span><br><span class="line">	v1 = tmp;</span><br><span class="line">	<span class="comment">// 隐式的return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570"><a href="#u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570" class="headerlink" title="有返回值的函数"></a>有返回值的函数</h3><p>使用第二种形式，即 <code>return expression;</code> 返回值给非 void 函数。</p>
-<h4 id="u4E3B_u51FD_u6570_main__u7684_u8FD4_u56DE_u503C"><a href="#u4E3B_u51FD_u6570_main__u7684_u8FD4_u56DE_u503C" class="headerlink" title="主函数 main 的返回值"></a>主函数 main 的返回值</h4><p>可将 main 函数的返回值作为状态指示器，0 表示运行成功，其他返回值则因机器的不同而不同，因此 cstdlib 头文件定义了两个预定于变量 <code>EXIT_FAILURE</code> <code>EXIT_SUCCESS</code>。</p>
+<h3 id="有返回值的函数">有返回值的函数</h3><p>使用第二种形式，即 <code>return expression;</code> 返回值给非 void 函数。</p>
+<h4 id="主函数_main_的返回值">主函数 main 的返回值</h4><p>可将 main 函数的返回值作为状态指示器，0 表示运行成功，其他返回值则因机器的不同而不同，因此 cstdlib 头文件定义了两个预定于变量 <code>EXIT_FAILURE</code> <code>EXIT_SUCCESS</code>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sctdlib&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (some_failure)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u8FD4_u56DE_u975E_u5F15_u7528_u7C7B_u578B"><a href="#u8FD4_u56DE_u975E_u5F15_u7528_u7C7B_u578B" class="headerlink" title="返回非引用类型"></a>返回非引用类型</h4><p>此时可以返回局部对象，或表达式的结果</p>
+<h4 id="返回非引用类型">返回非引用类型</h4><p>此时可以返回局部对象，或表达式的结果</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">makePlural</span><span class="params">(size_t ctr, <span class="keyword">const</span> <span class="built_in">string</span> &amp;word, <span class="keyword">const</span> <span class="built_in">string</span> &amp;ending)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (ctr == <span class="number">1</span>) ? word : word + ending;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u8FD4_u56DE_u5F15_u7528"><a href="#u8FD4_u56DE_u5F15_u7528" class="headerlink" title="返回引用"></a>返回引用</h4><p>返回的是对象本身</p>
+<h4 id="返回引用">返回引用</h4><p>返回的是对象本身</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">shorterString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &gt; s2.size() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u4E0D_u80FD_u8FD4_u56DE_u5C40_u90E8_u53D8_u91CF_u7684_u5F15_u7528"><a href="#u4E0D_u80FD_u8FD4_u56DE_u5C40_u90E8_u53D8_u91CF_u7684_u5F15_u7528" class="headerlink" title="不能返回局部变量的引用"></a>不能返回局部变量的引用</h4><p>因为程序执行完毕时，将释放该对象的存储空间</p>
+<h4 id="不能返回局部变量的引用">不能返回局部变量的引用</h4><p>因为程序执行完毕时，将释放该对象的存储空间</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">mainp</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> ret = s;</span><br><span class="line">	<span class="keyword">return</span> ret; <span class="comment">// wrong: local object</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>同样不要返回局部变量的指针</p>
 </blockquote>
-<h4 id="u5F15_u7528_u8FD4_u56DE_u5DE6_u503C"><a href="#u5F15_u7528_u8FD4_u56DE_u5DE6_u503C" class="headerlink" title="引用返回左值"></a>引用返回左值</h4><p>可以使用在要求使用左值的地方</p>
+<h4 id="引用返回左值">引用返回左值</h4><p>可以使用在要求使用左值的地方</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> &amp;<span class="title">getVal</span><span class="params">(<span class="built_in">string</span> &amp;str, <span class="built_in">string</span>::size_type ix)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> str[ix];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"a string"</span>)</span></span>;</span><br><span class="line">	getVal(s, <span class="number">0</span>) = <span class="string">'A'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints: </span></span><br><span class="line"><span class="comment">// A string</span></span><br></pre></td></tr></table></figure>
 <p>如果不想引用返回值被修改，则返回值应声明为const： <code>const char &amp;getVal(...</code>。</p>
-<h3 id="u9012_u5F52"><a href="#u9012_u5F52" class="headerlink" title="递归"></a>递归</h3><p>间接或直接调用子集的函数称为递归函数（recursion function）。例如阶乘运算</p>
+<h3 id="递归">递归</h3><p>间接或直接调用子集的函数称为递归函数（recursion function）。例如阶乘运算</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> val)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (val &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> fact(val - <span class="number">1</span>) * val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>或最大公约数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rgcd</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v2 != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> rgcd(v2, v1 % v2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -433,21 +433,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -512,7 +512,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6CA1_u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570"><span class="nav-number">1.</span> <span class="nav-text">没有返回值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6709_u8FD4_u56DE_u503C_u7684_u51FD_u6570"><span class="nav-number">2.</span> <span class="nav-text">有返回值的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E3B_u51FD_u6570_main__u7684_u8FD4_u56DE_u503C"><span class="nav-number">2.1.</span> <span class="nav-text">主函数 main 的返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD4_u56DE_u975E_u5F15_u7528_u7C7B_u578B"><span class="nav-number">2.2.</span> <span class="nav-text">返回非引用类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8FD4_u56DE_u5F15_u7528"><span class="nav-number">2.3.</span> <span class="nav-text">返回引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0D_u80FD_u8FD4_u56DE_u5C40_u90E8_u53D8_u91CF_u7684_u5F15_u7528"><span class="nav-number">2.4.</span> <span class="nav-text">不能返回局部变量的引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5F15_u7528_u8FD4_u56DE_u5DE6_u503C"><span class="nav-number">2.5.</span> <span class="nav-text">引用返回左值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u9012_u5F52"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有返回值的函数"><span class="nav-number">1.</span> <span class="nav-text">没有返回值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有返回值的函数"><span class="nav-number">2.</span> <span class="nav-text">有返回值的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主函数_main_的返回值"><span class="nav-number">2.1.</span> <span class="nav-text">主函数 main 的返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回非引用类型"><span class="nav-number">2.2.</span> <span class="nav-text">返回非引用类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回引用"><span class="nav-number">2.3.</span> <span class="nav-text">返回引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不能返回局部变量的引用"><span class="nav-number">2.4.</span> <span class="nav-text">不能返回局部变量的引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用返回左值"><span class="nav-number">2.5.</span> <span class="nav-text">引用返回左值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -539,7 +539,6 @@
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Humooo</span>
-  <span>本站采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议。</span>
 </div>
 
 <div class="powered-by">
