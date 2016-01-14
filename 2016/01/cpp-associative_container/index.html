@@ -1,0 +1,1059 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cpp,Cpp primer," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
+两个基本的关联容器是 map 和 set。
+
+map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
+set 仅包含键，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关联容器">
+<meta property="og:url" content="http://bluestein.github.io/2016/01/cpp-associative_container/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
+两个基本的关联容器是 map 和 set。
+
+map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
+set 仅包含键，可">
+<meta property="og:updated_time" content="2016-01-14T14:38:35.360Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关联容器">
+<meta name="twitter:description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
+两个基本的关联容器是 map 和 set。
+
+map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
+set 仅包含键，可">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 关联容器 | Humooo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Humooo's Blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关联容器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-14T14:49:02+08:00" content="2016-01-14">
+              2016-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/cpp-associative_container/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/cpp-associative_container/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+<p>两个基本的关联容器是 map 和 set。</p>
+<ol>
+<li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
+<li>set 仅包含键，可以看成含有很多键值得集合。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>关联容器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map</td>
+<td>关联数组</td>
+</tr>
+<tr>
+<td>set</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>multimap</td>
+<td>一个键可出现多次的 map 类型</td>
+</tr>
+<tr>
+<td>multiset</td>
+<td>一个键可出现多次的 set 类型</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>一般来说，<strong>如果想有效的存储不同值得集合</strong>，使用 set 比较合适；而 map 容器则更适合用于存储键关联值得情况。<br>比如在文本处理时，可以使用 set 来存储要忽略的词，而 map 可以使用作字典：单词本身是键，其解释是值。</p>
+<blockquote>
+<p>set 和 map 的键是唯一的，每个键只能出现一次。如果想使用一个键对应多个值得情况，那么使用 multiset 和 multimap 类型。</p>
+</blockquote>
+<h3 id="pair_类型">pair 类型</h3><p>在介绍关联容器之前，必须先了解一种与之相关的简单的标准库类型——pair 类型，在 <code>utility</code> 头文件中定义</p>
+<table>
+<thead>
+<tr>
+<th>pair 类型所提供的操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pair<t1, t2=""> p1</t1,></td>
+<td>创建一个空的 pair 对象，它的两个元素分别是 T1 和 T2 类型，采用<strong>值初始化</strong></td>
+</tr>
+<tr>
+<td>pair<t1, t2=""> p1(v1,v2)</t1,></td>
+<td>创建一个 pair 对象，它的两个元素类型分别是 T1 和 T2。其中 first 成员初始化为 v1，second 成员初始化为 v2</td>
+</tr>
+<tr>
+<td>make_pair(v1, v2)</td>
+<td>用 v1 和 v2 创建一个 pair 对象，其元素的类型分别是 v1 和 v2 的类型。</td>
+</tr>
+<tr>
+<td>p1 &lt; p2</td>
+<td>两个 pair 对象的小于运算，其定义遵循字典次序：如果 <code>p1.first &lt; p2.first</code> 或 <code>!(p2.first &lt; p1.first) &amp;&amp; p1.second &lt; p2.second</code> 则返回 true</td>
+</tr>
+<tr>
+<td>p1 == p2</td>
+<td>等于操作</td>
+</tr>
+<tr>
+<td>p.first</td>
+<td>返回 p 中的 first（第一个） 成员</td>
+</tr>
+<tr>
+<td>p.second</td>
+<td>返回 p 中的 second（第二个） 成员</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pair_的创建和初始化">pair 的创建和初始化</h4><p>在创建 pair 对象时，必须提供两个类型名，这两个类型名不必相同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; anon;</span><br><span class="line">pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; line;</span><br></pre></td></tr></table></figure>
+<p><strong>创建 pair 时，如果不提供初始化式，则调用默认构造函数进行值初始化。</strong>所以，<code>anon</code> 是包含两个空 string 成员的 pair 对象； <code>word_count</code> 中的 int 型成员获得 0 值； <code>line</code> 则是存储一个空 string 和一个空 vector 类型的对象。</p>
+<p>也可以提供初始化式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; author(<span class="string">"James"</span>, <span class="string">"Joyce"</span>);</span><br></pre></td></tr></table></figure>
+<p>pair 类型使用起来较繁琐，可以使用 typedef 简化声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; Author;</span><br><span class="line"><span class="function">Author <span class="title">proust</span><span class="params">(<span class="string">"Marcel"</span>, <span class="string">"Proust"</span>)</span></span>;</span><br><span class="line"><span class="function">Author <span class="title">joyce</span><span class="params">(<span class="string">"James"</span>, <span class="string">"Joyce"</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="pair_对象操作">pair 对象操作</h4><p>与其他标准库类型不同，对于 pair 类型，<strong>可以直接访问其数据成员，它的成员都是公有的</strong>。分别命名为 first 和 second。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> firstBook;</span><br><span class="line"><span class="keyword">if</span> (author.first == <span class="string">"James"</span> &amp;&amp; author == <span class="string">"Joyce"</span>)</span><br><span class="line">	firstBook = <span class="string">"Stephen Hero"</span>;</span><br></pre></td></tr></table></figure>
+<p>除了构造函数之外，标准库还提供一个 make_pair 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; next_auth;</span><br><span class="line"><span class="built_in">string</span> first, last;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; first &gt;&gt; last) &#123;</span><br><span class="line">	next_auth = make_pair(first, last);</span><br><span class="line">	<span class="comment">// process next_auth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为成员是公有的，所以可以直接输入</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; next_auth;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; next_auth.first &gt;&gt; next_auth.second) &#123;</span><br><span class="line">	<span class="comment">// process next_auth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="关联容器">关联容器</h3><p>关联容器与顺序容器共享大部分的操作，但并不是全部。关联容器不支持 <strong>front, push_front, pop_front, back, push_back, pop_back</strong> 等操作。共享的包括：</p>
+<ol>
+<li><p>三种构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C&lt;T&gt; c;</span><br><span class="line">C&lt;T&gt; c1(c2);</span><br><span class="line">C&lt;T&gt; c(begin, end);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系运算</p>
+</li>
+<li>begin，end，rbegin，rend</li>
+<li>typedef。注意：对于 map 类型，<strong>value_type 的类型是 pair 类型。</strong></li>
+<li>swap 和 赋值操作。<strong>但不提供 assign 函数</strong>。</li>
+<li>clear，erase。<strong>关联容器 erase 操作返回 void 类型</strong>。</li>
+<li>容器大小的操作。<strong>不支持 resize 操作</strong>。</li>
+</ol>
+<p>对于与顺序容器相同的操作，关联容器重新定义了这些操作的含义或返回类型，主要区别在于关联容器中使用了键。</p>
+<blockquote>
+<p>元素在关联容器中根据键的顺序排列。</p>
+</blockquote>
+<h3 id="map_类型">map 类型</h3><p>map 可以理解为 <strong>关联数组</strong>，但是通过键获取元素值，而不是位置。</p>
+<h4 id="map_的定义">map 的定义</h4><p>要使用 map 需包含 map 头文件</p>
+<table>
+<thead>
+<tr>
+<th>map 的构造函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map<k, v=""> m;</k,></td>
+<td>空 map 对象，键和值得类型分别为 k 和 v</td>
+</tr>
+<tr>
+<td>map<k, v=""> m(m1)</k,></td>
+<td>创建 m1 的副本</td>
+</tr>
+<tr>
+<td>map<k, v=""> m(begin, end);</k,></td>
+<td>创建 begin 至 end 范围内所有元素的副本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>键类型的约束</strong></p>
+<p>在使用关联容器时，<strong>它的键类型必须要有一个比较函数</strong>。所使用的比较函数必须在键类型上<strong>严格弱排序</strong>。所谓严格弱排序，可以理解为键类型数据上的“小于”关系，不能出现相互“小于”的情况。</p>
+<blockquote>
+<p>在实际应用中，键类型必须定义 &lt; 操作符，而且该操作符能正确的工作。</p>
+</blockquote>
+<h4 id="map_定义的类型">map 定义的类型</h4><p>map 对象是键-值对，每个元素分为两个部分：键和其关联的值。map 的 value_type 可以很清楚的表示这种情况，该类型是 pair 类型。</p>
+<table>
+<thead>
+<tr>
+<th>map 定义的类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map<k, v="">::key_type</k,></td>
+<td>键的类型</td>
+</tr>
+<tr>
+<td>map<k, v="">::mapped_type</k,></td>
+<td>值的类型</td>
+</tr>
+<tr>
+<td>map<k, v="">::value_type</k,></td>
+<td>键-值的类型：pair类型。有 first 和 second 两个公有成员</td>
+</tr>
+</tbody>
+</table>
+<p>对 map 的迭代器解引用会产生一个 pair 类型值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator map_it = word_count.begin();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; map_it-&gt;first;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; map_it-&gt;second;</span><br><span class="line">map_it-&gt;first = <span class="string">"new key"</span>; <span class="comment">// error: key is const</span></span><br><span class="line">++map_it-&gt;second; <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+<h4 id="向_map_添加元素">向 map 添加元素</h4><p><strong>下标</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line">word_count[<span class="string">"Anna"</span>] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>上面程序会发生：</p>
+<ol>
+<li>在 <code>word_count</code> 中查找键为 Anna 的元素，没有找到；</li>
+<li>将一个键为 Anna 的 pair 插入到 <code>word_count</code>，该 pair 的值为 (“Anna”, 0)。</li>
+<li>读取新插入的元素，并将它赋值为 1.</li>
+</ol>
+<blockquote>
+<p>故使用下标访问 map 中没有的元素会导致向该容器中添加一个新元素。</p>
+</blockquote>
+<p><strong>insert</strong></p>
+<table>
+<thead>
+<tr>
+<th>insert 操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.insert(p);</td>
+<td>p 是 value_type 类型的值，如果 p.first 不存在，则插入 p 到 m，否则 m 保持不变。该函数返回一个 pair 对象，包含一个指向 p 的 map 的迭代器，和一个 bool 值。</td>
+</tr>
+<tr>
+<td>m.insert(begin, end);</td>
+<td>插入 begin 和 end 范围内的值。返回 void 类型</td>
+</tr>
+<tr>
+<td>m.insert(iter, p)</td>
+<td>如果 p.first 不在 m 中，则以 iter 为起点搜索 p 的存储位置。返回一个迭代器，指向新插入的 p。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word_count.insert(<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::value_type(<span class="string">"Anna"</span>, <span class="number">1</span>));</span><br><span class="line">word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>)); <span class="comment">// equivalent way</span></span><br></pre></td></tr></table></figure>
+<p><strong>insert 的返回值类型</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; ret = word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>));</span><br><span class="line"><span class="comment">// use typedef</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; ret_type;</span><br><span class="line">ret_type ret = word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>)); <span class="comment">// equivalent way</span></span><br></pre></td></tr></table></figure>
+<h4 id="查找_map_中的元素">查找 map 中的元素</h4><p>读取 map 中一个元素最简单的方法是下标：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line"><span class="keyword">int</span> occurs = word_count[<span class="string">"Anna"</span>];</span><br></pre></td></tr></table></figure>
+<p>但是有个弊端：如果该键不在 map 中，则会插入之。</p>
+<p>对于查找或读取元素，map 提供了两个操作： count 和 find。</p>
+<ol>
+<li>find： <code>m.find(key)</code>, 如果存在 key 索引的元素，返回指向该元素的迭代器，否则返回末端迭代器，即 end()；</li>
+<li>count：<code>m.count(key)</code>,  返回 m 中 k 出现的次数；</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> occurs = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (word_count.count(<span class="string">"Anna"</span>))</span><br><span class="line">	occurs = word_count[<span class="string">"Anna"</span>];</span><br></pre></td></tr></table></figure>
+<p>这里对元素做了两次查询，在优化性能时可以考虑。find 则更适合查询元素：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> occurs = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator it = word_count.find(<span class="string">"Anna"</span>);</span><br><span class="line"><span class="keyword">if</span> (it != word_count.end())</span><br><span class="line">	occurs = it-&gt;second;</span><br></pre></td></tr></table></figure>
+<h4 id="从_map_删除元素">从 map 删除元素</h4><table>
+<thead>
+<tr>
+<th>删除元素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.erase(key)</td>
+<td>删除键为 k 的元素。返回 size_type 类型的值，表示删除元素的个数</td>
+</tr>
+<tr>
+<td>m.erase(iter)</td>
+<td>删除迭代器 iter 指向的元素。iter 必须指向存在的元素，且不能等于 m.end()。返回 void 类型。</td>
+</tr>
+<tr>
+<td>m.erase(begin, end)</td>
+<td>删除范围内的元素。返回 void 类型。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="set_类型">set 类型</h3><p>set 跟 map 不同，它只是单纯的键的集合。支持：</p>
+<ol>
+<li>insert</li>
+<li>count，find</li>
+<li>erase</li>
+</ol>
+<p>另外：</p>
+<ol>
+<li>不支持下标操作；</li>
+<li>没有 mapped_type 类型；</li>
+</ol>
+<h4 id="set_类型的定义和使用">set 类型的定义和使用</h4><p>set 存放的是一系列唯一值的集合。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) &#123;</span><br><span class="line">	ivec.push_back(i);</span><br><span class="line">	ivec.push_back(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; iset(ivec.begin(), ivec.end());</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; ivec.size() &lt;&lt; endl; <span class="comment">// prints 20</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; iset.size() &lt;&lt; endl; <span class="comment">// prints 10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>向 set 添加元素</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; sset;</span><br><span class="line">sset.insert(<span class="string">"C.X.Q"</span>);</span><br><span class="line">sset.insert(<span class="string">"I L U"</span>);</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; iset;</span><br><span class="line">iset.insert(ivec.begin(), ivec.end());</span><br></pre></td></tr></table></figure>
+<p><strong>从 set 中获取元素</strong></p>
+<p>set 不提供下标操作，只能使用 find 和 count 函数，count 函数的返回值只能是 1 或 0，因为里面的元素都是唯一的。正如不能修改 map 的键一样，set 中的键也是 const 类型。在获得指向 set 中某元素的迭代器后，只能对其做读操作，不能做写操作。</p>
+<h3 id="multiset_和_multimap">multiset 和 multimap</h3><p>map 和 set 中键都是唯一的，而 multimap 和 multiset 类型则允许同一个键多次出现。也就是说每次调用 insert 都会添加一个元素，而 erase 则会删除跟该键有关的所有元素。</p>
+<h4 id="multiset_和_multimap_中查找元素">multiset 和 multimap 中查找元素</h4><p>在 multimap 中，同一个键的所有元素都相邻存放。</p>
+<p><strong>使用 find 和 count 函数</strong></p>
+<p>count 返回某个键的出现的次数，find 返回的是一个迭代器，指向第一个正在查找的键的实例。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">search_item</span><span class="params">(<span class="string">"C.X.Q."</span>)</span></span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">multimap</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::size_type sz_type;</span><br><span class="line">sz_type entrise = authors.count(search_item);</span><br><span class="line"><span class="built_in">multimap</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;::iterator iter = authors.find(search_item);</span><br><span class="line"><span class="keyword">for</span> (sz_type cnt = <span class="number">0</span>; cnt != entrise; ++cnt, ++iter)</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; iter-&gt;second &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p><strong>另一种解决办法</strong></p>
+<table>
+<thead>
+<tr>
+<th>返回迭代器的关联操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.lower_cound(key)</td>
+<td>返回一个迭代器，指向第一个不小于 key 的元素</td>
+</tr>
+<tr>
+<td>m.upper_bound(key)</td>
+<td>返回一个迭代器，指向第一个大于 key 的元素</td>
+</tr>
+<tr>
+<td>m.equal_range(key)</td>
+<td>返回一个迭代器的 pair 对象<br>first 成员等价于 m.lower_bound(key),second 成员等价于 m.upper_bound(key)</td>
+</tr>
+</tbody>
+</table>
+<p>END.</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+          
+            <a href="/tags/Cpp-primer/" rel="tag">#Cpp primer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/cpp-demo-12/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/cpp-associative_container/"
+           data-title="关联容器" data-url="http://bluestein.github.io/2016/01/cpp-associative_container/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ye.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bluestein" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/2d2dcfdbf403" target="_blank">
+                  
+                    <i class="fa fa-heartbeat"></i> 简书
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3239589332" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pair_类型"><span class="nav-number">1.</span> <span class="nav-text">pair 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pair_的创建和初始化"><span class="nav-number">1.1.</span> <span class="nav-text">pair 的创建和初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pair_对象操作"><span class="nav-number">1.2.</span> <span class="nav-text">pair 对象操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联容器"><span class="nav-number">2.</span> <span class="nav-text">关联容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map_类型"><span class="nav-number">3.</span> <span class="nav-text">map 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map_的定义"><span class="nav-number">3.1.</span> <span class="nav-text">map 的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map_定义的类型"><span class="nav-number">3.2.</span> <span class="nav-text">map 定义的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向_map_添加元素"><span class="nav-number">3.3.</span> <span class="nav-text">向 map 添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找_map_中的元素"><span class="nav-number">3.4.</span> <span class="nav-text">查找 map 中的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从_map_删除元素"><span class="nav-number">3.5.</span> <span class="nav-text">从 map 删除元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set_类型"><span class="nav-number">4.</span> <span class="nav-text">set 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set_类型的定义和使用"><span class="nav-number">4.1.</span> <span class="nav-text">set 类型的定义和使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multiset_和_multimap"><span class="nav-number">5.</span> <span class="nav-text">multiset 和 multimap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#multiset_和_multimap_中查找元素"><span class="nav-number">5.1.</span> <span class="nav-text">multiset 和 multimap 中查找元素</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Humooo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>

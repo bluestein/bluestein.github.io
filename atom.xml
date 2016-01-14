@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-01-09T11:42:20.163Z</updated>
+  <updated>2016-01-14T14:38:35.360Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,12 +15,356 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[LATEX: LLNCS v2.4]]></title>
+    <title><![CDATA[关联容器]]></title>
+    <link href="http://bluestein.github.io/2016/01/cpp-associative_container/"/>
+    <id>http://bluestein.github.io/2016/01/cpp-associative_container/</id>
+    <published>2016-01-14T06:49:02.000Z</published>
+    <updated>2016-01-14T14:38:35.360Z</updated>
+    <content type="html"><![CDATA[<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+<p>两个基本的关联容器是 map 和 set。</p>
+<ol>
+<li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
+<li>set 仅包含键，可以看成含有很多键值得集合。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>关联容器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map</td>
+<td>关联数组</td>
+</tr>
+<tr>
+<td>set</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>multimap</td>
+<td>一个键可出现多次的 map 类型</td>
+</tr>
+<tr>
+<td>multiset</td>
+<td>一个键可出现多次的 set 类型</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>一般来说，<strong>如果想有效的存储不同值得集合</strong>，使用 set 比较合适；而 map 容器则更适合用于存储键关联值得情况。<br>比如在文本处理时，可以使用 set 来存储要忽略的词，而 map 可以使用作字典：单词本身是键，其解释是值。</p>
+<blockquote>
+<p>set 和 map 的键是唯一的，每个键只能出现一次。如果想使用一个键对应多个值得情况，那么使用 multiset 和 multimap 类型。</p>
+</blockquote>
+<h3 id="pair_类型">pair 类型</h3><p>在介绍关联容器之前，必须先了解一种与之相关的简单的标准库类型——pair 类型，在 <code>utility</code> 头文件中定义</p>
+<table>
+<thead>
+<tr>
+<th>pair 类型所提供的操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pair<t1, t2=""> p1</t1,></td>
+<td>创建一个空的 pair 对象，它的两个元素分别是 T1 和 T2 类型，采用<strong>值初始化</strong></td>
+</tr>
+<tr>
+<td>pair<t1, t2=""> p1(v1,v2)</t1,></td>
+<td>创建一个 pair 对象，它的两个元素类型分别是 T1 和 T2。其中 first 成员初始化为 v1，second 成员初始化为 v2</td>
+</tr>
+<tr>
+<td>make_pair(v1, v2)</td>
+<td>用 v1 和 v2 创建一个 pair 对象，其元素的类型分别是 v1 和 v2 的类型。</td>
+</tr>
+<tr>
+<td>p1 &lt; p2</td>
+<td>两个 pair 对象的小于运算，其定义遵循字典次序：如果 <code>p1.first &lt; p2.first</code> 或 <code>!(p2.first &lt; p1.first) &amp;&amp; p1.second &lt; p2.second</code> 则返回 true</td>
+</tr>
+<tr>
+<td>p1 == p2</td>
+<td>等于操作</td>
+</tr>
+<tr>
+<td>p.first</td>
+<td>返回 p 中的 first（第一个） 成员</td>
+</tr>
+<tr>
+<td>p.second</td>
+<td>返回 p 中的 second（第二个） 成员</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pair_的创建和初始化">pair 的创建和初始化</h4><p>在创建 pair 对象时，必须提供两个类型名，这两个类型名不必相同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; anon;</span><br><span class="line">pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; line;</span><br></pre></td></tr></table></figure>
+<p><strong>创建 pair 时，如果不提供初始化式，则调用默认构造函数进行值初始化。</strong>所以，<code>anon</code> 是包含两个空 string 成员的 pair 对象； <code>word_count</code> 中的 int 型成员获得 0 值； <code>line</code> 则是存储一个空 string 和一个空 vector 类型的对象。</p>
+<p>也可以提供初始化式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; author(<span class="string">"James"</span>, <span class="string">"Joyce"</span>);</span><br></pre></td></tr></table></figure>
+<p>pair 类型使用起来较繁琐，可以使用 typedef 简化声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; Author;</span><br><span class="line"><span class="function">Author <span class="title">proust</span><span class="params">(<span class="string">"Marcel"</span>, <span class="string">"Proust"</span>)</span></span>;</span><br><span class="line"><span class="function">Author <span class="title">joyce</span><span class="params">(<span class="string">"James"</span>, <span class="string">"Joyce"</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="pair_对象操作">pair 对象操作</h4><p>与其他标准库类型不同，对于 pair 类型，<strong>可以直接访问其数据成员，它的成员都是公有的</strong>。分别命名为 first 和 second。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> firstBook;</span><br><span class="line"><span class="keyword">if</span> (author.first == <span class="string">"James"</span> &amp;&amp; author == <span class="string">"Joyce"</span>)</span><br><span class="line">	firstBook = <span class="string">"Stephen Hero"</span>;</span><br></pre></td></tr></table></figure>
+<p>除了构造函数之外，标准库还提供一个 make_pair 函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; next_auth;</span><br><span class="line"><span class="built_in">string</span> first, last;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; first &gt;&gt; last) &#123;</span><br><span class="line">	next_auth = make_pair(first, last);</span><br><span class="line">	<span class="comment">// process next_auth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为成员是公有的，所以可以直接输入</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; next_auth;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; next_auth.first &gt;&gt; next_auth.second) &#123;</span><br><span class="line">	<span class="comment">// process next_auth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="关联容器">关联容器</h3><p>关联容器与顺序容器共享大部分的操作，但并不是全部。关联容器不支持 <strong>front, push_front, pop_front, back, push_back, pop_back</strong> 等操作。共享的包括：</p>
+<ol>
+<li><p>三种构造函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C&lt;T&gt; c;</span><br><span class="line">C&lt;T&gt; c1(c2);</span><br><span class="line">C&lt;T&gt; c(begin, end);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系运算</p>
+</li>
+<li>begin，end，rbegin，rend</li>
+<li>typedef。注意：对于 map 类型，<strong>value_type 的类型是 pair 类型。</strong></li>
+<li>swap 和 赋值操作。<strong>但不提供 assign 函数</strong>。</li>
+<li>clear，erase。<strong>关联容器 erase 操作返回 void 类型</strong>。</li>
+<li>容器大小的操作。<strong>不支持 resize 操作</strong>。</li>
+</ol>
+<p>对于与顺序容器相同的操作，关联容器重新定义了这些操作的含义或返回类型，主要区别在于关联容器中使用了键。</p>
+<blockquote>
+<p>元素在关联容器中根据键的顺序排列。</p>
+</blockquote>
+<h3 id="map_类型">map 类型</h3><p>map 可以理解为 <strong>关联数组</strong>，但是通过键获取元素值，而不是位置。</p>
+<h4 id="map_的定义">map 的定义</h4><p>要使用 map 需包含 map 头文件</p>
+<table>
+<thead>
+<tr>
+<th>map 的构造函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map<k, v=""> m;</k,></td>
+<td>空 map 对象，键和值得类型分别为 k 和 v</td>
+</tr>
+<tr>
+<td>map<k, v=""> m(m1)</k,></td>
+<td>创建 m1 的副本</td>
+</tr>
+<tr>
+<td>map<k, v=""> m(begin, end);</k,></td>
+<td>创建 begin 至 end 范围内所有元素的副本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>键类型的约束</strong></p>
+<p>在使用关联容器时，<strong>它的键类型必须要有一个比较函数</strong>。所使用的比较函数必须在键类型上<strong>严格弱排序</strong>。所谓严格弱排序，可以理解为键类型数据上的“小于”关系，不能出现相互“小于”的情况。</p>
+<blockquote>
+<p>在实际应用中，键类型必须定义 &lt; 操作符，而且该操作符能正确的工作。</p>
+</blockquote>
+<h4 id="map_定义的类型">map 定义的类型</h4><p>map 对象是键-值对，每个元素分为两个部分：键和其关联的值。map 的 value_type 可以很清楚的表示这种情况，该类型是 pair 类型。</p>
+<table>
+<thead>
+<tr>
+<th>map 定义的类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map<k, v="">::key_type</k,></td>
+<td>键的类型</td>
+</tr>
+<tr>
+<td>map<k, v="">::mapped_type</k,></td>
+<td>值的类型</td>
+</tr>
+<tr>
+<td>map<k, v="">::value_type</k,></td>
+<td>键-值的类型：pair类型。有 first 和 second 两个公有成员</td>
+</tr>
+</tbody>
+</table>
+<p>对 map 的迭代器解引用会产生一个 pair 类型值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator map_it = word_count.begin();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; map_it-&gt;first;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; map_it-&gt;second;</span><br><span class="line">map_it-&gt;first = <span class="string">"new key"</span>; <span class="comment">// error: key is const</span></span><br><span class="line">++map_it-&gt;second; <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+<h4 id="向_map_添加元素">向 map 添加元素</h4><p><strong>下标</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line">word_count[<span class="string">"Anna"</span>] = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>上面程序会发生：</p>
+<ol>
+<li>在 <code>word_count</code> 中查找键为 Anna 的元素，没有找到；</li>
+<li>将一个键为 Anna 的 pair 插入到 <code>word_count</code>，该 pair 的值为 (“Anna”, 0)。</li>
+<li>读取新插入的元素，并将它赋值为 1.</li>
+</ol>
+<blockquote>
+<p>故使用下标访问 map 中没有的元素会导致向该容器中添加一个新元素。</p>
+</blockquote>
+<p><strong>insert</strong></p>
+<table>
+<thead>
+<tr>
+<th>insert 操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.insert(p);</td>
+<td>p 是 value_type 类型的值，如果 p.first 不存在，则插入 p 到 m，否则 m 保持不变。该函数返回一个 pair 对象，包含一个指向 p 的 map 的迭代器，和一个 bool 值。</td>
+</tr>
+<tr>
+<td>m.insert(begin, end);</td>
+<td>插入 begin 和 end 范围内的值。返回 void 类型</td>
+</tr>
+<tr>
+<td>m.insert(iter, p)</td>
+<td>如果 p.first 不在 m 中，则以 iter 为起点搜索 p 的存储位置。返回一个迭代器，指向新插入的 p。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word_count.insert(<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::value_type(<span class="string">"Anna"</span>, <span class="number">1</span>));</span><br><span class="line">word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>)); <span class="comment">// equivalent way</span></span><br></pre></td></tr></table></figure>
+<p><strong>insert 的返回值类型</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; ret = word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>));</span><br><span class="line"><span class="comment">// use typedef</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator, <span class="keyword">bool</span>&gt; ret_type;</span><br><span class="line">ret_type ret = word_count.insert(make_pair(<span class="string">"Anna"</span>, <span class="number">1</span>)); <span class="comment">// equivalent way</span></span><br></pre></td></tr></table></figure>
+<h4 id="查找_map_中的元素">查找 map 中的元素</h4><p>读取 map 中一个元素最简单的方法是下标：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; word_count;</span><br><span class="line"><span class="keyword">int</span> occurs = word_count[<span class="string">"Anna"</span>];</span><br></pre></td></tr></table></figure>
+<p>但是有个弊端：如果该键不在 map 中，则会插入之。</p>
+<p>对于查找或读取元素，map 提供了两个操作： count 和 find。</p>
+<ol>
+<li>find： <code>m.find(key)</code>, 如果存在 key 索引的元素，返回指向该元素的迭代器，否则返回末端迭代器，即 end()；</li>
+<li>count：<code>m.count(key)</code>,  返回 m 中 k 出现的次数；</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> occurs = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (word_count.count(<span class="string">"Anna"</span>))</span><br><span class="line">	occurs = word_count[<span class="string">"Anna"</span>];</span><br></pre></td></tr></table></figure>
+<p>这里对元素做了两次查询，在优化性能时可以考虑。find 则更适合查询元素：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> occurs = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator it = word_count.find(<span class="string">"Anna"</span>);</span><br><span class="line"><span class="keyword">if</span> (it != word_count.end())</span><br><span class="line">	occurs = it-&gt;second;</span><br></pre></td></tr></table></figure>
+<h4 id="从_map_删除元素">从 map 删除元素</h4><table>
+<thead>
+<tr>
+<th>删除元素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.erase(key)</td>
+<td>删除键为 k 的元素。返回 size_type 类型的值，表示删除元素的个数</td>
+</tr>
+<tr>
+<td>m.erase(iter)</td>
+<td>删除迭代器 iter 指向的元素。iter 必须指向存在的元素，且不能等于 m.end()。返回 void 类型。</td>
+</tr>
+<tr>
+<td>m.erase(begin, end)</td>
+<td>删除范围内的元素。返回 void 类型。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="set_类型">set 类型</h3><p>set 跟 map 不同，它只是单纯的键的集合。支持：</p>
+<ol>
+<li>insert</li>
+<li>count，find</li>
+<li>erase</li>
+</ol>
+<p>另外：</p>
+<ol>
+<li>不支持下标操作；</li>
+<li>没有 mapped_type 类型；</li>
+</ol>
+<h4 id="set_类型的定义和使用">set 类型的定义和使用</h4><p>set 存放的是一系列唯一值的集合。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) &#123;</span><br><span class="line">	ivec.push_back(i);</span><br><span class="line">	ivec.push_back(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; iset(ivec.begin(), ivec.end());</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; ivec.size() &lt;&lt; endl; <span class="comment">// prints 20</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; iset.size() &lt;&lt; endl; <span class="comment">// prints 10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>向 set 添加元素</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; sset;</span><br><span class="line">sset.insert(<span class="string">"C.X.Q"</span>);</span><br><span class="line">sset.insert(<span class="string">"I L U"</span>);</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; iset;</span><br><span class="line">iset.insert(ivec.begin(), ivec.end());</span><br></pre></td></tr></table></figure>
+<p><strong>从 set 中获取元素</strong></p>
+<p>set 不提供下标操作，只能使用 find 和 count 函数，count 函数的返回值只能是 1 或 0，因为里面的元素都是唯一的。正如不能修改 map 的键一样，set 中的键也是 const 类型。在获得指向 set 中某元素的迭代器后，只能对其做读操作，不能做写操作。</p>
+<h3 id="multiset_和_multimap">multiset 和 multimap</h3><p>map 和 set 中键都是唯一的，而 multimap 和 multiset 类型则允许同一个键多次出现。也就是说每次调用 insert 都会添加一个元素，而 erase 则会删除跟该键有关的所有元素。</p>
+<h4 id="multiset_和_multimap_中查找元素">multiset 和 multimap 中查找元素</h4><p>在 multimap 中，同一个键的所有元素都相邻存放。</p>
+<p><strong>使用 find 和 count 函数</strong></p>
+<p>count 返回某个键的出现的次数，find 返回的是一个迭代器，指向第一个正在查找的键的实例。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">search_item</span><span class="params">(<span class="string">"C.X.Q."</span>)</span></span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">multimap</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::size_type sz_type;</span><br><span class="line">sz_type entrise = authors.count(search_item);</span><br><span class="line"><span class="built_in">multimap</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;::iterator iter = authors.find(search_item);</span><br><span class="line"><span class="keyword">for</span> (sz_type cnt = <span class="number">0</span>; cnt != entrise; ++cnt, ++iter)</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; iter-&gt;second &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p><strong>另一种解决办法</strong></p>
+<table>
+<thead>
+<tr>
+<th>返回迭代器的关联操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m.lower_cound(key)</td>
+<td>返回一个迭代器，指向第一个不小于 key 的元素</td>
+</tr>
+<tr>
+<td>m.upper_bound(key)</td>
+<td>返回一个迭代器，指向第一个大于 key 的元素</td>
+</tr>
+<tr>
+<td>m.equal_range(key)</td>
+<td>返回一个迭代器的 pair 对象<br>first 成员等价于 m.lower_bound(key),second 成员等价于 m.upper_bound(key)</td>
+</tr>
+</tbody>
+</table>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+<p>两个基本的关联容器是 map 和 set。</p>
+<ol>
+<li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
+<li>set 仅包含键，可以看成含有很多键值得集合。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>关联容器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map</td>
+<td>关联数组</td>
+</tr>
+<tr>
+<td>set</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>multimap</td>
+<td>一个键可出现多次的 map 类型</td>
+</tr>
+<tr>
+<td>multiset</td>
+<td>一个键可出现多次的 set 类型</td>
+</tr>
+</tbody>
+</table>]]>
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
+    
+      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://bluestein.github.io/2016/01/cpp-demo-12/"/>
+    <id>http://bluestein.github.io/2016/01/cpp-demo-12/</id>
+    <published>2016-01-12T08:44:59.857Z</published>
+    <updated>2016-01-12T08:44:59.857Z</updated>
+    <content type="html"><![CDATA[<p>单词转换程序<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; trans_map;</span><br><span class="line">	<span class="built_in">string</span> key, value;</span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"wrong number of arguments"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream map_file;</span><br><span class="line">	map_file.open(argv[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!map_file) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no transformation file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (map_file &gt;&gt; key &gt;&gt; value) &#123;</span><br><span class="line">		trans_map.insert(make_pair(key, value));</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream input;</span><br><span class="line">	input.open(argv[<span class="number">2</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no input file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">while</span> (getline(input, line)) &#123;</span><br><span class="line">		<span class="function"><span class="built_in">istringstream</span> <span class="title">s</span><span class="params">(line)</span></span>;</span><br><span class="line">		<span class="built_in">string</span> word;</span><br><span class="line">		<span class="keyword">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">while</span> (s &gt;&gt; word) &#123;</span><br><span class="line">			<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::const_iterator map_citer = trans_map.find(word);</span><br><span class="line">			<span class="keyword">if</span> (map_citer != trans_map.end()) &#123;</span><br><span class="line">				word = map_citer-&gt;second;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (first) &#123;</span><br><span class="line">				first = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>单词转换程序<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br>]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LaTeX: LLNCS v2.4]]></title>
     <link href="http://bluestein.github.io/2016/01/LATEX-LLNCS/"/>
     <id>http://bluestein.github.io/2016/01/LATEX-LLNCS/</id>
     <published>2016-01-09T02:02:00.000Z</published>
-    <updated>2016-01-09T11:42:20.163Z</updated>
-    <content type="html"><![CDATA[<h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
+    <updated>2016-01-12T02:13:41.082Z</updated>
+    <content type="html"><![CDATA[<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/" target="_blank" rel="external">官网</a></p>
+<h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
 <tr>
@@ -302,7 +646,8 @@
 <p>END. </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
+    <![CDATA[<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/">官网</a></p>
+<h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
 <tr>
@@ -360,13 +705,13 @@
     
     </summary>
     
-      <category term="LATEX" scheme="http://bluestein.github.io/tags/LATEX/"/>
-    
       <category term="LLNCS" scheme="http://bluestein.github.io/tags/LLNCS/"/>
+    
+      <category term="LaTeX" scheme="http://bluestein.github.io/tags/LaTeX/"/>
     
       <category term="Odds&amp;Ends" scheme="http://bluestein.github.io/categories/Odds-Ends/"/>
     
-      <category term="LATEX" scheme="http://bluestein.github.io/categories/Odds-Ends/LATEX/"/>
+      <category term="LaTex" scheme="http://bluestein.github.io/categories/Odds-Ends/LaTex/"/>
     
   </entry>
   
@@ -2298,124 +2643,6 @@
       <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
     
       <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github: 账户的创建和配置]]></title>
-    <link href="http://bluestein.github.io/2015/12/github-1/"/>
-    <id>http://bluestein.github.io/2015/12/github-1/</id>
-    <published>2015-12-04T04:54:49.000Z</published>
-    <updated>2016-01-09T02:07:19.673Z</updated>
-    <content type="html"><![CDATA[<p>GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git 开源项目的直接部分，但如果想要专业地使用 Git，你将不可避免地与 GitHub 打交道，所以这依然是一个绝好的学习机会。</p>
-<a id="more"></a>
-<h3 id="账户的创建和配置">账户的创建和配置</h3><p>你所需要做的第一件事是创建一个免费账户。 直接访问 <a href="https://github.com" target="_blank" rel="external">Github</a>，选择一个未被占用的用户名，提供一个电子邮件地址和密码，点击写着“Sign up for GitHub”的绿色大按钮即可。</p>
-<blockquote>
-<p>GitHub 为免费账户提供了完整功能，限制是你的项目都将被完全公开（每个人都具有读权限）。 GitHub 的付费计划可以让你拥有一定数目的私有项目。</p>
-</blockquote>
-<h3 id="SSH_访问">SSH 访问</h3><p>现在，你完全可以使用 https:// 协议，通过你刚刚创建的用户名和密码访问 Git 版本库。 但是，如果仅仅克隆公有项目，你甚至不需要注册——刚刚我们创建的账户是为了以后 fork 其它项目，以及推送我们自己的修改。</p>
-<p>如果你习惯使用 SSH 远程，你需要配置一个公钥 (public key)。</p>
-<p>SSH key 的生成过程请查看 <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">github generating-ssh-keys</a>。</p>
-<p>点击头像下得“Settings”，然后在左侧选择“SSH keys”部分。在这个页面点击“Add an SSH key”按钮，给你的公钥起一个名字，将你的 <code>~/.ssh/id_rsa.pub</code>（或者自定义的其它名字）公钥文件的内容粘贴到文本区，然后点击“Add key”。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>GitHub 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。 所以，尽管这不是 Git 开源项目的直接部分，但如果想要专业地使用 Git，你将不可避免地与 GitHub 打交道，所以这依然是一个绝好的学习机会。</p>]]>
-    
-    </summary>
-    
-      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
-    
-      <category term="Odds&amp;Ends" scheme="http://bluestein.github.io/categories/Odds-Ends/"/>
-    
-      <category term="Github + Hexo" scheme="http://bluestein.github.io/categories/Odds-Ends/Github-Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github: Git的使用 - 分支]]></title>
-    <link href="http://bluestein.github.io/2015/12/github-git-4/"/>
-    <id>http://bluestein.github.io/2015/12/github-git-4/</id>
-    <published>2015-12-03T07:54:49.000Z</published>
-    <updated>2016-01-09T02:08:06.529Z</updated>
-    <content type="html"><![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
-<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="external">官网教程</a>。</p>
-<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>
-<a id="more"></a>
-<p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何保存数据的。在进行提交操作时，Git 会保存一个提交对象（commit object）。知道了 Git 保存数据的方式，我们可以很自然的想到——该提交对象会包含一个指向暂存内容快照的指针。 但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象，</p>
-<p>为了说得更加形象，我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和使用 SHA-1 哈希算法，然后会把当前版本的文件快照保存到 Git 仓库中（Git 使用 blob 对象来保存它们），最终将校验和加入到暂存区域等待提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m <span class="string">'The initial commit of my project'</span></span><br></pre></td></tr></table></figure>
-<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和，然后在 Git 仓库中这些校验和保存为树对象。 随后，Git 便会创建一个提交对象，它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
-<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 它会在每次的提交操作中自动向前移动。</p>
-<blockquote>
-<p>Git 的 “master” 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
-</blockquote>
-<p><strong>分支创建</strong></p>
-<p>Git 是怎么创建新分支的呢？ 很简单，它只是为你创建了一个可以移动的新的指针。 比如，创建一个 testing 分支， 你需要使用 git branch 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch testing</span><br></pre></td></tr></table></figure>
-<p>这会在当前所在的提交对象上创建一个指针。</p>
-<p>那么，Git 又是怎么知道当前在哪一个分支上呢？ 也很简单，它有一个名为 <code>HEAD</code> 的特殊指针。 请注意它和许多其它版本控制系统（如 Subversion 或 CVS）里的 <code>HEAD</code> 概念完全不同。 在 Git 中，它是一个指针，指向当前所在的本地分支（译注：将 <code>HEAD</code> 想象为当前分支的别名）。 在本例中，你仍然在 <code>master</code> 分支上。 因为 <code>git branch</code> 命令仅仅 创建 一个新分支，并不会自动切换到新分支中去。</p>
-<p>你可以简单地使用 <code>git log</code> 命令查看各个分支当前所指的对象。 提供这一功能的参数是 <code>--decorate</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --decorate</span><br></pre></td></tr></table></figure>
-<p><strong>分支切换</strong></p>
-<p>要切换到一个已存在的分支，你需要使用 <code>git checkout</code> 命令。 我们现在切换到新创建的 <code>testing</code> 分支去：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout testing</span><br></pre></td></tr></table></figure>
-<p>这样 HEAD 就指向 <code>testing</code> 分支了。</p>
-<h3 id="4、分支的新建与合并">4、分支的新建与合并</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="external">官网教程</a>。</p>
-<p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
-<ol>
-<li>开发某个网站。</li>
-<li>为实现某个新的需求，创建一个分支。</li>
-<li>在这个分支上开展工作。</li>
-</ol>
-<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
-<ol>
-<li>切换到你的线上分支（production branch）。</li>
-<li>为这个紧急任务新建一个分支，并在其中修复它。</li>
-<li>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</li>
-<li>切换回你最初工作的分支上，继续工作。</li>
-</ol>
-<p><strong>新建分支</strong></p>
-<p>首先，我们假设你正在你的项目上工作，并且已经有一些提交。</p>
-<p>现在，你已经决定要解决你的公司使用的问题追踪系统中的 <code>#53</code> 问题。 想要新建一个分支并同时切换到那个分支上，你可以运行一个带有 <code>-b</code> 参数的 <code>git checkout</code> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53</span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br></pre></td></tr></table></figure>
-<p>它是下面两条命令的简写：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch iss53</span><br><span class="line">$ git checkout iss53</span><br></pre></td></tr></table></figure>
-<p>你继续在 <code>#53</code> 问题上工作，并且做了一些提交。 在此过程中，<code>iss53</code> 分支在不断的向前推进，因为你已经检出到该分支（也就是说，你的 <code>HEAD</code> 指针指向了 <code>iss53</code> 分支）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'added a new footer [issue 53]'</span></span><br></pre></td></tr></table></figure>
-<p>现在你接到那个电话，有个紧急问题等待你来解决。 有了 Git 的帮助，你不必把这个紧急问题和 <code>iss53</code> 的修改混在一起，你也不需要花大力气来还原关于 <code>53#</code> 问题的修改，然后再添加关于这个紧急问题的修改，最后将这个修改提交到线上分支。 你所要做的仅仅是切换回 <code>master</code> 分支。</p>
-<p>但是，在你这么做之前，要留意你的工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止 Git 切换到该分支。 最好的方法是，在你切换分支之前，保持好一个干净的状态。 有一些方法可以绕过这个问题（即，保存进度（stashing） 和 修补提交（commit amending）），我们会在 储藏与清理 中看到关于这两个命令的介绍。 现在，我们假设你已经把你的修改全部提交了，这时你可以切换回 <code>master</code> 分支了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br></pre></td></tr></table></figure>
-<p>这个时候，你的工作目录和你在开始 <code>#53</code> 问题之前一模一样，现在你可以专心修复紧急问题了。 请牢记：当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。</p>
-<p>接下来，你要修复这个紧急问题。 让我们建立一个针对该紧急问题的分支（hotfix branch），在该分支上工作直到问题解决：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b hotfix</span><br><span class="line">Switched to a new branch <span class="string">'hotfix'</span></span><br><span class="line">$ vim index.html</span><br><span class="line">$ git commit <span class="operator">-a</span> -m <span class="string">'fixed the broken email address'</span></span><br><span class="line">[hotfix <span class="number">1</span>fb7853] fixed the broken email address</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">2</span> insertions(+)</span><br></pre></td></tr></table></figure>
-<p>你在 hotfix 分支上所做的工作并没有包含到 <code>iss53</code> 分支中。 如果你需要拉取 <code>hotfix</code> 所做的修改，你可以使用 <code>git merge master</code> 命令将 <code>master</code> 分支合并入 <code>iss53</code> 分支，或者你也可以等到 <code>iss53</code> 分支完成其使命，再将其合并回 <code>master</code> 分支。</p>
-<p><strong>分支的合并</strong></p>
-<p>假设你已经修正了 <code>#53</code> 问题，并且打算将你的工作合并入 <code>master</code> 分支。 为此，你需要合并 <code>iss53</code> 分支到 <code>master</code> 分支，这和之前你合并 <code>hotfix</code> 分支所做的工作差不多。 你只需要检出到你想合并入的分支，然后运行 <code>git merge</code> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">$ git merge iss53</span><br><span class="line">Merge made by the <span class="string">'recursive'</span> strategy.</span><br><span class="line">index.html |    <span class="number">1</span> +</span><br><span class="line"><span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</span><br></pre></td></tr></table></figure>
-<p><strong>遇到冲突时的分支合并</strong></p>
-<p>有时候合并操作不会如此顺利。 如果你在两个不同的分支中，对同一个文件的同一个部分进行了不同的修改，Git 就没法干净的合并它们。 如果你对 #53 问题的修改和有关 hotfix 的修改都涉及到同一个文件的同一处，在合并它们的时候就会产生合并冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge iss53</span><br><span class="line">Auto-merging index.html</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> index.html</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
-<p>此时 Git 做了合并，但是没有自动地创建一个新的合并提交。 Git 会暂停下来，等待你去解决合并产生的冲突。</p>
-<p>如果你想使用图形化工具来解决冲突，你可以运行 <code>git mergetool</code>，该命令会为你启动一个合适的可视化合并工具，并带领你一步一步解决这些冲突：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git mergetool</span><br></pre></td></tr></table></figure>
-<p><strong>分支管理</strong></p>
-<p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86" target="_blank" rel="external">官网教程</a>。</p>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>接上一节 <a href="http://bluestein.github.io/2015/12/github-git-3/">Github: Git的使用 - 撤销操作</a>，下面继续介绍git的更多用法。</p>
-<h3 id="4、分支">4、分支</h3><p>详细的可以看<a href="http://www.git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">官网教程</a>。</p>
-<p>几乎所有的版本控制系统都以某种形式支持分支。 使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。 在很多版本控制系统中，这是一个略微低效的过程——常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。</p>]]>
-    
-    </summary>
-    
-      <category term="git" scheme="http://bluestein.github.io/tags/git/"/>
-    
-      <category term="github" scheme="http://bluestein.github.io/tags/github/"/>
-    
-      <category term="Odds&amp;Ends" scheme="http://bluestein.github.io/categories/Odds-Ends/"/>
-    
-      <category term="Github + Hexo" scheme="http://bluestein.github.io/categories/Odds-Ends/Github-Hexo/"/>
     
   </entry>
   
