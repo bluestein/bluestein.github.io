@@ -85,7 +85,7 @@ const指针；
 1. 指向const对象的指针
 如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：
 1const dou">
-<meta property="og:updated_time" content="2016-03-05T02:41:48.618Z">
+<meta property="og:updated_time" content="2016-03-05T02:46:17.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="const与指针、函数">
 <meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
@@ -383,10 +383,10 @@ const指针；
 <p>“引用传递”有可能改变参数a，这是我们不期望的。解决这个问题很容易，加const修饰即可，因此函数最终成为 void func(const A &amp;a)。</p>
 <p>以此类推，是否应将 void func(int x) 改写为 void func(const int &amp;x)，以便提高效率？完全没有必要，因为内部数据类型的参数不存在构造、析构的过程，而复制也非常快，“值传递”和“引用传递”的效率几乎相当。</p>
 <p>总结一下：</p>
-<ul>
+<ol>
 <li>对于非内部数据类型的输入参数，应该将“值传递”的方式改为“const 引用传递”，目的是提高效率。例如将 void func(A a) 改为 void func(const A &amp;a)。</li>
 <li>对于内部数据类型的输入参数，不要将“值传递”的方式改为“const 引用传递”。否则既达不到提高效率的目的，又降低了函数的可理解性。例如 void func(int x) 不应该改为void func(const int &amp;x)。</li>
-</ul>
+</ol>
 <p><strong>2. 用const 修饰函数的返回值</strong></p>
 <p>如果给以“指针传递”方式的函数返回值加 const 修饰，那么函数返回值（即指针）的内容不能被修改，<strong>该返回值只能被赋给加const 修饰的同类型指针</strong>。</p>
 <p>如下语句将出现编译错误：</p>
@@ -621,7 +621,7 @@ const指针；
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
-  <span>Contents of this blog is licensed under <a class="theme-link" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></span>
+  <span>Contents of this blog is licensed under <a class="theme-link" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span>
 </div>
 
 <div class="powered-by">
