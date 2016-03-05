@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cpp," />
+  <meta name="keywords" content="Cpp,const,指针," />
 
 
 
@@ -59,9 +59,9 @@
 
 
 
-<meta name="description" content="##const与指针##
-版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
+const与指针
 两种类型：
 
 指向const对象的指针；
@@ -69,14 +69,14 @@ const指针；
 
 1. 指向const对象的指针
 如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：
-1const">
+1const dou">
 <meta property="og:type" content="article">
 <meta property="og:title" content="const与指针、函数">
 <meta property="og:url" content="http://bluestein.github.io/2016/03/const-pointer-function/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="##const与指针##
-版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
+const与指针
 两种类型：
 
 指向const对象的指针；
@@ -84,13 +84,13 @@ const指针；
 
 1. 指向const对象的指针
 如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：
-1const">
-<meta property="og:updated_time" content="2016-03-05T02:27:43.110Z">
+1const dou">
+<meta property="og:updated_time" content="2016-03-05T02:41:48.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="const与指针、函数">
-<meta name="twitter:description" content="##const与指针##
-版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
+const与指针
 两种类型：
 
 指向const对象的指针；
@@ -98,7 +98,7 @@ const指针；
 
 1. 指向const对象的指针
 如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：
-1const">
+1const dou">
 
 
 
@@ -330,9 +330,10 @@ const指针；
       
 
       
-        <h2 id="##const与指针##">##const与指针##</h2><blockquote>
+        <blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
+<h2 id="const与指针">const与指针</h2><hr>
 <p>两种类型：</p>
 <ul>
 <li>指向const对象的指针；</li>
@@ -368,7 +369,8 @@ const指针；
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14159</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *<span class="keyword">const</span> cdcp = &amp;pi;</span><br></pre></td></tr></table></figure>
 <p>上面的意思是既不能修改 <code>pi</code> 的值，也不能修改 <code>cdcp</code> 所指的对象。</p>
 <p>关于指针的其他内容，请参考本站文章<a href="http://bluestein.github.io/2015/11/cpp-primer4-11/">指针</a>。</p>
-<h2 id="##const与函数##">##const与函数##</h2><p><strong>1. 用const修饰函数的参数</strong></p>
+<h2 id="const与函数">const与函数</h2><hr>
+<p><strong>1. 用const修饰函数的参数</strong></p>
 <p>如果参数作输出用，不论它是什么数据类型，也不论它采用“指针传递”还是“引用传递”，都不能加const 修饰，否则该参数将失去输出功能。const 只能修饰输入参数：</p>
 <p><strong>如果输入参数采用“指针传递”，那么加 const 修饰可以防止意外地改动该指针，起到保护作用。</strong></p>
 <p>例如 StringCopy 函数：</p>
@@ -420,6 +422,10 @@ const指针；
         <div class="post-tags">
           
             <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+          
+            <a href="/tags/const/" rel="tag">#const</a>
+          
+            <a href="/tags/指针/" rel="tag">#指针</a>
           
         </div>
       
@@ -520,7 +526,7 @@ const指针；
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -585,7 +591,7 @@ const指针；
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="###const与指针##"><span class="nav-number">1.</span> <span class="nav-text">##const与指针##</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="###const与函数##"><span class="nav-number">2.</span> <span class="nav-text">##const与函数##</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#const与指针"><span class="nav-number">1.</span> <span class="nav-text">const与指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const与函数"><span class="nav-number">2.</span> <span class="nav-text">const与函数</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
