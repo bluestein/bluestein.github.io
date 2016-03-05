@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C风格字符串">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-12/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
-<meta property="og:updated_time" content="2015-12-30T06:14:03.361Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的">
+<meta property="og:updated_time" content="2016-03-05T01:45:42.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C风格字符串">
-<meta name="twitter:description" content="前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的一种通用的结构是C风格字符串（C-Style character string），字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 null 结束的字">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：字符串字面值的类型就是 const char 类型的数组。C++从C继承下来的">
 
 
 
@@ -300,7 +306,10 @@
       
 
       
-        <p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>前面的内容我们使用过字符串字面值，并了解字符串字面值的类型是字符常量的数组，现在可以更加明确的认识到：<strong>字符串字面值的类型就是 const char 类型的数组</strong>。C++从C继承下来的一种通用的结构是<strong>C风格字符串（C-Style character string）</strong>，字符串字面值就是该类型的实例。实际上，C风格字符串既不能确切的归结为C语言类型，也不能归结为C++的类型，而是以空字符 <code>null</code> 结束的字符数组：</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c1[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>&#125;;		<span class="comment">//c1 维数为3，not c-style</span></span><br><span class="line"><span class="keyword">char</span> c2[] = &#123;<span class="string">'C'</span>, <span class="string">'+'</span>, <span class="string">'+'</span>, <span class="string">'\0'</span>&#125;;	<span class="comment">//c2 维数为4</span></span><br><span class="line"><span class="keyword">char</span> c3[] = <span class="string">"C++"</span>;					<span class="comment">//c3 维数为4，自动添加空字符</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp = <span class="string">"C++"</span>;		<span class="comment">//自动添加空字符</span></span><br><span class="line"><span class="keyword">char</span> *cp1 = c1;		<span class="comment">//指向c1数组的第一个元素，not c-style</span></span><br><span class="line"><span class="keyword">char</span> *cp2 = c2;		<span class="comment">//指向c1数组的第一个元素，以空字符 `null` 结束的字符数组</span></span><br></pre></td></tr></table></figure>
 <p><code>c1</code> 和 <code>cp1</code> 都不是C风格字符串：<code>c1</code> 是不带结束符 <code>null</code> 的字符数组。其他都是C风格字符串。</p>
@@ -563,7 +572,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

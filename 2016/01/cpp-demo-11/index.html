@@ -59,19 +59,22 @@
 
 
 
-<meta name="description" content="Exercise 9.9编写一个循环将 list 以逆序输出
-123456789101112131415161718192021222324252627#include &amp;lt;vector&amp;gt;#include &amp;lt;list&amp;gt;#include &amp;lt;deque&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;using name">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 9.9编写一个循环将 list 以逆序输出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ex9.9">
 <meta property="og:url" content="http://bluestein.github.io/2016/01/cpp-demo-11/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="Exercise 9.9编写一个循环将 list 以逆序输出
-123456789101112131415161718192021222324252627#include &amp;lt;vector&amp;gt;#include &amp;lt;list&amp;gt;#include &amp;lt;deque&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;using name">
-<meta property="og:updated_time" content="2016-01-02T15:14:10.181Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 9.9编写一个循环将 list 以逆序输出">
+<meta property="og:updated_time" content="2016-03-05T01:49:45.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ex9.9">
-<meta name="twitter:description" content="Exercise 9.9编写一个循环将 list 以逆序输出
-123456789101112131415161718192021222324252627#include &amp;lt;vector&amp;gt;#include &amp;lt;list&amp;gt;#include &amp;lt;deque&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;string&amp;gt;using name">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 9.9编写一个循环将 list 以逆序输出">
 
 
 
@@ -303,9 +306,12 @@
       
 
       
-        <h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
+<a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s[] = &#123; <span class="string">"hi"</span>, <span class="string">"hey"</span>, <span class="string">"hello"</span> &#125;;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; slist(s, s + <span class="number">3</span>); </span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = --slist.end();</span><br><span class="line">	<span class="keyword">int</span> sz = <span class="keyword">sizeof</span>(s) / <span class="keyword">sizeof</span>(s[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (cnt &lt; sz) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; (*iter) &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (++cnt &lt; sz) &#123;</span><br><span class="line">			--iter;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// hello</span></span><br><span class="line"><span class="comment">// hey</span></span><br><span class="line"><span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
-<p>待续。。。</p>
 
       
     </div>
@@ -407,7 +413,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

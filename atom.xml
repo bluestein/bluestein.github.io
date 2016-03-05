@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-02-25T07:28:34.906Z</updated>
+  <updated>2016-03-05T02:27:43.110Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,12 +15,128 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[const与指针、函数]]></title>
+    <link href="http://bluestein.github.io/2016/03/const-pointer-function/"/>
+    <id>http://bluestein.github.io/2016/03/const-pointer-function/</id>
+    <published>2016-03-05T01:23:05.000Z</published>
+    <updated>2016-03-05T02:27:43.110Z</updated>
+    <content type="html"><![CDATA[<h2 id="##const与指针##">##const与指针##</h2><blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>两种类型：</p>
+<ul>
+<li>指向const对象的指针；</li>
+<li>const指针；</li>
+</ul>
+<p><strong>1. 指向const对象的指针</strong></p>
+<p>如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp;</span><br></pre></td></tr></table></figure>
+<p><code>cdp</code> 是指向一个double类型const对象的指针，const限定了 <code>cdp</code> 指针所指向的对象，而并非 <code>cdp</code> 本身。即 <code>cdp</code> 不是const类型，在定义时不一定需要给它初始化；如果有需要的话，允许给 <code>cdp</code> 重新赋值，使其指向另一个const对象，但不能通过 <code>cdp</code> 修改所指对象的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*cdp = <span class="number">2</span>;	<span class="comment">//error: *cdp might be const</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>把一个const对象的地址赋给一个普通的、非const对象的指针也会导致编译错误：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">double</span> *dp = &amp;pi;			<span class="comment">//error: dp is a plain pointer</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp = &amp;pi;	<span class="comment">//ok: cdp is a pointer to const</span></span><br></pre></td></tr></table></figure>
+<p><strong>不能使用 void* 指针保存const对象的地址</strong>，而必须使用const void*指针保存：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> val = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">void</span> *cvp = &amp;val;		<span class="comment">//ok: cvp is const</span></span><br><span class="line"><span class="keyword">void</span> *vp = &amp;val;			<span class="comment">//error: val is const</span></span><br></pre></td></tr></table></figure>
+<p>允许将非const对象赋给指向const对象的指针，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp = &amp;dval;	<span class="comment">//ok: 但是不能通过指针 cdp 改变 dval 的值</span></span><br></pre></td></tr></table></figure>
+<p>尽管 dval 不是 const 对象，但任何企图通过指针 <code>cdp</code> 修改其值得行为都会导致错误。</p>
+<p>事实上，也有办法通过指向const对象指针改变所指的非const对象的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp = &amp;dval;	<span class="comment">//ok: 但是不能通过指针 cdp 改变 dval 的值</span></span><br><span class="line">*cdp = <span class="number">3.14159</span>;				<span class="comment">//error: 不能通过 cdp 改变所指对象的值</span></span><br><span class="line"><span class="keyword">double</span> *dp = &amp;dval;			<span class="comment">//ok：dp 可以指向非const对象</span></span><br><span class="line">*dp = <span class="number">3.14159</span>;				<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *cdp &lt;&lt; endl;		<span class="comment">//此时会输出：3.14159</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以这样理解指向const对象的指针：自以为指向const对象的指针。但并不能保证所指向的对象一定是const对象。</p>
+</blockquote>
+<p><strong>2. const指针</strong></p>
+<p>这种指针本身不能修改：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ival = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> icp = &amp;ival;	<span class="comment">//icp 是const指针</span></span><br></pre></td></tr></table></figure>
+<p>这样理解：<code>icp</code> 是指向int对象的const的指针。跟其他const对象类似，const指针的值不能修改，意思就是不能使 <code>icp</code> 指向其他对象。任何企图给const指针赋值的行为都会出错（即使是赋它本身的值也一样）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icp = icp;	<span class="comment">//error: icp is const</span></span><br></pre></td></tr></table></figure>
+<p>并且 <strong>const指针在定义时必须初始化</strong>。</p>
+<p>const指针所指对象的值能否被该指针修改完全取决于该对象的类型，例如 <code>icp</code> 指向一个普通的非 const int 型的对象，则可以使用 <code>icp</code> 修改该对象的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*icp = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 指向const对象的const指针</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="number">3.14159</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *<span class="keyword">const</span> cdcp = &amp;pi;</span><br></pre></td></tr></table></figure>
+<p>上面的意思是既不能修改 <code>pi</code> 的值，也不能修改 <code>cdcp</code> 所指的对象。</p>
+<p>关于指针的其他内容，请参考本站文章<a href="http://bluestein.github.io/2015/11/cpp-primer4-11/">指针</a>。</p>
+<h2 id="##const与函数##">##const与函数##</h2><p><strong>1. 用const修饰函数的参数</strong></p>
+<p>如果参数作输出用，不论它是什么数据类型，也不论它采用“指针传递”还是“引用传递”，都不能加const 修饰，否则该参数将失去输出功能。const 只能修饰输入参数：</p>
+<p><strong>如果输入参数采用“指针传递”，那么加 const 修饰可以防止意外地改动该指针，起到保护作用。</strong></p>
+<p>例如 StringCopy 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringCopy</span><span class="params">(<span class="keyword">char</span> *destination, <span class="keyword">const</span> <span class="keyword">char</span> *source)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><code>source</code> 是输入参数，<code>destination</code> 是输出参数。给 <code>destination</code> 加上 const 修饰后，<strong>如果函数体内的语句试图改动 source 的内容，编译器将指出错误。</strong></p>
+<p>如果输入参数采用“值传递”，由于函数将自动产生临时变量用于复制该参数，则输入参数无需保护，所以不要加 const 修饰。</p>
+<p>例如， void func(int x) 而不是 void func(const int x) 。同理，同理不要将函数 void fun2(A a) 写成 void func2(const A a)。其中 A 为用户自定义的数据类型。</p>
+<p>对于非内部数据类型的参数而言，象 void func(A a) 这样声明的函数注定效率比较底。因为函数体内将产生A 类型的临时对象用于复制参数a，而临时对象的构造、复制、析构过程都将消耗时间。</p>
+<p><strong>为了提高效率，可以将函数声明改为 void func(A &amp;a)，因为“引用传递”仅借用一下参数的别名而已，不需要产生临时对象。但是函数 void func(A &amp;a) 存在一个缺点:</strong></p>
+<p>“引用传递”有可能改变参数a，这是我们不期望的。解决这个问题很容易，加const修饰即可，因此函数最终成为 void func(const A &amp;a)。</p>
+<p>以此类推，是否应将 void func(int x) 改写为 void func(const int &amp;x)，以便提高效率？完全没有必要，因为内部数据类型的参数不存在构造、析构的过程，而复制也非常快，“值传递”和“引用传递”的效率几乎相当。</p>
+<p>总结一下：</p>
+<ul>
+<li>对于非内部数据类型的输入参数，应该将“值传递”的方式改为“const 引用传递”，目的是提高效率。例如将 void func(A a) 改为 void func(const A &amp;a)。</li>
+<li>对于内部数据类型的输入参数，不要将“值传递”的方式改为“const 引用传递”。否则既达不到提高效率的目的，又降低了函数的可理解性。例如 void func(int x) 不应该改为void func(const int &amp;x)。</li>
+</ul>
+<p><strong>2. 用const 修饰函数的返回值</strong></p>
+<p>如果给以“指针传递”方式的函数返回值加 const 修饰，那么函数返回值（即指针）的内容不能被修改，<strong>该返回值只能被赋给加const 修饰的同类型指针</strong>。</p>
+<p>如下语句将出现编译错误：</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">str</span> = getString();</span><br></pre></td></tr></table></figure>
+<p>正确的用法是</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">char</span> *<span class="built_in">str</span> = getString();</span><br></pre></td></tr></table></figure>
+<p>如果函数返回值采用“值传递方式”，由于函数会把返回值复制到外部临时的存储单元中，加const 修饰没有任何价值。</p>
+<p>例如，不要把函数 int getInt(void) 写成 const int getInt(void)。同理不要把函数 A getA(void) 写成 const A getA(void)，其中 A 为用户自定义的数据类型。</p>
+<p>如果返回值不是内部数据类型，将函数 A getA(void) 改写为 const A &amp; getA(void) 的确能提高效率。但此时千万千万要小心，一定要搞清楚函数究竟是想返回一个对象的“拷贝”还是仅返回“别名”就可以了，否则程序会出错。</p>
+<p>函数返回值采用“引用传递”的场合并不多，这种方式一般只出现在类的赋值函数中，目的是为了实现链式表达。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">A</span> &amp; operate = (const <span class="type">A</span> &amp;other); <span class="comment">// 赋值函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">A</span> a, b, <span class="built_in">c</span>; <span class="comment">// a, b, c 为 A 的对象</span></span><br><span class="line">a = b = <span class="built_in">c</span>; <span class="comment">// 正常的链式赋值</span></span><br><span class="line">(a = b) = <span class="built_in">c</span>; <span class="comment">// 不正常的链式赋值，但合法</span></span><br></pre></td></tr></table></figure>
+<p>如果将赋值函数的返回值加const 修饰，那么该返回值的内容不允许被改动。上例中，语句 a = b = c 仍然正确，但是语句 (a = b) = c 则是非法的。</p>
+<p><strong>3. const 成员函数</strong></p>
+<p>任何不会修改数据成员的函数都应该声明为 const 类型。如果在编写 const 成员函数时，不慎修改了数据成员，或者调用了其它非 const 成员函数，编译器将指出错误，这无疑会提高程序的健壮性。</p>
+<p>以下程序中，类 Stack 的成员函数 GetCount 仅用于计数，从逻辑上讲 GetCount 应当为 const 函数。编译器将指出 GetCount 函数中的错误。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Stack</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(<span class="keyword">int</span> elem)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">Pop</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">GetCount</span><span class="params">(<span class="keyword">void</span>)</span> <span class="keyword">const</span></span>; <span class="comment">// const 成员函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_num;</span><br><span class="line">	<span class="keyword">int</span> m_data[<span class="number">100</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Stack::GetCount(<span class="keyword">void</span>) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">	++m_num; <span class="comment">// 编译错误，企图修改数据成员 m_num</span></span><br><span class="line">	Pop(); <span class="comment">// 编译错误，企图调用非 const 函数</span></span><br><span class="line">	<span class="keyword">return</span> m_num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>const 成员函数的声明看起来怪怪的：const 关键字只能放在函数声明的尾部，大概是因为其它地方都已经被占用了。</p>
+<p>关于 const 函数的几点规则：</p>
+<ol>
+<li>const 对象只能访问 const 成员函数,而非 const 对象可以访问任意的成员函数,包括 const 成员函数.</li>
+<li>const 对象的成员是不可修改的,然而 const 对象通过指针维护的对象却是可以修改的.</li>
+<li>const 成员函数不可以修改对象的数据,不管对象是否具有 const 性质.它在编译时,以是否修改成员数据为依据,进行检查.</li>
+<li>然而加上 mutable 修饰符的数据成员,对于任何情况下通过任何手段都可修改,自然此时的 const 成员函数是可以修改它的</li>
+</ol>
+<p>该部分,参考<a href="http://www.cnblogs.com/Fancyboy2004/archive/2008/12/23/1360810.html" target="_blank" rel="external">原文</a></p>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="##const与指针##">##const与指针##</h2><blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>两种类型：</p>
+<ul>
+<li>指向const对象的指针；</li>
+<li>const指针；</li>
+</ul>
+<p><strong>1. 指向const对象的指针</strong></p>
+<p>如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp;</span><br></pre></td></tr></table></figure>
+<p><code>cdp</code> 是指向一个double类型const对象的指针，const限定了 <code>cdp</code> 指针所指向的对象，而并非 <code>cdp</code> 本身。即 <code>cdp</code> 不是const类型，在定义时不一定需要给它初始化；如果有需要的话，允许给 <code>cdp</code> 重新赋值，使其指向另一个const对象，但不能通过 <code>cdp</code> 修改所指对象的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*cdp = <span class="number">2</span>;	<span class="comment">//error: *cdp might be const</span></span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[冬跑]]></title>
     <link href="http://bluestein.github.io/2016/02/winter-running/"/>
     <id>http://bluestein.github.io/2016/02/winter-running/</id>
     <published>2016-02-25T07:15:05.000Z</published>
-    <updated>2016-02-25T07:28:34.906Z</updated>
-    <content type="html"><![CDATA[<p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>
+    <updated>2016-03-05T01:43:41.342Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>
 <a id="more"></a>
 <h3 id="1、跑鞋">1、跑鞋</h3><p>我个人觉得，要跑步的话必须现有一双好的跑鞋。我在网络上看到，这个网站 <a href="http://www.myprecisionfit.com" title="myprecisionfit" target="_blank" rel="external">myprecisionfit</a> 能够根据自身情况进行跑鞋推荐。这个网站推荐了好几双，各种价位的都有，但考虑到刚入门和能不坚持下去都是个问题就选了一双经济承受范围内 wave 系列。在京东和天猫都有官方旗舰店，可自行选择购买。我的选择是：（切记，要根据自身情况选择跑鞋，我列出我的选择是为了理清预算）</p>
 <ul>
@@ -79,7 +195,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>]]>
     
     </summary>
     
@@ -98,12 +217,19 @@
     <link href="http://bluestein.github.io/2016/01/cpp-demo-12/"/>
     <id>http://bluestein.github.io/2016/01/cpp-demo-12/</id>
     <published>2016-01-14T12:03:42.000Z</published>
-    <updated>2016-01-14T14:48:04.448Z</updated>
-    <content type="html"><![CDATA[<p>单词转换程序</p>
+    <updated>2016-03-05T01:47:59.596Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>源代码</p>
+<a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; trans_map;</span><br><span class="line">	<span class="built_in">string</span> key, value;</span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"wrong number of arguments"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream map_file;</span><br><span class="line">	map_file.open(argv[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!map_file) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no transformation file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (map_file &gt;&gt; key &gt;&gt; value) &#123;</span><br><span class="line">		trans_map.insert(make_pair(key, value));</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream input;</span><br><span class="line">	input.open(argv[<span class="number">2</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no input file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">while</span> (getline(input, line)) &#123;</span><br><span class="line">		<span class="function"><span class="built_in">istringstream</span> <span class="title">s</span><span class="params">(line)</span></span>;</span><br><span class="line">		<span class="built_in">string</span> word;</span><br><span class="line">		<span class="keyword">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">while</span> (s &gt;&gt; word) &#123;</span><br><span class="line">			<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::const_iterator map_citer = trans_map.find(word);</span><br><span class="line">			<span class="keyword">if</span> (map_citer != trans_map.end()) &#123;</span><br><span class="line">				word = map_citer-&gt;second;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (first) &#123;</span><br><span class="line">				first = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<p>单词转换程序</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>源代码</p>]]>
+    
     </summary>
     
       <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
@@ -119,9 +245,13 @@
     <link href="http://bluestein.github.io/2016/01/cpp-associative_container/"/>
     <id>http://bluestein.github.io/2016/01/cpp-associative_container/</id>
     <published>2016-01-14T06:49:02.000Z</published>
-    <updated>2016-01-14T14:38:35.360Z</updated>
-    <content type="html"><![CDATA[<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+    <updated>2016-03-05T01:50:42.521Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
 <p>两个基本的关联容器是 map 和 set。</p>
+<a id="more"></a>
 <ol>
 <li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
 <li>set 仅包含键，可以看成含有很多键值得集合。</li>
@@ -152,7 +282,6 @@
 </tr>
 </tbody>
 </table>
-<a id="more"></a>
 <p>一般来说，<strong>如果想有效的存储不同值得集合</strong>，使用 set 比较合适；而 map 容器则更适合用于存储键关联值得情况。<br>比如在文本处理时，可以使用 set 来存储要忽略的词，而 map 可以使用作字典：单词本身是键，其解释是值。</p>
 <blockquote>
 <p>set 和 map 的键是唯一的，每个键只能出现一次。如果想使用一个键对应多个值得情况，那么使用 multiset 和 multimap 类型。</p>
@@ -398,38 +527,11 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
-<p>两个基本的关联容器是 map 和 set。</p>
-<ol>
-<li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
-<li>set 仅包含键，可以看成含有很多键值得集合。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>关联容器</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>map</td>
-<td>关联数组</td>
-</tr>
-<tr>
-<td>set</td>
-<td>集合</td>
-</tr>
-<tr>
-<td>multimap</td>
-<td>一个键可出现多次的 map 类型</td>
-</tr>
-<tr>
-<td>multiset</td>
-<td>一个键可出现多次的 set 类型</td>
-</tr>
-</tbody>
-</table>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+<p>两个基本的关联容器是 map 和 set。</p>]]>
     
     </summary>
     
@@ -448,8 +550,11 @@
     <link href="http://bluestein.github.io/2016/01/LATEX-LLNCS/"/>
     <id>http://bluestein.github.io/2016/01/LATEX-LLNCS/</id>
     <published>2016-01-09T02:02:00.000Z</published>
-    <updated>2016-01-12T02:13:41.082Z</updated>
-    <content type="html"><![CDATA[<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/" target="_blank" rel="external">官网</a></p>
+    <updated>2016-03-05T01:44:40.926Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/" target="_blank" rel="external">官网</a></p>
 <h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
@@ -732,7 +837,10 @@
 <p>END. </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/">官网</a></p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/">官网</a></p>
 <h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
@@ -806,8 +914,11 @@
     <link href="http://bluestein.github.io/2016/01/cpp-sequential_container/"/>
     <id>http://bluestein.github.io/2016/01/cpp-sequential_container/</id>
     <published>2016-01-02T10:46:49.000Z</published>
-    <updated>2016-01-03T09:45:36.341Z</updated>
-    <content type="html"><![CDATA[<p>前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。</p>
+    <updated>2016-03-05T01:45:42.541Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。</p>
 <p>标准库定义了三种顺序容器类型：vector，list 和 deque（double-ended queue，发音同 deck）。差别在于访问元素的方式，以及添加或删除元素的运行代价。标准库还提供了三种容器的适配器（adapter），适配器是根据原始的容器类型所提供的的操作，顺序容器适配器包括：stack，queue 和 priority_queue。</p>
 <a id="more"></a>
 <table>
@@ -1668,7 +1779,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。</p>
 <p>标准库定义了三种顺序容器类型：vector，list 和 deque（double-ended queue，发音同 deck）。差别在于访问元素的方式，以及添加或删除元素的运行代价。标准库还提供了三种容器的适配器（adapter），适配器是根据原始的容器类型所提供的的操作，顺序容器适配器包括：stack，queue 和 priority_queue。</p>]]>
     
     </summary>
@@ -1688,14 +1802,20 @@
     <link href="http://bluestein.github.io/2016/01/cpp-demo-11/"/>
     <id>http://bluestein.github.io/2016/01/cpp-demo-11/</id>
     <published>2016-01-02T06:03:42.000Z</published>
-    <updated>2016-01-02T15:14:10.181Z</updated>
-    <content type="html"><![CDATA[<h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
+    <updated>2016-03-05T01:49:45.828Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
+<a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s[] = &#123; <span class="string">"hi"</span>, <span class="string">"hey"</span>, <span class="string">"hello"</span> &#125;;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; slist(s, s + <span class="number">3</span>); </span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt;::iterator iter = --slist.end();</span><br><span class="line">	<span class="keyword">int</span> sz = <span class="keyword">sizeof</span>(s) / <span class="keyword">sizeof</span>(s[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (cnt &lt; sz) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; (*iter) &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (++cnt &lt; sz) &#123;</span><br><span class="line">			--iter;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// hello</span></span><br><span class="line"><span class="comment">// hey</span></span><br><span class="line"><span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
-<p>待续。。。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span clas]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_9-9">Exercise 9.9</h3><p>编写一个循环将 list 以逆序输出</p>]]>
+    
     </summary>
     
       <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
@@ -1713,8 +1833,11 @@
     <link href="http://bluestein.github.io/2016/01/cpp-IO_library/"/>
     <id>http://bluestein.github.io/2016/01/cpp-IO_library/</id>
     <published>2016-01-01T07:11:49.000Z</published>
-    <updated>2016-01-01T13:17:55.438Z</updated>
-    <content type="html"><![CDATA[<h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
+    <updated>2016-03-05T01:47:59.589Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
 <table>
 <thead>
 <tr>
@@ -1956,7 +2079,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="标准库">标准库</h3><p>IO类型在三个独立的头文件中定义：iostream，fstream，sstream</p>
 <table>
 <thead>
 <tr>
@@ -1997,8 +2123,11 @@
     <link href="http://bluestein.github.io/2016/01/cpp-demo-10/"/>
     <id>http://bluestein.github.io/2016/01/cpp-demo-10/</id>
     <published>2016-01-01T06:03:42.000Z</published>
-    <updated>2016-01-01T13:08:20.896Z</updated>
-    <content type="html"><![CDATA[<h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
+    <updated>2016-03-05T01:47:59.602Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
 <a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">istream &amp;<span class="title">input</span><span class="params">(istream &amp;in)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">while</span> (in &gt;&gt; val, !in.eof())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	in.clear();</span><br><span class="line">	<span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// use cin for test</span></span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 1↙</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2↙</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// ^Z↙</span></span><br></pre></td></tr></table></figure>
 <h3 id="Exercise_8-7">Exercise 8.7</h3><p>vector 容器中存放了将要处理的文件名，当打开失败时，输出警告信息，然后取下一个文件处理。假设当前文件夹下有一个名为 <code>test.txt</code> 的文件，内容是：</p>
@@ -2010,7 +2139,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>]]>
     
     </summary>
     
@@ -2029,8 +2161,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-function_declaration/"/>
     <id>http://bluestein.github.io/2015/12/cpp-function_declaration/</id>
     <published>2015-12-31T07:11:49.000Z</published>
-    <updated>2015-12-31T05:29:53.370Z</updated>
-    <content type="html"><![CDATA[<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
+    <updated>2016-03-05T01:47:59.593Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
 <p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -2110,7 +2245,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
 <p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>]]>
     
@@ -2131,8 +2269,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-return/"/>
     <id>http://bluestein.github.io/2015/12/cpp-return/</id>
     <published>2015-12-30T06:11:49.000Z</published>
-    <updated>2015-12-30T08:19:19.076Z</updated>
-    <content type="html"><![CDATA[<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
+    <updated>2016-03-05T01:45:42.545Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="没有返回值的函数">没有返回值的函数</h3><p>不带返回值的return语句用于 void 类型的函数。在 void 类型的函数中，return 语句不是必须的，它会在函数的最后一个语句隐式的完成。</p>
@@ -2163,7 +2304,10 @@
 <p>END.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
@@ -2183,8 +2327,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-parameter_passing/"/>
     <id>http://bluestein.github.io/2015/12/cpp-parameter_passing/</id>
     <published>2015-12-29T12:49:49.000Z</published>
-    <updated>2015-12-30T06:10:49.921Z</updated>
-    <content type="html"><![CDATA[<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
+    <updated>2016-03-05T01:46:33.664Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
@@ -2220,7 +2367,10 @@
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
@@ -2240,10 +2390,13 @@
     <link href="http://bluestein.github.io/2015/12/cpp-demo-9/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-9/</id>
     <published>2015-12-25T11:03:42.000Z</published>
-    <updated>2015-12-30T06:16:34.240Z</updated>
-    <content type="html"><![CDATA[<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <updated>2016-03-05T01:49:45.832Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
 <a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Exercise_7-4">Exercise 7.4</h3><p>返回一个数的绝对值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> v)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> -v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Exercise_7-5">Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
@@ -2258,8 +2411,10 @@
 <h3 id="Bonus-1">Bonus</h3><p>交换指向数值的指针</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>]]>
     
     </summary>
     
@@ -2276,8 +2431,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-demo-8/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-8/</id>
     <published>2015-12-24T12:03:42.000Z</published>
-    <updated>2015-12-30T06:16:34.243Z</updated>
-    <content type="html"><![CDATA[<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>
+    <updated>2016-03-05T01:47:59.608Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dictOrder</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp1 = a.c_str();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp2 = b.c_str();</span><br><span class="line">	<span class="keyword">while</span> (*cp1 &amp;&amp; *cp2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*cp1 != *cp2)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> *cp1 &gt; *cp2 ? <span class="string">"First bigger"</span> : <span class="string">"First smaller"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cp1++;</span><br><span class="line">		cp2++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"Same"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Please input two strings.\nIf you want to quit, input two 'q'."</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nTwo strings:\n"</span>;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; str1 &gt;&gt; str2;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; dictOrder(str1, str2) &lt;&lt; endl;</span><br><span class="line">	&#125; <span class="keyword">while</span> (str1 != <span class="string">"q"</span> &amp;&amp; str2 != <span class="string">"q"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
@@ -2291,7 +2449,10 @@
 <p>outputs</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test1</span></span><br><span class="line">hi↙</span><br><span class="line">hI↙</span><br><span class="line">Hi↙</span><br><span class="line">HI↙</span><br><span class="line">Hi↙</span><br><span class="line">Repeat found</span><br><span class="line"></span><br><span class="line"><span class="comment">// test2</span></span><br><span class="line">hi↙</span><br><span class="line">hI↙</span><br><span class="line">Hi↙</span><br><span class="line">HI↙</span><br><span class="line">^Z↙</span><br><span class="line">No repeated</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>]]>
     
     </summary>
     
@@ -2308,14 +2469,20 @@
     <link href="http://bluestein.github.io/2015/12/cpp-demo-7/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-7/</id>
     <published>2015-12-22T12:03:42.000Z</published>
-    <updated>2015-12-30T06:16:34.247Z</updated>
-    <content type="html"><![CDATA[<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>
+    <updated>2016-03-05T01:47:59.614Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sz1 = a.size(), sz2 = b.size();</span><br><span class="line">	<span class="keyword">int</span> sz = sz1 &gt; sz2 ? sz2 : sz1;</span><br><span class="line">	<span class="keyword">int</span> matched = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i] == b[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			++matched;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sz == matched;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr1[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> arr2[<span class="number">7</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> sz1 = <span class="keyword">sizeof</span>(arr1) / <span class="keyword">sizeof</span>(*arr1);</span><br><span class="line">	<span class="keyword">int</span> sz2 = <span class="keyword">sizeof</span>(arr2) / <span class="keyword">sizeof</span>(*arr2);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec1(arr1, arr1 + sz1);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec2(arr2, arr2 + sz2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; isPrefix(vec1, vec2) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>]]>
     
     </summary>
     
@@ -2332,8 +2499,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-demo-6/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-6/</id>
     <published>2015-12-22T07:03:42.000Z</published>
-    <updated>2015-12-30T06:16:48.424Z</updated>
-    <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>
+    <updated>2016-03-05T01:47:59.618Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> *source = arr;</span><br><span class="line">	<span class="keyword">size_t</span> sz = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(*arr);</span><br><span class="line">	<span class="keyword">int</span> *dest = <span class="keyword">new</span> <span class="keyword">int</span>[sz];</span><br><span class="line">	<span class="keyword">while</span> (source != arr + sz) </span><br><span class="line">	&#123;</span><br><span class="line">		*dest++ = *source++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// test</span></span><br><span class="line">	<span class="keyword">int</span> *dp = dest - sz;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; ++i) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *dp &lt;&lt; endl;</span><br><span class="line">		dp++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
@@ -2344,7 +2514,10 @@
 <p>outputs</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">how, now now now brown cow cow↙</span><br><span class="line">单词：how,出现次数为：<span class="number">1</span></span><br><span class="line">单词：now,出现次数为：<span class="number">3</span></span><br><span class="line">单词：brown,出现次数为：<span class="number">1</span></span><br><span class="line">单词：cow,出现次数为：<span class="number">2</span></span><br><span class="line"></span><br><span class="line">出现最多的是：now,次数为：<span class="number">3</span></span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>]]>
     
     </summary>
     
@@ -2361,8 +2534,11 @@
     <link href="http://bluestein.github.io/2015/12/cpp-demo-5/"/>
     <id>http://bluestein.github.io/2015/12/cpp-demo-5/</id>
     <published>2015-12-22T01:42:42.000Z</published>
-    <updated>2015-12-30T06:17:31.503Z</updated>
-    <content type="html"><![CDATA[<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>
+    <updated>2016-03-05T01:47:59.620Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> aCnt = <span class="number">0</span>, eCnt = <span class="number">0</span>, iCnt = <span class="number">0</span>, oCnt = <span class="number">0</span>, uCnt = <span class="number">0</span>, otherCnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ch)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (ch)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">			++aCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">			++eCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">			++iCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'o'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'O'</span>:</span><br><span class="line">			++oCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'u'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'U'</span>:</span><br><span class="line">			++uCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			++otherCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of vowel a/A:\t"</span> &lt;&lt; aCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel e/E:\t"</span> &lt;&lt; eCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel i/I:\t"</span> &lt;&lt; iCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel o/O:\t"</span> &lt;&lt; oCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel u/U:\t"</span> &lt;&lt; uCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of other characters:\t"</span> &lt;&lt; otherCnt &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
@@ -2376,7 +2552,10 @@
 <p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>]]>
     
     </summary>
     
@@ -2393,8 +2572,11 @@
     <link href="http://bluestein.github.io/2015/12/swift-classesAndStructures/"/>
     <id>http://bluestein.github.io/2015/12/swift-classesAndStructures/</id>
     <published>2015-12-21T12:42:42.000Z</published>
-    <updated>2015-12-30T06:12:01.571Z</updated>
-    <content type="html"><![CDATA[<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
+    <updated>2016-03-05T01:44:40.923Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
 <ul>
 <li>定义 property 来存储值</li>
 <li>定义函数</li>
@@ -2472,7 +2654,10 @@
 <p>In Swift, many basic data types such as String, Array, and Dictionary are implemented as structures.意思是说，当这些类型赋给一个新的 constant 或 variable ，或传递给函数时，都是原始数据的拷贝。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
 <ul>
 <li>定义 property 来存储值</li>
 <li>定义函数</li>
@@ -2499,8 +2684,11 @@
     <link href="http://bluestein.github.io/2015/12/swift-enumerations/"/>
     <id>http://bluestein.github.io/2015/12/swift-enumerations/</id>
     <published>2015-12-21T09:53:33.000Z</published>
-    <updated>2015-12-30T06:11:55.386Z</updated>
-    <content type="html"><![CDATA[<h3 id="Syntax">Syntax</h3><p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
+    <updated>2016-03-05T01:44:40.918Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Syntax">Syntax</h3><p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>下面是一个 compass 的例子，使用 <code>case</code> 来引出 enumeration 的各项：</p>
@@ -2544,7 +2732,10 @@
 <p>这个函数将数字进行简单的返回，而“加法”和“乘法”则 evaluate <code>left</code> 和 <code>right</code>，然后相加或相乘。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Syntax">Syntax</h3><p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Syntax">Syntax</h3><p>使用 <code>enum</code> 关键字引出 enumeration 的定义：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">	<span class="comment">// enumeration definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
@@ -2564,8 +2755,11 @@
     <link href="http://bluestein.github.io/2015/12/swift-functions/"/>
     <id>http://bluestein.github.io/2015/12/swift-functions/</id>
     <published>2015-12-20T11:53:33.000Z</published>
-    <updated>2015-12-30T06:11:50.020Z</updated>
-    <content type="html"><![CDATA[<h3 id="defining_and_calling">defining and calling</h3><p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+    <updated>2016-03-05T01:42:02.615Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][cc]</p>
+</blockquote>
+<h3 id="defining_and_calling">defining and calling</h3><p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <ul>
 <li>输入类型: <code>String</code></li>
@@ -2627,7 +2821,10 @@
 <p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="defining_and_calling">defining and calling</h3><p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]>
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][cc]</p>
+</blockquote>
+<h3 id="defining_and_calling">defining and calling</h3><p>以定义一个 <code>sayHello(_:)</code> 函数作为例子：该函数将一个人的名字作为输入，以一句问候作为返回值：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(personName: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> greeting = <span class="string">"Hello, "</span> + personName + <span class="string">"!"</span></span><br><span class="line">	<span class="keyword">return</span> greeting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]>
     
     </summary>
     
@@ -2638,71 +2835,6 @@
       <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
       <category term="Swift" scheme="http://bluestein.github.io/categories/Dev/Swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[语句]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-primer4-19/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-primer4-19/</id>
-    <published>2015-12-17T08:13:33.000Z</published>
-    <updated>2015-12-30T06:13:20.882Z</updated>
-    <content type="html"><![CDATA[<p>开始学习第六章《语句》</p>
-<h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
-<p>只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> （<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">	;	<span class="comment">// null statement</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>使用空语句时最好加上注释</p>
-</blockquote>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = b + <span class="number">1</span>;;</span><br></pre></td></tr></table></figure>
-<p>看似非法的分号，其实是一个空语句。但并不意味着就能随便使用，如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (iter != vec.end()) ;	<span class="comment">// while循环体为空</span></span><br><span class="line">	++iter;	<span class="comment">// 不是循环体的一部分</span></span><br></pre></td></tr></table></figure>
-<p>会无限循环。</p>
-<p><strong>复合语句（块）</strong></p>
-<p>用花括号括起来的语句序列（也可能为空）。如 for 和 while</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; trans)</span><br><span class="line">	<span class="keyword">if</span> (total.same_isbn(trans))</span><br><span class="line">		total = total + trans;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; total &lt;&lt; endl;</span><br><span class="line">		total = trans;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p><code>else</code> 分支需要用块语句。</p>
-<blockquote>
-<p>块语句并不是以分号结束</p>
-</blockquote>
-<p>也可以是 <strong>空块</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">&#123;&#125;	<span class="comment">// 空块</span></span><br></pre></td></tr></table></figure>
-<p><strong>语句作用域</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="keyword">int</span> i = get_num())</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">i = <span class="number">0</span>;	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
-<p><code>i</code> 超出了作用域。</p>
-<p><strong>控制结构中引入的变量是局部变量</strong>，仅在块语句结束前有效。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span>;</span><br><span class="line">		index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
-<p>如果要在控制语句外访问，则需定义在控制语句外<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type index = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (; index != vec.size(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> square = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (index % <span class="number">2</span>)</span><br><span class="line">		square = index * index;</span><br><span class="line">	vec[index] = square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index != vec.size())	<span class="comment">// ok</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、if语句">2、if语句</h3><p><strong>if语句</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	statement1</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (condition2)</span><br><span class="line">&#123;</span><br><span class="line">	staement2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>目前为止，除了 vector 和 string 类型一般不可作为条件外，均可作为if语句的条件，包括 IO 类型。</p>
-<blockquote>
-<p>各分支语句用 <code>{}</code> 括起来是一个好的习惯</p>
-</blockquote>
-<p><strong>if语句可以嵌套</strong></p>
-<p>例如，<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition1)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (condition2)</span><br><span class="line">	&#123;</span><br><span class="line">		statement1</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		staement2</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// use if statement here also valid</span></span><br><span class="line">	staement3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>END.</p>
-<hr>
-<p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>开始学习第六章《语句》</p>
-<h3 id="1、简单语句">1、简单语句</h3><p><strong>空语句</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;</span><br></pre></td></tr></table></figure>
-<p>只有一个分号。在某些条件下使用，如从输入流读入数据，而不需操作：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> （<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"abc"</span>)</span><br><span class="line">	;	<span class="comment">// null statement</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>使用空语句时最好加上注释</p>
-</blockquote>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
     
   </entry>
   

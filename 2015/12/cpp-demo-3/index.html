@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vector存放指针">
 <meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-3/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
-<meta property="og:updated_time" content="2015-12-30T06:17:31.509Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
+<meta property="og:updated_time" content="2016-03-05T01:50:43.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vector存放指针">
-<meta name="twitter:description" content="Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Example定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。">
 
 
 
@@ -300,7 +306,10 @@
       
 
       
-        <h3 id="Example">Example</h3><p>定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Example">Example</h3><p>定义vector对象，其每个元素指向string类型的指针；输出每个元素的内容及长度。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt; v;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(s);</span><br><span class="line">		v.push_back(sp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span> *&gt;::iterator iter = v.begin();</span><br><span class="line">	<span class="keyword">while</span> (iter != v.end()) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> *tmp = *iter;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; tmp-&gt;size() &lt;&lt; <span class="string">", "</span> &lt;&lt; *tmp &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">delete</span> tmp;</span><br><span class="line">		iter++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
@@ -405,7 +414,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -59,28 +59,22 @@
 
 
 
-<meta name="description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
-两个基本的关联容器是 map 和 set。
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
 
-map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
-set 仅包含键，可">
+关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关联容器">
 <meta property="og:url" content="http://bluestein.github.io/2016/01/cpp-associative_container/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
-两个基本的关联容器是 map 和 set。
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
 
-map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
-set 仅包含键，可">
-<meta property="og:updated_time" content="2016-01-14T14:38:35.360Z">
+关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容">
+<meta property="og:updated_time" content="2016-03-05T01:50:42.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联容器">
-<meta name="twitter:description" content="关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素。
-两个基本的关联容器是 map 和 set。
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
 
-map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。
-set 仅包含键，可">
+关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：关联容器通过键存储和读取元素，而顺序容器则通过元素在容">
 
 
 
@@ -312,8 +306,12 @@ set 仅包含键，可">
       
 
       
-        <p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
 <p>两个基本的关联容器是 map 和 set。</p>
+<a id="more"></a>
 <ol>
 <li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
 <li>set 仅包含键，可以看成含有很多键值得集合。</li>
@@ -344,7 +342,6 @@ set 仅包含键，可">
 </tr>
 </tbody>
 </table>
-<a id="more"></a>
 <p>一般来说，<strong>如果想有效的存储不同值得集合</strong>，使用 set 比较合适；而 map 容器则更适合用于存储键关联值得情况。<br>比如在文本处理时，可以使用 set 来存储要忽略的词，而 map 可以使用作字典：单词本身是键，其解释是值。</p>
 <blockquote>
 <p>set 和 map 的键是唯一的，每个键只能出现一次。如果想使用一个键对应多个值得情况，那么使用 multiset 和 multimap 类型。</p>
@@ -689,7 +686,7 @@ set 仅包含键，可">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

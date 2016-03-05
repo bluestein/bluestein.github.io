@@ -241,6 +241,142 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/const-pointer-function/" itemprop="url">
+                  const与指针、函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-05T09:23:05+08:00" content="2016-03-05">
+              2016-03-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/const-pointer-function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/const-pointer-function/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="##const与指针##">##const与指针##</h2><blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>两种类型：</p>
+<ul>
+<li>指向const对象的指针；</li>
+<li>const指针；</li>
+</ul>
+<p><strong>1. 指向const对象的指针</strong></p>
+<p>如果指针指向的是const对象，则不再能够使用指针来修改对象的内容。为了保证这个特性，C++语言强制要求指向const对象的指针也必须具有const特性：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cdp;</span><br></pre></td></tr></table></figure>
+<p><code>cdp</code> 是指向一个double类型const对象的指针，const限定了 <code>cdp</code> 指针所指向的对象，而并非 <code>cdp</code> 本身。即 <code>cdp</code> 不是const类型，在定义时不一定需要给它初始化；如果有需要的话，允许给 <code>cdp</code> 重新赋值，使其指向另一个const对象，但不能通过 <code>cdp</code> 修改所指对象的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*cdp = <span class="number">2</span>;	<span class="comment">//error: *cdp might be const</span></span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/const-pointer-function/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/02/winter-running/" itemprop="url">
                   冬跑
                 </a>
@@ -320,7 +456,10 @@
 
       
         
-          <p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>
+          <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近，身体越来越差了。。。每天凌晨1点睡，8:30起，发现自己总不在工作状态，完全不能搞科研（我说的是真的(。・＿・。)）。为了克服晚睡晚起的缺点，选择了晨跑。不过是否能坚持就要看我自己了，不过我现在元气满满。现在快接近冬天了，要跑步就必须要一些装备，排汗、保暖和好的跑鞋是很重要的。下面是我在网络上搜寻了两天得到的一些东西，将依次介绍。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/02/winter-running/#more" rel="contents">
               阅读全文 &raquo;
@@ -444,10 +583,15 @@
 
       
         
-          
-            <p>单词转换程序</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; trans_map;</span><br><span class="line">	<span class="built_in">string</span> key, value;</span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">3</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"wrong number of arguments"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream map_file;</span><br><span class="line">	map_file.open(argv[<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!map_file) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no transformation file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (map_file &gt;&gt; key &gt;&gt; value) &#123;</span><br><span class="line">		trans_map.insert(make_pair(key, value));</span><br><span class="line">	&#125;</span><br><span class="line">	ifstream input;</span><br><span class="line">	input.open(argv[<span class="number">2</span>]);</span><br><span class="line">	<span class="keyword">if</span> (!input) &#123;</span><br><span class="line">		<span class="keyword">throw</span> runtime_error(<span class="string">"no input file"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span> line;</span><br><span class="line">	<span class="keyword">while</span> (getline(input, line)) &#123;</span><br><span class="line">		<span class="function"><span class="built_in">istringstream</span> <span class="title">s</span><span class="params">(line)</span></span>;</span><br><span class="line">		<span class="built_in">string</span> word;</span><br><span class="line">		<span class="keyword">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">while</span> (s &gt;&gt; word) &#123;</span><br><span class="line">			<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::const_iterator map_citer = trans_map.find(word);</span><br><span class="line">			<span class="keyword">if</span> (map_citer != trans_map.end()) &#123;</span><br><span class="line">				word = map_citer-&gt;second;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (first) &#123;</span><br><span class="line">				first = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>源代码</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/cpp-demo-12/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -566,38 +710,11 @@
 
       
         
-          <p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
+          <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>关联容器（associative container）支持通过键（key）来高效地查找和读取元素。它与顺序容器的主要区别在于：<strong>关联容器通过键存储和读取元素，而顺序容器则通过元素在容器中的位置顺序类存储和访问元素</strong>。</p>
 <p>两个基本的关联容器是 map 和 set。</p>
-<ol>
-<li>map 以 key-value（键-值） 的形式组织：键作为元素在 map 中的索引，而值则表示所要存储和读取的元素。</li>
-<li>set 仅包含键，可以看成含有很多键值得集合。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>关联容器</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>map</td>
-<td>关联数组</td>
-</tr>
-<tr>
-<td>set</td>
-<td>集合</td>
-</tr>
-<tr>
-<td>multimap</td>
-<td>一个键可出现多次的 map 类型</td>
-</tr>
-<tr>
-<td>multiset</td>
-<td>一个键可出现多次的 set 类型</td>
-</tr>
-</tbody>
-</table>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/01/cpp-associative_container/#more" rel="contents">
               阅读全文 &raquo;
@@ -721,7 +838,10 @@
 
       
         
-          <p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/">官网</a></p>
+          <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<p>最近写的论文需要使用到 LaTeX 格式，故学习一些相关的知识。不过下面的并不是 LaTeX 教程，只是 Springer 的 LLNCS 类，具体的 LaTex 相关请见<a href="http://www.latex-project.org/">官网</a></p>
 <h3 id="How_to_proceed">How to proceed</h3><p>下载的压缩包包含如下文件:</p>
 <table>
 <thead>
@@ -800,131 +920,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/cpp-sequential_container/" itemprop="url">
-                  顺序容器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-02T18:46:49+08:00" content="2016-01-02">
-              2016-01-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Dev/" itemprop="url" rel="index">
-                    <span itemprop="name">Dev</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Dev/Cpp/" itemprop="url" rel="index">
-                    <span itemprop="name">Cpp</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/cpp-sequential_container/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/cpp-sequential_container/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前面介绍过 vector 容器类型，这里会深入探讨 vector 和其他顺序容器（sequential container）类型，还有 string 类型提供的更多操作，甚至可以将 string 看成是仅包含字符串的特殊容器。</p>
-<p>标准库定义了三种顺序容器类型：vector，list 和 deque（double-ended queue，发音同 deck）。差别在于访问元素的方式，以及添加或删除元素的运行代价。标准库还提供了三种容器的适配器（adapter），适配器是根据原始的容器类型所提供的的操作，顺序容器适配器包括：stack，queue 和 priority_queue。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/cpp-sequential_container/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -971,7 +966,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

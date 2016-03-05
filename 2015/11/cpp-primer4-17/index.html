@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;9999999999&quot;string *sp = new string(10, &apos;9&apos;);	//*sp = &quot;9999999999&quot;">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="new & delete">
 <meta property="og:url" content="http://bluestein.github.io/2015/11/cpp-primer4-17/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;9999999999&quot;string *sp = new string(10, &apos;9&apos;);	//*sp = &quot;9999999999&quot;">
-<meta property="og:updated_time" content="2015-12-30T06:13:49.945Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;">
+<meta property="og:updated_time" content="2016-03-05T01:45:42.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new & delete">
-<meta name="twitter:description" content="动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;9999999999&quot;string *sp = new string(10, &apos;9&apos;);	//*sp = &quot;9999999999&quot;">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+动态创建对象的初始化1234int i(1024);int *ip = new int (1024);	//*ip = 1024string s(10, &apos;9&apos;);	//s = &quot;">
 
 
 
@@ -300,7 +306,10 @@
       
 
       
-        <h3 id="动态创建对象的初始化">动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="动态创建对象的初始化">动态创建对象的初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">i</span><span class="params">(<span class="number">1024</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">1024</span>);	<span class="comment">//*ip = 1024</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="number">10</span>, <span class="string">'9'</span>)</span></span>;	<span class="comment">//s = "9999999999"</span></span><br><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>(<span class="number">10</span>, <span class="string">'9'</span>);	<span class="comment">//*sp = "9999999999"</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="动态创建对象的默认初始化">动态创建对象的默认初始化</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> *sp = <span class="keyword">new</span> <span class="built_in">string</span>;	<span class="comment">//空string</span></span><br><span class="line"><span class="keyword">int</span> *ip = <span class="keyword">new</span> <span class="keyword">int</span>;	<span class="comment">//未初始化</span></span><br></pre></td></tr></table></figure>
 <p>可以利用下列方式进行默认初始化</p>
@@ -418,7 +427,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

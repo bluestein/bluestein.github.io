@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ex8.3, 8.7, 8.8">
 <meta property="og:url" content="http://bluestein.github.io/2016/01/cpp-demo-10/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
-<meta property="og:updated_time" content="2016-01-01T13:08:20.896Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并">
+<meta property="og:updated_time" content="2016-03-05T01:47:59.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ex8.3, 8.7, 8.8">
-<meta name="twitter:description" content="Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 8.3编写一个程序，一个形参和返回值都是 istream&amp;amp; 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并">
 
 
 
@@ -300,7 +306,10 @@
       
 
       
-        <h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_8-3">Exercise 8.3</h3><p>编写一个程序，一个形参和返回值都是 <code>istream&amp;</code> 类型。该函数一直读取直到结束符为止，并且将读取到的内容输出到标准输出中，最后重设流使其有效，并返回该流。</p>
 <a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">istream &amp;<span class="title">input</span><span class="params">(istream &amp;in)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">while</span> (in &gt;&gt; val, !in.eof())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; val &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	in.clear();</span><br><span class="line">	<span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// use cin for test</span></span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 1↙</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2↙</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// ^Z↙</span></span><br></pre></td></tr></table></figure>
 <h3 id="Exercise_8-7">Exercise 8.7</h3><p>vector 容器中存放了将要处理的文件名，当打开失败时，输出警告信息，然后取下一个文件处理。假设当前文件夹下有一个名为 <code>test.txt</code> 的文件，内容是：</p>
@@ -411,7 +420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

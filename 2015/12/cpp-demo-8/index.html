@@ -59,16 +59,22 @@
 
 
 
-<meta name="description" content="Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ex6.18, 6.20, 6.21">
 <meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-8/index.html">
 <meta property="og:site_name" content="Humooo">
-<meta property="og:description" content="Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
-<meta property="og:updated_time" content="2015-12-30T06:16:34.243Z">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
+<meta property="og:updated_time" content="2016-03-05T01:47:59.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ex6.18, 6.20, 6.21">
-<meta name="twitter:description" content="Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][https://creativecommons.org/licenses/by-nc-nd/4.0/]
+
+Exercise 6.18输入两个string对象，比较哪个按字典序靠前。">
 
 
 
@@ -300,7 +306,10 @@
       
 
       
-        <h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | [Creative Commons BY-NC-ND 4.0][<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>]</p>
+</blockquote>
+<h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>
 <a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dictOrder</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp1 = a.c_str();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp2 = b.c_str();</span><br><span class="line">	<span class="keyword">while</span> (*cp1 &amp;&amp; *cp2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*cp1 != *cp2)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> *cp1 &gt; *cp2 ? <span class="string">"First bigger"</span> : <span class="string">"First smaller"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cp1++;</span><br><span class="line">		cp2++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"Same"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Please input two strings.\nIf you want to quit, input two 'q'."</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nTwo strings:\n"</span>;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; str1 &gt;&gt; str2;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt; dictOrder(str1, str2) &lt;&lt; endl;</span><br><span class="line">	&#125; <span class="keyword">while</span> (str1 != <span class="string">"q"</span> &amp;&amp; str2 != <span class="string">"q"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>outputs</p>
@@ -411,7 +420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
