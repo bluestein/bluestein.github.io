@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-08T08:01:38.905Z</updated>
+  <updated>2016-03-08T14:21:24.912Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[阿里电话面试]]></title>
+    <link href="http://bluestein.github.io/2016/03/ali-interview-1/"/>
+    <id>http://bluestein.github.io/2016/03/ali-interview-1/</id>
+    <published>2016-03-08T14:00:05.000Z</published>
+    <updated>2016-03-08T14:21:24.912Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>今天（2016-03-08）是我人生中接受的第一次面试，并不是想象中的那么顺利（意思是不行hhh）。当我看到电话上“浙江-杭州”四个字时，手就开始抖了，即使是现在（接完电话1个小时）心也还未平静下来。因为我知道我没准备好，不是说仅仅心理上没准备好，而是心理上、身体上（嗯，身体上）和知识储备上完完全全、彻彻底底的没准备好！所以我方了，以至于听不清对方讲话，听清了也回答不上来。。。尴尬症都犯了。。。不过面试官人好、态度好，想必是个帅哥、暖男？（我是男的！没那种意思。。），问的问题虽然简单，但是我答不上来啊hhh。</p>
+<a id="more"></a>
+<p>下面是今天的问题，大概。。</p>
+<p>1，    HTPP中URL由几部分组成<br>答：（参考<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6" target="_blank" rel="external">URL-Wikipedia</a>）</p>
+<p>超文本传输协议（HTTP）的统一资源定位符将从因特网获取信息的五个基本元素包括在一个简单的地址中：</p>
+<ul>
+<li>传送协议。</li>
+<li>服务器。（通常为域名，有时为IP地址）</li>
+<li>端口号。（以数字方式表示，若为HTTP的预设值“:80”可省略）</li>
+<li>路径。（以“/”字元区别路径中的每一个目录名称）</li>
+<li>查询。（GET模式的表单参数，以“?”字元为起点，每个参数以“&amp;”隔开，再以“=”分开参数名称与资料，通常以UTF8的URL编码，避开字元冲突的问题）</li>
+</ul>
+<p>2，排序算法<br>答：（参考<a href="https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95" target="_blank" rel="external">排序算法-Wikipedia</a>）</p>
+<h4 id="稳定的排序">稳定的排序</h4><ol>
+<li>冒泡排序（bubble sort）— O(n2)</li>
+<li>鸡尾酒排序（cocktail sort）—O(n2)</li>
+<li>插入排序（insertion sort）—O(n2)</li>
+<li>桶排序（bucket sort）—O(n)；需要O(k)额外空间</li>
+<li>计数排序（counting sort）—O(n+k)；需要O(n+k)额外空间</li>
+<li>归并排序（merge sort）—O(n log n)；需要O(n)额外空间</li>
+<li>原地归并排序— O(n log2 n)如果使用最佳的现在版本</li>
+<li>二叉排序树排序（binary tree sort）— O(n log n)期望时间；O(n2)最坏时间；需要O(n)额外空间</li>
+<li>鸽巢排序（pigeonhole sort）—O(n+k)；需要O(k)额外空间</li>
+<li>基数排序（radix sort）—O(n·k)；需要O(n)额外空间</li>
+<li>侏儒排序（gnome sort）— O(n2)</li>
+<li>图书馆排序（library sort）— O(n log n)期望时间；O(n2)最坏时间；需要(1+ε)n额外空间</li>
+<li>块排序（block sort）— O(n log n)</li>
+<li>额外儿童网二对一后退萨大人排序（children two to one additional network Back Sa adults sort）— O(n2)</li>
+</ol>
+<h4 id="不稳定排序">不稳定排序</h4><ol>
+<li>选择排序（selection sort）—O(n2)</li>
+<li>希尔排序（shell sort）—O(n log2 n)如果使用最佳的现在版本</li>
+<li>Clover排序算法（Clover sort）—O(n)期望时间，O(n2)最坏情况</li>
+<li>梳排序— O(n log n)</li>
+<li>堆排序（heap sort）—O(n log n)</li>
+<li>平滑排序（smooth sort）— O(n log n)</li>
+<li>快速排序（quick sort）—O(n log n)期望时间，O(n2)最坏情况；对于大的、随机数列表一般相信是最快的已知排序</li>
+<li>内省排序（introsort）—O(n log n)</li>
+<li>耐心排序（patience sort）—O(n log n + k)最坏情况时间，需要额外的O(n + k)空间，也需要找到最长的递增子序列（longest increasing subsequence）</li>
+</ol>
+<p>3，浏览器输入一个网址，其背后原理解释<br>答：(参考 <a href="http://www.cricode.com/3696.html" target="_blank" rel="external">在浏览器中输入网址后都发生了什么</a>)</p>
+<p>从输入一个网址到显示，包括dns解析，http协议解析，html解析，js解析，以及各种内容渲染</p>
+<ol>
+<li><p>浏览器发起DNS查询请求<br>在广域网中，我们是基于IP地址进行通信的。但通常客户访问的是一个网址，为此，我们需要先得到网址对应的IP地址，这就需要域名服务系统将域名转换成IP地址。</p>
+</li>
+<li><p>域名服务器向客户端返回查询结果域名，从而完成域名到IP地址的转换</p>
+</li>
+<li><p>客户端向web服务器发送HTTP请求<br>在得到了域名对应的IP地址后，客户端便可以向真正的web服务器发生HTTP请求。<br>HTTP请求是一个基于TCP协议之上的应用层协议——超文本传输协议。浏览器通过DNS获取到web服务器真的IP地址后，便向web服务器发起tcp连接请求，通过TCP三次握手建立好连接后，浏览器便可以将HTTP请求数据通过发送给服务器了。</p>
+</li>
+<li><p>发送响应数据给客户端<br>Web服务器通常通过监听80端口，来获取客户端的HTTP请求。与客户端建立好TCP连接后，web服务器开始接受客户端发来的数据，并通过HTTP解码，从接受到的网络数据中解析出请求的url信息以前其他诸如Accept-Encoding、Accept-Language等信息。<br>至此，一个HTTP通信过程完成。web服务器会根据HTTP请求头中的Connection字段值决定是否关闭TCP链接通道，当Connection字段值为keep-alive时，web服务器不会立即关闭此连接。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>今天（2016-03-08）是我人生中接受的第一次面试，并不是想象中的那么顺利（意思是不行hhh）。当我看到电话上“浙江-杭州”四个字时，手就开始抖了，即使是现在（接完电话1个小时）心也还未平静下来。因为我知道我没准备好，不是说仅仅心理上没准备好，而是心理上、身体上（嗯，身体上）和知识储备上完完全全、彻彻底底的没准备好！所以我方了，以至于听不清对方讲话，听清了也回答不上来。。。尴尬症都犯了。。。不过面试官人好、态度好，想必是个帅哥、暖男？（我是男的！没那种意思。。），问的问题虽然简单，但是我答不上来啊hhh。</p>]]>
+    
+    </summary>
+    
+      <category term="alibaba" scheme="http://bluestein.github.io/tags/alibaba/"/>
+    
+      <category term="hhh" scheme="http://bluestein.github.io/tags/hhh/"/>
+    
+      <category term="interview" scheme="http://bluestein.github.io/tags/interview/"/>
+    
+      <category term="Odds&amp;Ends" scheme="http://bluestein.github.io/categories/Odds-Ends/"/>
+    
+      <category term="experience" scheme="http://bluestein.github.io/categories/Odds-Ends/experience/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[KMP: 字符串匹配算法]]></title>
@@ -82,84 +164,6 @@
       <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
       <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[阿里电话面试]]></title>
-    <link href="http://bluestein.github.io/2016/03/ali-interview-1/"/>
-    <id>http://bluestein.github.io/2016/03/ali-interview-1/</id>
-    <published>2016-03-08T07:23:05.000Z</published>
-    <updated>2016-03-08T14:09:31.227Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<p>今天（2016-03-08）是我人生中接受的第一次面试，并不是想象中的那么顺利（意思是不行hhh）。当我看到电话上“浙江-杭州”四个字时，手就开始抖了，即使是现在（接完电话1个小时）心也还未平静下来。因为我知道我没准备好，不是说仅仅心理上没准备好，而是心理上、身体上（嗯，身体上）和知识储备上完完全全、彻彻底底的没准备好！所以我方了，以至于听不清对方讲话，听清了也回答不上来。。。尴尬症都犯了。。。不过面试官人好、态度好，想必是个帅哥、暖男？（我是男的！没那种意思。。），问的问题虽然简单，但是我答不上来啊hhh。</p>
-<p>下面是今天的问题，大概。。</p>
-<p>1，    HTPP中URL由几部分组成<br>答：（参考<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6" target="_blank" rel="external">URL-Wikipedia</a>）</p>
-<p>超文本传输协议（HTTP）的统一资源定位符将从因特网获取信息的五个基本元素包括在一个简单的地址中：</p>
-<ul>
-<li>传送协议。</li>
-<li>服务器。（通常为域名，有时为IP地址）</li>
-<li>端口号。（以数字方式表示，若为HTTP的预设值“:80”可省略）</li>
-<li>路径。（以“/”字元区别路径中的每一个目录名称）</li>
-<li>查询。（GET模式的表单参数，以“?”字元为起点，每个参数以“&amp;”隔开，再以“=”分开参数名称与资料，通常以UTF8的URL编码，避开字元冲突的问题）</li>
-</ul>
-<p>2，排序算法<br>答：（参考<a href="https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95" target="_blank" rel="external">排序算法-Wikipedia</a>）</p>
-<h4 id="稳定的排序">稳定的排序</h4><ol>
-<li>冒泡排序（bubble sort）— O(n2)</li>
-<li>鸡尾酒排序（cocktail sort）—O(n2)</li>
-<li>插入排序（insertion sort）—O(n2)</li>
-<li>桶排序（bucket sort）—O(n)；需要O(k)额外空间</li>
-<li>计数排序（counting sort）—O(n+k)；需要O(n+k)额外空间</li>
-<li>归并排序（merge sort）—O(n log n)；需要O(n)额外空间</li>
-<li>原地归并排序— O(n log2 n)如果使用最佳的现在版本</li>
-<li>二叉排序树排序（binary tree sort）— O(n log n)期望时间；O(n2)最坏时间；需要O(n)额外空间</li>
-<li>鸽巢排序（pigeonhole sort）—O(n+k)；需要O(k)额外空间</li>
-<li>基数排序（radix sort）—O(n·k)；需要O(n)额外空间</li>
-<li>侏儒排序（gnome sort）— O(n2)</li>
-<li>图书馆排序（library sort）— O(n log n)期望时间；O(n2)最坏时间；需要(1+ε)n额外空间</li>
-<li>块排序（block sort）— O(n log n)</li>
-<li>额外儿童网二对一后退萨大人排序（children two to one additional network Back Sa adults sort）— O(n2)</li>
-</ol>
-<h4 id="不稳定排序">不稳定排序</h4><ol>
-<li>选择排序（selection sort）—O(n2)</li>
-<li>希尔排序（shell sort）—O(n log2 n)如果使用最佳的现在版本</li>
-<li>Clover排序算法（Clover sort）—O(n)期望时间，O(n2)最坏情况</li>
-<li>梳排序— O(n log n)</li>
-<li>堆排序（heap sort）—O(n log n)</li>
-<li>平滑排序（smooth sort）— O(n log n)</li>
-<li>快速排序（quick sort）—O(n log n)期望时间，O(n2)最坏情况；对于大的、随机数列表一般相信是最快的已知排序</li>
-<li>内省排序（introsort）—O(n log n)</li>
-<li>耐心排序（patience sort）—O(n log n + k)最坏情况时间，需要额外的O(n + k)空间，也需要找到最长的递增子序列（longest increasing subsequence）</li>
-</ol>
-<p>3，浏览器输入一个网址，其背后原理解释<br>答：(参考 <a href="http://www.cricode.com/3696.html" target="_blank" rel="external">在浏览器中输入网址后都发生了什么</a>)</p>
-<p>从输入一个网址到显示，包括dns解析，http协议解析，html解析，js解析，以及各种内容渲染</p>
-<ol>
-<li><p>浏览器发起DNS查询请求<br>在广域网中，我们是基于IP地址进行通信的。但通常客户访问的是一个网址，为此，我们需要先得到网址对应的IP地址，这就需要域名服务系统将域名转换成IP地址。</p>
-</li>
-<li><p>域名服务器向客户端返回查询结果域名，从而完成域名到IP地址的转换</p>
-</li>
-<li><p>客户端向web服务器发送HTTP请求<br>在得到了域名对应的IP地址后，客户端便可以向真正的web服务器发生HTTP请求。<br>HTTP请求是一个基于TCP协议之上的应用层协议——超文本传输协议。浏览器通过DNS获取到web服务器真的IP地址后，便向web服务器发起tcp连接请求，通过TCP三次握手建立好连接后，浏览器便可以将HTTP请求数据通过发送给服务器了。</p>
-</li>
-<li><p>发送响应数据给客户端<br>Web服务器通常通过监听80端口，来获取客户端的HTTP请求。与客户端建立好TCP连接后，web服务器开始接受客户端发来的数据，并通过HTTP解码，从接受到的网络数据中解析出请求的url信息以前其他诸如Accept-Encoding、Accept-Language等信息。<br>至此，一个HTTP通信过程完成。web服务器会根据HTTP请求头中的Connection字段值决定是否关闭TCP链接通道，当Connection字段值为keep-alive时，web服务器不会立即关闭此连接。</p>
-</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creativ]]>
-    </summary>
-    
-      <category term="alibaba" scheme="http://bluestein.github.io/tags/alibaba/"/>
-    
-      <category term="hhh" scheme="http://bluestein.github.io/tags/hhh/"/>
-    
-      <category term="interview" scheme="http://bluestein.github.io/tags/interview/"/>
-    
-      <category term="Odds&amp;Ends" scheme="http://bluestein.github.io/categories/Odds-Ends/"/>
-    
-      <category term="experience" scheme="http://bluestein.github.io/categories/Odds-Ends/experience/"/>
     
   </entry>
   
