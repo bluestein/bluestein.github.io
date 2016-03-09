@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-08T14:21:24.912Z</updated>
+  <updated>2016-03-09T03:29:27.145Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,16 +15,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Efficient Online Evaluation of Big Data Stream Classifiers]]></title>
+    <link href="http://bluestein.github.io/2016/03/evaluation-of-data-stream/"/>
+    <id>http://bluestein.github.io/2016/03/evaluation-of-data-stream/</id>
+    <published>2016-03-09T01:57:05.000Z</published>
+    <updated>2016-03-09T03:29:27.145Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>原文 <a href="http://dl.acm.org/citation.cfm?id=2783372" target="_blank" rel="external">Efficient Online Evaluation of Big Data Stream Classifiers (ACM)</a></p>
+<p>数据流模型分类器的评价标准至关重要，以便分辨出效果不佳的那些模型，并因此对其进行改进或替换成其他表现更好的模型。</p>
+<a id="more"></a>
+<p>如今，几乎所有研究者都需要有效的评价他们自己模型的有效性。然而，数据流领域的评价标准面临很多挑战。数据流中的实例是随着时间到来的，并且这些数据所包含的概念（concept）也可能也时间有关。再者，大量的数据还可能面临类别不平衡（class imbalance）问题。现阶段的数据流评价标准一般使用 prequential(predictive sequential?) setting，并且只建立一个模型，不能够实时地计算出统计意义（statistical significance）。</p>
+<p>提供统计的意义是非常重要，确保评价结果是有效且没有误导成分。现提出三种突出的有误导性的评价的例子：</p>
+<ol>
+<li>为了评价两个分类器在数据流上的statistical significance 好坏，会利用McNemar’s test。然而这两个分类器实际上是同一个算法的两个对象（这么理解：C++中的类，new 两个对象），只是使用不同seed 对决策树的随机组合。McNemar’s test对于小型数据来说表现不错，但是使用在大型数据上就是误导。然而，它在数据流分类中却被广泛的使用。</li>
+<li>将数据分成独立（disjoint）的两块：training，test，是通常的做法。然而，这种类型的分法，导致一个评价程序仅仅通过分类器的话，不能正确的区分这两块用不同方式构造的数据;</li>
+<li>a simple majority class（多类） classifier that keeps the majority class of a sliding window may have positive k statistic and positive harmonic mean accuracy（调和平均精度） for some periods.</li>
+</ol>
+<p>对于四个问题：</p>
+<ol>
+<li>Validation methodology（方法验证）</li>
+<li>Statistical testing（统计测试）：McNemar’s test 是误导</li>
+<li>Unbalanced measure（不平衡衡量标准）：通常的F1-Measure 和Accuracy 会偏向一个类</li>
+<li>Forgetting mechanism（遗忘机制）：sliding window（滑动窗口） 和 exponential forgetting 是两种很流行的方法，但是他们都很确定参数。</li>
+</ol>
+<p>解决方法是：</p>
+<ol>
+<li>new bootstrap validation</li>
+<li>Sign test 和 Wilcoxon signed-rank test</li>
+<li>κ_{m} statistic </li>
+<li>new forgetting mechanism for prequential evaluation based<br>on ADWIN </li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<p>原文 <a href="http://dl.acm.org/citation.cfm?id=2783372">Efficient Online Evaluation of Big Data Stream Classifiers (ACM)</a></p>
+<p>数据流模型分类器的评价标准至关重要，以便分辨出效果不佳的那些模型，并因此对其进行改进或替换成其他表现更好的模型。</p>]]>
+    
+    </summary>
+    
+      <category term="big data" scheme="http://bluestein.github.io/tags/big-data/"/>
+    
+      <category term="data stream" scheme="http://bluestein.github.io/tags/data-stream/"/>
+    
+      <category term="evaluation" scheme="http://bluestein.github.io/tags/evaluation/"/>
+    
+      <category term="Academic" scheme="http://bluestein.github.io/categories/Academic/"/>
+    
+      <category term="data stream" scheme="http://bluestein.github.io/categories/Academic/data-stream/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[阿里电话面试]]></title>
     <link href="http://bluestein.github.io/2016/03/ali-interview-1/"/>
     <id>http://bluestein.github.io/2016/03/ali-interview-1/</id>
     <published>2016-03-08T14:00:05.000Z</published>
-    <updated>2016-03-08T14:21:24.912Z</updated>
+    <updated>2016-03-09T02:31:37.347Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
 <p>今天（2016-03-08）是我人生中接受的第一次面试，并不是想象中的那么顺利（意思是不行hhh）。当我看到电话上“浙江-杭州”四个字时，手就开始抖了，即使是现在（接完电话1个小时）心也还未平静下来。因为我知道我没准备好，不是说仅仅心理上没准备好，而是心理上、身体上（嗯，身体上）和知识储备上完完全全、彻彻底底的没准备好！所以我方了，以至于听不清对方讲话，听清了也回答不上来。。。尴尬症都犯了。。。不过面试官人好、态度好，想必是个帅哥、暖男？（我是男的！没那种意思。。），问的问题虽然简单，但是我答不上来啊hhh。</p>
 <a id="more"></a>
+<p>关于我答不上来这件事，我知道完全是我自己没准备，以至于错失一次好机会。也总结出关于投递简历的一点小建议（其实是师兄告诉我的。。）：<strong>在deadline之前，在没准备好的情况下，先别冲动投简历！</strong>至于怎么界定“准备好”，就得看大家自己的感觉了。对于我来说，至少需要把基础书看上一遍吧。。不能跟我一样卡壳在基础知识上，以至于面试官认为你根本不是简历上说的那么犀利（excellent？就那意思啦），甚至认为在造假，这种错误我绝不能再犯第二次，嗯，不能。。</p>
 <p>下面是今天的问题，大概。。</p>
 <p>1，    HTPP中URL由几部分组成<br>答：（参考<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6" target="_blank" rel="external">URL-Wikipedia</a>）</p>
 <p>超文本传输协议（HTTP）的统一资源定位符将从因特网获取信息的五个基本元素包括在一个简单的地址中：</p>
@@ -2724,118 +2780,6 @@
       <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
     
       <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Classes and Structures]]></title>
-    <link href="http://bluestein.github.io/2015/12/swift-classesAndStructures/"/>
-    <id>http://bluestein.github.io/2015/12/swift-classesAndStructures/</id>
-    <published>2015-12-21T12:42:42.000Z</published>
-    <updated>2016-03-05T02:37:36.860Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
-<ul>
-<li>定义 property 来存储值</li>
-<li>定义函数</li>
-<li>定义下标，以供下表式调用</li>
-<li>定义初始化函数</li>
-<li>Be extended to expand their functionality beyond a default implementation</li>
-<li>Conform to protocols to provide standard functionality of a certain kind</li>
-</ul>
-<a id="more"></a>
-<p>class可以但structure不行：</p>
-<ul>
-<li>Inheritance enables one class to inherit the characteristics of another.（继承另一个类）</li>
-<li><p>Type casting enables you to check and interpret the type of a class instance at runtime.（类型转换）</p>
-</li>
-<li><p>Deinitializers enable an instance of a class to free up any resources it has assigned.（析构函数）</p>
-</li>
-<li>Reference counting allows more than one reference to a class instance.（引用计数）</li>
-</ul>
-<blockquote>
-<p>Structures are always copied when they are passed around in your code, and do not use reference counting.</p>
-</blockquote>
-<h3 id="syntax">syntax</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="comment">// class definition goes here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructrue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// structure definition goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义一个 class 或 struct 实际上是定义了一种类型，跟 String，Int 等类似。一般来说 class 和 struct 的名字用 UpperCamelCase，属性和方法名则用 lowerCamelCase。例如</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的 struct 有两个属性，class 有四个属性，其中一个是 struct 类型，name 属性会有一个默认值是 <code>nil</code>，因为它是 optional。</p>
-<h3 id="class_and_structure_instances">class and structure instances</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someResolution = <span class="type">Resolution</span>()</span><br><span class="line"><span class="keyword">let</span> someVideoMode = <span class="type">VideoMode</span>()</span><br></pre></td></tr></table></figure>
-<p>上面都使用初始化函数的方式声明对象。</p>
-<p><strong>accessing properties</strong></p>
-<p>使用 <code>.</code> 来访问属性：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"The width of resolution is <span class="subst">\(someResolution.width)</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The width of someVideoMode is <span class="subst">\(someVideoMode.resolution.width)</span>"</span>)</span><br></pre></td></tr></table></figure>
-<p>除了访问，也可以赋值：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">someVideoMode.resolution.width = <span class="number">1280</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The width of someVideoMode is <span class="subst">\(someVideoMode.resolution.width)</span>"</span>)</span><br></pre></td></tr></table></figure>
-<p>可以直接设定 struct 的属性值。</p>
-<p><strong>memberwise initializers for structure types</strong></p>
-<p>struct 按成员的初始化函数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vga = <span class="type">Resolution</span>(width: <span class="number">640</span>, height: <span class="number">480</span>)</span><br></pre></td></tr></table></figure>
-<p>上面的方式，class 不支持。</p>
-<h3 id="structures_and_enumerations_are_value_types">structures and enumerations are value types</h3><p>原话：A value type is a type whose value is copied when it is assigned to a variable or constant, or when it is passed to a function.</p>
-<p>其实swift中所有的基本类型——integers, floating-point, Booleans, strings, arrays and dictionaries——都是 value type。</p>
-<p>也就是说，当你创建 struct 或 enumeration 类型的实例时，都是拷贝。例如：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">et hd = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="keyword">var</span> cinema = hd</span><br></pre></td></tr></table></figure>
-<p>此时，<code>cinema</code> 就是 <code>hd</code> 的一份拷贝，尽管现在它们两者有相同的长和宽，它们是完全独立的两个实例。例如：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cinema.width = <span class="number">2048</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"cinema is now <span class="subst">\(cinema.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "cinema is now 2048 pixels wide."</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hd is still <span class="subst">\(hd.width)</span> pixels wide."</span>)</span><br><span class="line"><span class="comment">// prints "hd is still 1920 pixels wide."</span></span><br></pre></td></tr></table></figure>
-<p>类似的，enumeration 也有：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> currentDirection = <span class="type">CompassPoint</span>.<span class="type">West</span></span><br><span class="line"><span class="keyword">let</span> rememberDirection = currentDirection</span><br><span class="line">currentDirection = .<span class="type">East</span></span><br><span class="line"><span class="keyword">if</span> rememberDirection == .<span class="type">West</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The remembered direction is still .west"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="classes_are_reference_types">classes are reference types</h3><p>与 value type 不同，reference type 会取代现有的实例：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tenEighty = <span class="type">VideoMode</span>()</span><br><span class="line">tenEighty.resolution = hd</span><br><span class="line">tenEighty.interlaced = <span class="literal">true</span></span><br><span class="line">tenEighty.name = <span class="string">"1080i"</span></span><br><span class="line">tenEighty.frameRate = <span class="number">25.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> alsoTenEighty = tenEighty</span><br><span class="line">alsoTenEighty.frameRate = <span class="number">30.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The frameRate property of tenEighty is now <span class="subst">\(tenEighty.frameRate)</span>"</span>)</span><br><span class="line"><span class="comment">// prints "The frameRate property of tenEighty is now 30.0"</span></span><br></pre></td></tr></table></figure>
-<h3 id="identity_operators">identity operators</h3><p>因为 class 是 reference type，所以有必要比较两个常量或变量是否 refer 到同一个类的实例上，有两个操作符可以完成这件事：</p>
-<ul>
-<li>Identical to (===)</li>
-<li>Not identitcal to (!==)</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> tenEighty === alsoTenEighty &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"tenEight and alsoTenEight refer to the same VideoMode instance."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints "tenEight and alsoTenEight refer to the same VideoMode instance."</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>“Identical to”: means that two constants or variables of class type refer to exactly the same class instance.</li>
-<li>“Equal to”: means that two instances are considered “equal” or “equivalent” in value, for some appropriate meaning of “equal”, as defined by the type’s designer.</li>
-</ul>
-<p><strong>Pointers</strong></p>
-<p>swift 中的 refer 到某个 reference type 的实例跟 C，C++ 中的指针是类似的，但不需要 <code>*</code> 来定义。</p>
-<h3 id="choose_structure_or_class">choose structure or class</h3><p>structure instances are always passed by value, and class instances are always passed by reference.</p>
-<p>如果满足下面一个或多个条件，考虑使用 structure：</p>
-<ul>
-<li>The structure’s primary purpose is to encapsulate a few relatively simple data values.（为了概括一些数据）</li>
-<li>It is reasonable to expect that the encapsulated values will be copied rather than referenced when you assign or pass around an instance of that structure.（如果数据一般是拷贝而不是refer）</li>
-<li>Any properties stored by the structure are themselves value types, which would also be expected to be copied rather than referenced.（value types）</li>
-<li>The structure does not need to inherit properties or behavior from another existing type.（不需要继承性）</li>
-</ul>
-<p>一些可以使用 structure 的例子：</p>
-<ul>
-<li>The size of a geometric shape, perhaps encapsulating a width property and a height property, both of type Double.（几何形状的大小）</li>
-<li>A way to refer to ranges within a series, perhaps encapsulating a start property and a length property, both of type Int.（一系列的范围）</li>
-<li>A point in a 3D coordinate system, perhaps encapsulating x, y and z properties, each of type Double.（坐标系统）</li>
-</ul>
-<p><strong>Assignment and Copy Behavior for Strings, Arrays, and Dictionaries</strong></p>
-<p>In Swift, many basic data types such as String, Array, and Dictionary are implemented as structures.意思是说，当这些类型赋给一个新的 constant 或 variable ，或传递给函数时，都是原始数据的拷贝。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="comparing_classes_and_structures">comparing classes and structures</h3><p>都可以：</p>
-<ul>
-<li>定义 property 来存储值</li>
-<li>定义函数</li>
-<li>定义下标，以供下表式调用</li>
-<li>定义初始化函数</li>
-<li>Be extended to expand their functionality beyond a default implementation</li>
-<li>Conform to protocols to provide standard functionality of a certain kind</li>
-</ul>]]>
-    
-    </summary>
-    
-      <category term="Swift" scheme="http://bluestein.github.io/tags/Swift/"/>
-    
-      <category term="iOS" scheme="http://bluestein.github.io/tags/iOS/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Swift" scheme="http://bluestein.github.io/categories/Dev/Swift/"/>
     
   </entry>
   
