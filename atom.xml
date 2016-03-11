@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-09T07:15:52.915Z</updated>
+  <updated>2016-03-11T14:15:32.990Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,11 +15,66 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[MapReduce]]></title>
+    <link href="http://bluestein.github.io/2016/03/map-reduce/"/>
+    <id>http://bluestein.github.io/2016/03/map-reduce/</id>
+    <published>2016-03-11T14:15:10.000Z</published>
+    <updated>2016-03-11T14:15:32.990Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h3 id="map函数和reduce函数">map函数和reduce函数</h3><p>map函数和reduce函数是交给用户实现的，这两个函数定义了任务本身。</p>
+<ol>
+<li>map函数：接受一个键值对（key-value pair），产生一组中间键值对。MapReduce框架会将map函数产生的中间键值对里键相同的值传递给一个reduce函数。</li>
+<li>reduce函数：接受一个键，以及相关的一组值，将这组值进行合并产生一组规模更小的值（通常只有一个或零个值）。</li>
+</ol>
+<p>使用词频统计来做例子：拆分文件集，copy程序，整合结果。下面是MapReduce函数的核心代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">map(String key, String value):</span><br><span class="line">	// key: document name</span><br><span class="line">	// value: document contents</span><br><span class="line">	<span class="keyword">for</span> each word w <span class="keyword">in</span> value:</span><br><span class="line">		EmitIntermediate(w, <span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">reduce(String key, Iterator values):</span><br><span class="line">	// key: a word</span><br><span class="line">	// values: a list of counts</span><br><span class="line">	int result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> each v <span class="keyword">in</span> values:</span><br><span class="line">		result += ParseInt(v);</span><br><span class="line">		Emit(AsString(result));</span><br></pre></td></tr></table></figure>
+<p>在统计词频的例子里，map 函数接受的键是文件名，值是文件的内容，map 逐个遍历单词，每遇到一个单词w，就产生一个中间键值对<w, "1"="">，这表示单词w 咱又找到了一个；MapReduce 将键相同（都是单词w）的键值对传给reduce 函数，这样reduce 函数接受的键就是单词w，值是一串”1”（最基本的实现是这样，但可以优化），个数等于键为w的键值对的个数，然后将这些“1”累加就得到单词w的出现次数。最后这些单词的出现次数会被写到用户定义的位置，存储在底层的分布式存储系统（GFS 或HDFS）。</w,></p>
+<h3 id="MapReduce工作">MapReduce工作</h3><p><img src="/images/mapReduce.jpg" alt=""></p>
+<p>上图是论文里给出的流程图。一切都是从最上方的user program 开始的，user program 链接了MapReduce 库，实现了最基本的Map 函数和Reduce 函数。图中执行的顺序都用数字标记了。</p>
+<ol>
+<li>MapReduce 库先把user program 的输入文件划分为M份（M为用户定义），每一份通常有16MB 到64MB，如图左方所示分成了split0~4；然后使用fork 将用户进程拷贝到集群内其它机器上。</li>
+<li>user program 的副本中有一个称为master，其余称为worker，master 是负责调度的，为空闲worker 分配作业（Map 作业或者Reduce 作业），worker 的数量也是可以由用户指定的。</li>
+<li>被分配了Map 作业的worker，开始读取对应分片的输入数据，Map 作业数量是由M 决定的，和split一一对应；Map 作业从输入数据中抽取出键值对，每一个键值对都作为参数传递给map 函数，map 函数产生的中间键值对被缓存在内存中。</li>
+<li>缓存的中间键值对会被定期写入本地磁盘，而且被分为R 个区，R 的大小是由用户定义的，将来每个区会对应一个Reduce 作业；这些中间键值对的位置会被通报给master，master 负责将信息转发给Reduce worker。</li>
+<li>master 通知分配了Reduce 作业的worker 它负责的分区在什么位置（不止一个地方，每个Map 作业产生的中间键值对都可能映射到所有R 个不同分区），当Reduce worker 把所有它负责的中间键值对都读过来后，先对它们进行排序，使得相同键的键值对聚集在一起。因为不同的键可能会映射到同一个分区也就是同一个Reduce 作业（因为分区少），所以排序是必须的。</li>
+<li>reduce worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给reduce 函数，reduce 函数产生的输出会添加到这个分区的输出文件中。</li>
+<li>当所有的Map 和Reduce 作业都完成了，master 唤醒正版的user program，MapReduce 函数调用返回user program 的代码。</li>
+</ol>
+<p>所有执行完毕后，MapReduce输出放在了R个分区的输出文件中（分别对应一个Reduce作业）。用户通常并不需要合并这R个文件，而是将其作为输入交给另一个MapReduce程序处理。整个过程中，输入数据是来自底层分布式文件系统（GFS）的，中间数据是放在本地文件系统的，最终输出数据是写入底层分布式文件系统（GFS）的。而且我们要注意Map/Reduce作业和map/reduce函数的区别：Map作业处理一个输入数据的分片，可能需要调用多次map函数来处理每个输入键值对；Reduce作业处理一个分区的中间键值对，期间要对每个不同的键调用一次reduce函数，Reduce作业最终也对应一个输出文件。</p>
+<h3 id="用户的权利">用户的权利</h3><p>用户最主要的任务是实现map 和reduce 接口，但还有一些有用的接口是向用户开放的。</p>
+<ol>
+<li>input reader：这个函数会将输入分为M个部分，并且定义了如何从数据中抽取最初的键值对，比如词频的例子中定义文件名和文件内容是键值对</li>
+<li>partition function：这个函数用于将map函数产生的中间键值对映射到一个分区里去，最简单的实现就是将键求哈希再对R取模</li>
+<li>compare function：这个函数用于Reduce作业排序，这个函数定义了键的大小关系</li>
+<li>output writer：负责将结果写入底层分布式文件系统</li>
+<li>combiner function：实际就是reduce 函数，这是用于前面提到的优化。比如统计词频时，如果每个<w, "1"="">要读一次，因为reduce 和map 通常不在一台机器，非常浪费时间，所以可以在map 执行的地方先运行一次combiner，这样reduce 只需要读一次<w, "n"="">了</w,></w,></li>
+<li>map 和reduce 函数</li>
+</ol>
+<p>参见 <a href="http://blog.csdn.net/opennaive/article/details/7514146" target="_blank" rel="external">csdn</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creativ]]>
+    </summary>
+    
+      <category term="Hadoop" scheme="http://bluestein.github.io/tags/Hadoop/"/>
+    
+      <category term="MapReduce" scheme="http://bluestein.github.io/tags/MapReduce/"/>
+    
+      <category term="分布式" scheme="http://bluestein.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="Hadoop" scheme="http://bluestein.github.io/categories/Hadoop/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Efficient Online Evaluation of Big Data Stream Classifiers]]></title>
     <link href="http://bluestein.github.io/2016/03/evaluation-of-data-stream/"/>
     <id>http://bluestein.github.io/2016/03/evaluation-of-data-stream/</id>
     <published>2016-03-09T01:57:05.000Z</published>
-    <updated>2016-03-09T07:15:52.915Z</updated>
+    <updated>2016-03-11T13:05:27.450Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
@@ -69,9 +124,9 @@
     
       <category term="evaluation" scheme="http://bluestein.github.io/tags/evaluation/"/>
     
-      <category term="Academic" scheme="http://bluestein.github.io/categories/Academic/"/>
+      <category term="Machine Learning" scheme="http://bluestein.github.io/categories/Machine-Learning/"/>
     
-      <category term="data stream" scheme="http://bluestein.github.io/categories/Academic/data-stream/"/>
+      <category term="data stream" scheme="http://bluestein.github.io/categories/Machine-Learning/data-stream/"/>
     
   </entry>
   
@@ -2740,44 +2795,6 @@
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
 <h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[switch, ex6.9]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-5/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-5/</id>
-    <published>2015-12-22T01:42:42.000Z</published>
-    <updated>2016-03-05T02:41:48.529Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> aCnt = <span class="number">0</span>, eCnt = <span class="number">0</span>, iCnt = <span class="number">0</span>, oCnt = <span class="number">0</span>, uCnt = <span class="number">0</span>, otherCnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; ch)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (ch)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">			++aCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'e'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">			++eCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">			++iCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'o'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'O'</span>:</span><br><span class="line">			++oCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'u'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'U'</span>:</span><br><span class="line">			++uCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			++otherCnt;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of vowel a/A:\t"</span> &lt;&lt; aCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel e/E:\t"</span> &lt;&lt; eCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel i/I:\t"</span> &lt;&lt; iCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel o/O:\t"</span> &lt;&lt; oCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of vowel u/U:\t"</span> &lt;&lt; uCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of other characters:\t"</span> &lt;&lt; otherCnt &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Sorry! Who Are You Again?↙</span><br><span class="line">^Z↙</span><br><span class="line">Number of vowel a/A:    <span class="number">3</span></span><br><span class="line">Number of vowel e/E:    <span class="number">1</span></span><br><span class="line">Number of vowel i/I:    <span class="number">1</span></span><br><span class="line">Number of vowel o/O:    <span class="number">3</span></span><br><span class="line">Number of vowel u/U:    <span class="number">1</span></span><br><span class="line">Number of other characters:     <span class="number">12</span></span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_6-9">Exercise 6.9</h3><p>统计下列字符序列出现的次数：ff、fl以及fi。 </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> pre_ch = <span class="string">'\0'</span>, cur_ch;</span><br><span class="line">	<span class="keyword">int</span> ffCnt = <span class="number">0</span>, flCnt = <span class="number">0</span>, fiCnt = <span class="number">0</span>, otherCnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> ((cur_ch = getchar()) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (pre_ch == <span class="string">'f'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">switch</span> (cur_ch)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'f'</span>:</span><br><span class="line">				++ffCnt;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'l'</span>:</span><br><span class="line">				++flCnt;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">				++fiCnt;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				++otherCnt;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		pre_ch = cur_ch;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="string">"Number of ff:\t"</span> &lt;&lt; ffCnt &lt;&lt;<span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of fl:\t"</span> &lt;&lt; flCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of fi:\t"</span> &lt;&lt; fiCnt &lt;&lt; <span class="string">"\n"</span></span><br><span class="line">		&lt;&lt; <span class="string">"Number of other:\t"</span> &lt;&lt; otherCnt &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flfmffi↙</span><br><span class="line">^Z↙</span><br><span class="line">Number of ff:   <span class="number">1</span></span><br><span class="line">Number of fl:   <span class="number">1</span></span><br><span class="line">Number of fi:   <span class="number">1</span></span><br><span class="line">Number of other:        <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>END.</p>
-<hr>
-<p>Github Pages同步更新: <a href="http://bluestein.github.io/">Humooo’s Blog</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Example">Example</h3><p>统计输入的一句话中元音出现的次数。</p>]]>
     
     </summary>
     
