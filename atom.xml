@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-11T14:15:32.990Z</updated>
+  <updated>2016-03-11T14:19:39.987Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[MapReduce]]></title>
-    <link href="http://bluestein.github.io/2016/03/map-reduce/"/>
-    <id>http://bluestein.github.io/2016/03/map-reduce/</id>
+    <link href="http://bluestein.github.io/2016/03/ML-map-reduce/"/>
+    <id>http://bluestein.github.io/2016/03/ML-map-reduce/</id>
     <published>2016-03-11T14:15:10.000Z</published>
-    <updated>2016-03-11T14:15:32.990Z</updated>
+    <updated>2016-03-11T14:19:39.987Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
@@ -28,6 +28,7 @@
 <li>map函数：接受一个键值对（key-value pair），产生一组中间键值对。MapReduce框架会将map函数产生的中间键值对里键相同的值传递给一个reduce函数。</li>
 <li>reduce函数：接受一个键，以及相关的一组值，将这组值进行合并产生一组规模更小的值（通常只有一个或零个值）。</li>
 </ol>
+<a id="more"></a>
 <p>使用词频统计来做例子：拆分文件集，copy程序，整合结果。下面是MapReduce函数的核心代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">map(String key, String value):</span><br><span class="line">	// key: document name</span><br><span class="line">	// value: document contents</span><br><span class="line">	<span class="keyword">for</span> each word w <span class="keyword">in</span> value:</span><br><span class="line">		EmitIntermediate(w, <span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">reduce(String key, Iterator values):</span><br><span class="line">	// key: a word</span><br><span class="line">	// values: a list of counts</span><br><span class="line">	int result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> each v <span class="keyword">in</span> values:</span><br><span class="line">		result += ParseInt(v);</span><br><span class="line">		Emit(AsString(result));</span><br></pre></td></tr></table></figure>
 <p>在统计词频的例子里，map 函数接受的键是文件名，值是文件的内容，map 逐个遍历单词，每遇到一个单词w，就产生一个中间键值对<w, "1"="">，这表示单词w 咱又找到了一个；MapReduce 将键相同（都是单词w）的键值对传给reduce 函数，这样reduce 函数接受的键就是单词w，值是一串”1”（最基本的实现是这样，但可以优化），个数等于键为w的键值对的个数，然后将这些“1”累加就得到单词w的出现次数。最后这些单词的出现次数会被写到用户定义的位置，存储在底层的分布式存储系统（GFS 或HDFS）。</w,></p>
@@ -56,7 +57,14 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creativ]]>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h3 id="map函数和reduce函数">map函数和reduce函数</h3><p>map函数和reduce函数是交给用户实现的，这两个函数定义了任务本身。</p>
+<ol>
+<li>map函数：接受一个键值对（key-value pair），产生一组中间键值对。MapReduce框架会将map函数产生的中间键值对里键相同的值传递给一个reduce函数。</li>
+<li>reduce函数：接受一个键，以及相关的一组值，将这组值进行合并产生一组规模更小的值（通常只有一个或零个值）。</li>
+</ol>]]>
+    
     </summary>
     
       <category term="Hadoop" scheme="http://bluestein.github.io/tags/Hadoop/"/>
@@ -71,8 +79,8 @@
   
   <entry>
     <title><![CDATA[Efficient Online Evaluation of Big Data Stream Classifiers]]></title>
-    <link href="http://bluestein.github.io/2016/03/evaluation-of-data-stream/"/>
-    <id>http://bluestein.github.io/2016/03/evaluation-of-data-stream/</id>
+    <link href="http://bluestein.github.io/2016/03/ML-evaluation-of-data-stream/"/>
+    <id>http://bluestein.github.io/2016/03/ML-evaluation-of-data-stream/</id>
     <published>2016-03-09T01:57:05.000Z</published>
     <updated>2016-03-11T13:05:27.450Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -132,8 +140,8 @@
   
   <entry>
     <title><![CDATA[阿里电话面试]]></title>
-    <link href="http://bluestein.github.io/2016/03/ali-interview-1/"/>
-    <id>http://bluestein.github.io/2016/03/ali-interview-1/</id>
+    <link href="http://bluestein.github.io/2016/03/interview-ali/"/>
+    <id>http://bluestein.github.io/2016/03/interview-ali/</id>
     <published>2016-03-08T14:00:05.000Z</published>
     <updated>2016-03-10T11:04:14.286Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -215,8 +223,8 @@
   
   <entry>
     <title><![CDATA[KMP: 字符串匹配算法]]></title>
-    <link href="http://bluestein.github.io/2016/03/Algorithm-KMP/"/>
-    <id>http://bluestein.github.io/2016/03/Algorithm-KMP/</id>
+    <link href="http://bluestein.github.io/2016/03/algorithm-KMP/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-KMP/</id>
     <published>2016-03-08T07:23:05.000Z</published>
     <updated>2016-03-08T08:01:38.905Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -286,8 +294,8 @@
   
   <entry>
     <title><![CDATA[const与指针、函数]]></title>
-    <link href="http://bluestein.github.io/2016/03/const-pointer-function/"/>
-    <id>http://bluestein.github.io/2016/03/const-pointer-function/</id>
+    <link href="http://bluestein.github.io/2016/03/cpp-const-pointer-function/"/>
+    <id>http://bluestein.github.io/2016/03/cpp-const-pointer-function/</id>
     <published>2016-03-05T01:23:05.000Z</published>
     <updated>2016-03-05T02:46:17.003Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -406,8 +414,8 @@
   
   <entry>
     <title><![CDATA[冬跑]]></title>
-    <link href="http://bluestein.github.io/2016/02/winter-running/"/>
-    <id>http://bluestein.github.io/2016/02/winter-running/</id>
+    <link href="http://bluestein.github.io/2016/02/interest-winter-running/"/>
+    <id>http://bluestein.github.io/2016/02/interest-winter-running/</id>
     <published>2016-02-25T07:15:05.000Z</published>
     <updated>2016-03-05T02:44:53.849Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -824,8 +832,8 @@
   
   <entry>
     <title><![CDATA[LaTeX: LLNCS v2.4]]></title>
-    <link href="http://bluestein.github.io/2016/01/LATEX-LLNCS/"/>
-    <id>http://bluestein.github.io/2016/01/LATEX-LLNCS/</id>
+    <link href="http://bluestein.github.io/2016/01/ML-LATEX-LLNCS/"/>
+    <id>http://bluestein.github.io/2016/01/ML-LATEX-LLNCS/</id>
     <published>2016-01-09T02:02:00.000Z</published>
     <updated>2016-03-05T02:37:36.864Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -2107,8 +2115,8 @@
   
   <entry>
     <title><![CDATA[IO库]]></title>
-    <link href="http://bluestein.github.io/2016/01/cpp-IO_library/"/>
-    <id>http://bluestein.github.io/2016/01/cpp-IO_library/</id>
+    <link href="http://bluestein.github.io/2016/01/cpp-IO-library/"/>
+    <id>http://bluestein.github.io/2016/01/cpp-IO-library/</id>
     <published>2016-01-01T07:11:49.000Z</published>
     <updated>2016-03-05T02:40:48.439Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -2435,8 +2443,8 @@
   
   <entry>
     <title><![CDATA[函数的声明]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-function_declaration/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-function_declaration/</id>
+    <link href="http://bluestein.github.io/2015/12/cpp-function-declaration/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-function-declaration/</id>
     <published>2015-12-31T07:11:49.000Z</published>
     <updated>2016-03-05T02:40:47.072Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -2601,8 +2609,8 @@
   
   <entry>
     <title><![CDATA[参数传递]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-parameter_passing/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-parameter_passing/</id>
+    <link href="http://bluestein.github.io/2015/12/cpp-parameter-passing/"/>
+    <id>http://bluestein.github.io/2015/12/cpp-parameter-passing/</id>
     <published>2015-12-29T12:49:49.000Z</published>
     <updated>2016-03-05T02:40:48.998Z</updated>
     <content type="html"><![CDATA[<blockquote>

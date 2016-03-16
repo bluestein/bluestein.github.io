@@ -241,7 +241,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/map-reduce/" itemprop="url">
+                <a class="post-title-link" href="/2016/03/ML-map-reduce/" itemprop="url">
                   MapReduce
                 </a>
               
@@ -285,8 +285,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/map-reduce/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/map-reduce/" itemprop="commentsCount"></span>
+                <a href="/2016/03/ML-map-reduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/ML-map-reduce/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,42 +308,19 @@
 
       
         
-          
-            <blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+          <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
 <h3 id="map函数和reduce函数">map函数和reduce函数</h3><p>map函数和reduce函数是交给用户实现的，这两个函数定义了任务本身。</p>
 <ol>
 <li>map函数：接受一个键值对（key-value pair），产生一组中间键值对。MapReduce框架会将map函数产生的中间键值对里键相同的值传递给一个reduce函数。</li>
 <li>reduce函数：接受一个键，以及相关的一组值，将这组值进行合并产生一组规模更小的值（通常只有一个或零个值）。</li>
 </ol>
-<p>使用词频统计来做例子：拆分文件集，copy程序，整合结果。下面是MapReduce函数的核心代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">map(String key, String value):</span><br><span class="line">	// key: document name</span><br><span class="line">	// value: document contents</span><br><span class="line">	<span class="keyword">for</span> each word w <span class="keyword">in</span> value:</span><br><span class="line">		EmitIntermediate(w, <span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">reduce(String key, Iterator values):</span><br><span class="line">	// key: a word</span><br><span class="line">	// values: a list of counts</span><br><span class="line">	int result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> each v <span class="keyword">in</span> values:</span><br><span class="line">		result += ParseInt(v);</span><br><span class="line">		Emit(AsString(result));</span><br></pre></td></tr></table></figure>
-<p>在统计词频的例子里，map 函数接受的键是文件名，值是文件的内容，map 逐个遍历单词，每遇到一个单词w，就产生一个中间键值对<w, "1"="">，这表示单词w 咱又找到了一个；MapReduce 将键相同（都是单词w）的键值对传给reduce 函数，这样reduce 函数接受的键就是单词w，值是一串”1”（最基本的实现是这样，但可以优化），个数等于键为w的键值对的个数，然后将这些“1”累加就得到单词w的出现次数。最后这些单词的出现次数会被写到用户定义的位置，存储在底层的分布式存储系统（GFS 或HDFS）。</w,></p>
-<h3 id="MapReduce工作">MapReduce工作</h3><p><img src="/images/mapReduce.jpg" alt=""></p>
-<p>上图是论文里给出的流程图。一切都是从最上方的user program 开始的，user program 链接了MapReduce 库，实现了最基本的Map 函数和Reduce 函数。图中执行的顺序都用数字标记了。</p>
-<ol>
-<li>MapReduce 库先把user program 的输入文件划分为M份（M为用户定义），每一份通常有16MB 到64MB，如图左方所示分成了split0~4；然后使用fork 将用户进程拷贝到集群内其它机器上。</li>
-<li>user program 的副本中有一个称为master，其余称为worker，master 是负责调度的，为空闲worker 分配作业（Map 作业或者Reduce 作业），worker 的数量也是可以由用户指定的。</li>
-<li>被分配了Map 作业的worker，开始读取对应分片的输入数据，Map 作业数量是由M 决定的，和split一一对应；Map 作业从输入数据中抽取出键值对，每一个键值对都作为参数传递给map 函数，map 函数产生的中间键值对被缓存在内存中。</li>
-<li>缓存的中间键值对会被定期写入本地磁盘，而且被分为R 个区，R 的大小是由用户定义的，将来每个区会对应一个Reduce 作业；这些中间键值对的位置会被通报给master，master 负责将信息转发给Reduce worker。</li>
-<li>master 通知分配了Reduce 作业的worker 它负责的分区在什么位置（不止一个地方，每个Map 作业产生的中间键值对都可能映射到所有R 个不同分区），当Reduce worker 把所有它负责的中间键值对都读过来后，先对它们进行排序，使得相同键的键值对聚集在一起。因为不同的键可能会映射到同一个分区也就是同一个Reduce 作业（因为分区少），所以排序是必须的。</li>
-<li>reduce worker 遍历排序后的中间键值对，对于每个唯一的键，都将键与关联的值传递给reduce 函数，reduce 函数产生的输出会添加到这个分区的输出文件中。</li>
-<li>当所有的Map 和Reduce 作业都完成了，master 唤醒正版的user program，MapReduce 函数调用返回user program 的代码。</li>
-</ol>
-<p>所有执行完毕后，MapReduce输出放在了R个分区的输出文件中（分别对应一个Reduce作业）。用户通常并不需要合并这R个文件，而是将其作为输入交给另一个MapReduce程序处理。整个过程中，输入数据是来自底层分布式文件系统（GFS）的，中间数据是放在本地文件系统的，最终输出数据是写入底层分布式文件系统（GFS）的。而且我们要注意Map/Reduce作业和map/reduce函数的区别：Map作业处理一个输入数据的分片，可能需要调用多次map函数来处理每个输入键值对；Reduce作业处理一个分区的中间键值对，期间要对每个不同的键调用一次reduce函数，Reduce作业最终也对应一个输出文件。</p>
-<h3 id="用户的权利">用户的权利</h3><p>用户最主要的任务是实现map 和reduce 接口，但还有一些有用的接口是向用户开放的。</p>
-<ol>
-<li>input reader：这个函数会将输入分为M个部分，并且定义了如何从数据中抽取最初的键值对，比如词频的例子中定义文件名和文件内容是键值对</li>
-<li>partition function：这个函数用于将map函数产生的中间键值对映射到一个分区里去，最简单的实现就是将键求哈希再对R取模</li>
-<li>compare function：这个函数用于Reduce作业排序，这个函数定义了键的大小关系</li>
-<li>output writer：负责将结果写入底层分布式文件系统</li>
-<li>combiner function：实际就是reduce 函数，这是用于前面提到的优化。比如统计词频时，如果每个<w, "1"="">要读一次，因为reduce 和map 通常不在一台机器，非常浪费时间，所以可以在map 执行的地方先运行一次combiner，这样reduce 只需要读一次<w, "n"="">了</w,></w,></li>
-<li>map 和reduce 函数</li>
-</ol>
-<p>参见 <a href="http://blog.csdn.net/opennaive/article/details/7514146" target="_blank" rel="external">csdn</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/ML-map-reduce/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -383,7 +360,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/evaluation-of-data-stream/" itemprop="url">
+                <a class="post-title-link" href="/2016/03/ML-evaluation-of-data-stream/" itemprop="url">
                   Efficient Online Evaluation of Big Data Stream Classifiers
                 </a>
               
@@ -439,8 +416,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/evaluation-of-data-stream/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/evaluation-of-data-stream/" itemprop="commentsCount"></span>
+                <a href="/2016/03/ML-evaluation-of-data-stream/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/ML-evaluation-of-data-stream/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -468,7 +445,7 @@
 <p>原文 <a href="http://dl.acm.org/citation.cfm?id=2783372">Efficient Online Evaluation of Big Data Stream Classifiers (ACM)</a></p>
 <p>数据流模型分类器的评价标准至关重要，以便分辨出效果不佳的那些模型，并因此对其进行改进或替换成其他表现更好的模型。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/evaluation-of-data-stream/#more" rel="contents">
+            <a class="btn" href="/2016/03/ML-evaluation-of-data-stream/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -511,7 +488,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/ali-interview-1/" itemprop="url">
+                <a class="post-title-link" href="/2016/03/interview-ali/" itemprop="url">
                   阿里电话面试
                 </a>
               
@@ -567,8 +544,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/ali-interview-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/ali-interview-1/" itemprop="commentsCount"></span>
+                <a href="/2016/03/interview-ali/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/interview-ali/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -595,7 +572,7 @@
 </blockquote>
 <p>今天（2016-03-08）是我人生中接受的第一次面试，并不是想象中的那么顺利（意思是不行hhh）。当我看到电话上“浙江-杭州”四个字时，手就开始抖了，即使是现在（接完电话1个小时）心也还未平静下来。因为我知道我没准备好，不是说仅仅心理上没准备好，而是心理上、身体上（嗯，身体上）和知识储备上完完全全、彻彻底底的没准备好！所以我方了，以至于听不清对方讲话，听清了也回答不上来。。。尴尬症都犯了。。。不过面试官人好、态度好，想必是个帅哥、暖男？（我是男的！没那种意思。。），问的问题虽然简单，但是我答不上来啊hhh。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/ali-interview-1/#more" rel="contents">
+            <a class="btn" href="/2016/03/interview-ali/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -638,7 +615,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/Algorithm-KMP/" itemprop="url">
+                <a class="post-title-link" href="/2016/03/algorithm-KMP/" itemprop="url">
                   KMP: 字符串匹配算法
                 </a>
               
@@ -694,8 +671,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/Algorithm-KMP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/Algorithm-KMP/" itemprop="commentsCount"></span>
+                <a href="/2016/03/algorithm-KMP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/algorithm-KMP/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -723,7 +700,7 @@
 <h2 id="KMP搜索">KMP搜索</h2><p>字符串匹配是计算机的基本任务之一。举例来说，有一个字符串”BBC ABCDAB ABCDABCDABDE”，我想知道，里面是否包含另一个字符串”ABCDABD”？</p>
 <p>许多算法可以完成这个任务，<a href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm">Knuth-Morris-Pratt</a>算法（简称KMP）是最常用的之一。它以三个发明者命名，起头的那个K就是著名科学家<a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>。下面用图例的方法展示一个搜索过程：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/Algorithm-KMP/#more" rel="contents">
+            <a class="btn" href="/2016/03/algorithm-KMP/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -766,7 +743,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/const-pointer-function/" itemprop="url">
+                <a class="post-title-link" href="/2016/03/cpp-const-pointer-function/" itemprop="url">
                   const与指针、函数
                 </a>
               
@@ -822,8 +799,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/const-pointer-function/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/const-pointer-function/" itemprop="commentsCount"></span>
+                <a href="/2016/03/cpp-const-pointer-function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/cpp-const-pointer-function/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -860,7 +837,7 @@
 <p><code>cdp</code> 是指向一个double类型const对象的指针，const限定了 <code>cdp</code> 指针所指向的对象，而并非 <code>cdp</code> 本身。即 <code>cdp</code> 不是const类型，在定义时不一定需要给它初始化；如果有需要的话，允许给 <code>cdp</code> 重新赋值，使其指向另一个const对象，但不能通过 <code>cdp</code> 修改所指对象的值：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*cdp = <span class="number">2</span>;	<span class="comment">//error: *cdp might be const</span></span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/const-pointer-function/#more" rel="contents">
+            <a class="btn" href="/2016/03/cpp-const-pointer-function/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
