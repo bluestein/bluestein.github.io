@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-11T14:19:39.987Z</updated>
+  <updated>2016-03-17T14:35:56.804Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[由前序遍历和中序遍历树构造二叉树]]></title>
+    <link href="http://bluestein.github.io/2016/03/algorithm-preorder-inorder/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-preorder-inorder/</id>
+    <published>2016-03-17T14:23:05.000Z</published>
+    <updated>2016-03-17T14:35:56.804Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="遍历">遍历</h2><p>先序、中序、后序说的都是根相对的位置来说的。</p>
+<ol>
+<li>先序（先根）：根-左-右</li>
+<li>中序（中根）：左-根-右</li>
+<li>后序（后根）：右-左-根</li>
+</ol>
+<a id="more"></a>
+<p>比如，有如下二叉树：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> \   \</span><br><span class="line">  <span class="number">4</span>   <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>则我们可以知道</p>
+<ol>
+<li>先序：preorder = [1,2,4,3,5]</li>
+<li>中序：inorder = [2,4,1,3,5]</li>
+</ol>
+<h2 id="算法">算法</h2><p>算法首先利用先序遍历序列构造“跟”节点，然后依据中序遍历序列来构造左右子树。就拿上面二叉树举例，算法流程如下：</p>
+<ol>
+<li>根节点（root）是先序序列中的第一个节点preorder[0] = 1；</li>
+<li>在inorder 中找到值等于1 的点，然后将inorder 分为左右两块，即[2,4] 和[3,5]</li>
+<li>利用两块[2,4] 和[3,5] 分别用来构造根节点1 的左右子树。</li>
+<li>递归产生各子树</li>
+</ol>
+<p>C++代码如下（仅供参考）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition of TreeNode:</span><br><span class="line"> * class TreeNode &#123;</span><br><span class="line"> * public:</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left, *right;</span><br><span class="line"> *     TreeNode(int val) &#123;</span><br><span class="line"> *         this-&gt;val = val;</span><br><span class="line"> *         this-&gt;left = this-&gt;right = NULL;</span><br><span class="line"> *     &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     *@param preorder : A list of integers that preorder traversal of a tree</span><br><span class="line">     *@param inorder : A list of integers that inorder traversal of a tree</span><br><span class="line">     *@return : Root of a tree</span><br><span class="line">     */</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode *<span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len_pre = preorder.size(), len_in = inorder.size();</span><br><span class="line">        <span class="keyword">if</span> (!len_in || !len_pre) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(preorder[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">int</span> in = <span class="number">0</span>;  <span class="comment">// in: 中序遍历根节点所在位置</span></span><br><span class="line">        <span class="keyword">while</span> (preorder[<span class="number">0</span>] != inorder[in]) in++;  <span class="comment">// 在中序遍历找到根节点位置</span></span><br><span class="line">        preorder.erase(preorder.begin()); <span class="comment">// 去除preorder的第一个元素</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it_in = inorder.begin();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorder_left, inorder_right;</span><br><span class="line">        <span class="keyword">if</span> (in != <span class="number">0</span>)  <span class="comment">// 有左子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            inorder_left = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(it_in, it_in + in);  <span class="comment">// 左侧子树的中序遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (in != len_in -<span class="number">1</span>)  <span class="comment">// 有右子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            inorder_right = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(it_in + in + <span class="number">1</span>, inorder.end());  <span class="comment">// 右侧子树的中序遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">        root-&gt;left = buildTree(preorder, inorder_left);  <span class="comment">// 构造左子树</span></span><br><span class="line">        root-&gt;right = buildTree(preorder, inorder_right);  <span class="comment">// 构造右子树</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="遍历">遍历</h2><p>先序、中序、后序说的都是根相对的位置来说的。</p>
+<ol>
+<li>先序（先根）：根-左-右</li>
+<li>中序（中根）：左-根-右</li>
+<li>后序（后根）：右-左-根</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
+    
+      <category term="binary tree" scheme="http://bluestein.github.io/tags/binary-tree/"/>
+    
+      <category term="inorder" scheme="http://bluestein.github.io/tags/inorder/"/>
+    
+      <category term="preorder" scheme="http://bluestein.github.io/tags/preorder/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[MapReduce]]></title>
@@ -285,67 +346,6 @@
       <category term="KMP" scheme="http://bluestein.github.io/tags/KMP/"/>
     
       <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[由前序遍历和中序遍历树构造二叉树]]></title>
-    <link href="http://bluestein.github.io/2016/03/algorithm-preorder-inorder/"/>
-    <id>http://bluestein.github.io/2016/03/algorithm-preorder-inorder/</id>
-    <published>2016-03-08T07:23:05.000Z</published>
-    <updated>2016-03-17T14:19:20.706Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h2 id="遍历">遍历</h2><p>先序、中序、后序说的都是根相对的位置来说的。</p>
-<ol>
-<li>先序（先根）：根-左-右</li>
-<li>中序（中根）：左-根-右</li>
-<li>后序（后根）：右-左-根</li>
-</ol>
-<a id="more"></a>
-<p>比如，有如下二叉树：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> \   \</span><br><span class="line">  <span class="number">4</span>   <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>则我们可以知道</p>
-<ol>
-<li>先序：preorder = [1,2,4,3,5]</li>
-<li>中序：inorder = [2,4,1,3,5]</li>
-</ol>
-<h2 id="算法">算法</h2><p>算法首先利用先序遍历序列构造“跟”节点，然后依据中序遍历序列来构造左右子树。就拿上面二叉树举例，算法流程如下：</p>
-<ol>
-<li>根节点（root）是先序序列中的第一个节点preorder[0] = 1；</li>
-<li>在inorder 中找到值等于1 的点，然后将inorder 分为左右两块，即[2,4] 和[3,5]</li>
-<li>利用两块[2,4] 和[3,5] 分别用来构造根节点1 的左右子树。</li>
-<li>递归产生各子树</li>
-</ol>
-<p>C++代码如下（仅供参考）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition of TreeNode:</span><br><span class="line"> * class TreeNode &#123;</span><br><span class="line"> * public:</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left, *right;</span><br><span class="line"> *     TreeNode(int val) &#123;</span><br><span class="line"> *         this-&gt;val = val;</span><br><span class="line"> *         this-&gt;left = this-&gt;right = NULL;</span><br><span class="line"> *     &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     *@param preorder : A list of integers that preorder traversal of a tree</span><br><span class="line">     *@param inorder : A list of integers that inorder traversal of a tree</span><br><span class="line">     *@return : Root of a tree</span><br><span class="line">     */</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode *<span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len_pre = preorder.size(), len_in = inorder.size();</span><br><span class="line">        <span class="keyword">if</span> (!len_in || !len_pre) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(preorder[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">int</span> in = <span class="number">0</span>;  <span class="comment">// in: 中序遍历根节点所在位置</span></span><br><span class="line">        <span class="keyword">while</span> (preorder[<span class="number">0</span>] != inorder[in]) in++;  <span class="comment">// 在中序遍历找到根节点位置</span></span><br><span class="line">        preorder.erase(preorder.begin()); <span class="comment">// 去除preorder的第一个元素</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it_in = inorder.begin();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorder_left, inorder_right;</span><br><span class="line">        <span class="keyword">if</span> (in != <span class="number">0</span>)  <span class="comment">// 有左子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            inorder_left = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(it_in, it_in + in);  <span class="comment">// 左侧子树的中序遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (in != len_in -<span class="number">1</span>)  <span class="comment">// 有右子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            inorder_right = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(it_in + in + <span class="number">1</span>, inorder.end());  <span class="comment">// 右侧子树的中序遍历</span></span><br><span class="line">        &#125;</span><br><span class="line">        root-&gt;left = buildTree(preorder, inorder_left);  <span class="comment">// 构造左子树</span></span><br><span class="line">        root-&gt;right = buildTree(preorder, inorder_right);  <span class="comment">// 构造右子树</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h2 id="遍历">遍历</h2><p>先序、中序、后序说的都是根相对的位置来说的。</p>
-<ol>
-<li>先序（先根）：根-左-右</li>
-<li>中序（中根）：左-根-右</li>
-<li>后序（后根）：右-左-根</li>
-</ol>]]>
-    
-    </summary>
-    
-      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
-    
-      <category term="binary tree" scheme="http://bluestein.github.io/tags/binary-tree/"/>
-    
-      <category term="inorder" scheme="http://bluestein.github.io/tags/inorder/"/>
-    
-      <category term="preorder" scheme="http://bluestein.github.io/tags/preorder/"/>
     
       <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
