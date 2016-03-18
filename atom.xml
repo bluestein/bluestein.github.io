@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Humooo's Blog]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-17T14:35:56.804Z</updated>
+  <updated>2016-03-18T14:30:58.101Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[按奇偶分割数组]]></title>
+    <link href="http://bluestein.github.io/2016/03/algorithm-partition-array/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-partition-array/</id>
+    <published>2016-03-18T14:00:05.000Z</published>
+    <updated>2016-03-18T14:30:58.101Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="问题描述">问题描述</h2><p>给定一个数组，比如 array = { 6, 2, 3, 1, 1, 3, 5, 8}，对该数组进行整理，使得所有奇数都在前面，所有的偶数都在后面。且满足下列条件之一：</p>
+<ol>
+<li>保证所有奇数的相对顺序不改变，所有偶数的相对顺序不改变</li>
+<li>不要求相对顺序不变</li>
+</ol>
+<a id="more"></a>
+<p>愚钝，暂时只想到下面这些：</p>
+<h2 id="1-_保持相对位置">1. 保持相对位置</h2><h3 id="a-_利用冒泡思想">a. 利用冒泡思想</h3><p>复杂度： T(n) = O(n^2), S(n) = O(1)<br>描述：从左至右扫描，遇到奇数则将其往左移动，直到遇到最近的奇数停止</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">partitionArray_bubble</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; nums.size()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] % <span class="number">2</span>) &#123;  <span class="comment">// odd</span></span><br><span class="line">			<span class="keyword">int</span> k = i;</span><br><span class="line">			<span class="keyword">while</span> (k &gt; j) &#123;  <span class="comment">// bubble: swap with the previous one</span></span><br><span class="line">				<span class="keyword">int</span> tmp = nums[k];</span><br><span class="line">				nums[k] = nums[k - <span class="number">1</span>];</span><br><span class="line">				nums[k - <span class="number">1</span>] = tmp;</span><br><span class="line">				--k;</span><br><span class="line">			&#125;</span><br><span class="line">			j += <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="b-_使用额外数组">b. 使用额外数组</h3><p>复杂度： T(n) = O(n), S(n) = O(n)<br>描述： </p>
+<ol>
+<li>新建一个数组，扫描原数组中的奇数并保存到新数组</li>
+<li>再次扫描原数组，保存扫描到的所有偶数至新数组</li>
+<li>然后把新数组的元素拷贝到原数组即可</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Arrays::partitionArray_copy(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; copy;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i)  <span class="comment">// 1. put odd number to copy</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] % <span class="number">2</span>) copy.push_back(nums[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i)  <span class="comment">// 2. put even number to copy</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!(nums[i] % <span class="number">2</span>)) copy.push_back(nums[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i)  <span class="comment">// 3. copy to nums</span></span><br><span class="line">	&#123;</span><br><span class="line">		nums[i] = copy[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-_不保持相对位置">2. 不保持相对位置</h2><h3 id="a-_借助快速排序分区的方法">a. 借助快速排序分区的方法</h3><p>复杂度： T(n) = O(n), S(n) = O(1)<br>描述： </p>
+<ol>
+<li>使用两个指针i, j，从数组左边（右边一样）同时开始扫描</li>
+<li>指针i 所指的元素是奇数时，则与j 所指元素对换</li>
+<li>重复过程2，直到i 到达末尾</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">partitionArray_same</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] % <span class="number">2</span>) &#123; <span class="comment">// odd</span></span><br><span class="line">			swap(nums[i], nums[j]);</span><br><span class="line">			++j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="b-_两指针相撞">b. 两指针相撞</h3><p>复杂度： T(n) = O(n), S(n) = O(1)<br>描述：</p>
+<ol>
+<li>使用两个指针，i 指向头, j 指向尾，分别从数组左右边两边同时开始扫描</li>
+<li>i 寻找第一个偶数，j 寻找第一个奇数，然后将它们所指元素对换</li>
+<li>重复过程2 直至i &lt; j</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">partitionArray_both</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = nums.size() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; j)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!(nums[i] % <span class="number">2</span>) &amp;&amp; (nums[j] % <span class="number">2</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			swap(nums[i], nums[j]);</span><br><span class="line">			i++, j--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] % <span class="number">2</span>) i++;  <span class="comment">// skip odd</span></span><br><span class="line">		<span class="keyword">if</span> (!(nums[j] % <span class="number">2</span>)) j--;  <span class="comment">// skip even</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="问题描述">问题描述</h2><p>给定一个数组，比如 array = { 6, 2, 3, 1, 1, 3, 5, 8}，对该数组进行整理，使得所有奇数都在前面，所有的偶数都在后面。且满足下列条件之一：</p>
+<ol>
+<li>保证所有奇数的相对顺序不改变，所有偶数的相对顺序不改变</li>
+<li>不要求相对顺序不变</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
+    
+      <category term="array" scheme="http://bluestein.github.io/tags/array/"/>
+    
+      <category term="partition" scheme="http://bluestein.github.io/tags/partition/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[由前序遍历和中序遍历树构造二叉树]]></title>
@@ -2799,36 +2864,6 @@
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
 <h3 id="Exercise_6-18">Exercise 6.18</h3><p>输入两个string对象，比较哪个按字典序靠前。</p>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ex6.16]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-7/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-7/</id>
-    <published>2015-12-22T12:03:42.000Z</published>
-    <updated>2016-03-05T02:39:55.955Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sz1 = a.size(), sz2 = b.size();</span><br><span class="line">	<span class="keyword">int</span> sz = sz1 &gt; sz2 ? sz2 : sz1;</span><br><span class="line">	<span class="keyword">int</span> matched = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i] == b[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			++matched;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sz == matched;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr1[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> arr2[<span class="number">7</span>] = &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> sz1 = <span class="keyword">sizeof</span>(arr1) / <span class="keyword">sizeof</span>(*arr1);</span><br><span class="line">	<span class="keyword">int</span> sz2 = <span class="keyword">sizeof</span>(arr2) / <span class="keyword">sizeof</span>(*arr2);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec1(arr1, arr1 + sz1);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec2(arr2, arr2 + sz2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; isPrefix(vec1, vec2) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Exercise_6-16">Exercise 6.16</h3><p>比较两个int型vector对象，判断一个是否是另一个的前缀。<br>即，假设有{ 0, 1, 1, 2 } 和 { 0, 1, 1, 2, 3, 5, 8 }则应返回true。</p>]]>
     
     </summary>
     
