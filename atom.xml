@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Humooo]]></title>
-  <subtitle><![CDATA[部分Leetcode解法参考我GitHub（链接在下面=_=||）]]></subtitle>
+  <subtitle><![CDATA[我的<a href="https://github.com/bluestein">GitHub</a>]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
   <updated>2016-03-20T13:57:37.743Z</updated>
