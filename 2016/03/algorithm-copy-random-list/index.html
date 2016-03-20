@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cpp," />
+  <meta name="keywords" content="algorithm,deep copy,linked list," />
 
 
 
@@ -61,20 +61,29 @@
 
 <meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example将一个数组拷贝到另一个数组">
+描述给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。
+
+浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用
+深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="while, ex6.12">
-<meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-6/index.html">
+<meta property="og:title" content="深拷贝带随机指针的链表">
+<meta property="og:url" content="http://bluestein.github.io/2016/03/algorithm-copy-random-list/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example将一个数组拷贝到另一个数组">
-<meta property="og:updated_time" content="2016-03-05T02:41:46.787Z">
+描述给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。
+
+浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用
+深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象">
+<meta property="og:updated_time" content="2016-03-20T13:57:37.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="while, ex6.12">
+<meta name="twitter:title" content="深拷贝带随机指针的链表">
 <meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example将一个数组拷贝到另一个数组">
+描述给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。
+
+浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用
+深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象">
 
 
 
@@ -92,7 +101,7 @@ Example将一个数组拷贝到另一个数组">
   };
 </script>
 
-  <title> while, ex6.12 | Humooo </title>
+  <title> 深拷贝带随机指针的链表 | Humooo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +239,7 @@ Example将一个数组拷贝到另一个数组">
             
             
               
-                while, ex6.12
+                深拷贝带随机指针的链表
               
             
           </h1>
@@ -242,8 +251,8 @@ Example将一个数组拷贝到另一个数组">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-22T15:03:42+08:00" content="2015-12-22">
-              2015-12-22
+            <time itemprop="dateCreated" datetime="2016-03-20T21:48:32+08:00" content="2016-03-20">
+              2016-03-20
             </time>
           </span>
 
@@ -256,8 +265,8 @@ Example将一个数组拷贝到另一个数组">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Code/" itemprop="url" rel="index">
-                    <span itemprop="name">Code</span>
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
                   </a>
                 </span>
 
@@ -268,8 +277,8 @@ Example将一个数组拷贝到另一个数组">
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Code/Cpp/" itemprop="url" rel="index">
-                    <span itemprop="name">Cpp</span>
+                  <a href="/categories/Dev/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
                   </a>
                 </span>
 
@@ -284,8 +293,8 @@ Example将一个数组拷贝到另一个数组">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/cpp-demo-6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/cpp-demo-6/" itemprop="commentsCount"></span>
+                <a href="/2016/03/algorithm-copy-random-list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/algorithm-copy-random-list/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,16 +318,30 @@ Example将一个数组拷贝到另一个数组">
         <blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
-<h3 id="Example">Example</h3><p>将一个数组拷贝到另一个数组</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> *source = arr;</span><br><span class="line">	<span class="keyword">size_t</span> sz = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(*arr);</span><br><span class="line">	<span class="keyword">int</span> *dest = <span class="keyword">new</span> <span class="keyword">int</span>[sz];</span><br><span class="line">	<span class="keyword">while</span> (source != arr + sz) </span><br><span class="line">	&#123;</span><br><span class="line">		*dest++ = *source++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// test</span></span><br><span class="line">	<span class="keyword">int</span> *dp = dest - sz;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; sz; ++i) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *dp &lt;&lt; endl;</span><br><span class="line">		dp++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_6-12">Exercise 6.12</h3><p>输入一些单词，统计里面单词出现的次数。</p>
-<p>如：how, now now now brown cow cow<br>则需输出: how 1次，now 3次，brown 1次，cow 2次</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isCharacter</span><span class="params">(<span class="keyword">char</span> ch)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (ch &gt;= <span class="string">'a'</span> &amp;&amp; ch &lt;= <span class="string">'z'</span>) || (ch &gt;= <span class="string">'A'</span> &amp;&amp; ch &lt;= <span class="string">'Z'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 把单词存入vector，并忽略非字母</span></span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	getline(<span class="built_in">cin</span>, str);</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *cp = str.c_str();</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; raw;</span><br><span class="line">	<span class="built_in">string</span> tmp = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">while</span> (*cp) &#123;</span><br><span class="line">		<span class="keyword">if</span> (isCharacter(*cp)) </span><br><span class="line">		&#123;</span><br><span class="line">			tmp += *cp++;</span><br><span class="line">			<span class="keyword">if</span> (*cp != <span class="string">'\0'</span>) </span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (!tmp.empty()) </span><br><span class="line">		&#123;</span><br><span class="line">			raw.push_back(tmp);</span><br><span class="line">			tmp = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		++cp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 统计各单词出现的次数</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; unique;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cnt;</span><br><span class="line">	unique.push_back(raw[<span class="number">0</span>]);</span><br><span class="line">	cnt.push_back(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::size_type i = <span class="number">0</span>; i != raw.size(); ++i) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;::size_type j = <span class="number">0</span>; j != unique.size(); ++j) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (raw[i] == unique[j]) </span><br><span class="line">			&#123;</span><br><span class="line">				++cnt[j];</span><br><span class="line">				found = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!found) </span><br><span class="line">		&#123;</span><br><span class="line">			unique.push_back(raw[i]);</span><br><span class="line">			cnt.push_back(<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 输出</span></span><br><span class="line">	<span class="keyword">int</span> max = cnt[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> max_index = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i != cnt.size(); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"单词："</span> &lt;&lt; unique[i] &lt;&lt; <span class="string">",出现次数为："</span> &lt;&lt; cnt[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (max &lt; cnt[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			max = cnt[i];</span><br><span class="line">			max_index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl &lt;&lt;<span class="string">"出现最多的是："</span>&lt;&lt; unique[max_index] &lt;&lt; <span class="string">",次数为："</span> &lt;&lt; cnt[max_index] &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">how, now now now brown cow cow↙</span><br><span class="line">单词：how,出现次数为：<span class="number">1</span></span><br><span class="line">单词：now,出现次数为：<span class="number">3</span></span><br><span class="line">单词：brown,出现次数为：<span class="number">1</span></span><br><span class="line">单词：cow,出现次数为：<span class="number">2</span></span><br><span class="line"></span><br><span class="line">出现最多的是：now,次数为：<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="描述">描述</h2><p>给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。</p>
+<ol>
+<li>浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用</li>
+<li>深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象</li>
+</ol>
+<a id="more"></a> 
+<p>介绍两种方法，分别需要： O(n) time, O(n) space 和 O(n) time, O(1) space</p>
+<h2 id="Solution1">Solution1</h2><p>三遍遍历。 O(n) time, O(n) space</p>
+<p>分成3步：</p>
+<ol>
+<li>复制节点，如A-B-C =&gt; A-A’-B-B’-C-C’</li>
+<li>依次遍历节点A,B,C，将A’B’C’这些节点的随机指针与其一致</li>
+<li>分离成 A-B-C 和 A’-B’-C’，A’-B’-C’便是所求链表</li>
+</ol>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line">RandomListNode* copyRandomList_nn(RandomListNode* head)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == nullptr) <span class="keyword">return</span> nullptr;</span><br><span class="line">	RandomListNode *cur = head;</span><br><span class="line">	<span class="comment">// 创建拷贝</span></span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		RandomListNode *node = <span class="literal">new</span> RandomListNode(cur<span class="subst">-&gt;</span>label);</span><br><span class="line">		node<span class="subst">-&gt;</span>next = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">		cur<span class="subst">-&gt;</span>next = node;</span><br><span class="line">		cur = node<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 调整random 指针</span></span><br><span class="line">	cur = head;</span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		RandomListNode *node = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">		<span class="comment">// 指向自身</span></span><br><span class="line">		<span class="keyword">if</span> (cur<span class="subst">-&gt;</span>random == cur) node<span class="subst">-&gt;</span>random = node;</span><br><span class="line">		<span class="comment">// 指向非空且不指向自身</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (cur<span class="subst">-&gt;</span>random) node<span class="subst">-&gt;</span>random = cur<span class="subst">-&gt;</span>random<span class="subst">-&gt;</span>next;</span><br><span class="line">		<span class="comment">// 指向空时，无需操作，因为默认为空</span></span><br><span class="line">		cur = cur<span class="subst">-&gt;</span>next<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 分离</span></span><br><span class="line">	RandomListNode *copy = cur = head<span class="subst">-&gt;</span>next;</span><br><span class="line">	<span class="keyword">while</span> (cur<span class="subst">-&gt;</span>next) &#123;</span><br><span class="line">		cur<span class="subst">-&gt;</span>next = cur<span class="subst">-&gt;</span>next<span class="subst">-&gt;</span>next;</span><br><span class="line">		cur = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> copy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Solution2">Solution2</h2><p>将各节点依次往后移一位，新建最后一位节点。 O(n) time, O(1) space</p>
+<p>分成两步：</p>
+<ol>
+<li>移动：1-&gt;2-&gt;3-&gt;null =&gt; 1-&gt;1-&gt;2-&gt;3-&gt;null</li>
+<li>调整指针关系</li>
+</ol>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line">RandomListNode* copyRandomList_n1(RandomListNode* head)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == nullptr) <span class="keyword">return</span> nullptr;</span><br><span class="line">	RandomListNode *prev = head, *cur = head-&gt;next;</span><br><span class="line">	RandomListNode *copy;</span><br><span class="line">	<span class="keyword">int</span> prev_label = head-&gt;label, cur_label;</span><br><span class="line">	<span class="comment">// 移动 label</span></span><br><span class="line">	<span class="comment">// 1-2-3-null =&gt; 1-1-2-3-null</span></span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		<span class="comment">// label 往后移动一位</span></span><br><span class="line">		cur_label = cur-&gt;label;</span><br><span class="line">		cur-&gt;label = prev_label;</span><br><span class="line">		prev_label = cur_label;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 往后移动指针</span></span><br><span class="line">		prev = cur;</span><br><span class="line">		cur = cur-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 最后一个节点，需要新建，并连接到原链表</span></span><br><span class="line">	RandomListNode *last = <span class="keyword">new</span> RandomListNode(prev_label);</span><br><span class="line">	prev-&gt;next = last;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 调整 random 指针</span></span><br><span class="line">	prev = head, cur = head-&gt;next;</span><br><span class="line">	RandomListNode *cur_random = head-&gt;random, *prev_random;</span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		prev_random = cur_random; <span class="comment">// 获取prev 的random 指针</span></span><br><span class="line">		cur_random = cur-&gt;random; <span class="comment">// 记录当前random 指针</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 指向自身</span></span><br><span class="line">		<span class="keyword">if</span> (prev_random == prev) cur-&gt;random = cur;</span><br><span class="line">		<span class="comment">// 指向非空且不指向自身</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (prev_random) cur-&gt;random = prev_random-&gt;next;</span><br><span class="line">		<span class="comment">// 指向空</span></span><br><span class="line">		<span class="keyword">else</span> cur-&gt;random = nullptr;</span><br><span class="line"></span><br><span class="line">		prev = cur;</span><br><span class="line">		cur = cur-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> head-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
       
     </div>
 
@@ -326,7 +349,11 @@ Example将一个数组拷贝到另一个数组">
       
         <div class="post-tags">
           
-            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
+          
+            <a href="/tags/deep-copy/" rel="tag">#deep copy</a>
+          
+            <a href="/tags/linked-list/" rel="tag">#linked list</a>
           
         </div>
       
@@ -335,17 +362,13 @@ Example将一个数组拷贝到另一个数组">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/cpp-demo-5/" rel="next" title="switch, ex6.9">
-                <i class="fa fa-chevron-left"></i> switch, ex6.9
+              <a href="/2016/03/algorithm-postorder-traversal/" rel="next" title="二叉树的后序遍历">
+                <i class="fa fa-chevron-left"></i> 二叉树的后序遍历
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/cpp-demo-7/" rel="prev" title="ex6.16">
-                ex6.16 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -371,8 +394,8 @@ Example将一个数组拷贝到另一个数组">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/cpp-demo-6/"
-           data-title="while, ex6.12" data-url="http://bluestein.github.io/2015/12/cpp-demo-6/">
+      <div class="ds-thread" data-thread-key="2016/03/algorithm-copy-random-list/"
+           data-title="深拷贝带随机指针的链表" data-url="http://bluestein.github.io/2016/03/algorithm-copy-random-list/">
       </div>
     
   </div>
@@ -496,7 +519,7 @@ Example将一个数组拷贝到另一个数组">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exercise_6-12"><span class="nav-number">2.</span> <span class="nav-text">Exercise 6.12</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution1"><span class="nav-number">2.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution2"><span class="nav-number">3.</span> <span class="nav-text">Solution2</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

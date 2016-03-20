@@ -4,7 +4,7 @@
   <subtitle><![CDATA[部分Leetcode解法参考我GitHub（链接在下面=_=||）]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-19T13:45:48.636Z</updated>
+  <updated>2016-03-20T13:57:37.743Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[深拷贝带随机指针的链表]]></title>
+    <link href="http://bluestein.github.io/2016/03/algorithm-copy-random-list/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-copy-random-list/</id>
+    <published>2016-03-20T13:48:32.000Z</published>
+    <updated>2016-03-20T13:57:37.743Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。</p>
+<ol>
+<li>浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用</li>
+<li>深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象</li>
+</ol>
+<a id="more"></a> 
+<p>介绍两种方法，分别需要： O(n) time, O(n) space 和 O(n) time, O(1) space</p>
+<h2 id="Solution1">Solution1</h2><p>三遍遍历。 O(n) time, O(n) space</p>
+<p>分成3步：</p>
+<ol>
+<li>复制节点，如A-B-C =&gt; A-A’-B-B’-C-C’</li>
+<li>依次遍历节点A,B,C，将A’B’C’这些节点的随机指针与其一致</li>
+<li>分离成 A-B-C 和 A’-B’-C’，A’-B’-C’便是所求链表</li>
+</ol>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line">RandomListNode* copyRandomList_nn(RandomListNode* head)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == nullptr) <span class="keyword">return</span> nullptr;</span><br><span class="line">	RandomListNode *cur = head;</span><br><span class="line">	<span class="comment">// 创建拷贝</span></span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		RandomListNode *node = <span class="literal">new</span> RandomListNode(cur<span class="subst">-&gt;</span>label);</span><br><span class="line">		node<span class="subst">-&gt;</span>next = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">		cur<span class="subst">-&gt;</span>next = node;</span><br><span class="line">		cur = node<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 调整random 指针</span></span><br><span class="line">	cur = head;</span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		RandomListNode *node = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">		<span class="comment">// 指向自身</span></span><br><span class="line">		<span class="keyword">if</span> (cur<span class="subst">-&gt;</span>random == cur) node<span class="subst">-&gt;</span>random = node;</span><br><span class="line">		<span class="comment">// 指向非空且不指向自身</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (cur<span class="subst">-&gt;</span>random) node<span class="subst">-&gt;</span>random = cur<span class="subst">-&gt;</span>random<span class="subst">-&gt;</span>next;</span><br><span class="line">		<span class="comment">// 指向空时，无需操作，因为默认为空</span></span><br><span class="line">		cur = cur<span class="subst">-&gt;</span>next<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 分离</span></span><br><span class="line">	RandomListNode *copy = cur = head<span class="subst">-&gt;</span>next;</span><br><span class="line">	<span class="keyword">while</span> (cur<span class="subst">-&gt;</span>next) &#123;</span><br><span class="line">		cur<span class="subst">-&gt;</span>next = cur<span class="subst">-&gt;</span>next<span class="subst">-&gt;</span>next;</span><br><span class="line">		cur = cur<span class="subst">-&gt;</span>next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> copy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Solution2">Solution2</h2><p>将各节点依次往后移一位，新建最后一位节点。 O(n) time, O(1) space</p>
+<p>分成两步：</p>
+<ol>
+<li>移动：1-&gt;2-&gt;3-&gt;null =&gt; 1-&gt;1-&gt;2-&gt;3-&gt;null</li>
+<li>调整指针关系</li>
+</ol>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line">RandomListNode* copyRandomList_n1(RandomListNode* head)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == nullptr) <span class="keyword">return</span> nullptr;</span><br><span class="line">	RandomListNode *prev = head, *cur = head-&gt;next;</span><br><span class="line">	RandomListNode *copy;</span><br><span class="line">	<span class="keyword">int</span> prev_label = head-&gt;label, cur_label;</span><br><span class="line">	<span class="comment">// 移动 label</span></span><br><span class="line">	<span class="comment">// 1-2-3-null =&gt; 1-1-2-3-null</span></span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		<span class="comment">// label 往后移动一位</span></span><br><span class="line">		cur_label = cur-&gt;label;</span><br><span class="line">		cur-&gt;label = prev_label;</span><br><span class="line">		prev_label = cur_label;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 往后移动指针</span></span><br><span class="line">		prev = cur;</span><br><span class="line">		cur = cur-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 最后一个节点，需要新建，并连接到原链表</span></span><br><span class="line">	RandomListNode *last = <span class="keyword">new</span> RandomListNode(prev_label);</span><br><span class="line">	prev-&gt;next = last;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 调整 random 指针</span></span><br><span class="line">	prev = head, cur = head-&gt;next;</span><br><span class="line">	RandomListNode *cur_random = head-&gt;random, *prev_random;</span><br><span class="line">	<span class="keyword">while</span> (cur) &#123;</span><br><span class="line">		prev_random = cur_random; <span class="comment">// 获取prev 的random 指针</span></span><br><span class="line">		cur_random = cur-&gt;random; <span class="comment">// 记录当前random 指针</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 指向自身</span></span><br><span class="line">		<span class="keyword">if</span> (prev_random == prev) cur-&gt;random = cur;</span><br><span class="line">		<span class="comment">// 指向非空且不指向自身</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (prev_random) cur-&gt;random = prev_random-&gt;next;</span><br><span class="line">		<span class="comment">// 指向空</span></span><br><span class="line">		<span class="keyword">else</span> cur-&gt;random = nullptr;</span><br><span class="line"></span><br><span class="line">		prev = cur;</span><br><span class="line">		cur = cur-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> head-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。</p>
+<ol>
+<li>浅拷贝(影子克隆):只复制对象的基本类型，对象类型，仍属于原来的引用</li>
+<li>深拷贝(深度克隆):不仅复制对象的基本类型，同时也复制原对象中的对象，就是说完全是新产生的对象</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
+    
+      <category term="deep copy" scheme="http://bluestein.github.io/tags/deep-copy/"/>
+    
+      <category term="linked list" scheme="http://bluestein.github.io/tags/linked-list/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[二叉树的后序遍历]]></title>
@@ -2860,47 +2917,6 @@
       <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
     
       <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ex7.3 - 7.6]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-demo-9/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-demo-9/</id>
-    <published>2015-12-25T11:03:42.000Z</published>
-    <updated>2016-03-05T02:39:55.948Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> base, <span class="keyword">int</span> power)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, result = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; power) </span><br><span class="line">	&#123;</span><br><span class="line">		result *= base;</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-4">Exercise 7.4</h3><p>返回一个数的绝对值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">abs</span><span class="params">(<span class="keyword">int</span> v)</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> -v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-5">Exercise 7.5</h3><p>两个形参，一个int型，另一个int型指针，返回值较大的数值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">biggerOne</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">const</span> <span class="keyword">int</span> *ip)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> biggerOne = v &gt; *ip ? v : *ip;</span><br><span class="line">	ip = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> biggerOne;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Exercise_7-6">Exercise 7.6</h3><p>交换两个int指针所指对象的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pSwap</span><span class="params">(<span class="keyword">int</span> *p1, <span class="keyword">int</span> *p2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *p1;</span><br><span class="line">	*p1 = *p2;</span><br><span class="line">	*p2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Bonus">Bonus</h3><p>利用引用交换两个数的值（跟ex 7.6一样的效果）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
-</blockquote>
-<h3 id="Bonus-1">Bonus</h3><p>交换指向数值的指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="Exercise_7-3">Exercise 7.3</h3><p>产生第一个参数的第二个参数次幂的值</p>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
     
   </entry>
   
