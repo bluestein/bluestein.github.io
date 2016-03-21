@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我的<a href="https://github.com/bluestein">GitHub</a>]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-20T13:57:37.743Z</updated>
+  <updated>2016-03-21T11:07:20.997Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -13,6 +13,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[用位操作符实现四则运算]]></title>
+    <link href="http://bluestein.github.io/2016/03/algorithm-add-substract-multiply-divide/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-add-substract-multiply-divide/</id>
+    <published>2016-03-21T10:10:32.000Z</published>
+    <updated>2016-03-21T11:07:20.997Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>如何使用位操作分别实现整数的加减乘除四种运算呢？</p>
+<p>常用到的位操作：</p>
+<p>1, 等式： <strong>-n = ~(n - 1) = ~n + 1</strong></p>
+<p>2, 获取整数n的二进制中最后一个1： <strong>n &amp; (-n) 或者 n &amp; ~(n - 1)</strong></p>
+<blockquote>
+<p>如 n = 010100，则 -n = 101100，n &amp; (-n) = 000100</p>
+</blockquote>
+<p>3, 去掉整数n的二进制中最后一个1： <strong>n &amp; (n-1)</strong></p>
+<blockquote>
+<p>如：n = 010100，n-1 = 010011，n &amp; (n-1) = 010000</p>
+</blockquote>
+<a id="more"></a> 
+<h2 id="加法">加法</h2><p>可以利用“异或”操作实现整数加法运算：<br>对应位数的“异或操作”可得到该位的数值，对应位的“与操作”可得到该位产生的高位进位，如：a =  010010，b = 100111，计算步骤如下：</p>
+<p>第一轮：a ^ b= 110101，(a &amp; b) &lt;&lt; 1 = 000100， 由于进位（000100）大于0，则进入下一轮计算，a = 110101，b = 000100，a ^ b = 110001，(a &amp; b) &lt;&lt; 1= 001000，由于进位大于0，则进入下一轮计算：a = 110001，b = 001000，a ^ b = 111001，(a &amp; b) &lt;&lt; 1 = 0，进位为0，终止。计算结果为：111001。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Maths::add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (!b) <span class="keyword">return</span> a;  <span class="comment">// 没有进位</span></span><br><span class="line">	<span class="keyword">int</span> sum = a ^ b;  <span class="comment">// 不计进位的和</span></span><br><span class="line">	<span class="keyword">int</span> carry = a &amp; b;  <span class="comment">// 进位</span></span><br><span class="line">	carry &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">return</span> <span class="title">add</span><span class="params">(sum, carry)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>非递归</strong></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">sum</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">sum</span> = a ^ b;  <span class="comment">// 不带进位</span></span><br><span class="line">		b = ((a &amp; b) &lt;&lt; <span class="number">1</span>);  <span class="comment">// 进位</span></span><br><span class="line">		a = <span class="keyword">sum</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="减法">减法</h2><p>减法可很容易地转化为加法：a - b = a + (-b) = a + (~b + 1 )</p>
+<p>即，取减数的补码再相加 1</p>
+<ol>
+<li>负数的补码：原码取反加1</li>
+<li>正数的补码：原码</li>
+</ol>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">substract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> complement = add(~b, <span class="number">1</span>); </span><br><span class="line">	<span class="function"><span class="keyword">return</span> <span class="title">add</span><span class="params">(a, complement)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="乘法">乘法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="number">111</span>		(<span class="number">7</span>)</span><br><span class="line">  * <span class="number">101</span>		(<span class="number">5</span>)</span><br><span class="line">---------------</span><br><span class="line">	<span class="number">111</span>		(<span class="number">00111</span>) <span class="number">7</span> 向左移动 <span class="number">0</span> 位：<span class="number">111</span></span><br><span class="line">   <span class="number">000</span>		(<span class="number">00000</span>) <span class="number">7</span> 向左移动 <span class="number">1</span> 位：<span class="number">1110</span></span><br><span class="line">  <span class="number">111</span>		(<span class="number">11100</span>) <span class="number">7</span> 向左移动 <span class="number">2</span> 位：<span class="number">11100</span></span><br><span class="line">---------------</span><br><span class="line">  <span class="number">100011</span>	(<span class="number">35</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>b 的第0 位，为1，则结果加上 111，因为 1 * （111） = 111</li>
+<li>b 的第2 位，为0，则结果加上 0000，因为 0 * (1110) = 0000</li>
+<li>b 的第3 位，为1，则结果加上 11100，因为 1 * (11100) = 11100</li>
+</ol>
+<p>可以看到，<strong>b 每向右移一位，a 就要向左移动一位。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">multiply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> isNegtive = (a &lt; <span class="number">0</span>) ^ (b &lt; <span class="number">0</span>);  <span class="comment">// 决定结果的正负</span></span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (b &lt; <span class="number">0</span>) b = -b;  <span class="comment">// 负数转化为正数计算</span></span><br><span class="line">	<span class="keyword">if</span> (a &lt; <span class="number">0</span>) a = -a;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>) ans = add(ans, a); <span class="comment">// 从右至左取 b 的二进制中的 1 （即右移）</span></span><br><span class="line">		a &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> isNegtive ? -ans : ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="除法">除法</h2><p>除法就是由乘法的过程逆推，依次减掉（如果a 够减）b^(2^31), b^(2^30), …, b^8, b^4, b^2, b^1。</p>
+<p><strong>b 减掉相应数量，则结果需加上相应的数量。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">bool</span> isNegtive = (a &lt; <span class="number">0</span>) ^ (b &lt; <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (b &lt; <span class="number">0</span>) b = -b;</span><br><span class="line">	<span class="keyword">if</span> (a &lt; <span class="number">0</span>) a = -a;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">31</span>; i &gt; <span class="number">0</span>; --i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ((a &gt;&gt; i) &gt;= b)</span><br><span class="line">		&#123;</span><br><span class="line">			a = substract(a, (b &lt;&lt; i));</span><br><span class="line">			ans = add(ans, (<span class="number">1</span> &lt;&lt; i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> isNegtive ? -ans : ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>如何使用位操作分别实现整数的加减乘除四种运算呢？</p>
+<p>常用到的位操作：</p>
+<p>1, 等式： <strong>-n = ~(n - 1) = ~n + 1</strong></p>
+<p>2, 获取整数n的二进制中最后一个1： <strong>n &amp; (-n) 或者 n &amp; ~(n - 1)</strong></p>
+<blockquote>
+<p>如 n = 010100，则 -n = 101100，n &amp; (-n) = 000100</p>
+</blockquote>
+<p>3, 去掉整数n的二进制中最后一个1： <strong>n &amp; (n-1)</strong></p>
+<blockquote>
+<p>如：n = 010100，n-1 = 010011，n &amp; (n-1) = 010000</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="4-Arithmetic-Operations" scheme="http://bluestein.github.io/tags/4-Arithmetic-Operations/"/>
+    
+      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
+    
+      <category term="bit-manipulate" scheme="http://bluestein.github.io/tags/bit-manipulate/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[深拷贝带随机指针的链表]]></title>
@@ -2844,69 +2920,6 @@
 </blockquote>
 <p>return 语句用于结束当前正在执行的函数，并将控制权返回给调用此函数的函数。有两种形式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">return</span> expression;</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[参数传递]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-parameter-passing/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-parameter-passing/</id>
-    <published>2015-12-29T12:49:49.000Z</published>
-    <updated>2016-03-05T02:40:48.998Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<blockquote>
-<p>利用引用型的形参，可以解决函数只能返回一个值得情况</p>
-</blockquote>
-<p>比如，在某个vector中寻找某个特定的值，然后返回它出现的位置及出现的次数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::<span class="function">const_iterator <span class="title">findValue</span><span class="params">(</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end,</span><br><span class="line">	<span class="keyword">int</span> value,</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::size_type &amp;occurs)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator result_iter = end;</span><br><span class="line">	occurs = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; begin != end; ++begin)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (*begin == value)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// remember first occurrence of value</span></span><br><span class="line">			<span class="keyword">if</span> (result_iter == end)</span><br><span class="line">			&#123;</span><br><span class="line">				result_iter = begin;</span><br><span class="line">			&#125;</span><br><span class="line">			++occurs;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result_iter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="利用const引用避免复制">利用const引用避免复制</h3><p>一般的形参传递时需要复制，引用不需要。当使用大型引用形参时，为了避免复制实参，使用const引用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isShorter</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &lt; s2.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>形参是引用，所以不需要复制实参；形参是const，所以不能通过该引用形参来修改实参的值。</p>
-<h3 id="传递指针的引用">传递指针的引用</h3><p>交换指向数值的指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prSwap</span><span class="params">(<span class="keyword">int</span> *&amp;v1, <span class="keyword">int</span> *&amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="vector或其他容器作为形参">vector或其他容器作为形参</h3><p>为避免直接使用vector等类型做形参，一般使用它们的迭代器。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator begin,</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator end)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(begin != end)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *begin++;</span><br><span class="line">		<span class="keyword">if</span> (begin != end) <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="数组作为形参">数组作为形参</h3><p>肯定不能直接传递数组，通常使用指针进行操作。而下面三种是等价的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span>[<span class="number">10</span>])</span></span>;</span><br></pre></td></tr></table></figure>
-<p>但是后两种很容易引起误解。下面可以看出是否真的等价</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[<span class="number">10</span>])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> v1 = <span class="number">32</span>, arr[<span class="number">2</span>] = &#123;<span class="number">4</span>, <span class="number">0</span>&#125;;</span><br><span class="line">printv(&amp;v1); <span class="comment">//编译ok, 但会输出其他9个其他的值或者运行时错误</span></span><br><span class="line">printv(arr); <span class="comment">//编译ok, 但会输出其他8个其他的值或者运行时错误</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编译器不会检查形参数组的大小。</p>
-</blockquote>
-<h3 id="通过引用传递数组">通过引用传递数组</h3><p>一般来讲，将数组作为形参传递给函数都会被转换为指针，但是数组的引用不会。此时，传递的是数组的引用本身，编译器会检查形参数组的大小。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void print(int (&amp;arr)[3]);</span><br><span class="line">int i = 0, j[2] = &#123;0, 1&#125;;</span><br><span class="line">int k[3] = &#123;0, 1, 2&#125;;</span><br><span class="line">print(&amp;i); // error</span><br><span class="line">print(j); // error</span><br><span class="line">print(k); // ok</span><br></pre></td></tr></table></figure>
-<h3 id="多维数组的传递">多维数组的传递</h3><p>所谓多维数组，就是数组的数组。它的每个元素就是一个数组，第二维必须指定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void print(int (matrix*)[10], int row_size);</span><br><span class="line">// 或者</span><br><span class="line">void print(int matrix[][10], int row_size);</span><br></pre></td></tr></table></figure>
-<p><code>matrix</code> 是指向含10个int值的数组的指针。</p>
-<h3 id="在函数内处理数组">在函数内处理数组</h3><p>任何数组的操作都必须保持在数组的边界内。</p>
-<p>有三种常见的方法可以保证这一点：</p>
-<ol>
-<li>第一种是在数组的本身放置一个标记进行检测数组的结束。如C风格的字符串，使用 <code>\0</code> 标记表示结束；</li>
-<li>第二种是传递指向数组的第一个和最后一个元素的下一个位置的指针；</li>
-<li>显式地传递数组的大小。意思是告诉函数，我的大小是多少；<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[], size_t size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ia[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<h3 id="引用型形参">引用型形参</h3><p>利用引用形参，交换两个数的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rSwap</span><span class="params">(<span class="keyword">int</span> &amp;v1, <span class="keyword">int</span> &amp;v2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = v1;</span><br><span class="line">	v1 = v2;</span><br><span class="line">	v2 = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
     

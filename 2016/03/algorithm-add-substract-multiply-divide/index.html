@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cpp," />
+  <meta name="keywords" content="4-Arithmetic-Operations,algorithm,bit-manipulate," />
 
 
 
@@ -61,20 +61,35 @@
 
 <meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example寻找vector中的最小值，并记录这个最小值出现的次数。">
+描述如何使用位操作分别实现整数的加减乘除四种运算呢？
+常用到的位操作：
+1, 等式： -n = ~(n - 1) = ~n + 1
+2, 获取整数n的二进制中最后一个1： n &amp;amp; (-n) 或者 n &amp;amp; ~(n - 1)
+
+如 n = 010100，则 -n = 1011">
 <meta property="og:type" content="article">
-<meta property="og:title" content="if语句">
-<meta property="og:url" content="http://bluestein.github.io/2015/12/cpp-demo-4/index.html">
+<meta property="og:title" content="用位操作符实现四则运算">
+<meta property="og:url" content="http://bluestein.github.io/2016/03/algorithm-add-substract-multiply-divide/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example寻找vector中的最小值，并记录这个最小值出现的次数。">
-<meta property="og:updated_time" content="2016-03-05T02:41:48.532Z">
+描述如何使用位操作分别实现整数的加减乘除四种运算呢？
+常用到的位操作：
+1, 等式： -n = ~(n - 1) = ~n + 1
+2, 获取整数n的二进制中最后一个1： n &amp;amp; (-n) 或者 n &amp;amp; ~(n - 1)
+
+如 n = 010100，则 -n = 1011">
+<meta property="og:updated_time" content="2016-03-21T11:07:20.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="if语句">
+<meta name="twitter:title" content="用位操作符实现四则运算">
 <meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-Example寻找vector中的最小值，并记录这个最小值出现的次数。">
+描述如何使用位操作分别实现整数的加减乘除四种运算呢？
+常用到的位操作：
+1, 等式： -n = ~(n - 1) = ~n + 1
+2, 获取整数n的二进制中最后一个1： n &amp;amp; (-n) 或者 n &amp;amp; ~(n - 1)
+
+如 n = 010100，则 -n = 1011">
 
 
 
@@ -92,7 +107,7 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
   };
 </script>
 
-  <title> if语句 | Humooo </title>
+  <title> 用位操作符实现四则运算 | Humooo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +245,7 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
             
             
               
-                if语句
+                用位操作符实现四则运算
               
             
           </h1>
@@ -242,8 +257,8 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-17T15:32:42+08:00" content="2015-12-17">
-              2015-12-17
+            <time itemprop="dateCreated" datetime="2016-03-21T18:10:32+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
@@ -256,8 +271,8 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Code/" itemprop="url" rel="index">
-                    <span itemprop="name">Code</span>
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
                   </a>
                 </span>
 
@@ -268,8 +283,8 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Code/Cpp/" itemprop="url" rel="index">
-                    <span itemprop="name">Cpp</span>
+                  <a href="/categories/Dev/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
                   </a>
                 </span>
 
@@ -284,8 +299,8 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/cpp-demo-4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/cpp-demo-4/" itemprop="commentsCount"></span>
+                <a href="/2016/03/algorithm-add-substract-multiply-divide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/algorithm-add-substract-multiply-divide/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,11 +324,41 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
         <blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
-<h3 id="Example">Example</h3><p>寻找vector中的最小值，并记录这个最小值出现的次数。</p>
-<a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ivec.push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 这两步是为了制造最小值</span></span><br><span class="line">	ivec[<span class="number">0</span>] = ivec[<span class="number">1</span>] = <span class="number">3</span>;</span><br><span class="line">	ivec[<span class="number">5</span>] = ivec[<span class="number">8</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> min_val = ivec[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">int</span> min_cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; ivec.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ivec[i] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (min_val == ivec[i])</span><br><span class="line">		&#123;</span><br><span class="line">			++min_cnt;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (min_val &gt; ivec[i])</span><br><span class="line">		&#123;</span><br><span class="line">			min_val = ivec[i];</span><br><span class="line">			min_cnt = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;<span class="string">"min value: "</span>&lt;&lt; min_val &lt;&lt;<span class="string">", count: "</span>&lt;&lt; min_cnt &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>outputs</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">min value: <span class="number">0</span>, count: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="描述">描述</h2><p>如何使用位操作分别实现整数的加减乘除四种运算呢？</p>
+<p>常用到的位操作：</p>
+<p>1, 等式： <strong>-n = ~(n - 1) = ~n + 1</strong></p>
+<p>2, 获取整数n的二进制中最后一个1： <strong>n &amp; (-n) 或者 n &amp; ~(n - 1)</strong></p>
+<blockquote>
+<p>如 n = 010100，则 -n = 101100，n &amp; (-n) = 000100</p>
+</blockquote>
+<p>3, 去掉整数n的二进制中最后一个1： <strong>n &amp; (n-1)</strong></p>
+<blockquote>
+<p>如：n = 010100，n-1 = 010011，n &amp; (n-1) = 010000</p>
+</blockquote>
+<a id="more"></a> 
+<h2 id="加法">加法</h2><p>可以利用“异或”操作实现整数加法运算：<br>对应位数的“异或操作”可得到该位的数值，对应位的“与操作”可得到该位产生的高位进位，如：a =  010010，b = 100111，计算步骤如下：</p>
+<p>第一轮：a ^ b= 110101，(a &amp; b) &lt;&lt; 1 = 000100， 由于进位（000100）大于0，则进入下一轮计算，a = 110101，b = 000100，a ^ b = 110001，(a &amp; b) &lt;&lt; 1= 001000，由于进位大于0，则进入下一轮计算：a = 110001，b = 001000，a ^ b = 111001，(a &amp; b) &lt;&lt; 1 = 0，进位为0，终止。计算结果为：111001。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Maths::add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (!b) <span class="keyword">return</span> a;  <span class="comment">// 没有进位</span></span><br><span class="line">	<span class="keyword">int</span> sum = a ^ b;  <span class="comment">// 不计进位的和</span></span><br><span class="line">	<span class="keyword">int</span> carry = a &amp; b;  <span class="comment">// 进位</span></span><br><span class="line">	carry &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">return</span> <span class="title">add</span><span class="params">(sum, carry)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>非递归</strong></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="keyword">sum</span>;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">sum</span> = a ^ b;  <span class="comment">// 不带进位</span></span><br><span class="line">		b = ((a &amp; b) &lt;&lt; <span class="number">1</span>);  <span class="comment">// 进位</span></span><br><span class="line">		a = <span class="keyword">sum</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="减法">减法</h2><p>减法可很容易地转化为加法：a - b = a + (-b) = a + (~b + 1 )</p>
+<p>即，取减数的补码再相加 1</p>
+<ol>
+<li>负数的补码：原码取反加1</li>
+<li>正数的补码：原码</li>
+</ol>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">substract</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> complement = add(~b, <span class="number">1</span>); </span><br><span class="line">	<span class="function"><span class="keyword">return</span> <span class="title">add</span><span class="params">(a, complement)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="乘法">乘法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="number">111</span>		(<span class="number">7</span>)</span><br><span class="line">  * <span class="number">101</span>		(<span class="number">5</span>)</span><br><span class="line">---------------</span><br><span class="line">	<span class="number">111</span>		(<span class="number">00111</span>) <span class="number">7</span> 向左移动 <span class="number">0</span> 位：<span class="number">111</span></span><br><span class="line">   <span class="number">000</span>		(<span class="number">00000</span>) <span class="number">7</span> 向左移动 <span class="number">1</span> 位：<span class="number">1110</span></span><br><span class="line">  <span class="number">111</span>		(<span class="number">11100</span>) <span class="number">7</span> 向左移动 <span class="number">2</span> 位：<span class="number">11100</span></span><br><span class="line">---------------</span><br><span class="line">  <span class="number">100011</span>	(<span class="number">35</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>b 的第0 位，为1，则结果加上 111，因为 1 * （111） = 111</li>
+<li>b 的第2 位，为0，则结果加上 0000，因为 0 * (1110) = 0000</li>
+<li>b 的第3 位，为1，则结果加上 11100，因为 1 * (11100) = 11100</li>
+</ol>
+<p>可以看到，<strong>b 每向右移一位，a 就要向左移动一位。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">multiply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> isNegtive = (a &lt; <span class="number">0</span>) ^ (b &lt; <span class="number">0</span>);  <span class="comment">// 决定结果的正负</span></span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (b &lt; <span class="number">0</span>) b = -b;  <span class="comment">// 负数转化为正数计算</span></span><br><span class="line">	<span class="keyword">if</span> (a &lt; <span class="number">0</span>) a = -a;</span><br><span class="line">	<span class="keyword">while</span> (b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (b &amp; <span class="number">1</span>) ans = add(ans, a); <span class="comment">// 从右至左取 b 的二进制中的 1 （即右移）</span></span><br><span class="line">		a &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> isNegtive ? -ans : ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="除法">除法</h2><p>除法就是由乘法的过程逆推，依次减掉（如果a 够减）b^(2^31), b^(2^30), …, b^8, b^4, b^2, b^1。</p>
+<p><strong>b 减掉相应数量，则结果需加上相应的数量。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">bool</span> isNegtive = (a &lt; <span class="number">0</span>) ^ (b &lt; <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (b &lt; <span class="number">0</span>) b = -b;</span><br><span class="line">	<span class="keyword">if</span> (a &lt; <span class="number">0</span>) a = -a;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">31</span>; i &gt; <span class="number">0</span>; --i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ((a &gt;&gt; i) &gt;= b)</span><br><span class="line">		&#123;</span><br><span class="line">			a = substract(a, (b &lt;&lt; i));</span><br><span class="line">			ans = add(ans, (<span class="number">1</span> &lt;&lt; i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> isNegtive ? -ans : ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>END.</p>
 
       
@@ -323,7 +368,11 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
       
         <div class="post-tags">
           
-            <a href="/tags/Cpp/" rel="tag">#Cpp</a>
+            <a href="/tags/4-Arithmetic-Operations/" rel="tag">#4-Arithmetic-Operations</a>
+          
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
+          
+            <a href="/tags/bit-manipulate/" rel="tag">#bit-manipulate</a>
           
         </div>
       
@@ -332,17 +381,13 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/github-branch/" rel="next" title="Github: Git的使用 - 分支">
-                <i class="fa fa-chevron-left"></i> Github: Git的使用 - 分支
+              <a href="/2016/03/algorithm-copy-random-list/" rel="next" title="深拷贝带随机指针的链表">
+                <i class="fa fa-chevron-left"></i> 深拷贝带随机指针的链表
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/cpp- statement/" rel="prev" title="语句">
-                语句 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -368,8 +413,8 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/cpp-demo-4/"
-           data-title="if语句" data-url="http://bluestein.github.io/2015/12/cpp-demo-4/">
+      <div class="ds-thread" data-thread-key="2016/03/algorithm-add-substract-multiply-divide/"
+           data-title="用位操作符实现四则运算" data-url="http://bluestein.github.io/2016/03/algorithm-add-substract-multiply-divide/">
       </div>
     
   </div>
@@ -493,7 +538,7 @@ Example寻找vector中的最小值，并记录这个最小值出现的次数。"
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.</span> <span class="nav-text">Example</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加法"><span class="nav-number">2.</span> <span class="nav-text">加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减法"><span class="nav-number">3.</span> <span class="nav-text">减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法"><span class="nav-number">4.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#除法"><span class="nav-number">5.</span> <span class="nav-text">除法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
