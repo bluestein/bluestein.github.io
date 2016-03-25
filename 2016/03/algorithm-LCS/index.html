@@ -1,0 +1,822 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DP,LCS,algorithm," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Humooo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCS: Longest Common Subsequence(最长公共子序列)">
+<meta property="og:url" content="http://bluestein.github.io/2016/03/algorithm-LCS/index.html">
+<meta property="og:site_name" content="Humooo">
+<meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+<meta property="og:image" content="http://bluestein.github.io/images/LCS.png">
+<meta property="og:updated_time" content="2016-03-25T15:24:32.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LCS: Longest Common Subsequence(最长公共子序列)">
+<meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
+
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LCS: Longest Common Subsequence(最长公共子序列) | Humooo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Humooo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的<a href="https://github.com/bluestein">GitHub</a></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LCS: Longest Common Subsequence(最长公共子序列)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-25T22:30:32+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/" itemprop="url" rel="index">
+                    <span itemprop="name">Dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Dev/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/algorithm-LCS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/algorithm-LCS/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2,┅, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>
+<a id="more"></a> 
+<h3 id="公共子序列">公共子序列</h3><p>设X，Y 是两个序列，且有Z &lt; X 和Z &lt; Y， 则称Z 是X 和Y 的公共子序列。 </p>
+<h3 id="最长公共子序列的概念">最长公共子序列的概念</h3><p>若Z &lt; X，Z &lt; Y，且不存在比Z 更长的X 和Y 的公共子序列， 则称Z是X和Y 的最长公共子序列，记为Z &isin; LCS(X, Y)。</p>
+<h3 id="最长公共子序列往往不止一个">最长公共子序列往往不止一个</h3><p>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Y = &lt; B,D,C,A,B,A &gt;.</p>
+<p>则 Z = &lt; B,C,B,A &gt;,   Z’ = &lt; B,C,A,B &gt;,  Z’’ = &lt; B,D,A,B &gt; 均属于LCS(X, Y) ，即X,Y 有3 个LCS。</p>
+<h2 id="算法">算法</h2><h3 id="Brute-force（暴力法）">Brute-force（暴力法）</h3><p>列出X 的所有长度不超过n （即|Y|）的子序列，从长到短逐一进行检查，看其是否为Y 的子序列，直到找到第一个最长公共子序列。由于X共有2^m 个子序列，故此方法对较大的m 没有实用价值。</p>
+<h3 id="DP(动态规划)">DP(动态规划)</h3><p>记Xi = &lt; x1，…，xi &gt;即X序列的前i个字符 (1 &le; i &le; m)（前缀） Yj = &lt; y1，…，yj &gt;即Y 序列的前j 个字符 (1≤ j≤ n)（前缀） 假定Z = &lt; z1，…，zk &gt; &isin; LCS(X, Y)。 </p>
+<ol>
+<li>若xm = yn（最后一个字符相同），则不难用反证法证明：<br>该字符必是X 与Y 的任一最长公共子序列Z（设长度为k）的 最后一个字符，即有zk = xm = yn 且显然有 Zk-1 &isin; LCS(Xm-1 , Yn-1) 即Z 的前缀Zk-1 是Xm-1 与Yn-1 的最长公共子序列。 </li>
+<li>若xm &ne; yn，则亦不难用反证法证明：<br>要么Z &isin; LCS(Xm-1, Y)，要么Z &isin; LCS(X, Yn-1)。 由于zk &ne; xm 与zk &ne; yn 其中至少有一个必成立，因此： 若zk &ne; xm则有Z &isin; LCS(Xm-1 , Y)， 若zk &ne; yn 则有Z &isin; LCS(X, Yn-1)。</li>
+</ol>
+<p><strong>所以</strong></p>
+<ol>
+<li>若xm = yn，则问题化归成求Xm-1 与Yn-1 的LCS。<br>（LCS(X, Y)的长度等于LCS(Xm-1, Yn-1) 的长度加1） </li>
+<li>若xm &ne; yn 则问题化归成求Xm-1 与Y 的LCS 及X 与Yn-1 的LCS<br>LCS(X , Y)的长度为：max{LCS(Xm-1, Y)的长度, LCS(X, Yn-1)的长度} </li>
+</ol>
+<p>引进一个二维数组C，用C[i,j]记录Xi与Yj的LCS的长度   如果我们是自底向上进行递推计算，那么在计算C[i,j]之前， C[i-1,j-1], C[i-1,j]与C[i,j-1]均已计算出来。此时我们 根据X[i]=Y[j]还是X[i]Y[j]，就可以计算出C[i,j]： </p>
+<ol>
+<li>若X[i] = Y[j]，则执行C[i,j]←C[i-1,j-1]+1；</li>
+<li>若X[i] &ne; Y[j]，则根据： 若C[i-1,j]≥C[i,j-1]则C[i,j]←C[i-1,j]；</li>
+<li>否则C[i,j]←C[i,j-1]。即有</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">          <span class="number">0</span>;                         若i = <span class="number">0</span> 或j = <span class="number">0</span>；</span><br><span class="line">C[i,j] =&#123; C[i-<span class="number">1</span>, j-<span class="number">1</span>] + <span class="number">1</span>;           若i, j &gt; <span class="number">0</span> 且 xi = yj；</span><br><span class="line">          max&#123;C[i-<span class="number">1</span>, j], C[i, j-<span class="number">1</span>]&#125;  若i, j &gt; <span class="number">0</span> 且 xi != yj；</span><br></pre></td></tr></table></figure>
+<p>如下图</p>
+<p><img src="/images/LCS.png" alt=""></p>
+<p>为了构造出LCS，使用一个m &times; n 的二维数组b， b[i,j] 记录C[i,j] 是通过哪一个子问题的值求得的, 以决定搜索的方向： </p>
+<ol>
+<li>若X[i] = Y[j]，，则b[i,j] 中记入“↖”；</li>
+<li>若C[i-1,j] ≥ C[i,j-1]，则b[i,j] 中记入“↑”； </li>
+<li>若C[i-1,j] &lt; C[i,j-1]，则b[i,j] 中记入“←”；</li>
+</ol>
+<p>算法伪代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">LCS(X,Y,m,n,C) &#123;</span><br><span class="line">    <span class="keyword">for</span> i=<span class="number">0</span> to m <span class="keyword">do</span> C[i,<span class="number">0</span>]←<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span> to n <span class="keyword">do</span> C[<span class="number">0</span>,j]←<span class="number">0</span> </span><br><span class="line">    <span class="keyword">for</span> i=<span class="number">1</span> to m <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> j=<span class="number">1</span> to n <span class="keyword">do</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> x[i]=y[j] &#123;</span><br><span class="line">                C[i,j]←C[i-<span class="number">1</span>,j-<span class="number">1</span>]+<span class="number">1</span>；</span><br><span class="line">                b[i,j]←“↖” ；</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> C[i-<span class="number">1</span>,j]≥C[i,j-<span class="number">1</span>] &#123;</span><br><span class="line">                C[i,j]←C[i-<span class="number">1</span>,j]；</span><br><span class="line">                b[i,j]←“↑” ；</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                C[i,j]←C[i,j-<span class="number">1</span>]；</span><br><span class="line">                b[i,j]←“←”;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出<strong>一个</strong>LCS(X,Y) 的递归算法</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">LCS_Output</span>(<span class="keyword">b,X,i,j) </span>&#123;</span><br><span class="line">    <span class="preprocessor">if</span> i<span class="number">=0</span> or j<span class="number">=0</span> </span><br><span class="line">        return<span class="comment">; </span></span><br><span class="line">    <span class="preprocessor">if</span> <span class="keyword">b[i,j]=“↖” </span>&#123;             <span class="comment">/*X[i]=Y[j]*/</span></span><br><span class="line">        LCS_Output(<span class="keyword">b,X,i-1,j-1)；</span><br><span class="line"></span>        输出 X[i]；</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="preprocessor">else</span> <span class="preprocessor">if</span> <span class="keyword">b[i,j]=“↑” </span>          <span class="comment">/*C[i-1,j]≥C[i,j-1]*/</span></span><br><span class="line">        LCS_Output(<span class="keyword">b,X,i-1,j) </span></span><br><span class="line">    <span class="preprocessor">else</span> <span class="preprocessor">if</span> <span class="keyword">b[i,j]=“←” </span>          <span class="comment">/*C[i-1,j]&lt;C[i,j-1]*/</span></span><br><span class="line">        LCS_Output(<span class="keyword">b,X,i,j-1)</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>对上述例子调用 <strong>LCS_Output(b,X,7,6)</strong>。</p>
+<p>下面是输出全部LCS 的C++ 代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> LCS</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LCS_L</span><span class="params">(<span class="built_in">string</span> x, <span class="built_in">string</span> y, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; C)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> m = x.size(), n = y.size();</span><br><span class="line">		C = <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (x[i - <span class="number">1</span>] == y[j - <span class="number">1</span>]) C[i][j] = C[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;  <span class="comment">// 相同</span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (C[i - <span class="number">1</span>][j] &gt;= C[i][j - <span class="number">1</span>]) C[i][j] = C[i - <span class="number">1</span>][j];  <span class="comment">// 不相同，取较大的一个</span></span><br><span class="line">				<span class="keyword">else</span> C[i][j] = C[i][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">LCS_output</span><span class="params">(<span class="built_in">string</span> x, <span class="built_in">string</span> y, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; C, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="built_in">string</span> lcs)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (i &gt; <span class="number">0</span> &amp;&amp; j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (x[i - <span class="number">1</span>] == y[j - <span class="number">1</span>])  <span class="comment">// 由右上角产生</span></span><br><span class="line">			&#123;</span><br><span class="line">				lcs.push_back(x[i - <span class="number">1</span>]);</span><br><span class="line">				--i;</span><br><span class="line">				--j;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>      (C[i - <span class="number">1</span>][j] &gt; C[i][j - <span class="number">1</span>]) --i;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (C[i - <span class="number">1</span>][j] &lt; C[i][j - <span class="number">1</span>]) --j;</span><br><span class="line">				<span class="keyword">else</span>  <span class="comment">// equal</span></span><br><span class="line">				&#123;</span><br><span class="line">					LCS_output(x, y, C, i - <span class="number">1</span>, j, lcs);</span><br><span class="line">					LCS_output(x, y, C, i, j - <span class="number">1</span>, lcs);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		reverse(lcs.begin(), lcs.end());</span><br><span class="line">		ans.push_back(lcs);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	LCS lcs;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; C;</span><br><span class="line">	<span class="built_in">string</span> x = <span class="string">"ABCBDAB"</span>, y = <span class="string">"BDCABA"</span>, str;</span><br><span class="line">	lcs.LCS_L(x, y, C);</span><br><span class="line">	lcs.LCS_output(x, y, C, x.size(), y.size(), str);;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> s : lcs.ans)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BCBA</span><br><span class="line"></span><span class="keyword">BCAB</span><br><span class="line"></span><span class="keyword">BDAB</span></span><br></pre></td></tr></table></figure>
+<p>END.</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DP/" rel="tag">#DP</a>
+          
+            <a href="/tags/LCS/" rel="tag">#LCS</a>
+          
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/algorithm-add-substract-multiply-divide/" rel="next" title="用位操作符实现四则运算">
+                <i class="fa fa-chevron-left"></i> 用位操作符实现四则运算
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/algorithm-LCS/"
+           data-title="LCS: Longest Common Subsequence(最长公共子序列)" data-url="http://bluestein.github.io/2016/03/algorithm-LCS/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/Marsh.jpg"
+               alt="Humooo" />
+          <p class="site-author-name" itemprop="name">Humooo</p>
+          <p class="site-description motion-element" itemprop="description">Plodding wins the race</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bluestein" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/2d2dcfdbf403" target="_blank">
+                  
+                    <i class="fa fa-heartbeat"></i> 简书
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3239589332" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子序列"><span class="nav-number">1.1.</span> <span class="nav-text">子序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共子序列"><span class="nav-number">1.2.</span> <span class="nav-text">公共子序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长公共子序列的概念"><span class="nav-number">1.3.</span> <span class="nav-text">最长公共子序列的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最长公共子序列往往不止一个"><span class="nav-number">1.4.</span> <span class="nav-text">最长公共子序列往往不止一个</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-force（暴力法）"><span class="nav-number">2.1.</span> <span class="nav-text">Brute-force（暴力法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP(动态规划)"><span class="nav-number">2.2.</span> <span class="nav-text">DP(动态规划)</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span>Contents of this blog is licensed under <a class="theme-link" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span>
+  <!-- GoStats Simple HTML Based Code -->
+    <a target="_blank" title="流量统计" href="http://gostats.cn"><img alt="流量统计" 
+    src="http://monster.gostats.cn/bin/count/a_478563/t_7/i_3/z_0/show_visitors/counter.png" 
+    style="border-width:0" /></a>
+  <!-- End GoStats Simple HTML Based Code -->
+</div>
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"humooo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
