@@ -61,21 +61,21 @@
 
 <meta name="description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2, …, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LCS: Longest Common Subsequence(最长公共子序列)">
 <meta property="og:url" content="http://bluestein.github.io/2016/03/algorithm-LCS/index.html">
 <meta property="og:site_name" content="Humooo">
 <meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2, …, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记">
 <meta property="og:image" content="http://bluestein.github.io/images/LCS.png">
-<meta property="og:updated_time" content="2016-03-25T15:24:32.938Z">
+<meta property="og:updated_time" content="2016-03-25T15:27:52.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LCS: Longest Common Subsequence(最长公共子序列)">
 <meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
-概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2,┅, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记为">
+概念子序列设X = &amp;lt; x1, x2,…, xm &amp;gt;，若有1≤ i1 &amp;lt; i2 &amp;lt; … &amp;lt; ik &amp;le; m，使得 Z = &amp;lt; z1, z2, …, zk&amp;gt; = &amp;lt; xi1, xi2, …, xik &amp;gt;，则称Z 是X 的子序列， 记">
 
 
 
@@ -310,7 +310,7 @@
         <blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
-<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2,┅, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>
+<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2, …, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>
 <a id="more"></a> 
 <h3 id="公共子序列">公共子序列</h3><p>设X，Y 是两个序列，且有Z &lt; X 和Z &lt; Y， 则称Z 是X 和Y 的公共子序列。 </p>
 <h3 id="最长公共子序列的概念">最长公共子序列的概念</h3><p>若Z &lt; X，Z &lt; Y，且不存在比Z 更长的X 和Y 的公共子序列， 则称Z是X和Y 的最长公共子序列，记为Z &isin; LCS(X, Y)。</p>
@@ -383,6 +383,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/03/algorithm-LPS/" rel="prev" title="LPS: Longest Palindromic Substring(最长回文子串)">
+                LPS: Longest Palindromic Substring(最长回文子串) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -453,7 +457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -467,7 +471,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

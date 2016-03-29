@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我的<a href="https://github.com/bluestein">GitHub</a>]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-25T15:24:32.938Z</updated>
+  <updated>2016-03-29T13:12:40.183Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -15,15 +15,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[LPS: Longest Palindromic Substring(最长回文子串)]]></title>
+    <link href="http://bluestein.github.io/2016/03/algorithm-LPS/"/>
+    <id>http://bluestein.github.io/2016/03/algorithm-LPS/</id>
+    <published>2016-03-29T12:04:32.000Z</published>
+    <updated>2016-03-29T13:12:40.183Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>回文字符串的意思是指一个字符串，从头开始读和从尾开始读都是一样。例如，aba 是一个回文字符串，而 abc 不是。其中，单个字符也是回文字符串。</p>
+<p>最长回文子串指在一个字符串中找到最长的那个回文字符串（可以假设该字符串只有一个最长字符串）。例如，</p>
+<p>s = “caba”</p>
+<p>最长的回文子串是 aba。</p>
+<a id="more"></a>
+<h2 id="Brute_force_solution,_O(n^3)">Brute force solution, O(n^3)</h2><p>暴力法就是取出所有可能的子字符串，然后验证它是否为回文字符串，最后得到最长的回文子串。</p>
+<p>总共有 C(n, 2) 种子字符串（不包括单个字符的情况），因为验证每个子字符串的需要 O(n) 时间，故总共需要 O(n^3)。</p>
+<h2 id="Dynamic_programming_solution,_O(n^2)">Dynamic programming solution, O(n^2)</h2><p>为了改善暴力法的时间复杂度，首先需要避免重复计算的问题。比如，ababa，当我们知道 bab 是回文字符串时，很明显就可以看出 ababa 是回文字符串，因为 bab 的左边和右边的字符是相同的，都为 a。</p>
+<p>更一般的：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">假设 <span class="function"><span class="title">P</span><span class="params">(i, j)</span></span> ← true  当且仅当 si...sj（字符串 s 下标从 <span class="tag">i</span> 到 j 的子串）是回文字符串</span><br><span class="line">否则 <span class="function"><span class="title">P</span><span class="params">(i, j)</span></span> ← false</span><br></pre></td></tr></table></figure>
+<p>即有</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">P</span><span class="params">(i, j)</span></span> ← ( <span class="function"><span class="title">P</span><span class="params">(i+<span class="number">1</span>, j-<span class="number">1</span>)</span></span> &amp;&amp; Si == Sj )</span><br></pre></td></tr></table></figure>
+<p>综合起来就是</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">            true                             ,i = j</span></span><br><span class="line">P[<span class="link_label">i</span>][<span class="link_reference">j</span>] = &#123; s[i] = s[j]                      ,j = i + 1</span><br><span class="line"><span class="code">            s[i] = s[j] and P(i + 1, j - 1)  ,j &gt; i + 1</span></span><br></pre></td></tr></table></figure>
+<p>于是有如下 O(n^2) time, O(n^2) space 的解法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome_DP</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">bool</span> *P = <span class="keyword">new</span> <span class="keyword">bool</span>[n * n];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n * n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		P[i] = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// vector&lt;vector&lt;bool&gt;&gt; P(n, vector&lt;bool&gt;(n, false)); // time exceeded</span></span><br><span class="line">	<span class="keyword">int</span> max_len = <span class="number">1</span>, start = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		P[i * n + i] = <span class="literal">true</span>; <span class="comment">// P[i][i]</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// P[j][i] = (s[j] == s[i] &amp;&amp; (i - j &lt; 2 || P[j + 1][i - 1]));</span></span><br><span class="line">			P[j * n + i] = (s[j] == s[i] &amp;&amp; (i - j &lt; <span class="number">2</span> || P[(j + <span class="number">1</span>) * n + i - <span class="number">1</span>]));</span><br><span class="line">			<span class="keyword">if</span> (P[j * n + i] &amp;&amp; max_len &lt; (i - j + <span class="number">1</span>))</span><br><span class="line">			&#123;</span><br><span class="line">				max_len = i - j + <span class="number">1</span>;</span><br><span class="line">				start = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] P;</span><br><span class="line">	P = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> s.substr(start, max_len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述方法需要 O(n^2) 的空间和时间复杂度，可作如下改进，得到  O(n^2) time, O(1) space 的解法：</p>
+<p>通过观察可以发现，回文字符串是中心对称的。所以一个会文字符串可以从它的中心开始展开，并且一共有 2n - 1 个这样的中心。</p>
+<p>为什么有 2n - 1 个中心？是因为回文的中心可以在两个字符之间，如，abba 的中心在两个 b 之间。</p>
+<p>因为从中心展开一个回文字符串需要 O(n) 时间复杂度，故总的时间复杂度为 O(n^2)。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">expandCenter</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt;= n - <span class="number">1</span> &amp;&amp; s[l] == s[r])</span><br><span class="line">	&#123;</span><br><span class="line">		l--;</span><br><span class="line">		r++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s.substr(l + <span class="number">1</span>, r - l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome_DP</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">string</span>();  </span><br><span class="line">    <span class="comment">// single char itself is a palindrome</span></span><br><span class="line">	<span class="built_in">string</span> longest = s.substr(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> s1 = expandCenter(s, i, i);</span><br><span class="line">		<span class="built_in">string</span> s2 = expandCenter(s, i, i + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (s1.size() &gt; longest.size()) longest = s1;</span><br><span class="line">		<span class="keyword">if</span> (s2.size() &gt; longest.size()) longest = s2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> longest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Manacher’s_algorithm">Manacher’s algorithm</h2><p>该算法只需要 O(n) 时间复杂度。</p>
+<p>分析内容待续（自己都还没理解透彻。。）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Transform S into T.</span></span><br><span class="line"><span class="comment">// For example, S = "abba", T = "^#a#b#b#a#$".</span></span><br><span class="line"><span class="comment">// ^ and $ signs are sentinels appended to each end to avoid bounds checking</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">preProcess</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">"^$"</span>;</span><br><span class="line">	<span class="built_in">string</span> ans = <span class="string">"^"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) ans += <span class="string">"#"</span> + s.substr(i, <span class="number">1</span>);</span><br><span class="line">	ans += <span class="string">"#$"</span>;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Manacher's Algorithm, O(n) time, O(n) space</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome_Manachers</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> T = preProcess(s);</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = T.size();</span><br><span class="line">	<span class="keyword">int</span> *P = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">int</span> C = <span class="number">0</span>, R = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> i_mirror = <span class="number">2</span> * C - i;  <span class="comment">// equals to i' = C - (i - C)</span></span><br><span class="line">		P[i] = (R &gt; i) ? min(R - i, P[i_mirror]) : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Attempt to expand palindrome centered at i</span></span><br><span class="line">		<span class="keyword">while</span> (T[i + <span class="number">1</span> + P[i]] == T[i - <span class="number">1</span> - P[i]])</span><br><span class="line">		&#123;</span><br><span class="line">			P[i]++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// If palindrome centered at i expand past R,</span></span><br><span class="line">		<span class="comment">// adjust center based on expanded palindrome</span></span><br><span class="line">		<span class="keyword">if</span> (i + P[i] &gt; R)</span><br><span class="line">		&#123;</span><br><span class="line">			C = i;</span><br><span class="line">			R = i + P[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// find the maximun element in P</span></span><br><span class="line">	<span class="keyword">int</span> max_len = <span class="number">0</span>, center_index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (P[i] &gt; max_len)</span><br><span class="line">		&#123;</span><br><span class="line">			max_len = P[i];</span><br><span class="line">			center_index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] P;</span><br><span class="line">	P = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> s.substr((center_index - <span class="number">1</span> - max_len) / <span class="number">2</span>, max_len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Reference：</p>
+<ol>
+<li><a href="http://articles.leetcode.com/longest-palindromic-substring-part-i/" target="_blank" rel="external">longest palindromic substring part I</a></li>
+<li><a href="http://articles.leetcode.com/longest-palindromic-substring-part-ii/" target="_blank" rel="external">longest palindromic substring part II</a></li>
+</ol>
+<p>END.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
+</blockquote>
+<h2 id="描述">描述</h2><p>回文字符串的意思是指一个字符串，从头开始读和从尾开始读都是一样。例如，aba 是一个回文字符串，而 abc 不是。其中，单个字符也是回文字符串。</p>
+<p>最长回文子串指在一个字符串中找到最长的那个回文字符串（可以假设该字符串只有一个最长字符串）。例如，</p>
+<p>s = “caba”</p>
+<p>最长的回文子串是 aba。</p>]]>
+    
+    </summary>
+    
+      <category term="DP" scheme="http://bluestein.github.io/tags/DP/"/>
+    
+      <category term="LPS" scheme="http://bluestein.github.io/tags/LPS/"/>
+    
+      <category term="Manacher’s" scheme="http://bluestein.github.io/tags/Manacher%E2%80%99s/"/>
+    
+      <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
+    
+      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
+    
+      <category term="Algorithm" scheme="http://bluestein.github.io/categories/Dev/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[LCS: Longest Common Subsequence(最长公共子序列)]]></title>
     <link href="http://bluestein.github.io/2016/03/algorithm-LCS/"/>
     <id>http://bluestein.github.io/2016/03/algorithm-LCS/</id>
     <published>2016-03-25T14:30:32.000Z</published>
-    <updated>2016-03-25T15:24:32.938Z</updated>
+    <updated>2016-03-25T15:27:52.048Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
-<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2,┅, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>
+<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2, …, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>
 <a id="more"></a> 
 <h3 id="公共子序列">公共子序列</h3><p>设X，Y 是两个序列，且有Z &lt; X 和Z &lt; Y， 则称Z 是X 和Y 的公共子序列。 </p>
 <h3 id="最长公共子序列的概念">最长公共子序列的概念</h3><p>若Z &lt; X，Z &lt; Y，且不存在比Z 更长的X 和Y 的公共子序列， 则称Z是X和Y 的最长公共子序列，记为Z &isin; LCS(X, Y)。</p>
@@ -72,7 +137,7 @@
     <![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
-<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2,┅, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>]]>
+<h2 id="概念">概念</h2><h3 id="子序列">子序列</h3><p>设X = &lt; x1, x2,…, xm &gt;，若有1≤ i1 &lt; i2 &lt; … &lt; ik &le; m，使得 Z = &lt; z1, z2, …, zk&gt; = &lt; xi1, xi2, …, xik &gt;，则称Z 是X 的子序列， 记为Z &lt; X。<br>e.g. X = &lt; A,B,C,B,D,A,B &gt;,  Z = &lt; B,C,B,A &gt;,  则有Z &lt; X。</p>]]>
     
     </summary>
     
@@ -2838,114 +2903,6 @@
       <category term="Code" scheme="http://bluestein.github.io/categories/Code/"/>
     
       <category term="Cpp" scheme="http://bluestein.github.io/categories/Code/Cpp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[函数的声明]]></title>
-    <link href="http://bluestein.github.io/2015/12/cpp-function-declaration/"/>
-    <id>http://bluestein.github.io/2015/12/cpp-function-declaration/</id>
-    <published>2015-12-31T07:11:49.000Z</published>
-    <updated>2016-03-05T02:40:47.072Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
-<p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="默认实参">默认实参</h3><p>调用函数时，可以省略有默认值的实参。如果一个参数有默认值，那么它后面的实参都必须有默认值。如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">screenInit</span><span class="params">(<span class="built_in">string</span>::size_type height = <span class="number">24</span>,</span><br><span class="line">				<span class="built_in">string</span>::size_type width = <span class="number">80</span>,</span><br><span class="line">				<span class="keyword">char</span> background = <span class="string">' '</span>)</span></span>;</span><br><span class="line"><span class="comment">// 下面调用均正确</span></span><br><span class="line"><span class="built_in">string</span> screen;</span><br><span class="line">screen = screenInit();</span><br><span class="line">screen = screenInit(<span class="number">66</span>);</span><br><span class="line">screen = screenInit(<span class="number">66</span>, <span class="number">256</span>);</span><br><span class="line">screen = screenInit(<span class="number">66</span>, <span class="number">256</span>, <span class="string">'#'</span>);</span><br></pre></td></tr></table></figure>
-<p>设置默认形参时，最少使用的默认值放在最前，最多使用的放在最后。</p>
-<blockquote>
-<p>函数在声明时可以指定默认实参，但是在一个文件中，只能为形参指定一次默认参数。所以可以将声明放在头文件中。</p>
-</blockquote>
-<h3 id="静态局部对象">静态局部对象</h3><p>上面的形参都会在定义它们的快语句结束时被撤销，如果需要跨越多个作用域，定义为 <strong>static</strong>，它能保证在程序结束前不被撤销：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> count() &#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">size_t</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> ++cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i!= <span class="number">5</span>; ++i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; count() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// prints:</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-<h3 id="内联函数">内联函数</h3><p>一般的函数调用要比求解表达式慢得多，<strong>内联函数可以避免函数调用的开销</strong>。使用 <strong>inline</strong> 关键字定义，如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">shorterString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s1.size() &gt; s2.size() ? s1 : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>则在调用 <code>cout &lt;&lt; shorterString(s1, s2) &lt;&lt; endl;</code> 时， 编译时展开为 <code>cout &lt;&lt; (s1.size() &gt; s2.size() ? s1 : s2) &lt;&lt; endl;</code>。</p>
-<p>内联机制适用于优化小的、几行的且经常调用的函数。</p>
-<h3 id="类的成员函数">类的成员函数</h3><p>和任何函数一样，包含下面四个部分：</p>
-<ol>
-<li>返回类型</li>
-<li>函数名</li>
-<li>逗号分隔的形参列表（可为空）</li>
-<li>花括号内的函数体</li>
-</ol>
-<p>1,2,3 组成的是函数原型，<strong>函数的原型必须在类中定义</strong>，函数体则可以在类外。假设 Sales_item 类有两个成员函数 avgPrice() 和 sameIsbn(const Sales_item &amp;):</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">avgPrice</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> isbn == rhs.isbn;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>可以发现形参的后面有 <code>const</code>，在解释之前，说明成员函数如何定义：</p>
-<h4 id="成员函数的函数体">成员函数的函数体</h4><p>类的所有成员必须在<strong>定义类的花括号中声明</strong>，并且<strong>编译器隐式地将类内定义的成员函数当作是内联函数</strong>。</p>
-<blockquote>
-<p>类的成员函数可以访问 private 成员，如 isbn。</p>
-</blockquote>
-<p><strong>this 指针的引入</strong></p>
-<p>每个成员函数都有一个额外的、隐式的形参 <strong>this</strong>，在调用成员函数时，形参 this 初始化为调用函数的对象的地址。可以这样理解：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item.sameIsbn(otherItem);</span><br></pre></td></tr></table></figure>
-<p>编译器会重写这个函数调用：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sales_item::sameIsbn(&amp;item, otherItem);</span><br></pre></td></tr></table></figure>
-<p><strong>const 成员函数的引入</strong></p>
-<p>也就是上面提到的形参后面 <strong>const</strong>，<strong>它改变了隐式形参 this 的类型</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item *<span class="keyword">const</span> <span class="keyword">this</span>,</span><br><span class="line">			<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>-&gt;isbn == rhs.isbn);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>这种使用 const 的函数称为<strong>常量成员函数</strong>（const member function）。由于 this 指向 const 对象，const 成员函数不能修改调用该函数的对象。</p>
-<h4 id="类外定义成员函数">类外定义成员函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> Sales_item::avgPrice() <span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (units_sold)&#123;</span><br><span class="line">		<span class="keyword">return</span> revenue / units_sold;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用了域操作符 <code>::</code> 及类名 <code>Sales_item</code>。</p>
-<h4 id="Sale_item_的构造函数">Sale_item 的构造函数</h4><p>构造函数是特殊的成员函数，<strong>构造函数名与类名相同，而且无返回类型</strong>。可以有多个构造函数，相互之间的具有不同数目或类型的形参。</p>
-<p>跟普通成员函数一样，必须在类内声明，类内或类外定义。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Sales_item &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">avgPrice</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">sameIsbn</span><span class="params">(<span class="keyword">const</span> Sales_item &amp;rhs)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> isbn == rhs.isbn;</span><br><span class="line">	&#125;</span><br><span class="line">	Sales_item(): units_sold(<span class="number">0</span>), revenue(<span class="number">0.0</span>) &#123;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> isbn;</span><br><span class="line">	<span class="keyword">unsigned</span> units_sold;</span><br><span class="line">	<span class="keyword">double</span> revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>构造函数的初始化列表</strong></p>
-<p><strong>在冒号与花括号之间的代码称为构造函数的初始化列表</strong>，即 <code>units_sold(0), revenue(0.0)</code> 为成员指定初值，括号内是初值。<strong>构造函数的形参表为空说明此为默认调用的</strong></p>
-<p><strong>类代码的组织</strong></p>
-<p>通常将类的声明放置在头文件中，在类外定义的成员函数则置于源文件中。</p>
-<h3 id="重载函数">重载函数</h3><p>在相同作用域中，出现相同名字而形参表不同的函数，称为重载函数。如电话本的查找：基于姓名、基于号码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Record <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> Name&amp;)</span></span>;</span><br><span class="line"><span class="function">Record <span class="title">lookup</span><span class="params">(<span class="keyword">const</span> Phone&amp;)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><strong>重载与重复声明的区别</strong></p>
-<p>如果两个函数声明的返回类型和参数表完全匹配，叫重复声明；<strong>如果形参表完全相同，返回类型不同，则第二个错误</strong>。</p>
-<p>在函数中局部声明的名字会屏蔽全局名，即使是变量名对函数名也同样成立：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> init = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> s = init(); <span class="comment">// error: global init is hidden</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="指向函数的指针">指向函数的指针</h3><p>函数指针是指指向函数而非对象的指针，像其他指针一样，函数指针指向的是函数类型，<strong>函数类型由其返回类型和形参表确定，与函数名无关</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> (*pf)(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br></pre></td></tr></table></figure>
-<h4 id="用typedef简化定义">用typedef简化定义</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">bool</span> <span class="params">(*cmpFcn)</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>则 <code>cmpFcn</code> 表示<strong>指向返回类型为 bool 类型并带有两个 const string 引用形参的函数的指针</strong>。若要定义此类型的函数指针，则直接使用 <code>cmpFcn</code> 即可。</p>
-<h4 id="初始化和赋值">初始化和赋值</h4><p>在引用函数名又没调用该函数，函数名将被自动解释为指向函数的指针。假设有函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">lengthCpmpare</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>会被解释为如下类型的指针：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> (*)(<span class="keyword">const</span> <span class="built_in">string</span> &amp;, <span class="keyword">const</span> <span class="built_in">string</span> &amp;);</span><br></pre></td></tr></table></figure>
-<p>可以做如下初始化：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf1 = <span class="number">0</span>;				<span class="comment">// ok：不指向任何函数</span></span><br><span class="line">cmpFcn pf2 = lengthCompare;	<span class="comment">// ok：指向类型匹配的函数</span></span><br><span class="line">pf1 = lengthCompare;		<span class="comment">// ok：同上</span></span><br><span class="line">pf2 = pf1;					<span class="comment">// ok：同上</span></span><br></pre></td></tr></table></figure>
-<p>此时，直接饮用函数名等效于在函数名上应用取地址操作符：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf1 = lengthCompare;</span><br><span class="line">cmpFcn pf2 = &amp;lengthCompare;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>函数指针只能通过同类型的函数或函数指针或 0 值常量表达式进行初始化或赋值</p>
-</blockquote>
-<h4 id="通过指针调用函数">通过指针调用函数</h4><p>不需要解引用操作符，直接通过指针调用函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmpFcn pf = lengthcompare;</span><br><span class="line">lengthCompare(<span class="string">"hi"</span>, <span class="string">"bye"</span>);	<span class="comment">// 直接调用</span></span><br><span class="line">pf(<span class="string">"hi"</span>, <span class="string">"bye"</span>);			<span class="comment">// 等价调用：pf隐式解引用</span></span><br><span class="line">(*pf)(<span class="string">"hi"</span>, <span class="string">"bye"</span>);			<span class="comment">// 等价调用：pf显式解引用</span></span><br></pre></td></tr></table></figure>
-<h4 id="函数指针形参">函数指针形参</h4><p>函数的形参可以是指向函数的指针，这种形参可以用以下两种形式编写：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void useBigger(const string &amp;, const string &amp;,</span><br><span class="line">			bool (const string &amp;, const string &amp;));</span><br><span class="line">void useBigger(const string &amp;, const string &amp;,</span><br><span class="line">			bool (*)(const string &amp;, const string &amp;));</span><br></pre></td></tr></table></figure>
-<h4 id="返回指向函数的指针">返回指向函数的指针</h4><p>函数可以返回指向函数的指针，但是，这并不简单：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ff is a function taking an int and returing a function pointer</span></span><br><span class="line"><span class="comment">// the function pointed to returns an int and takes an int* and an int</span></span><br><span class="line"><span class="keyword">int</span> (*ff(<span class="keyword">int</span>)) (<span class="keyword">int</span>*, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>这样理解： <code>ff(int)</code> 表明 ff 为一个函数，它带有一个 int 型形参，该参数返回 <code>int (*)(int*, int)</code>，它是指向一个函数的指针。用 typedef 可以更加明白：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PF is a pointer to a function returing an int, taking an int* and an int</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*PF)</span><span class="params">(<span class="keyword">int</span>*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function">PF <span class="title">ff</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>END.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-<p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons BY-NC-ND 4.0</a></p>
-</blockquote>
-<p>跟变量一样，函数也需要先声明再使用。同样的，函数的定义和函数的声明也可以分离：一个函数只能定义一次，但可以声明多次。</p>
-<p>函数声明必须包含：<strong>返回类型、函数名和形参列表</strong>。形参列表必须包含形参类型，但没强调要包含形参名。比如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>, <span class="built_in">string</span>)</span></span>;</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/tags/Cpp/"/>
-    
-      <category term="Cpp primer" scheme="http://bluestein.github.io/tags/Cpp-primer/"/>
-    
-      <category term="Dev" scheme="http://bluestein.github.io/categories/Dev/"/>
-    
-      <category term="Cpp" scheme="http://bluestein.github.io/categories/Dev/Cpp/"/>
     
   </entry>
   
