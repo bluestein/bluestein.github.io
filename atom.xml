@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我的<a href="https://github.com/bluestein">GitHub</a>]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bluestein.github.io/"/>
-  <updated>2016-03-29T13:12:40.183Z</updated>
+  <updated>2016-03-30T03:26:43.673Z</updated>
   <id>http://bluestein.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://bluestein.github.io/2016/03/algorithm-LPS/"/>
     <id>http://bluestein.github.io/2016/03/algorithm-LPS/</id>
     <published>2016-03-29T12:04:32.000Z</published>
-    <updated>2016-03-29T13:12:40.183Z</updated>
+    <updated>2016-03-30T03:26:43.673Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
@@ -44,8 +44,38 @@
 <p>为什么有 2n - 1 个中心？是因为回文的中心可以在两个字符之间，如，abba 的中心在两个 b 之间。</p>
 <p>因为从中心展开一个回文字符串需要 O(n) 时间复杂度，故总的时间复杂度为 O(n^2)。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">expandCenter</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt;= n - <span class="number">1</span> &amp;&amp; s[l] == s[r])</span><br><span class="line">	&#123;</span><br><span class="line">		l--;</span><br><span class="line">		r++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s.substr(l + <span class="number">1</span>, r - l - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome_DP</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">string</span>();  </span><br><span class="line">    <span class="comment">// single char itself is a palindrome</span></span><br><span class="line">	<span class="built_in">string</span> longest = s.substr(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">string</span> s1 = expandCenter(s, i, i);</span><br><span class="line">		<span class="built_in">string</span> s2 = expandCenter(s, i, i + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (s1.size() &gt; longest.size()) longest = s1;</span><br><span class="line">		<span class="keyword">if</span> (s2.size() &gt; longest.size()) longest = s2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> longest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Manacher’s_algorithm">Manacher’s algorithm</h2><p>该算法只需要 O(n) 时间复杂度。</p>
-<p>分析内容待续（自己都还没理解透彻。。）</p>
+<h2 id="Manacher’s_algorithm,_O(n)">Manacher’s algorithm, O(n)</h2><h3 id="转换">转换</h3><p>首先，我们利用 # 将输入的字符串转换。如</p>
+<p>s = “abaaba”  =&gt;  t = “#a#b#a#a#b#a#”</p>
+<p>为了避免边界的检测，我们还可以在<strong>两边分别插入一个不同的字符作为边界哨兵</strong>（# 除外），例如 ^ 和 $</p>
+<p>t = “^#a#b#a#a#b#a#$”</p>
+<p>根据前面（动态规划方法2）所说，我们需要根据 t_{i} 展开得到 t_{i-d} … t_{i+d} 回文串。则很容易发现 d 就是以 t_{i} 为中心的回文串的长度。</p>
+<p>我们利用 P[i] 来记录以 t_{i} 为中心的回文子串的长度，则 p[i] 中最大值就是最长回文子串的长度。</p>
+<p>直观地：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = ^ <span class="preprocessor"># a # b # a # a # b # a # $</span></span><br><span class="line">P = <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span> <span class="number">1</span> <span class="number">6</span> <span class="number">1</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>通过观察 P 可以知道，最长的回文子串为 abaaba 且长度为 6。</p>
+<p>并且很容易看出，s 的长度不管是奇数还是偶数的都会转换为长度为奇数的 t。</p>
+<h3 id="举例">举例</h3><p>下面介绍一个更加复杂的例子，s = “babcbabcbaccba”</p>
+<p><img src="/images/lps/lps_1.png" alt=""></p>
+<p>假设我们计算到当前状态 i = 13 的时候，实竖线表示回文串 “abcbabcba” 的中心（C）。两个虚线 L 和 R 分别表示左右边界。此时该如何计算 P[i] 呢？</p>
+<p>假设我们现在处于 i = 13，现在需要计算 p[i]（用？标明的地方）。我们先看它关于中心 C 的对称点 i’，它的下标是 i’ = 9</p>
+<p><img src="/images/lps/lps_2.png" alt=""></p>
+<p>两条绿色的实线分别表示以 i 和 i’ 为中心的回文串所覆盖的范围。它们满足对称的性质，故有 P[i] = p[i’] = 1。实际上，接下来的三个元素都满足该性质（即，P[ 12 ] = P[ 10 ] = 0, P[ 13 ] = P[ 9 ] = 1, P[ 14 ] = P[ 8 ] = 0）。</p>
+<p><img src="/images/lps/lps_3.png" alt=""></p>
+<p>现在 i = 15，它的对称点为 i’ = 7 且 P[7] = 7，那么 P[15] = P[7] = 7？</p>
+<p>我们通过观察发现 P[15] = 5 != P[7] = 7，如果我们在 t_{15} 进行展开，它的回文串为 “a#b#c#b#a”，这比 7 小，为什么？</p>
+<p><img src="/images/lps/lps_4.png" alt=""></p>
+<p>上面标出颜色的线表示 i 和 i’ 的覆盖范围，实绿线表示符合对称性质的区域，红实线表示可能不符合，虚绿线表示重合的地方。</p>
+<p>显然，绿实线表示的区域是完全符合对称的。注意到 P[i’] = 7 一直展开至 L 的左边，所以 L 左边的部分不符合对称。我们知道的是 P[i] &gt;= 5，为了找到确切的 P[i] 我们需要增加 R 来进行更多匹配。对于本例来说，因为 P[21] != P[1]，则有 P[i] = 5。</p>
+<p>现在总结该算法如下：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>   P[i<span class="comment">'] <span class="xmlDocTag">&lt;= R - i,</span><br><span class="line">then P[i]   = P[i']</span><br><span class="line">else P[i]  &gt;</span>= P[i'].(这种情况需要展开 R 来找 P[i])</span></span><br></pre></td></tr></table></figure>
+<p>接下来就是，何时我们才需要往右移动 C 和 R，即：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果以 <span class="built_in">i</span> 为中心的回文串展开超过 R，则更新 C = <span class="built_in">i</span>（作为新回文串的中心），同时将 R 更新为新回文串的右边界。</span><br></pre></td></tr></table></figure>
+<p>每一步都只有两种情况：</p>
+<ol>
+<li>P[i] &lt;= R - i：则 P[i] = P[i’]，只需要一步计算。</li>
+<li>从右边界 R 开始拓展，试图将回文串的中心更改为 i。</li>
+</ol>
+<p>拓展 R 做多只需要做 n 步，并且中心测试也只需要 n 次。所以该算法能够保证在 2*n 内做完，即 O(n)。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Transform S into T.</span></span><br><span class="line"><span class="comment">// For example, S = "abba", T = "^#a#b#b#a#$".</span></span><br><span class="line"><span class="comment">// ^ and $ signs are sentinels appended to each end to avoid bounds checking</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">preProcess</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = s.size();</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">"^$"</span>;</span><br><span class="line">	<span class="built_in">string</span> ans = <span class="string">"^"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) ans += <span class="string">"#"</span> + s.substr(i, <span class="number">1</span>);</span><br><span class="line">	ans += <span class="string">"#$"</span>;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Manacher's Algorithm, O(n) time, O(n) space</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome_Manachers</span><span class="params">(<span class="built_in">string</span> s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> T = preProcess(s);</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> n = T.size();</span><br><span class="line">	<span class="keyword">int</span> *P = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	<span class="keyword">int</span> C = <span class="number">0</span>, R = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> i_mirror = <span class="number">2</span> * C - i;  <span class="comment">// equals to i' = C - (i - C)</span></span><br><span class="line">		P[i] = (R &gt; i) ? min(R - i, P[i_mirror]) : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Attempt to expand palindrome centered at i</span></span><br><span class="line">		<span class="keyword">while</span> (T[i + <span class="number">1</span> + P[i]] == T[i - <span class="number">1</span> - P[i]])</span><br><span class="line">		&#123;</span><br><span class="line">			P[i]++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// If palindrome centered at i expand past R,</span></span><br><span class="line">		<span class="comment">// adjust center based on expanded palindrome</span></span><br><span class="line">		<span class="keyword">if</span> (i + P[i] &gt; R)</span><br><span class="line">		&#123;</span><br><span class="line">			C = i;</span><br><span class="line">			R = i + P[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// find the maximun element in P</span></span><br><span class="line">	<span class="keyword">int</span> max_len = <span class="number">0</span>, center_index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (P[i] &gt; max_len)</span><br><span class="line">		&#123;</span><br><span class="line">			max_len = P[i];</span><br><span class="line">			center_index = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] P;</span><br><span class="line">	P = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> s.substr((center_index - <span class="number">1</span> - max_len) / <span class="number">2</span>, max_len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Reference：</p>
 <ol>
@@ -69,7 +99,9 @@
     
       <category term="LPS" scheme="http://bluestein.github.io/tags/LPS/"/>
     
-      <category term="Manacher’s" scheme="http://bluestein.github.io/tags/Manacher%E2%80%99s/"/>
+      <category term="Palindromic" scheme="http://bluestein.github.io/tags/Palindromic/"/>
+    
+      <category term="Substring" scheme="http://bluestein.github.io/tags/Substring/"/>
     
       <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
     
@@ -84,7 +116,7 @@
     <link href="http://bluestein.github.io/2016/03/algorithm-LCS/"/>
     <id>http://bluestein.github.io/2016/03/algorithm-LCS/</id>
     <published>2016-03-25T14:30:32.000Z</published>
-    <updated>2016-03-25T15:27:52.048Z</updated>
+    <updated>2016-03-29T13:19:23.687Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>版权声明：自由转载-非商用-非衍生-保持署名 | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="external">Creative Commons BY-NC-ND 4.0</a></p>
 </blockquote>
@@ -144,6 +176,8 @@
       <category term="DP" scheme="http://bluestein.github.io/tags/DP/"/>
     
       <category term="LCS" scheme="http://bluestein.github.io/tags/LCS/"/>
+    
+      <category term="Subsequence" scheme="http://bluestein.github.io/tags/Subsequence/"/>
     
       <category term="algorithm" scheme="http://bluestein.github.io/tags/algorithm/"/>
     
