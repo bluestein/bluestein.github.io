@@ -69,7 +69,7 @@
 <meta property="og:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
 
 几天前参加了腾讯的笔试（内退为何没电话面试呢），说实话我感觉选错岗位了。我选择的是 移动客户端开发方向，也就会涉及到Android iOS 方面的题目。对此我几乎不了解，这是我又一次自我认知的失误。而且，对于后面的主观题，代码格式和在线调试功能在最后十几分钟才有所了解，可以算得上是一次实">
-<meta property="og:updated_time" content="2016-04-13T08:24:11.854Z">
+<meta property="og:updated_time" content="2016-04-25T06:14:28.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="腾讯笔试">
 <meta name="twitter:description" content="版权声明：自由转载-非商用-非衍生-保持署名 | Creative Commons BY-NC-ND 4.0
@@ -556,7 +556,16 @@
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 如果Request_i<span class="string">[j]</span> &lt;= Need<span class="string">[i]</span><span class="string">[j]</span>，转向<span class="number">2</span>；否则出错，因为所需资源大于所声明的最大数量。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>. 如果Request_i<span class="string">[j]</span> &lt;= Available<span class="string">[j]</span>，转向<span class="number">3</span> ；否则出错，表示没有足够资源，P_i 必须等待。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>. 系统尝试把资源分配给进程P_i，并修改数据：</span><br><span class="line">    Available<span class="string">[j]</span> -= Request_i<span class="string">[j]</span>;</span><br><span class="line">    Allocation<span class="string">[i]</span><span class="string">[j]</span> += Request_i<span class="string">[j]</span>;</span><br><span class="line">    Need<span class="string">[i]</span><span class="string">[j]</span> -= Request_i<span class="string">[j]</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>. 系统执行安全性算法，检测此次分配是否会使系统进入不安全状态。若安全，才正式分配给进程P_i；否则将试探分配作废，恢复原来的资源状态，让进程P_i 等待。</span><br></pre></td></tr></table></figure>
 <p>参见：汤小丹, 梁红兵 etc. 计算机操作系统（第三版）. 西安电子科技大学出版社. 2007年5月</p>
 <p>待续..</p>
-<h3 id="动态库和静态库">动态库和静态库</h3><h3 id="散列存储">散列存储</h3><h3 id="Android_NDK">Android NDK</h3><h3 id="&amp;的用法">&amp;的用法</h3><h3 id="完全二叉树">完全二叉树</h3><h3 id="栈溢攻击">栈溢攻击</h3><h3 id="无向图的点和边数">无向图的点和边数</h3>
+<h3 id="动态库和静态库">动态库和静态库</h3><p>动态库：动态链接库（英语：Dynamic-link library，缩写为DLL）是微软公司在Windows操作系统中实现共享函数库概念的一种实作方式。</p>
+<p>所谓动态链接，就是把一些经常会共用的代码（静态链接的OBJ程序库）制作成DLL档，当可执行文件调用到DLL档内的函数时，Windows操作系统才会把DLL档加载内存内，DLL档本身的结构就是可执行文件，当程序需求函数才进行链接。通过动态链接方式，内存浪费的情形将可大幅降低。</p>
+<p>静态库：静态库（英语：Static library, Statically-linked library），或称静态函式库，是一个外部函式与变数的集合体。在编译期间由编译器与连结器将它整合至应用程序内，生成可独立运行的文件。</p>
+<p>静态库与动态库想比：<br>优点：只需保证在开发者的计算机有正确的库文件，在以二进制发布时不需考虑在使用者的计算机上库文件是否存在及版本问题，可避免DLL地狱等问题。（DLL地狱（DLL Hell）指在Microsoft Windows系统中，因为动态链接库（DLL）的版本或兼容性的问题而造成程序无法正常运行。）</p>
+<p>缺点： 生成的可执行文件体积较大。当初正是为了避免此问题，才开发了动态库技术。</p>
+<h3 id="散列存储">散列存储</h3><h3 id="Android_NDK">Android NDK</h3><h3 id="&amp;的用法">&amp;的用法</h3><h3 id="完全二叉树">完全二叉树</h3><p>除最后一层外，每一层上的节点数均达到最大值；在最后一层上只缺少右边的若干结点。<br>第i 层至多有2^{i - 1} 个节点；深度为k 的二叉树至多有2^{k} - 1 个节点。例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      <span class="number">1</span></span><br><span class="line">    /   \</span><br><span class="line">  <span class="number">2</span>       <span class="number">3</span></span><br><span class="line"> / \     /</span><br><span class="line"><span class="number">4</span>   <span class="number">5</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>总结点数k： 2^{h - 1} &lt;= k &lt; 2^{h} - 1 （若等于，则为满二叉树）。<br>树高h：h = log2(k) + 1</p>
+<h3 id="栈溢攻击">栈溢攻击</h3><h3 id="无向图的点和边数">无向图的点和边数</h3><p>对一个图G= (V,E)，V表示定点，E表示边。则，<br>连通图：  |E| &gt;= |V| - 1<br>强连通图：|E| &gt;= |V|<br>树：     |E| =  |V| - 1</p>
+
       
     </div>
 
